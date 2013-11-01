@@ -17,7 +17,7 @@ class Board extends Sprite {
   ResourceManager _resourceManager;
   Juggler _juggler;
 
-  Math.Random _random;
+  math.Random _random;
   int _status;
 
   List<int>_colors;
@@ -42,7 +42,7 @@ class Board extends Sprite {
     _resourceManager = resourceManager;
     _juggler = juggler;
 
-    _random = new Math.Random();
+    _random = new math.Random();
     _status = BoardStatus.Playing;
     _colors = colors;
 
@@ -175,7 +175,7 @@ class Board extends Sprite {
     for(int l = 0; l < _levelLocks; l++) {
 
       Lock lock = new Lock(_resourceManager, _juggler, l);
-      lock.rotation = (_random.nextInt(30) - 15) * Math.PI / 180;
+      lock.rotation = (_random.nextInt(30) - 15) * math.PI / 180;
       lock.x = 300 - (90 * _levelLocks) / 2 + l * 90 + _random.nextInt(20) - 10;
       lock.y = 550;
 
@@ -695,8 +695,8 @@ class Board extends Sprite {
 
     if (me.target == _chainLayer && this.mouseEnabled) {
 
-      int x = Math.min(me.localX / 50, 9).toInt();
-      int y = Math.min(me.localY / 50, 9).toInt();
+      int x = math.min(me.localX / 50, 9).toInt();
+      int y = math.min(me.localY / 50, 9).toInt();
 
       Point p = new Point(x, y);
 

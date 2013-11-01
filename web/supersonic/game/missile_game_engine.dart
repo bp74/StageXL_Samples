@@ -26,8 +26,8 @@ class MissileGameEngine extends GameComponent {
   Vector3D nearest;
   RegularPolygon nearestPolygon;
 
-  num pipeRotation = 30.0 * PI / 180;
-  num pipeRotStep = 1.0 * PI / 180;
+  num pipeRotation = 30.0 * math.PI / 180;
+  num pipeRotStep = 1.0 * math.PI / 180;
   num zSpeed = 0.05;
 
   num pipeObjectRotMin = -1;
@@ -142,7 +142,7 @@ class MissileGameEngine extends GameComponent {
     this.nirvana = new Vector3D( 0, 0, 0);
     this.nearest = new Vector3D( 0, 0, MAX_Z);
 
-    this.pipeRotStep = (1 + (0.1 * this.game.level)) * PI / 180;
+    this.pipeRotStep = (1 + (0.1 * this.game.level)) * math.PI / 180;
     this.zSpeed = 0.015 + (0.004 * this.game.level);
     this.pipeObjectRotMax = 2 + this.game.level;
     this.pipeObjectRotMin = -this.pipeObjectRotMax;
@@ -197,7 +197,7 @@ class MissileGameEngine extends GameComponent {
     this.nirvana = new Vector3D( 0, 0, 0);
     this.nearest = new Vector3D( 0, 0, MAX_Z);
 
-    this.pipeRotStep = 2 * PI / 180;
+    this.pipeRotStep = 2 * math.PI / 180;
     //this.zSpeed = 0.05;
     this.pipeObjectRotMax = 0;
     this.pipeObjectRotMin = 0;
@@ -287,8 +287,8 @@ class MissileGameEngine extends GameComponent {
 
     var pob = new PipeObject(new Bitmap(resourceManager.getBitmapData(type)));
     pob.isBarrier = true;
-    pob.rotation = RandomUtils.getIntByRange(0,359) * PI / 180;
-    pob.rotStep = RandomUtils.getNumberByRange(this.pipeObjectRotMin, this.pipeObjectRotMax) * PI / 180;
+    pob.rotation = RandomUtils.getIntByRange(0,359) * math.PI / 180;
+    pob.rotStep = RandomUtils.getNumberByRange(this.pipeObjectRotMin, this.pipeObjectRotMax) * math.PI / 180;
     pob.position = this.nirvana.clone();
 
     return pob;
@@ -313,7 +313,7 @@ class MissileGameEngine extends GameComponent {
         //create finish-object here ...
         pob = new PipeObject(new Bitmap(resourceManager.getBitmapData("finish")));
         pob.rotation = 0;
-        pob.rotStep = 5 * PI / 180;
+        pob.rotStep = 5 * math.PI / 180;
         pob.position = this.nirvana.clone();
         pob.continued = 0;
         pob.isBarrier = true;
@@ -333,14 +333,14 @@ class MissileGameEngine extends GameComponent {
           } else if (count == 2) {
             pob = new PipeObject(new Bitmap(resourceManager.getBitmapData("training02")));
             pob.isBarrier = true;
-            pob.rotation = 135 * PI / 180;//RandomUtils.getIntByRange(0,359);
+            pob.rotation = 135 * math.PI / 180;//RandomUtils.getIntByRange(0,359);
             pob.rotStep = 0;//RandomUtils.getNumberByRange(this.pipeObjectRotMin, this.pipeObjectRotMax);
             pob.position = this.nirvana.clone();
             pob.testObjectId = 2;
           } else if (count == 3) {
             pob = new PipeObject(new Bitmap(resourceManager.getBitmapData("training02")));
             pob.isBarrier = true;
-            pob.rotation = 315 * PI / 180;//RandomUtils.getIntByRange(0,359);
+            pob.rotation = 315 * math.PI / 180;//RandomUtils.getIntByRange(0,359);
             pob.rotStep = 0;//RandomUtils.getNumberByRange(this.pipeObjectRotMin, this.pipeObjectRotMax);
             pob.position = this.nirvana.clone();
             pob.testObjectId = 3;

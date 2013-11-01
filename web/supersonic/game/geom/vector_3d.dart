@@ -93,11 +93,11 @@ class Vector3D {
   }
 
   num getMaxComponent() {
-    return max( x, max( y, z ));
+    return math.max( x, math.max( y, z ));
   }
 
   num getMinComponent() {
-    return min( x, min( y, z ) );
+    return math.min( x, math.min( y, z ) );
   }
 
   num getAngle(Vector3D w) {
@@ -115,7 +115,7 @@ class Vector3D {
       if (sin2 < 0)
         sin2 = 0;
 
-      return atan2(sqrt(sin2), ncos);
+      return math.atan2(math.sqrt(sin2), ncos);
     }
   }
 

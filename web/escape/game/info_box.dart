@@ -23,7 +23,7 @@ class InfoBox extends Sprite {
     _levelText.x = 20;
     _levelText.y = 115;
     //_levelText.filters = [new GlowFilter(0x000000, 0.7, 3, 3)];    // ToDo
-    _levelText.rotation = -2 * Math.PI / 180;
+    _levelText.rotation = -2 * math.PI / 180;
     addChild(_levelText);
 
     _chainsText = new TextField();
@@ -36,7 +36,7 @@ class InfoBox extends Sprite {
     _chainsText.x = -_chainsText.width / 2;
     _chainsText.y = - _chainsText.height / 2;
     //_chainsText.filters = [new GlowFilter(0x000000, 0.7, 3, 3)];   // ToDo
-    _chainsText.rotation = -2 * Math.PI / 180;
+    _chainsText.rotation = -2 * math.PI / 180;
 
     _chainsTextZoom = new Sprite();
     _chainsTextZoom.addChild(_chainsText);
@@ -48,7 +48,7 @@ class InfoBox extends Sprite {
     Bitmap chain = Grafix.getChain(resourceManager, 3, 0);
     chain.x = 110;
     chain.y = 171;
-    chain.rotation = -2 * Math.PI / 180;
+    chain.rotation = -2 * math.PI / 180;
     chain.scaleX = chain.scaleY = 0.6;
     addChild(chain);
   }

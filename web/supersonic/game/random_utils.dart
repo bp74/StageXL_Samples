@@ -2,7 +2,7 @@ part of supersonic;
 
 class RandomUtils {
 
-  static Random _random = new Random();
+  static math.Random _random = new math.Random();
 
   static int getIntByRange(int min, int max) {
 

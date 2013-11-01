@@ -29,8 +29,8 @@ class Bonus extends Sprite {
     transition.onUpdate = (value) {
       textFieldContainer.alpha = 1 - value;
       textFieldContainer.y = - value * 50;
-      textFieldContainer.scaleX = 1.0 + 0.1 * Math.sin(value * 10);
-      textFieldContainer.scaleY = 1.0 + 0.1 * Math.cos(value * 10);
+      textFieldContainer.scaleX = 1.0 + 0.1 * math.sin(value * 10);
+      textFieldContainer.scaleY = 1.0 + 0.1 * math.cos(value * 10);
     };
 
     transition.onComplete = () {

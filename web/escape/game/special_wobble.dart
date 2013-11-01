@@ -23,7 +23,7 @@ class SpecialWobble extends Sprite implements Animatable {
   bool advanceTime(num time) {
 
     _currentTime += time;
-    this.rotation = Math.sin(_currentTime * 7) * 10 * Math.PI / 180;
+    this.rotation = math.sin(_currentTime * 7) * 10 * math.PI / 180;
     return true;
   }
 

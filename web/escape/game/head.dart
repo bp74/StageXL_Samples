@@ -38,7 +38,7 @@ class Head extends Sprite {
     _nodTransition.onUpdate = (value) {
       int frame = ((value * _headBitmapDatas.length) % _headBitmapDatas.length).toInt();
       _headBitmap.bitmapData = _headBitmapDatas[frame];
-      _headBitmap.y = Math.sin(value * 2 * Math.PI) * 3 - _headBitmap.height / 2;
+      _headBitmap.y = math.sin(value * 2 * math.PI) * 3 - _headBitmap.height / 2;
     };
 
     _juggler.add(_nodTransition);

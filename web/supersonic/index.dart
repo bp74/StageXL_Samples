@@ -3,7 +3,6 @@ library supersonic;
 import 'dart:async';
 import 'dart:html' as html;
 import 'dart:math' as math;
-import 'dart:math' hide Point, Rectangle;
 import 'package:stagexl/stagexl.dart';
 
 part 'game/geom/regular_polygon.dart';
@@ -30,7 +29,6 @@ Stage stage;
 RenderLoop renderLoop;
 ResourceManager resourceManager;
 Juggler renderJuggler;
-Random random;
 
 Bitmap loadingBitmap;
 Tween loadingBitmapTween;
@@ -46,8 +44,6 @@ void main() {
   renderLoop.addStage(stage);
 
   renderJuggler = renderLoop.juggler;
-
-  random = new Random();
 
   //-------------------------------------------
 
@@ -65,7 +61,7 @@ void main() {
     stage.addChild(loadingBitmap);
 
     loadingBitmapTween = new Tween(loadingBitmap, 100, TransitionFunction.linear);
-    loadingBitmapTween.animate.rotation.to(100.0 * 2.0 * PI);
+    loadingBitmapTween.animate.rotation.to(100.0 * 2.0 * math.PI);
     renderJuggler.add(loadingBitmapTween);
 
     loadingTextField = new TextField();

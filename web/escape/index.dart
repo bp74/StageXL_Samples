@@ -1,8 +1,8 @@
 library escape;
 
 import 'dart:async';
-import 'dart:math' as Math;
-import 'dart:html' as Html;
+import 'dart:math' as math;
+import 'dart:html' as html;
 import 'package:stagexl/stagexl.dart';
 
 part 'game/alarm.dart';
@@ -34,7 +34,7 @@ TextField loadingTextField;
 
 void main() {
 
-  stage = new Stage("Stage", Html.querySelector('#stage'));
+  stage = new Stage("Stage", html.querySelector('#stage'));
   renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
 
@@ -59,7 +59,7 @@ void main() {
     stage.addChild(loadingTextField);
 
     loadingBitmapTween = new Tween(loadingBitmap, 100, TransitionFunction.linear);
-    loadingBitmapTween.animate.rotation.to(100.0 * 2.0 * Math.PI);
+    loadingBitmapTween.animate.rotation.to(100.0 * 2.0 * math.PI);
     stage.juggler.add(loadingBitmapTween);
 
     loadResources();

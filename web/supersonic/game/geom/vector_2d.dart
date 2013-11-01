@@ -30,7 +30,7 @@ class Vector2D {
   }
 
   num get length {
-    return sqrt( x * x + y * y);
+    return math.sqrt( x * x + y * y);
   }
 
   normalize() {
@@ -91,14 +91,14 @@ class Vector2D {
   }
 
   num get angleRad {
-    num angle = PI - atan2 (this.x, this.y);
-    if (angle < 0) angle += 2 * PI;
+    num angle = math.PI - math.atan2(this.x, this.y);
+    if (angle < 0) angle += 2 * math.PI;
     return angle;
   }
 
   set angleRad(num angle) {
     var l = this.length;
-    var p = Point.polar(l, angle - PI / 2);
+    var p = Point.polar(l, angle - math.PI / 2);
     this.x = p.x;
     this.y = p.y;
   }

@@ -22,7 +22,7 @@ class Explosion extends Sprite implements Animatable {
     this.mouseEnabled = false;
 
     var chain = Grafix.getChain(resourceManager, color, direction);
-    var random = new Math.Random();
+    var random = new math.Random();
 
     num angle;
     num velocity;
@@ -31,12 +31,12 @@ class Explosion extends Sprite implements Animatable {
     for(int y = 0; y <= 1; y++) {
       for(int x = 0; x <= 1; x++) {
 
-        if (x == 0 && y == 0) { angle = Math.PI * 1.15; rotation = - Math.PI * 2; }
-        if (x == 1 && y == 0) { angle = Math.PI * 1.85; rotation =   Math.PI * 2; }
-        if (x == 1 && y == 1) { angle = Math.PI * 0.15; rotation =   Math.PI * 2; }
-        if (x == 0 && y == 1) { angle = Math.PI * 0.85; rotation = - Math.PI * 2; }
+        if (x == 0 && y == 0) { angle = math.PI * 1.15; rotation = - math.PI * 2; }
+        if (x == 1 && y == 0) { angle = math.PI * 1.85; rotation =   math.PI * 2; }
+        if (x == 1 && y == 1) { angle = math.PI * 0.15; rotation =   math.PI * 2; }
+        if (x == 0 && y == 1) { angle = math.PI * 0.85; rotation = - math.PI * 2; }
 
-        angle = angle + 0.2 * Math.PI * random.nextDouble();
+        angle = angle + 0.2 * math.PI * random.nextDouble();
         velocity = 80.0 + 40.0 * random.nextDouble();
 
         Bitmap bitmap = new Bitmap(chain.bitmapData);
@@ -64,7 +64,7 @@ class Explosion extends Sprite implements Animatable {
 
   bool advanceTime(num time) {
 
-    _currentTime = Math.min(0.8, _currentTime + time);
+    _currentTime = math.min(0.8, _currentTime + time);
 
     num gravity = 981.0;
 
@@ -74,8 +74,8 @@ class Explosion extends Sprite implements Animatable {
       var angle = particle.angle;
       var velocity = particle.velocity;
       var rotation = particle.rotation;
-      var posX = particle.startX + _currentTime * (Math.cos(angle) * velocity);
-      var posY = particle.startY + _currentTime * (Math.sin(angle) * velocity + _currentTime * gravity * 0.5);
+      var posX = particle.startX + _currentTime * (math.cos(angle) * velocity);
+      var posY = particle.startY + _currentTime * (math.sin(angle) * velocity + _currentTime * gravity * 0.5);
 
       bitmap.x = posX;
       bitmap.y = posY;
