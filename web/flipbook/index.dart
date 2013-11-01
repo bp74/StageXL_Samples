@@ -70,7 +70,7 @@ void startAnimation() {
   //------------------------------------------------------------------
 
   var tween = new Tween(flipBook, 5.0 + (1.0 - scaling) * 5.0, TransitionFunction.linear)
-    ..animate.x.to(960.0)
+    ..animate.x.to(940.0)
     ..onComplete = () => stopAnimation(flipBook);
 
   stage.addChild(flipBook);

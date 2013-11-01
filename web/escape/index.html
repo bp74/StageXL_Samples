@@ -2,14 +2,26 @@
 
 <html>
   <head>
-    <title>Escape</title>
+    <title>StageXL Sample Escape</title>
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
   </head>
+  
   <body>
-
-    <canvas id="stage" width="800" height="600" ></canvas>
+    <div class="container">
+      <h1>Escape</h1>
+      <hr>
+      <div class="row">
+        <div class="span12">
+          <canvas id="stage" width="800" height="600" ></canvas>
+        </div>
+      </div>
+      <hr>
+    </div>
 
     <script type="application/dart" src="index.dart"></script>
-    <script src="packages/browser/dart.js"></script>
-
+    <script type="text/javascript" src="packages/browser/dart.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    
   </body>
 </html>

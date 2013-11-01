@@ -2,15 +2,26 @@
 
 <html>
   <head>
-    <title>StageXL Flipbook Demo</title>
-    <link rel="stylesheet" href="index.css">
+    <title>StageXL Flipbook Sample</title>
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />    
   </head>
+  
   <body>
-
-    <canvas id="stage" width="960" height="500" style="border: 1px dotted black;" ></canvas>
+    <div class="container">
+      <h1>Flipbook</h1>
+      <hr>
+      <div class="row">
+        <div class="span12">
+          <canvas id="stage" width="940" height="500" ></canvas>
+        </div>
+      </div>
+      <hr>
+    </div>
 
     <script type="application/dart" src="index.dart"></script>
-    <script src="packages/browser/dart.js"></script>
+    <script type="text/javascript" src="packages/browser/dart.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 
   </body>
 </html>

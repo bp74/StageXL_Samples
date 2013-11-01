@@ -5,36 +5,40 @@
     <title>StageXL Mask Sample</title>
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
   </head>
+  
   <body>
   
-  <div class="container">
-    <h1>Masks</h1>
-    <hr>
-    <div class="row">
-	   <div class="span2">
-	     <button id="mask-none" class="btn btn-large btn-block btn-primary">No Mask</button>
-	   </div>
-	   <div class="span2">
-	     <button id="mask-rectangle" class="btn btn-large btn-block btn-primary">Rectangle Mask</button>
-	   </div>
-	   <div class="span2">
-	     <button id="mask-circle" class="btn btn-large btn-block btn-primary">Circle Mask</button>
-	   </div>
-	   <div class="span2">
-	     <button id="mask-custom" class="btn btn-large btn-block btn-primary">Custom Mask</button>
-	   </div>
-	   <div class="offset2 span2">
-	     <button id="mask-spin" class="btn btn-large btn-block btn-warning">Spin</button>
-	   </div>
-    </div>
-    <div class="row">
+    <div class="container">
+      <h1>Masks</h1>
       <hr>
-      <canvas id="stage" width="940" height="500"></canvas>
+      <div class="row">
+  	   <div class="span2">
+  	     <button id="mask-none" class="btn btn-large btn-block btn-primary">No Mask</button>
+  	   </div>
+  	   <div class="span2">
+  	     <button id="mask-rectangle" class="btn btn-large btn-block btn-primary">Rectangle Mask</button>
+  	   </div>
+  	   <div class="span2">
+  	     <button id="mask-circle" class="btn btn-large btn-block btn-primary">Circle Mask</button>
+  	   </div>
+  	   <div class="span2">
+  	     <button id="mask-custom" class="btn btn-large btn-block btn-primary">Custom Mask</button>
+  	   </div>
+  	   <div class="offset2 span2">
+  	     <button id="mask-spin" class="btn btn-large btn-block btn-warning">Spin</button>
+  	   </div>
+      </div>
+      <hr>      
+      <div class="row">
+        <canvas id="stage" width="940" height="500"></canvas>
+      </div>
+      <hr>
     </div>
-  </div>
-            
-  <script type="application/dart" src="index.dart"></script>
-  <script src="packages/browser/dart.js"></script>
-
+              
+    <script type="application/dart" src="index.dart"></script>
+    <script type="text/javascript" src="packages/browser/dart.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+  
   </body>
 </html>
