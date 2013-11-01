@@ -1,0 +1,148 @@
+{"frames": [
+
+{
+	"filename": "blood.png",
+	"frame": {"x":754,"y":2,"w":100,"h":100},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":100},
+	"sourceSize": {"w":100,"h":100}
+},
+{
+	"filename": "but_no.png",
+	"frame": {"x":669,"y":284,"w":75,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":75,"h":64},
+	"sourceSize": {"w":75,"h":64}
+},
+{
+	"filename": "but_no2.png",
+	"frame": {"x":746,"y":238,"w":75,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":75,"h":64},
+	"sourceSize": {"w":75,"h":64}
+},
+{
+	"filename": "but_yes.png",
+	"frame": {"x":754,"y":172,"w":75,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":75,"h":64},
+	"sourceSize": {"w":75,"h":64}
+},
+{
+	"filename": "but_yes2.png",
+	"frame": {"x":669,"y":218,"w":75,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":75,"h":64},
+	"sourceSize": {"w":75,"h":64}
+},
+{
+	"filename": "button_exit.png",
+	"frame": {"x":754,"y":104,"w":75,"h":66},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":75,"h":66},
+	"sourceSize": {"w":75,"h":66}
+},
+{
+	"filename": "button_exit_2.png",
+	"frame": {"x":592,"y":218,"w":75,"h":66},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":75,"h":66},
+	"sourceSize": {"w":75,"h":66}
+},
+{
+	"filename": "countdown01.png",
+	"frame": {"x":442,"y":448,"w":416,"h":214},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":105,"y":202,"w":416,"h":214},
+	"sourceSize": {"w":600,"h":600}
+},
+{
+	"filename": "countdown02.png",
+	"frame": {"x":2,"y":448,"w":438,"h":214},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":93,"y":199,"w":438,"h":214},
+	"sourceSize": {"w":600,"h":600}
+},
+{
+	"filename": "countdown03.png",
+	"frame": {"x":592,"y":2,"w":160,"h":214},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":220,"y":200,"w":160,"h":214},
+	"sourceSize": {"w":600,"h":600}
+},
+{
+	"filename": "countdown04.png",
+	"frame": {"x":2,"y":302,"w":574,"h":144},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":7,"y":236,"w":574,"h":144},
+	"sourceSize": {"w":600,"h":600}
+},
+{
+	"filename": "crosshair.png",
+	"frame": {"x":804,"y":664,"w":46,"h":46},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":1,"w":46,"h":46},
+	"sourceSize": {"w":50,"h":50}
+},
+{
+	"filename": "menu_bg.png",
+	"frame": {"x":2,"y":2,"w":588,"h":298},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":1,"w":588,"h":298},
+	"sourceSize": {"w":588,"h":314}
+},
+{
+	"filename": "progressbar.png",
+	"frame": {"x":860,"y":2,"w":6,"h":491},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":14,"y":2,"w":6,"h":491},
+	"sourceSize": {"w":34,"h":495}
+},
+{
+	"filename": "progressship.png",
+	"frame": {"x":782,"y":304,"w":33,"h":50},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":3,"w":33,"h":50},
+	"sourceSize": {"w":33,"h":56}
+},
+{
+	"filename": "spaceship.png",
+	"frame": {"x":746,"y":304,"w":34,"h":49},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":1,"w":34,"h":49},
+	"sourceSize": {"w":36,"h":51}
+},
+{
+	"filename": "topbar.png",
+	"frame": {"x":2,"y":664,"w":800,"h":65},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":800,"h":65},
+	"sourceSize": {"w":800,"h":65}
+}],
+"meta": {
+	"app": "http://www.texturepacker.com",
+	"version": "1.0",
+	"image": "ItemTextureAtlas.png",
+	"format": "RGBA8888",
+	"size": {"w":868,"h":731},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:ed476be5b23fc9290354b8e0f3398c70$"
+}
+}
