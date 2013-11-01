@@ -1,4 +1,4 @@
-#Escape
+#Supersonic
 
 This game was ported from Adobe Flash to HTML5 by using Dart and the StageXL library.
 
