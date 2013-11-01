@@ -1,0 +1,8 @@
+name: stagexl_samples
+author: Bernhard Pichler
+description: Sample applications showing features of the StageXL library.
+homepage: http://www.stagexl.org/
+dependencies:
+  browser: any
+  stagexl:
+    path: D:\GitHub\bp74\StageXL

@@ -2,3 +2,8 @@
 packages
 .project
 pubspec.lock
+
+*.dart.js
+*.dart.js.map
+*.dart.js.deps
+*.dart.precompiled.js
