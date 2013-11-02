@@ -5,25 +5,25 @@ import 'dart:html' as html;
 import 'dart:math' as math;
 import 'package:stagexl/stagexl.dart';
 
-part 'game/geom/regular_polygon.dart';
-part 'game/geom/polygon.dart';
-part 'game/geom/segment.dart';
-part 'game/geom/vector_2d.dart';
-part 'game/geom/vector_3d.dart';
+part 'source/geom/regular_polygon.dart';
+part 'source/geom/polygon.dart';
+part 'source/geom/segment.dart';
+part 'source/geom/vector_2d.dart';
+part 'source/geom/vector_3d.dart';
 
-part 'game/menu/menu.dart';
-part 'game/menu/menu_event.dart';
-part 'game/menu/top_menu.dart';
-part 'game/menu/abort_game_menu.dart';
+part 'source/menu/menu.dart';
+part 'source/menu/menu_event.dart';
+part 'source/menu/top_menu.dart';
+part 'source/menu/abort_game_menu.dart';
 
-part 'game/game.dart';
-part 'game/game_event.dart';
-part 'game/game_component.dart';
-part 'game/missile_game.dart';
-part 'game/missile_game_engine.dart';
-part 'game/pipe_object.dart';
-part 'game/scene.dart';
-part 'game/random_utils.dart';
+part 'source/game.dart';
+part 'source/game_event.dart';
+part 'source/game_component.dart';
+part 'source/missile_game.dart';
+part 'source/missile_game_engine.dart';
+part 'source/pipe_object.dart';
+part 'source/scene.dart';
+part 'source/random_utils.dart';
 
 Stage stage;
 RenderLoop renderLoop;
