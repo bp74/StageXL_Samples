@@ -1,44 +1,51 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-    <title>StageXL Mask Sample</title>
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-  </head>
+<head>
+  <title>StageXL Mask Sample</title>
+  <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+  <style type="text/css">
+    body { background-color: LightGray; }
+    #stage { background-color: White; border-style: solid; border-width: 3px; border-color: #900000; }
+    #centerContainer { position: absolute; top: 50%; margin-top: -300px; left: 0; width: 100%; }
+    #centerContent { width: 940px; height: 600px; margin-left: auto; margin-right: auto; }
+  </style>
+</head>
+
+<body>
   
-  <body>
-  
-    <div class="container">
-      <h1>Masks</h1>
-      <hr>
-      <div class="row">
-  	   <div class="span2">
-  	     <button id="mask-none" class="btn btn-large btn-block btn-primary">No Mask</button>
-  	   </div>
-  	   <div class="span2">
-  	     <button id="mask-rectangle" class="btn btn-large btn-block btn-primary">Rectangle Mask</button>
-  	   </div>
-  	   <div class="span2">
-  	     <button id="mask-circle" class="btn btn-large btn-block btn-primary">Circle Mask</button>
-  	   </div>
-  	   <div class="span2">
-  	     <button id="mask-custom" class="btn btn-large btn-block btn-primary">Custom Mask</button>
-  	   </div>
-  	   <div class="offset2 span2">
-  	     <button id="mask-spin" class="btn btn-large btn-block btn-warning">Spin</button>
-  	   </div>
-      </div>
-      <hr>      
-      <div class="row">
+  <div id="centerContainer">
+    <div id="centerContent">
+    
+      <div id="container">
+        <div class="row">
+          <div class="span2">
+            <button id="mask-none" class="btn btn-large btn-block btn-primary">No Mask</button>
+          </div>
+          <div class="span2">
+            <button id="mask-rectangle" class="btn btn-large btn-block btn-primary">Rectangle Mask</button>
+          </div>
+          <div class="span2">
+            <button id="mask-circle" class="btn btn-large btn-block btn-primary">Circle Mask</button>
+          </div>
+          <div class="span2">
+            <button id="mask-custom" class="btn btn-large btn-block btn-primary">Custom Mask</button>
+          </div>
+          <div class="offset2 span2">
+            <button id="mask-spin" class="btn btn-large btn-block btn-warning">Spin</button>
+          </div>
+        </div>
+        <br />
         <canvas id="stage" width="940" height="500"></canvas>
       </div>
-      <hr>
+      
     </div>
-              
-    <script type="application/dart" src="index.dart"></script>
-    <script type="text/javascript" src="../assets/js/dart.js"></script>
-    <script type="text/javascript" src="../assets/js/jquery-2.0.3.min.js"></script>
-    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
-  
-  </body>
+  </div>
+
+  <script type="application/dart" src="index.dart"></script>
+  <script type="text/javascript" src="../assets/js/dart.js"></script>
+  <script type="text/javascript" src="../assets/js/jquery-2.0.3.min.js"></script>
+  <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+
+</body>
 </html>

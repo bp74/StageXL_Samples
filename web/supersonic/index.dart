@@ -38,7 +38,7 @@ const String defaultFont = "Russo One";
 
 void main() {
 
-  stage = new Stage("Stage", html.querySelector('#stage'), 800, 600);
+  stage = new Stage("Stage", html.querySelector('#stage'));
 
   renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
