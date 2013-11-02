@@ -17,7 +17,7 @@ void main() {
 
 void startAnimation(BitmapData logoBitmapData) {
   var random = new math.Random();
-  var startDelay = 0.25;
+  var startDelay = 0.15;
 
   var logoBitmap = new Bitmap(logoBitmapData)
     ..pivotX = logoBitmapData.width ~/ 2
