@@ -2,12 +2,16 @@ part of periodic_table;
 
 class ElementIcon extends Sprite {
 
+  Tween _mouseOverTween = null;
+
   ElementIcon(Map element, int categoryColor) {
 
     this.pivotX = 25;
     this.pivotY = 25;
     this.useHandCursor = true;
     this.mouseChildren = false;
+    this.onMouseOver.listen(_onMouseOver);
+    this.onMouseOut.listen(_onMouseOut);
 
     this.graphics.beginPath();
     this.graphics.rectRound(3, 3, 44, 44, 4, 4);
@@ -44,5 +48,37 @@ class ElementIcon extends Sprite {
     addChild(symbolTextField);
     addChild(numberTextField);
   }
+
+  //-----------------------------------------------------------------------------------------------
+  //-----------------------------------------------------------------------------------------------
+
+  _onMouseOver(Event event) {
+
+    this.parent.addChild(this);
+
+    var juggler = this.stage.juggler;
+    juggler.remove(_mouseOverTween);
+
+    _mouseOverTween = new Tween(this, 0.25, TransitionFunction.easeOutQuadratic);
+    _mouseOverTween.animate.scaleX.to(1.5);
+    _mouseOverTween.animate.scaleY.to(1.5);
+    juggler.add(_mouseOverTween);
+  }
+
+  //-----------------------------------------------------------------------------------------------
+
+  _onMouseOut(Event event) {
+
+    this.parent.addChild(this);
+
+    var juggler = this.stage.juggler;
+    juggler.remove(_mouseOverTween);
+
+    _mouseOverTween = new Tween(this, 0.25, TransitionFunction.easeOutQuadratic);
+    _mouseOverTween.animate.scaleX.to(1.0);
+    _mouseOverTween.animate.scaleY.to(1.0);
+    juggler.add(_mouseOverTween);
+  }
+
 
 }
