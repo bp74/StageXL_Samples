@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>StageXL Piano Sample</title>
+<link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Sofadi+One'
+  rel='stylesheet' type='text/css' />
+
+<style type="text/css">
+#lyrics {
+  text-align: center;
+  vertical-align: middle;
+  padding: 20px 0px 10px 0px;
+  font-family: Sofadi One;
+  font-size: 20px;
+}
+
+#lyrics #word {
+  font-weight: bold;
+  color: #00008b;
+}
+</style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Piano</h1>
+    <hr>
+    <div class="row">
+      <div class="span2">
+        <button id="song-happy-birthday" class="btn btn-large btn-block btn-primary">Happy Birthday</button>
+      </div>
+      <div class="span2">
+        <button id="song-hey-jude" class="btn btn-large btn-block btn-primary">Hey Jude</button>
+      </div>
+      <div class="span3">
+        <button id="song-star-spangled-banner" class="btn btn-large btn-block btn-primary">Star-Spangled Banner</button>
+      </div>
+      <div class="span3">
+        <button id="song-you-are-my-sunshine" class="btn btn-large btn-block btn-primary">You are my sunshine</button>
+      </div>
+      <div class="span2">
+         <button id="startOver" class="btn btn-large btn-block btn-warning">Start over</button>
+       </div>      
+    </div>
+    <hr>
+    <div class="row">
+      <div class="span12">
+        <div id="lyrics"></div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="span12">
+        <canvas id="stage" width="940" height="250"></canvas>
+      </div>
+    </div>
+    <hr>
+  </div>
+
+  <script type="application/dart" src="index.dart"></script>
+  <script type="text/javascript" src="packages/browser/dart.js"></script>
+  <script type="text/javascript" src="../assets/js/jquery-2.0.3.min.js"></script>
+  <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+</body>
+</html>
