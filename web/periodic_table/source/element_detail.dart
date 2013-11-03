@@ -18,19 +18,11 @@ class ElementDetail extends Sprite {
 
     var categoryColor = int.parse(category["color"], radix: 16) | 0xFF000000;
 
-    this.graphics.beginPath();
-    this.graphics.rectRound(0, 0, 460, 130, 8, 8);
-    this.graphics.closePath();
-    this.graphics.fillColor(categoryColor);
-    this.graphics.strokeColor(Color.Black, 1);
-
     var font =  "Open Sans,Helvetica Neue, Helvetica, Arial, sans-serif";
     var nameTextFormat = new TextFormat(font, 30, Color.Black, bold:true);
 
     var nameTextField = new TextField()
       ..defaultTextFormat = nameTextFormat
-      ..x = 8
-      ..y = 4
       ..cacheAsBitmap = false
       ..autoSize = TextFieldAutoSize.LEFT
       ..text = "$name ($symbol)";
