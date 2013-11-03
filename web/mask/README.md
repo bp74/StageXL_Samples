@@ -1,5 +1,9 @@
 #Mask
 
+[Try it here](http://www.stagexl.org/samples/mask/ "StageXL Mask Sample")
+
+---
+
 This is a simple demo showing some flowers and the effect when different masks are applied. A mask hides the area of a DisplayObject which is outside of the bounds of the mask. Only the pixels inside of the mask are visible.
 
 The Mask demo uses 3 masks with different shapes. The first two masks are simple shapes in the form of a rectangle and a circle. The third mask uses a custom shape which is defined by a list of points - in this example the shape of a star. You can also create masks with a shape that follows the graphics path of a StageXL Shape class, but this is outside of the scope of this sample.
@@ -35,12 +39,6 @@ The sample also shows one additional button labeled with "Spin". If the users cl
     stage.juggler.tween(flowerField, 2.0, TransitionFunction.easeInOutBack)
       ..animate.rotation.to(math.PI * 4.0)
       ..onComplete = () => flowerField.rotation = 0.0; 
-
----
-
-You can try this demo here:
-
-<http://www.stagexl.org/samples/mask/>
 
 ---
 

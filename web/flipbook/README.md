@@ -1,5 +1,9 @@
 #FlipBook
 
+[Try it here](http://www.stagexl.org/samples/flipbook/ "StageXL FlipBook Sample")
+
+---
+
 This is a very simple demo showing an animated walking man. Learn how to initialize the StageXL Stage, the RenderLoop and how to use the FlipBook class to play sprite sheet animations. This demo also uses the opt-in feature of StageXL to load WebP images if the browser supports it. 
 
     stage = new Stage("myStage", html.querySelector('#stage'));
@@ -55,12 +59,6 @@ The animation of the walking man should stop when the man is leaving the screen.
 
     stage.removeChild(flipbook);
     stage.juggler.remove(flipbook);
-
----
-
-You can try this demo here:
-
-<http://www.stagexl.org/samples/flipbook/>
 
 ---
 

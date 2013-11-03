@@ -1,4 +1,8 @@
-#Dart Logo
+#Dart Logo 
+
+[Try it here](http://www.stagexl.org/samples/dart_logo/ "StageXL DartLogo Sample")
+
+---
 
 This is a very simple demo showing some animated Dart logos. Learn how to initialize the StageXL Stage, the RenderLoop and how simple it is to do animations. 
 
@@ -38,12 +42,6 @@ Last but not least, after a short delay the *startAnimation* function is called 
 
     stage.juggler.delayCall(() => startAnimation(logoBitmapData), startDelay);
     
----
-
-You can try this demo here:
-
-<http://www.stagexl.org/samples/dart_logo/>
-
 ---
 
 To learn more about Dart and the StageXL library, please follow these links: 

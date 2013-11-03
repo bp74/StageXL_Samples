@@ -17,11 +17,8 @@ ResourceManager resourceManager;
 
 void main() {
 
-  // This sample is work in progress!
-
   //------------------------------------------------------------------
   // Initialize the Display List
-  //------------------------------------------------------------------
 
   var canvas = html.querySelector('#stage');
   stage = new Stage("myStage", canvas, 960, 570);
@@ -32,10 +29,7 @@ void main() {
   renderLoop.addStage(stage);
 
   //------------------------------------------------------------------
-  // Load a TextureAtlas
-  //------------------------------------------------------------------
-
-  BitmapData.defaultLoadOptions.webp = true;
+  // Load the chemical element definition files
 
   resourceManager = new ResourceManager()
     ..addTextFile("table", "data/table.json")
