@@ -17,8 +17,6 @@ class ElementButton extends Sprite {
     this.scaleY = 0.5;
     this.useHandCursor = true;
     this.mouseChildren = false;
-    this.onMouseOver.listen(_onMouseOver);
-    this.onMouseOut.listen(_onMouseOut);
 
     this.graphics.beginPath();
     this.graphics.rectRound(6, 6, 88, 88, 8, 8);
@@ -26,7 +24,7 @@ class ElementButton extends Sprite {
     this.graphics.fillColor(categoryColor);
     this.graphics.strokeColor(Color.Black, 1);
 
-    var font =  "Open Sans,Helvetica Neue, Helvetica, Arial, sans-serif";
+    var font =  "Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif";
     var numberTextFormat = new TextFormat(font, 24, Color.Black, bold:true);
     var symbolTextFormat = new TextFormat(font, 40, Color.Black, bold:true);
 
@@ -60,23 +58,11 @@ class ElementButton extends Sprite {
   //-----------------------------------------------------------------------------------------------
 
   animateTo(num scale, num alpha) {
-    var juggler = this.stage.juggler;
-    juggler.removeTweens(this);
-
-    juggler.tween(this, 0.25, TransitionFunction.easeOutQuadratic)
+    this.stage.juggler.removeTweens(this);
+    this.stage.juggler.tween(this, 0.25, TransitionFunction.easeOutQuadratic)
       ..animate.scaleX.to(scale)
       ..animate.scaleY.to(scale)
       ..animate.alpha.to(alpha);
   }
 
-  _onMouseOver(Event event) {
-    this.parent.addChild(this);
-    animateTo(0.70, 1.0);
-    dispatchEvent(new Event("ButtonSelected"));
-  }
-
-  _onMouseOut(Event event) {
-    animateTo(0.5, 1.0);
-    dispatchEvent(new Event("ButtonDeselected"));
-  }
 }

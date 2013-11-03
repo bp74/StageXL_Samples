@@ -1,6 +1,6 @@
 part of periodic_table;
 
-class ElementDetail extends Sprite {
+class ElementDetail extends DisplayObjectContainer {
 
   Map element;
   Map category;
@@ -41,7 +41,7 @@ class ElementDetail extends Sprite {
   //-----------------------------------------------------------------------------------------------
 
   _addDataTextField(String text, int x, int y) {
-    var font =  "Open Sans,Helvetica Neue, Helvetica, Arial, sans-serif";
+    var font =  "Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif";
     var dataTextFormat = new TextFormat(font, 14, Color.Black);
 
     var dataTextField = new TextField()

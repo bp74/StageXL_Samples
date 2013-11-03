@@ -5,14 +5,15 @@ class PeriodicTable extends DisplayObjectContainer {
   Map elements;
   Map table;
 
-  ElementDetail _elementDetail = null;
+  DisplayObject _detail = null;
+  Juggler _juggler = stage.juggler;
 
   PeriodicTable(this.table, this.elements) {
     _addElementButtons();
     _addCategorieButtons();
 
-    this.on("ButtonSelected").capture(_onSelectEvent);
-    this.on("ButtonDeselected").capture(_onSelectEvent);
+    this.onMouseOver.capture(_onMouseOverCapture);
+    this.onMouseOut.capture(_onMouseOutCapture);
   }
 
   //-----------------------------------------------------------------------------------------------
@@ -20,7 +21,7 @@ class PeriodicTable extends DisplayObjectContainer {
 
   _addElementButtons() {
     for(var element in this.elements["elements"]) {
-      var atomicNumber = element["atomic_number"];
+      var atomicNumber = element["atomic_number"] as int;
       var groupIndex = _getGroupNumber(atomicNumber) - 1;
       var periodIndex = _getPeriodNumber(atomicNumber) - 1;
       var category = _getCategory(atomicNumber);
@@ -56,76 +57,129 @@ class PeriodicTable extends DisplayObjectContainer {
   //-----------------------------------------------------------------------------------------------
 
   int _getGroupNumber(int atomicNumber) {
-    for(var group in this.table["groups"]) {
-      if (group["elements"].contains(atomicNumber)) {
+    for(var group in this.table["groups"])
+      if (group["elements"].contains(atomicNumber))
         return group["number"];
-      }
-    }
-    return -1;
   }
 
   int _getPeriodNumber(int atomicNumber) {
-    for(var period in this.table["periods"]) {
-      if (period["elements"].contains(atomicNumber)) {
+    for(var period in this.table["periods"])
+      if (period["elements"].contains(atomicNumber))
         return period["number"];
-      }
-    }
-    return -1;
   }
 
   Map _getCategory(int atomicNumber) {
-    for(var category in this.table["categories"]) {
-      if (category["elements"].contains(atomicNumber)) {
+    for(var category in this.table["categories"])
+      if (category["elements"].contains(atomicNumber))
         return category;
-      }
-    }
-    return null;
   }
 
   //-----------------------------------------------------------------------------------------------
 
-  _onSelectEvent(Event event) {
-    if (event.target is CategoryButton) {
-      _onSelectCategoryButtonEvent(event);
-    }
+  _onMouseOverCapture(MouseEvent event) {
     if (event.target is ElementButton) {
-      _onSelectElementButtonEvent(event);
+      _onMouseOverElementButton(event);
+    }
+    if (event.target is CategoryButton) {
+      _onMouseOverCategoryButton(event);
     }
   }
 
-  _onSelectCategoryButtonEvent(Event event) {
-    var button = event.target as CategoryButton;
+  _onMouseOutCapture(MouseEvent event) {
+    if (event.target is ElementButton) {
+      _onMouseOutElementButton(event);
+    }
+    if (event.target is CategoryButton) {
+      _onMouseOutCategoryButton(event);
+    }
+  }
+
+  _onMouseOverElementButton(MouseEvent event) {
+    ElementButton button = event.target;
+    this.addChild(button);
+    button.animateTo(0.70, 1.0);
+
+    _detail = new ElementDetail(button.element, button.category);
+    _detail.x = 150;
+    _detail.y = 10;
+    _detail.alpha = 0.0;
+    _detail.addTo(this);
+
+    _juggler.tween(_detail, 0.3, TransitionFunction.linear)
+      ..animate.alpha.to(1.0);
+
     for(int i = 0; i < this.numChildren; i++) {
       var child = this.getChildAt(i);
-      if (child is ElementButton) {
-        if (event.type == "ButtonSelected") {
-          if (child.category != button.category) {
-            child.animateTo(0.5, 0.4);
-          } else {
-            child.animateTo(0.55, 1.0);
-          }
+      if (child is CategoryButton) {
+        if (identical(child.category, button.category)) {
+          child.animateTo(0.55, 1.0);
         } else {
-          child.animateTo(0.5, 1.0);
+          child.animateTo(0.50, 0.4);
         }
       }
     }
   }
 
-  _onSelectElementButtonEvent(Event event) {
-    var button = event.target as ElementButton;
-    if (event.type == "ButtonSelected") {
-      _elementDetail = new ElementDetail(button.element, button.category);
-      _elementDetail.x = 150;
-      _elementDetail.y = 15;
-      _elementDetail.alpha = 0.0;
-      _elementDetail.addTo(this);
-      stage.juggler.tween(_elementDetail, 0.3, TransitionFunction.linear)
-        ..animate.alpha.to(1.0);
-    } else {
-      if (_elementDetail != null) {
-        stage.juggler.tween(_elementDetail, 0.3, TransitionFunction.linear)
-          ..animate.alpha.to(0.0)
-          ..onComplete = _elementDetail.removeFromParent;
+  _onMouseOutElementButton(MouseEvent event) {
+    ElementButton button = event.target;
+    button.animateTo(0.5, 1.0);
+
+    if (_detail != null) {
+      _juggler.tween(_detail, 0.3, TransitionFunction.linear)
+        ..animate.alpha.to(0.0)
+        ..onComplete = _detail.removeFromParent;
+      _detail = null;
+    }
+
+    for(int i = 0; i < this.numChildren; i++) {
+      var child = this.getChildAt(i);
+      if (child is CategoryButton) {
+        child.animateTo(0.50, 1.0);
+      }
+    }
+  }
+
+  _onMouseOverCategoryButton(MouseEvent event) {
+    CategoryButton button = event.target;
+    this.addChild(button);
+    button.animateTo(0.70, 1.0);
+
+    _detail = new CategoryDetail(button.category);
+    _detail.x = 150;
+    _detail.y = 10;
+    _detail.alpha = 0.0;
+    _detail.addTo(this);
+
+    _juggler.tween(_detail, 0.3, TransitionFunction.linear)
+      ..animate.alpha.to(1.0);
+
+    for(int i = 0; i < this.numChildren; i++) {
+      var child = this.getChildAt(i);
+      if (child is ElementButton) {
+        if (identical(child.category, button.category)) {
+          child.animateTo(0.55, 1.0);
+        } else {
+          child.animateTo(0.5, 0.4);
+        }
+      }
+    }
+  }
+
+  _onMouseOutCategoryButton(MouseEvent event) {
+    CategoryButton button = event.target;
+    button.animateTo(0.5, 1.0);
+
+    if (_detail != null) {
+      _juggler.tween(_detail, 0.3, TransitionFunction.linear)
+        ..animate.alpha.to(0.0)
+        ..onComplete = _detail.removeFromParent;
+      _detail = null;
+    }
+
+    for(int i = 0; i < this.numChildren; i++) {
+      var child = this.getChildAt(i);
+      if (child is ElementButton) {
+        child.animateTo(0.5, 1.0);
       }
     }
   }

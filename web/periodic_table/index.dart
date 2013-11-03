@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'dart:html' as html;
 import 'package:stagexl/stagexl.dart';
 
+part 'source/category_detail.dart';
 part 'source/category_button.dart';
 part 'source/element_button.dart';
 part 'source/element_detail.dart';

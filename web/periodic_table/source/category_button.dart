@@ -15,8 +15,6 @@ class CategoryButton extends Sprite {
     this.scaleY = 0.5;
     this.useHandCursor = true;
     this.mouseChildren = false;
-    this.onMouseOver.listen(_onMouseOver);
-    this.onMouseOut.listen(_onMouseOut);
 
     this.graphics.beginPath();
     this.graphics.rectRound(6, 6, 148, 88, 8, 8);
@@ -24,17 +22,18 @@ class CategoryButton extends Sprite {
     this.graphics.fillColor(color);
     this.graphics.strokeColor(Color.Black, 1);
 
-    var font =  "Open Sans,Helvetica Neue, Helvetica, Arial, sans-serif";
-    var textFormat = new TextFormat(font, 20, Color.Black, bold:true)
-      ..align = TextFormatAlign.CENTER;
+    var font =  "Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif";
+    var textFormat = new TextFormat(font, 20, Color.Black, bold:true,
+        align: TextFormatAlign.CENTER);
 
     var textField = new TextField()
       ..defaultTextFormat = textFormat
       ..x = 5
       ..y = 12
       ..wordWrap = true
+      ..multiline = true
       ..width = 150
-      ..height= 80
+      ..height= 100
       ..cacheAsBitmap = false
       ..mouseEnabled = false
       ..text = name;
@@ -58,17 +57,5 @@ class CategoryButton extends Sprite {
       ..animate.scaleY.to(scale)
       ..animate.alpha.to(alpha);
   }
-
-  _onMouseOver(Event event) {
-    this.parent.addChild(this);
-    animateTo(0.70, 1.0);
-    dispatchEvent(new Event("ButtonSelected"));
-  }
-
-  _onMouseOut(Event event) {
-    animateTo(0.5, 1.0);
-    dispatchEvent(new Event("ButtonDeselected"));
-  }
-
 
 }
