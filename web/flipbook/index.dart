@@ -19,9 +19,7 @@ void main() {
   // Initialize the Display List
   //------------------------------------------------------------------
 
-  var canvas = html.querySelector('#stage');
-  stage = new Stage("myStage", canvas);
-
+  stage = new Stage("myStage", html.querySelector('#stage'));
   renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
 
@@ -57,6 +55,7 @@ void startAnimation() {
     ..y = 20.0 + 200.0 * scaling
     ..scaleX = 0.5 + 0.5 * scaling
     ..scaleY = 0.5 + 0.5 * scaling
+    ..addTo(stage)
     ..play();
 
   stage.sortChildren((c1, c2) {
@@ -69,11 +68,11 @@ void startAnimation() {
   // Let's add a tween so the man walks from the left to the right.
   //------------------------------------------------------------------
 
-  var tween = new Tween(flipBook, 5.0 + (1.0 - scaling) * 5.0, TransitionFunction.linear)
+  var transition = TransitionFunction.linear;
+  var tween = new Tween(flipBook, 5.0 + (1.0 - scaling) * 5.0, transition)
     ..animate.x.to(940.0)
     ..onComplete = () => stopAnimation(flipBook);
 
-  stage.addChild(flipBook);
   stage.juggler
     ..add(flipBook)
     ..add(tween)
