@@ -51,7 +51,7 @@ class ElementButton extends Sprite {
     addChild(symbolTextField);
     addChild(numberTextField);
 
-    applyCache(0,0,100,100);
+    applyCache(0, 0, 100, 100);
   }
 
   //-----------------------------------------------------------------------------------------------

@@ -24,7 +24,7 @@ void main() {
   //------------------------------------------------------------------
 
   var canvas = html.querySelector('#stage');
-  stage = new Stage("myStage", canvas, 940, 570);
+  stage = new Stage("myStage", canvas, 960, 570);
   stage.scaleMode = StageScaleMode.SHOW_ALL;
   stage.align = StageAlign.NONE;
 

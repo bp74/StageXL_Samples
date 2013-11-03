@@ -16,8 +16,6 @@ class ElementDetail extends DisplayObjectContainer {
     var meltingPoint = element["melting_point K"];
     var boilingPoint = element["boiling_point K"];
 
-    var categoryColor = int.parse(category["color"], radix: 16) | 0xFF000000;
-
     var font =  "Open Sans,Helvetica Neue, Helvetica, Arial, sans-serif";
     var nameTextFormat = new TextFormat(font, 30, Color.Black, bold:true);
 

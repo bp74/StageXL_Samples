@@ -78,24 +78,25 @@ class PeriodicTable extends DisplayObjectContainer {
 
   _onMouseOverCapture(MouseEvent event) {
     if (event.target is ElementButton) {
-      _onMouseOverElementButton(event);
+      _onElementButtonMouseOver(event.target);
     }
     if (event.target is CategoryButton) {
-      _onMouseOverCategoryButton(event);
+      _onCategoryButtonMouseOver(event.target);
     }
   }
 
   _onMouseOutCapture(MouseEvent event) {
     if (event.target is ElementButton) {
-      _onMouseOutElementButton(event);
+      _onElementButtonMouseOut(event.target);
     }
     if (event.target is CategoryButton) {
-      _onMouseOutCategoryButton(event);
+      _onCategoryButtonMouseOut(event.target);
     }
   }
 
-  _onMouseOverElementButton(MouseEvent event) {
-    ElementButton button = event.target;
+  //-----------------------------------------------------------------------------------------------
+
+  _onElementButtonMouseOver(ElementButton button) {
     this.addChild(button);
     button.animateTo(0.70, 1.0);
 
@@ -120,8 +121,7 @@ class PeriodicTable extends DisplayObjectContainer {
     }
   }
 
-  _onMouseOutElementButton(MouseEvent event) {
-    ElementButton button = event.target;
+  _onElementButtonMouseOut(ElementButton button) {
     button.animateTo(0.5, 1.0);
 
     if (_detail != null) {
@@ -139,8 +139,9 @@ class PeriodicTable extends DisplayObjectContainer {
     }
   }
 
-  _onMouseOverCategoryButton(MouseEvent event) {
-    CategoryButton button = event.target;
+  //-----------------------------------------------------------------------------------------------
+
+  _onCategoryButtonMouseOver(CategoryButton button) {
     this.addChild(button);
     button.animateTo(0.70, 1.0);
 
@@ -165,8 +166,7 @@ class PeriodicTable extends DisplayObjectContainer {
     }
   }
 
-  _onMouseOutCategoryButton(MouseEvent event) {
-    CategoryButton button = event.target;
+  _onCategoryButtonMouseOut(CategoryButton button) {
     button.animateTo(0.5, 1.0);
 
     if (_detail != null) {
