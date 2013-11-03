@@ -5,7 +5,8 @@ import 'dart:convert';
 import 'dart:html' as html;
 import 'package:stagexl/stagexl.dart';
 
-part 'source/element_icon.dart';
+part 'source/category_button.dart';
+part 'source/element_button.dart';
 part 'source/element_detail.dart';
 part 'source/periodic_table.dart';
 
@@ -22,7 +23,7 @@ void main() {
   //------------------------------------------------------------------
 
   var canvas = html.querySelector('#stage');
-  stage = new Stage("myStage", canvas, 940, 500);
+  stage = new Stage("myStage", canvas, 940, 570);
   stage.scaleMode = StageScaleMode.SHOW_ALL;
   stage.align = StageAlign.NONE;
 
