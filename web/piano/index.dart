@@ -91,7 +91,7 @@ void main() {
         karaoke.updateSong(starSpangledBannerNotes, starSpangledBannerLyrics));
 
     html.querySelector('#song-you-are-my-sunshine').onClick.listen((e) =>
-        karaoke.updateSong(ouAreMySunshineNotes, ouAreMySunshineLyrics));
+        karaoke.updateSong(youAreMySunshineNotes, youAreMySunshineLyrics));
 
     html.querySelector('#startOver').onClick.listen((e) =>
         karaoke.resetSong());

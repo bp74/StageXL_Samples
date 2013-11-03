@@ -55,7 +55,7 @@ final List<String> starSpangledBannerLyrics = [
 
 //-----------------------------------------------------------------------------
 
-final List<String> ouAreMySunshineNotes = [
+final List<String> youAreMySunshineNotes = [
   'G3', 'C4', 'D4', 'E4', 'E4', 'E4', 'D4', 'E4', 'C4', 'C4',
   'C4', 'D4', 'E4', 'F4', 'A4', 'A4', 'G4', 'F4', 'E4',
   'C4', 'D4', 'E4', 'F4', 'A4', 'A4', 'G4', 'F4', 'E4', 'C4',
@@ -63,7 +63,7 @@ final List<String> ouAreMySunshineNotes = [
 
 ];
 
-final List<String> ouAreMySunshineLyrics = [
+final List<String> youAreMySunshineLyrics = [
   'You ', 'are ', 'my ', 'sunshine ', '', 'my ', 'only ', '', 'sunshine.<br>', '',
   'You ', 'make ', 'me ', 'happy ', '', 'when ', 'skies ', 'are ', 'gray.<br>',
   'You\'ll ', 'never ', '', 'know ', 'dear ', 'how ', 'much ',  'i ', 'love ', 'you.<br>',

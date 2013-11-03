@@ -4,7 +4,7 @@
 
 ---
 
-This is a more advanced StageXL sample showing the periodic table of chemical elements. This sample uses different features of the StageXL library - mainly vector graphics, display object caching, text fields and animations.
+This is a more advanced StageXL sample and it shows the periodic table of chemical elements. This sample uses different features of the StageXL library - mainly vector graphics, display object caching, text fields and animations.
 
 ### Initialization
 

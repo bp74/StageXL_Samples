@@ -14,7 +14,7 @@ If you look at the source code, you see that the sample starts with the initiali
     var circleMask = new Mask.circle(470, 250, 200);
     var customMask = new Mask.custom(starPath);
 
-The HTML of this sample contains 4 buttons. Button 1 disables the mask and buttons 2 to 4 assigns one of the three masks shown above.If the user clicks on one of the buttons we assign a new value to the *flowerField.mask* property. 
+The HTML of this sample contains 4 buttons. Button 1 removes the mask and buttons 2 to 4 assigns one of the three masks shown above. When the user clicks on one of the buttons we assign a new value to the *flowerField.mask* property. 
 
     querySelector('#mask-none').onClick.listen((e) => flowerField.mask = null);
   	querySelector('#mask-rectangle').onClick.listen((e) => flowerField.mask = rectangleMask);
