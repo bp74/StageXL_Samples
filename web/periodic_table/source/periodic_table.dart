@@ -30,14 +30,13 @@ class PeriodicTable extends DisplayObjectContainer {
       elementButton.x = 30 + groupIndex * 50 + 25;
       elementButton.y = 10 + periodIndex * 50 + 25;
 
-      if (groupIndex == 2 && periodIndex >= 5) {
+      if (atomicNumber >= 57 && atomicNumber <= 71) {
+        elementButton.x += (atomicNumber - 57)* 50;
         elementButton.y += 2 * 50 + 25;
-        if (atomicNumber >= 57 && atomicNumber <= 71) {
-          elementButton.x += (atomicNumber - 57)* 50;
-        }
-        if (atomicNumber >= 89 && atomicNumber <= 103) {
-          elementButton.x += (atomicNumber - 89)* 50;
-        }
+      }
+      if (atomicNumber >= 89 && atomicNumber <= 103) {
+        elementButton.x += (atomicNumber - 89)* 50;
+        elementButton.y += 2 * 50 + 25;
       }
       addChild(elementButton);
     }
