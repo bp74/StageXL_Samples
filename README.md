@@ -1,7 +1,9 @@
 StageXL Samples
 ===============
 
-This repository contains several samples, all built with the Dart programming language and the StageXL library. The source code of all samples is available in the "web" folder. You can try each of the sample here:
+This repository contains several samples, all built with the Dart programming
+language and the StageXL library. The source code of all samples is available
+in the "web" folder. You can try each of the sample here:
 
 * [Escape](http://www.stagexl.org/samples/escape "Escape")
 * [Supersonic](http://www.stagexl.org/samples/supersonic "Supersonic")
@@ -15,7 +17,7 @@ More samples coming soon ....
 
 ---
 
-To learn more about Dart and the StageXL library, please follow these links: 
+To learn more about Dart and the StageXL library, please follow these links:
 
 * Dart programming language: <http://www.dartlang.org/>
 * StageXL homepage: <http://www.stagexl.org/>
