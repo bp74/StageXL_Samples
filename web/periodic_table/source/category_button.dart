@@ -49,10 +49,8 @@ class CategoryButton extends Sprite {
   //-----------------------------------------------------------------------------------------------
 
   animateTo(num scale, num alpha) {
-    var juggler = this.stage.juggler;
-    juggler.removeTweens(this);
-
-    juggler.tween(this, 0.25, TransitionFunction.easeOutQuadratic)
+    this.stage.juggler.removeTweens(this);
+    this.stage.juggler.tween(this, 0.25, TransitionFunction.easeOutQuadratic)
       ..animate.scaleX.to(scale)
       ..animate.scaleY.to(scale)
       ..animate.alpha.to(alpha);
