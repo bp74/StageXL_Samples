@@ -58,7 +58,7 @@ framework, please take a look
       return true;
     }
 
-#### Class Performance
+### Class Performance
 
 The Performance class extends DisplayObjectContainer and is the main class
 of this sample. It has two methods to add more flags or to remove flags.
