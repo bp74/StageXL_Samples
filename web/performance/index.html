@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>StageXL Mask Sample</title>
+  <title>StageXL Performance Sample</title>
   <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
   <style type="text/css">
     body { background-color: LightGray; }
@@ -19,23 +19,19 @@
     
       <div id="container">
         <div class="row">
-          <div class="span2">
-            <button id="mask-none" class="btn btn-large btn-block btn-primary">No Mask</button>
-          </div>
-          <div class="span2">
-            <button id="mask-rectangle" class="btn btn-large btn-block btn-primary">Rectangle Mask</button>
-          </div>
-          <div class="span2">
-            <button id="mask-circle" class="btn btn-large btn-block btn-primary">Circle Mask</button>
-          </div>
-          <div class="span2">
-            <button id="mask-custom" class="btn btn-large btn-block btn-primary">Custom Mask</button>
-          </div>
-          <div class="offset2 span2">
-            <button id="mask-spin" class="btn btn-large btn-block btn-warning">Spin</button>
-          </div>
+            <div class="span2">
+                <button id="minus100" class="btn btn-large btn-block btn-primary"><i class="icon-minus icon-white"></i> 100</button>
+            </div>
+            <div class="span2">
+                <button id="plus100" class="btn btn-large btn-block btn-primary"><i class="icon-plus icon-white"></i> 100</button>
+            </div>
+            <div class="offset4 span2">
+                <div class="alert alert-info" id="flagCounter">Flags: 0</div>
+            </div>
+            <div class="span2">
+                <div class="alert alert-success" id="fpsMeter">fps: 0.0</div>
+            </div>
         </div>
-        <br />
         <canvas id="stage" width="940" height="500"></canvas>
       </div>
       

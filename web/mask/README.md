@@ -28,9 +28,9 @@ on one of the buttons we assign a new value to the *flowerField.mask* property.
 
     querySelector('#mask-none').onClick.listen((e) => flowerField.mask = null);
   	querySelector('#mask-rectangle').onClick.listen((e) => flowerField.mask = rectangleMask);
-	  querySelector('#mask-circle').onClick.listen((e) => flowerField.mask = circleMask);
+	querySelector('#mask-circle').onClick.listen((e) => flowerField.mask = circleMask);
   	querySelector('#mask-custom').onClick.listen((e) => flowerField.mask = customMask);
- 
+
 Now we only have to load some nice looking flower images and create a field of
 flowers. We use the ResourceManager to load those images. Once the
 ResourceManager has finished loading we create a new instance of FlowerField
@@ -53,11 +53,11 @@ center.
 
     stage.juggler.tween(flowerField, 2.0, TransitionFunction.easeInOutBack)
       ..animate.rotation.to(math.PI * 4.0)
-      ..onComplete = () => flowerField.rotation = 0.0; 
+      ..onComplete = () => flowerField.rotation = 0.0;
 
 ---
 
-To learn more about Dart and the StageXL library, please follow these links: 
+To learn more about Dart and the StageXL library, please follow these links:
 
 * Dart programming language: <http://www.dartlang.org/>
 * StageXL homepage: <http://www.stagexl.org/>
