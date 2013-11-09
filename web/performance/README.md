@@ -50,6 +50,14 @@ the Animatable class. If you are not familiar with the Juggler animation
 framework, please take a look 
 [here](http://www.stagexl.org/docs/wiki-articles.html?article=juggler).  
 
+    bool advanceTime(num time) {
+      var tx = x + vx * time;
+      var ty = y + vy * time;
+      if (tx > 910 || tx < 30) vx = -vx; else x = tx;
+      if (ty > 480 || ty < 20) vy = -vy; else y = ty;
+      return true;
+    }
+
 #### Class Performance
 
 The Performance class extends DisplayObjectContainer and is the main class
@@ -59,8 +67,8 @@ it's easy to create new instances of FlyingFlag and add it as child to
 the Performance class.
 
 Let's take a look at the _addFlags method. This method is used to add
-new flags to the Performance class. It gets the texture atlas from
-the ResourceManager and all the names of the images stored in the 
+new flags to the container. It gets the texture atlas from the 
+ResourceManager and all the names of the images stored in the 
 texture atlas.
  
     var textureAtlas = resourceManager.getTextureAtlas('flags');
@@ -88,7 +96,7 @@ its advanceTime method is called on every frame.
 
 The _removeFlags method removes FlyingFlags from the container and from
 the Juggler. It is important to remove the flags from the Juggler aswell,
-because otherwise the animation would continue even if the flag is no 
+otherwise the animation would continue even if the flag is no 
 longer visible.
 
 ---
