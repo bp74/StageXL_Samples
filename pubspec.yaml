@@ -5,3 +5,4 @@ homepage: http://www.stagexl.org/
 dependencies:
   browser: any
   stagexl: any
+  stagexl_richtextfield: any
