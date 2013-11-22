@@ -11,6 +11,21 @@
     <meta property="og:image" content="http://www.stagexl.org/samples/assets/img/stagexl064.png">
     <link href="assets/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="assets/js/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+          if (location.hash !== '') $('a[href="' + location.hash + '"]').tab('show');
+          return $('a[data-toggle="tab"]').on('shown', function(e) {
+            return location.hash = $(e.target).attr('href').substr(1);
+          });
+        });        
+    </script>  
+    <style>
+      .table tr:first-child td { 
+        border-top: none; 
+      }
+    </style>  
   </head>
  
   <body style="margin-top:20px">
@@ -22,12 +37,12 @@
       <div class="row">    
         
         <p>StageXL is a package for the Dart programming language. It offers 
-        an easy to use and complete API for impressive 2D content like games 
-        and other rich applications. The library started as an easy migration 
-        path for Adobe Flash developers to HTML5. Therefore the StageXL API 
-        is for the most part identical to the Flash API. Today many developers 
-        who have no prior experience with Flash are using StageXL for their 
-        applications.</p> 
+an easy to use and complete API for impressive 2D content like games 
+and other rich applications. The library started as an easy migration 
+path for Adobe Flash developers to HTML5. Therefore the StageXL API 
+is for the most part identical to the Flash API. Today many developers 
+who have no prior experience with Flash are using StageXL for their 
+applications.</p> 
         
         <hr/>
         Visit these websites to learn more about StageXL:<br/><br/>
@@ -45,110 +60,151 @@
       
         Try these samples to get a glimpse of the kind of applications you
         can build with Dart and StageXL:<br/><br/>
-        
-        <table class="table table-striped">
-          <tr>
-            <td style="width:100px"><strong>Escape</strong></td>
-            <td>This game was developed with Adobe Flash and later ported to 
-            HTML5 with the help of Dart and StageXL. The whole process only took
-            a few hours because no substantial code changes were necessary. 
-            The game uses bitmaps, sprites, sounds, text fields, event 
-            listeners, etc.</td>
-            <td style="width:100px">Game</td>        
-            <td style="width:100px">
-              <a href="escape/index.html" class="btn btn-info">try it</a>
-            </td>
-          </tr>
-          <tr>
-            <td><strong>Supersonic</strong></td>
-            <td>Another game which was developed with Adobe Flash and later
-            ported to HTML5. Just as with the game 'Escape' the source code
-            was ported from ActionScript to Dart without much fuss. This 
-            game uses vector graphics, bitmaps, sounds, masks, etc. </td>
-            <td>Game</td>
-            <td>
-              <a href="supersonic/index.html" class="btn btn-info">try it</a>
-            </td>
-          </tr>
-          <tr>
-            <td><strong>Periodic Table</strong></td>
-            <td>This demo shows the periodic table of chemical elements.
-            All display objects are drawn as vector graphics and cached as 
-            bitmaps for optimal performance. The animations are done with the 
-            Juggler animation framework which is fully integrated in StageXL.
-            The stage is automatically scaled to fill the whole browser 
-            window.</td>
-            <td>Demo</td>
-            <td>
-              <a href="periodic_table/index.html" class="btn btn-info">try it</a>
-            </td>
-          </tr>
-          <tr>
-            <td><strong>Dart Logo</strong></td>
-            <td>This demo shows an animation of the Dart logo with a minimum 
-            amount of source code. The demo has 40 lines of code, but only half 
-            of it is necessary for the actual animated Dart logo.</td>
-            <td>Demo</td>
-            <td>
-              <a href="dart_logo/index.html" class="btn btn-info">try it</a>
-            </td>
-          </tr>  
-          <tr>
-            <td><strong>Piano</strong></td>
-            <td>A virtual piano and four songs with a karaoke like experience. 
-            The demo shows the audio playback capabilities of StageXL in 
-            different browsers. Playing HTML5 audio can be tricky, but StageXL 
-            offers an easy to use cross browser Sound API (compatible to 
-            the Flash API).</td>
-            <td>Demo</td>
-            <td>
-              <a href="piano/index.html" class="btn btn-info">try it</a>
-            </td>
-          </tr>  
-          <tr>
-            <td><strong>Performance</strong></td>
-            <td>This demo can be used as a benchmark for StageXL. It is all 
-            about drawing small images and doing animations. As with all
-            benchmarks, it's important to look at the use case and think
-            about how those numbers apply to your use case.</td>
-            <td>Demo</td>
-            <td>
-              <a href="performance/index.html" class="btn btn-info">try it</a>
-            </td>
-          </tr>           
-          <tr>
-            <td><strong>FlipBook</strong></td>
-            <td>An example to show how to do sprite sheet animations. StageXL 
-            offers two essential building blocks - the FlipBook class to play 
-            sprite sheet animations and support for texture atlases.</td>
-            <td>Example</td>
-            <td>
-              <a href="flipbook/index.html" class="btn btn-info">try it</a>
-            </td>
-          </tr>   
-          <tr>
-            <td><strong>Mask</strong></td>
-            <td>An example to show the support for arbitrary shaped masks
-            StageXL. The example shows a field of flowers and you decide
-            which mask should be applied.</td>
-            <td>Example</td>
-            <td>
-              <a href="mask/index.html" class="btn btn-info">try it</a>
-            </td>
-          </tr> 
-                    <tr>
-            <td><strong>RichTextField</strong></td>
-            <td>This demo uses the <a target="_blank"  href="https://github.com/realbluesky/StageXL_RichTextField">StageXL_RichTextField</a>
-             extension library to demonstrate multiple formats in a single canvas text field. See the 
-             <a target="_blank" href="https://github.com/realbluesky/StageXL_RichTextField/blob/master/README.md">extension readme</a>
-             for <a target="_blank"  href="https://github.com/realbluesky/StageXL_RichTextField/blob/master/README.md#the-easy-way">supported text-tags.</a>
-            </td>
-            <td>Extension</td>
-            <td>
-              <a href="richtextfield/index.html" class="btn btn-info">try it</a>
-            </td>
-          </tr>    
-        </table>
+      
+        <div class="tabbable">
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a href="#games" data-toggle="tab">Games</a>
+            </li>
+            <li>
+              <a href="#demos" data-toggle="tab">Demos</a>
+            </li>
+            <li>
+              <a href="#examples" data-toggle="tab">Examples</a>
+            </li>
+            <li>
+              <a href="#extensions" data-toggle="tab">Extensions</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="games">
+              <table class="table table-striped">
+                <tr>
+                  <td style="width:100px;"><strong>Escape</strong></td>
+                  <td>
+This game was developed with Adobe Flash and later ported to 
+HTML5 with the help of Dart and StageXL. The whole process only took
+a few hours because no substantial code changes were necessary. 
+The game uses bitmaps, sprites, sounds, text fields, event 
+listeners, etc.</td>
+                  <td style="width:150px">Game</td>        
+                  <td style="width:100px">
+                    <a href="escape/index.html" class="btn btn-info">try it</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Supersonic</strong></td>
+                  <td>
+Another game which was developed with Adobe Flash and later
+ported to HTML5. Just as with the game 'Escape' the source code
+was ported from ActionScript to Dart without much fuss. This 
+game uses vector graphics, bitmaps, sounds, masks, etc. </td>
+                  <td>Game</td>
+                  <td>
+                    <a href="supersonic/index.html" class="btn btn-info">try it</a>
+                  </td>
+                </tr>              
+              </table>
+            </div>
+            <div class="tab-pane" id="demos">
+              <table class="table table-striped">
+                <tr>
+                  <td style="width:100px"><strong>Periodic Table</strong></td>
+                  <td>
+This demo shows the periodic table of chemical elements.
+All display objects are drawn as vector graphics and cached as 
+bitmaps for optimal performance. The animations are done with the 
+Juggler animation framework which is fully integrated in StageXL.
+The stage is automatically scaled to fill the whole browser 
+window.</td>
+                  <td style="width:150px">Demo</td>
+                  <td style="width:100px">
+                    <a href="periodic_table/index.html" class="btn btn-info">try it</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Dart Logo</strong></td>
+                  <td>
+This demo shows an animation of the Dart logo with a minimum 
+amount of source code. The demo has 40 lines of code, but only half 
+of it is necessary for the actual animated Dart logo.</td>
+                  <td>Demo</td>
+                  <td>
+                    <a href="dart_logo/index.html" class="btn btn-info">try it</a>
+                  </td>
+                </tr>  
+                <tr>
+                  <td><strong>Piano</strong></td>
+                  <td>
+A virtual piano and four songs with a karaoke like experience. 
+The demo shows the audio playback capabilities of StageXL in 
+different browsers. Playing HTML5 audio can be tricky, but StageXL 
+offers an easy to use cross browser Sound API (compatible to 
+the Flash API).</td>
+                  <td>Demo</td>
+                  <td>
+                    <a href="piano/index.html" class="btn btn-info">try it</a>
+                  </td>
+                </tr>  
+                <tr>
+                  <td><strong>Performance</strong></td>
+                  <td>
+This demo can be used as a benchmark for StageXL. It is all 
+about drawing small images and doing animations. As with all
+benchmarks, it's important to look at the use case and think
+about how those numbers apply to your use case.</td>
+                  <td>Demo</td>
+                  <td>
+                    <a href="performance/index.html" class="btn btn-info">try it</a>
+                  </td>
+                </tr>           
+              </table>
+            </div>
+            <div class="tab-pane" id="examples">
+              <table class="table table-striped">
+                <tr>
+                  <td style="width:100px"><strong>FlipBook</strong></td>
+                  <td>
+An example to show how to do sprite sheet animations. StageXL 
+offers two essential building blocks - the FlipBook class to play 
+sprite sheet animations and support for texture atlases.</td>
+                  <td style="width:150px">Example</td>
+                  <td style="width:100px">
+                    <a href="flipbook/index.html" class="btn btn-info">try it</a>
+                  </td>
+                </tr>   
+                <tr>
+                  <td><strong>Mask</strong></td>
+                  <td>
+An example to show the support for arbitrary shaped masks
+StageXL. The example shows a field of flowers and you decide
+which mask should be applied.</td>
+                  <td>Example</td>
+                  <td>
+                    <a href="mask/index.html" class="btn btn-info">try it</a>
+                  </td>
+                </tr>               
+              </table>
+            </div>
+            <div class="tab-pane" id="extensions">
+              <table class="table table-striped">
+                <tr>
+                  <td style="width:100px"><strong>RichTextField</strong></td>
+                  <td>
+This demo uses the <a target="_blank" href="https://github.com/realbluesky/StageXL_RichTextField">StageXL_RichTextField</a>
+extension library to demonstrate multiple formats in a single canvas text field. See the 
+<a target="_blank" href="https://github.com/realbluesky/StageXL_RichTextField/blob/master/README.md">extension readme</a>
+for <a target="_blank"  href="https://github.com/realbluesky/StageXL_RichTextField/blob/master/README.md#the-easy-way">supported text-tags.</a>
+                  </td>
+                  <td style="width:150px">Extension</td>
+                  <td style="width:100px">
+                    <a href="richtextfield/index.html" class="btn btn-info">try it</a>
+                  </td>
+                </tr>    
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     

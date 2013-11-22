@@ -14,18 +14,18 @@
       body { background-color:LightGray; }
       #richtext, #texttodraw { background-color: White; border-style: solid; border-width: 3px; border-color: #900000; float: left; padding-left:5px; }
       #texttodraw { border-right-style: none; margin-right: -2px; }
-      #container{ position: absolute; top: 50%; margin-top: -250px; left: 0; width: 100%; }
-      #content { width: 900px; height: 500px; margin-left: auto; margin-right: auto; }
-      #reload { position:absolute; bottom: 13px; left: 50%; margin-left:-133px; }
+      #container{ position: absolute; top: 50%; margin-top: -270px; left: 0; width: 100%; }
+      #content { width: 900px; height: 540px; margin-left: auto; margin-right: auto; }
+      #reload { position:absolute; bottom: 38px; margin-left:283px; }
     </style>
   </head>
   
   <body>
     <div id="container">
       <div id="content">
-        <div>
-          <button id="reload">Change text to left and click to Redraw</button>
-            <textarea id="texttodraw" style="width:430px; height:492px">Some {b}bold{/b} text
+        <div class="row">
+          <button id="reload" style="width:320px">Change text on the left and click to redraw</button>
+          <textarea id="texttodraw" style="width:430px; height:492px">Some {b}bold{/b} text
 Now {i}italic{/i} text
 Can do {u}underlines{/u} and {o}overlines{/o}
 Even {s}strikethrough{/s} text
@@ -37,9 +37,16 @@ I'm so {excited}excited, I just can't hide it!{/excited}
 Altogether {b}now, it is {u}so {i}easy{/i}{/u} to nest{/b} multiple {size=*1.5}tags!{/size}</textarea>
         	<canvas id="richtext" width="440" height="500"></canvas>
         </div>
-        <a href="../index.html">
-          <i class="icon-backward icon-white"></i> more StageXL samples
-        </a>
+        <div class="row">
+          <div class="well well-small" style="width:878px">
+            <a href="../index.html#extensions">
+              click here for more StageXL samples
+            </a>
+            <a target='_blank' href="https://github.com/bp74/StageXL_Samples/tree/master/web/richtextfield" class="pull-right">
+              click here to see the source code 
+            </a>
+          </div>           
+        </div>      
       </div>
     </div>
 
