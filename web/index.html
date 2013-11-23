@@ -34,36 +34,26 @@
   <body style="margin-top:20px">
      
     <div class="container">
-      <div class="row">
-        <h1><img src="assets/img/stagexl048.png"/>StageXL Samples</h1>
-      </div>
-      <div class="row">    
+      <div class="row"> 
+        <div class="well">
+          <h1><img src="assets/img/stagexl048.png"/>StageXL Samples</h1>
         
-        <p>StageXL is a package for the Dart programming language. It offers 
+          <p>StageXL is a package for the Dart programming language. It offers 
 an easy to use and complete API for impressive 2D content like games 
 and other rich applications. The library started as an easy migration 
 path for Adobe Flash developers to HTML5. Therefore the StageXL API 
 is for the most part identical to the Flash API. Today many developers 
 who have no prior experience with Flash are using StageXL for their 
-applications.</p> 
-        
-        <hr/>
-        Visit these websites to learn more about StageXL:<br/><br/>
-        <a href="http://www.stagexl.org">
-        http://www.stagexl.org</a><br/>
-        <a href="https://github.com/bp74/StageXL">
-        https://github.com/bp74/StageXL</a><br/>
-        <a href="https://github.com/bp74/StageXL_Samples">
-        https://github.com/bp74/StageXL_Samples</a><br/>
-        <br/>
+applications.</p> <br/>
+
+Please visit the  
+<a href="http://www.stagexl.org" target="_blank">
+StageXL homepage</a> for more information<br/>
+        </div>
         
       </div>
-      
-      <div class="row">
-      
-        Try these samples to get a glimpse of the kind of applications you
-        can build with Dart and StageXL:<br/><br/>
-      
+      <div class="row">    
+
         <div class="tabbable">
           <ul class="nav nav-tabs">
             <li class="active">
@@ -90,7 +80,6 @@ HTML5 with the help of Dart and StageXL. The whole process only took
 a few hours because no substantial code changes were necessary. 
 The game uses bitmaps, sprites, sounds, text fields, event 
 listeners, etc.</td>
-                  <td style="width:150px">Game</td>        
                   <td style="width:100px">
                     <a href="escape/index.html" class="btn btn-info">try it</a>
                   </td>
@@ -102,7 +91,6 @@ Another game which was developed with Adobe Flash and later
 ported to HTML5. Just as with the game 'Escape' the source code
 was ported from ActionScript to Dart without much fuss. This 
 game uses vector graphics, bitmaps, sounds, masks, etc. </td>
-                  <td>Game</td>
                   <td>
                     <a href="supersonic/index.html" class="btn btn-info">try it</a>
                   </td>
@@ -120,7 +108,6 @@ bitmaps for optimal performance. The animations are done with the
 Juggler animation framework which is fully integrated in StageXL.
 The stage is automatically scaled to fill the whole browser 
 window.</td>
-                  <td style="width:150px">Demo</td>
                   <td style="width:100px">
                     <a href="periodic_table/index.html" class="btn btn-info">try it</a>
                   </td>
@@ -131,7 +118,6 @@ window.</td>
 This demo shows an animation of the Dart logo with a minimum 
 amount of source code. The demo has 40 lines of code, but only half 
 of it is necessary for the actual animated Dart logo.</td>
-                  <td>Demo</td>
                   <td>
                     <a href="dart_logo/index.html" class="btn btn-info">try it</a>
                   </td>
@@ -144,7 +130,6 @@ The demo shows the audio playback capabilities of StageXL in
 different browsers. Playing HTML5 audio can be tricky, but StageXL 
 offers an easy to use cross browser Sound API (compatible to 
 the Flash API).</td>
-                  <td>Demo</td>
                   <td>
                     <a href="piano/index.html" class="btn btn-info">try it</a>
                   </td>
@@ -156,7 +141,6 @@ This demo can be used as a benchmark for StageXL. It is all
 about drawing small images and doing animations. As with all
 benchmarks, it's important to look at the use case and think
 about how those numbers apply to your use case.</td>
-                  <td>Demo</td>
                   <td>
                     <a href="performance/index.html" class="btn btn-info">try it</a>
                   </td>
@@ -171,7 +155,6 @@ about how those numbers apply to your use case.</td>
 An example to show how to do sprite sheet animations. StageXL 
 offers two essential building blocks - the FlipBook class to play 
 sprite sheet animations and support for texture atlases.</td>
-                  <td style="width:150px">Example</td>
                   <td style="width:100px">
                     <a href="flipbook/index.html" class="btn btn-info">try it</a>
                   </td>
@@ -182,7 +165,6 @@ sprite sheet animations and support for texture atlases.</td>
 An example to show the support for arbitrary shaped masks
 StageXL. The example shows a field of flowers and you decide
 which mask should be applied.</td>
-                  <td>Example</td>
                   <td>
                     <a href="mask/index.html" class="btn btn-info">try it</a>
                   </td>
@@ -199,11 +181,23 @@ extension library to demonstrate multiple formats in a single canvas text field.
 <a target="_blank" href="https://github.com/realbluesky/StageXL_RichTextField/blob/master/README.md">extension readme</a>
 for <a target="_blank"  href="https://github.com/realbluesky/StageXL_RichTextField/blob/master/README.md#the-easy-way">supported text-tags.</a>
                   </td>
-                  <td style="width:150px">Extension</td>
                   <td style="width:100px">
                     <a href="richtextfield/index.html" class="btn btn-info">try it</a>
                   </td>
                 </tr>    
+                <tr>
+                  <td style="width:100px"><strong>Flump</strong></td>
+                  <td>
+<a href="http://threerings.github.io/flump/" target="_blank">Flump</a> converts Flash keyframe animations 
+into texture atlases and JSON that can be easily integrated into StageXL. 
+The <a target="_blank" href="https://github.com/bp74/StageXL_Flump">StageXL_Flump</a> 
+extension library loads those assets and plays the animations with minimum memory and 
+cpu load.</td>
+                  <td style="width:100px">
+                    <a href="flump/index.html" class="btn btn-info">try it</a>
+                  </td>
+                </tr>    
+                
               </table>
             </div>
           </div>
