@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>StageXL Flump Sample</title>
+    <meta property="og:title" content="StageXL Flump Sample">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Flump converts Flash keyframe animations 
+into texture atlases and JSON that can be easily integrated into StageXL. 
+The StageXL_Flump extension library loades those assets and plays the animations with 
+minimum memory and cpu load.">
+    <meta property="og:image" content="http://www.stagexl.org/samples/assets/img/stagexl064.png">    
+    <link href="../assets/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body { background-color:LightGray; }
+      #stage { background-color: White; border-style: solid; border-width: 3px; border-color: #900000; }
+      #container{ position: absolute; top: 50%; margin-top: -275px; left: 0; width: 100%; }
+      #content { width: 940px; height: 550px; margin-left: auto; margin-right: auto; }
+    </style> 
+  </head>
+  
+  <body>
+    <div id="container">
+      <div id="content">
+      	<canvas id="stage" width="940" height="500"></canvas>
+        <div class="well well-small" style="width:926px">
+          <a href="../index.html#extensions">
+            click here for more StageXL samples
+          </a>
+          <a target='_blank' href="https://github.com/bp74/StageXL_Samples/tree/master/web/flump" class="pull-right">
+            click here to see the source code 
+          </a>
+        </div>      
+      </div>
+    </div>
+
+    <script type="application/dart" src="index.dart"></script>
+    <script type="text/javascript" src="../assets/js/dart.js"></script>
+  
+  </body>
+</html>
