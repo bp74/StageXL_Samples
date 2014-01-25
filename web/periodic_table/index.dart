@@ -21,7 +21,7 @@ void main() {
   // Initialize the Display List
 
   var canvas = html.querySelector('#stage');
-  stage = new Stage("myStage", canvas, 960, 570);
+  stage = new Stage(canvas, width: 960, height: 570);
   stage.scaleMode = StageScaleMode.SHOW_ALL;
   stage.align = StageAlign.NONE;
 

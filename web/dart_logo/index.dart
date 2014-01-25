@@ -1,23 +1,19 @@
 library dart_logo;
 
-import 'dart:math' as math;
-import 'dart:html' as html;
+import 'dart:math';
+import 'dart:html';
 import 'package:stagexl/stagexl.dart';
 
-Stage stage;
-RenderLoop renderLoop;
+Stage stage = new Stage(querySelector('#stage'), webGL: true);
+RenderLoop renderLoop = new RenderLoop();
+Random random = new Random();
 
 void main() {
-  stage = new Stage("myStage", html.querySelector('#stage'));
-  renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
-
   BitmapData.load("images/logo.png").then(startAnimation);
 }
 
 void startAnimation(BitmapData logoBitmapData) {
-  var random = new math.Random();
-  var startDelay = 0.15;
 
   var logoBitmap = new Bitmap(logoBitmapData)
     ..pivotX = logoBitmapData.width ~/ 2
@@ -39,6 +35,6 @@ void startAnimation(BitmapData logoBitmapData) {
     ..animate.scaleY.to(0.0)
     ..onComplete = logoBitmap.removeFromParent;
 
-  stage.juggler.delayCall(() => startAnimation(logoBitmapData), startDelay);
+  stage.juggler.delayCall(() => startAnimation(logoBitmapData), 0.15);
 }
 

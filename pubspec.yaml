@@ -4,6 +4,6 @@ description: Sample applications showing features of the StageXL library.
 homepage: http://www.stagexl.org/
 dependencies:
   browser: any
-  stagexl: any
+  stagexl: '>=0.9.0 <0.10.0'
   stagexl_flump: any
-  stagexl_richtextfield: any
+#  stagexl_richtextfield: any

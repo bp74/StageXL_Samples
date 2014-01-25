@@ -15,7 +15,7 @@ class RandomUtils {
     if (min == max) {
       return min;
     } else {
-      return _random.nextInt(max + 1) + min;
+      return _random.nextInt(max - min + 1) + min;
     }
   }
 

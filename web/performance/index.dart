@@ -19,7 +19,7 @@ void main() {
   //---------------------------------------------
   // Initialize the Display List
 
-  stage = new Stage("myStage", html.querySelector('#stage'));
+  stage = new Stage(html.querySelector('#stage'), webGL: true);
   renderLoop = new RenderLoop();
   resourceManager = new ResourceManager();
 

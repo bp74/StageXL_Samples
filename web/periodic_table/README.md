@@ -33,7 +33,7 @@ grid we use for our DisplayObjects and does not necessarily accord with the real
 pixels on the screen.
 
     var canvas = html.querySelector('#stage');
-    stage = new Stage("myStage", canvas, 960, 570);
+    stage = new Stage(canvas, width: 960, height: 570);
     stage.scaleMode = StageScaleMode.SHOW_ALL;
     stage.align = StageAlign.NONE;
 

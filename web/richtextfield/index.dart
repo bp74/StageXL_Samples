@@ -7,7 +7,7 @@ void main() {
   CanvasElement canvas = querySelector("#richtext");
   TextAreaElement textarea = querySelector('#texttodraw');
   ButtonElement reload = querySelector('#reload');
-  Stage stage = new Stage('richtext', canvas)
+  Stage stage = new Stage(canvas, webGL: true)
     ..scaleMode = StageScaleMode.SHOW_ALL;
   RenderLoop render = new RenderLoop();
   RichTextFormat format = new RichTextFormat('Calibri, sans-serif', 25, 0x000000, align: TextFormatAlign.LEFT);

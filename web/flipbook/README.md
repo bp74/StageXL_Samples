@@ -9,7 +9,7 @@ initialize the StageXL Stage, the RenderLoop and how to use the FlipBook class
 to play sprite sheet animations. This demo also uses the opt-in feature of
 StageXL to load WebP images if the browser supports it.
 
-    stage = new Stage("myStage", html.querySelector('#stage'));
+    stage = new Stage(html.querySelector('#stage'), webGL: true);
     renderLoop = new RenderLoop();
     renderLoop.addStage(stage);
 

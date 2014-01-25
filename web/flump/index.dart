@@ -13,7 +13,7 @@ void main() {
 
   BitmapData.defaultLoadOptions.webp = true;
 
-  stage = new Stage("myStage", html.querySelector('#stage'));
+  stage = new Stage(html.querySelector('#stage'), webGL: true);
   renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
 

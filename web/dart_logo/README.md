@@ -8,7 +8,7 @@ This is a very simple demo showing some animated Dart logos. Learn how to
 initialize the StageXL Stage, the RenderLoop and how simple it is to do
 animations.
 
-    stage = new Stage("myStage", html.querySelector('#stage'));
+    stage = new Stage(html.querySelector('#stage'), webGL: true);
     renderLoop = new RenderLoop();
     renderLoop.addStage(stage);
 

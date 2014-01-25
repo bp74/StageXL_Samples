@@ -39,10 +39,11 @@ class Explosion extends Sprite implements Animatable {
         angle = angle + 0.2 * math.PI * random.nextDouble();
         velocity = 80.0 + 40.0 * random.nextDouble();
 
-        Bitmap bitmap = new Bitmap(chain.bitmapData);
-        bitmap.clipRectangle = new Rectangle(x * 25, y * 25, 25, 25);
-        bitmap.pivotX = 12.5 + x * 25;
-        bitmap.pivotY = 12.5 + y * 25;
+        Rectangle rectangle = new Rectangle(x * 25, y * 25, 25, 25);
+        BitmapData bitmapData = new BitmapData.fromBitmapData(chain.bitmapData, rectangle);
+        Bitmap bitmap = new Bitmap(bitmapData);
+        bitmap.pivotX = 12.5;
+        bitmap.pivotY = 12.5;
         bitmap.x = x * 25;
         bitmap.y = y * 25;
         addChild(bitmap);

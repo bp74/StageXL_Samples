@@ -8,3 +8,4 @@ bin
 *.dart.js.map
 *.dart.js.deps
 *.dart.precompiled.js
+*.dart.js.info.html

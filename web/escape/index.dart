@@ -34,7 +34,7 @@ TextField loadingTextField;
 
 void main() {
 
-  stage = new Stage("Stage", html.querySelector('#stage'));
+  stage = new Stage(html.querySelector('#stage'), webGL: true);
   renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
 
