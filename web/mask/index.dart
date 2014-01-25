@@ -7,17 +7,12 @@ import 'package:stagexl/stagexl.dart';
 
 part 'source/flower_field.dart';
 
-Stage stage;
-RenderLoop renderLoop;
-ResourceManager resourceManager;
+Stage stage = new Stage(html.querySelector('#stage'), webGL: true);
+ResourceManager resourceManager  = new ResourceManager();
+RenderLoop renderLoop = new RenderLoop();
 
 void main() {
 
-  //---------------------------------------------
-  // Initialize the Display List
-
-  stage = new Stage(html.querySelector('#stage'), webGL: true);
-  renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
 
   //---------------------------------------------
@@ -56,14 +51,14 @@ void main() {
 
   BitmapData.defaultLoadOptions.webp = true;
 
-  resourceManager = new ResourceManager()
-    ..addBitmapData('flower1', 'images/Flower1.png')
-    ..addBitmapData('flower2', 'images/Flower2.png')
-    ..addBitmapData('flower3', 'images/Flower3.png')
+  resourceManager
+    ..addTextureAtlas('flowers', 'images/Flowers.json', TextureAtlasFormat.JSONARRAY)
     ..load().then((_) {
-      flowerField = new FlowerField();
-      flowerField.x = 470;
-      flowerField.y = 250;
-      stage.addChild(flowerField);
+      flowerField = new FlowerField()
+        ..x = 470
+        ..y = 250
+        ..pivotX = 470
+        ..pivotY = 250
+        ..addTo(stage);
     });
 }

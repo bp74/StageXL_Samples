@@ -27,19 +27,17 @@ buttons 2 to 4 assigns one of the three masks shown above. When the user clicks
 on one of the buttons we assign a new value to the *flowerField.mask* property.
 
     querySelector('#mask-none').onClick.listen((e) => flowerField.mask = null);
-  	querySelector('#mask-rectangle').onClick.listen((e) => flowerField.mask = rectangleMask);
-	querySelector('#mask-circle').onClick.listen((e) => flowerField.mask = circleMask);
-  	querySelector('#mask-custom').onClick.listen((e) => flowerField.mask = customMask);
+    querySelector('#mask-rectangle').onClick.listen((e) => flowerField.mask = rectangleMask);
+    querySelector('#mask-circle').onClick.listen((e) => flowerField.mask = circleMask);
+    querySelector('#mask-custom').onClick.listen((e) => flowerField.mask = customMask);
 
 Now we only have to load some nice looking flower images and create a field of
-flowers. We use the ResourceManager to load those images. Once the
-ResourceManager has finished loading we create a new instance of FlowerField
-(see source code).
+flowers. We use the ResourceManager and a texture atlas which contains the images
+of three different flowers. Once the ResourceManager has finished loading we 
+create a new instance of FlowerField (see source code).
 
     resourceManager = new ResourceManager()
-      ..addBitmapData('flower1', 'images/Flower1.png')
-      ..addBitmapData('flower2', 'images/Flower2.png')
-      ..addBitmapData('flower3', 'images/Flower3.png')
+      ..addTextureAtlas('flowers', 'images/Flowers.json', TextureAtlasFormat.JSONARRAY)
       ..load().then((_) {
         flowerField = new FlowerField();
         flowerField.x = 470;
