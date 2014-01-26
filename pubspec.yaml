@@ -6,4 +6,4 @@ dependencies:
   browser: any
   stagexl: '>=0.9.0 <0.10.0'
   stagexl_flump: any
-#  stagexl_richtextfield: any
+  stagexl_richtextfield: '>=0.1.1 <0.2.0'
