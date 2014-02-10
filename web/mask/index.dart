@@ -1,6 +1,5 @@
 library mask;
 
-import 'dart:async';
 import 'dart:math' as math;
 import 'dart:html' as html;
 import 'package:stagexl/stagexl.dart';

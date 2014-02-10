@@ -1,6 +1,5 @@
 library flumpSample;
 
-import 'dart:async';
 import 'dart:html' as html;
 import 'package:stagexl/stagexl.dart';
 import 'package:stagexl_flump/stagexl_flump.dart';

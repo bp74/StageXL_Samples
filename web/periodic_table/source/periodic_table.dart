@@ -56,21 +56,24 @@ class PeriodicTable extends DisplayObjectContainer {
   //-----------------------------------------------------------------------------------------------
 
   int _getGroupNumber(int atomicNumber) {
-    for(var group in this.table["groups"])
-      if (group["elements"].contains(atomicNumber))
-        return group["number"];
+    for(var group in this.table["groups"]) {
+      if (group["elements"].contains(atomicNumber)) return group["number"];
+    }
+    return -1;
   }
 
   int _getPeriodNumber(int atomicNumber) {
-    for(var period in this.table["periods"])
-      if (period["elements"].contains(atomicNumber))
-        return period["number"];
+    for(var period in this.table["periods"]) {
+      if (period["elements"].contains(atomicNumber)) return period["number"];
+    }
+    return -1;
   }
 
   Map _getCategory(int atomicNumber) {
-    for(var category in this.table["categories"])
-      if (category["elements"].contains(atomicNumber))
-        return category;
+    for(var category in this.table["categories"]) {
+      if (category["elements"].contains(atomicNumber)) return category;
+    }
+    return null;
   }
 
   //-----------------------------------------------------------------------------------------------
