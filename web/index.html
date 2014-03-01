@@ -31,13 +31,19 @@
     });
   </script>
   <style>
-  .table tr:first-child td {
-    border-top: none;
-  }
+    @media (min-width: 1200px) {
+      .container {
+        width: 920px;
+      }
+    }
 
-  html {
-    overflow-y: scroll;
-  }
+    .table tr:first-child td {
+      border-top: none;
+    }
+
+    html {
+      overflow-y: scroll;
+    }
   </style>
 </head>
 
@@ -155,24 +161,27 @@
             <table class="table">
               <tr>
                 <td><strong>FlipBook</strong></td>
-                <td>An example to show how to do sprite sheet
-                  animations. StageXL offers two essential building
-                  blocks - the FlipBook class to play sprite sheet
-                  animations and support for texture atlases.</td>
+                <td>This example shows how to do sprite sheet animations.
+                  StageXL provides the FlipBook class to play sprite sheet
+                  animations and supports texture atlases for efficient
+                  bitmap data storage and loading.</td>
                 <td><a href="flipbook/index.html"
                   class="btn btn-info">try it</a></td>
               </tr>
               <tr>
                 <td><strong>Mask</strong></td>
-                <td>An example to show the support for arbitrary
-                  shaped masks StageXL. The example shows a field of
-                  flowers and you decide which mask should be applied.</td>
+                <td>This example shows how to mask display objects.
+                  StageXL supports masks with user definable shapes. The example
+                  also demonstrates that masks are bound to display objects
+                  and therefore are accordingly transformed and animated.</td>
                 <td><a href="mask/index.html" class="btn btn-info">try
                     it</a></td>
               </tr>
                 <tr>
                 <td><strong>Filter</strong></td>
-                <td>Lorem ipsum.</td>
+                <td>This example shows WebGL filters rendered in real time.
+                  StageXL provides those filters out of the box. All filters
+                  are configurable and combinable with other filters.</td>
                 <td><a href="filter/index.html" class="btn btn-info">try
                     it</a></td>
               </tr>

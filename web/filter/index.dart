@@ -38,6 +38,25 @@ void createFlowerField(ResourceManager resourceManager) {
   flowerField.y = flowerField.pivotY = 250;
   stage.addChild(flowerField);
   stage.onEnterFrame.listen(onEnterFrame);
+
+  if (stage.renderEngine != RenderEngine.WebGL) {
+    var font =  "Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif";
+    var textField = new TextField();
+    textField.defaultTextFormat = new TextFormat(font, 16, Color.White, bold:true);
+    textField.defaultTextFormat.leftMargin = 10;
+    textField.defaultTextFormat.rightMargin = 10;
+    textField.defaultTextFormat.topMargin = 10;
+    textField.defaultTextFormat.bottomMargin = 10;
+    textField.text = "This browser does not support WebGL, filters are ignored.";
+    textField.autoSize = TextFieldAutoSize.CENTER;
+    textField.background = true;
+    textField.backgroundColor = Color.Red;
+    textField.x = 320;
+    textField.y = 50;
+    textField.width = 0;
+    textField.height = 0;
+    textField.addTo(stage);
+  }
 }
 
 void onEnterFrame(EnterFrameEvent e) {
