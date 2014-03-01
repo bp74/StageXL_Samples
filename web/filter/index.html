@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>StageXL Filter Sample</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:image" content="http://www.stagexl.org/samples/common/img/stagexl064.png">
+  <meta property="og:title" content="StageXL Filter Sample">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="">
+
+  <link href="../common/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link href="../common/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../common/themes/base/jquery-ui.css" rel="stylesheet" />
+
+  <script type="text/javascript" src="../common/js/jquery-2.1.0.min.js"></script>
+  <script type="text/javascript" src="../common/js/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../common/js/bootstrap.js"></script>
+  <script type="text/javascript" src="../common/js/knockout-3.0.0.js"></script>
+
+  <script type="text/html" id="slider-template">
+    <div class="row" style="height: 26px; margin-left:5px; margin-right:5px;">
+      <div data-bind="text: $data.name" style="width:80px; float:left"></div>
+      <div data-bind="slider: $data" style="width:120px; margin-top: 4px; float:left"></div>
+      <div data-bind="text: $data.value" style="width:40px; float:left; text-align:right"></div>
+    </div>
+  </script>
+
+  <script type="text/html" id="checked-template">
+    <div class="row" style="height: 26px; margin-left:5px; margin-right:5px;">
+      <div data-bind="text: $data.name" style="width:80px; float:left"></div>
+      <div tyle="width:100px; float:left">
+        <input type="checkbox" data-bind="checked: $data.value" />
+      </div>
+    </div>
+  </script>
+
+  <script type="text/html" id="selector-template">
+    <div class="row" style="height: 26px; margin-left:5px; margin-right:5px;">
+      <div data-bind="text: $data.name" style="width:80px; float:left"></div>
+      <div tyle="float:left;">
+        <select id="currency" name="currency" style="width:120px;"
+                data-bind="options: $data.options, optionsText: 'name', optionsValue: 'value', value: $data.value">
+        </select>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/javascript">
+
+    function Slider(name, value, minValue, maxValue, step) {
+      var self = this;
+      self.name = name;
+      self.value = ko.observable(value);
+      self.minValue = minValue;
+      self.maxValue = maxValue;
+      self.step = step;
+    }
+
+    function Checked(name, value) {
+      var self = this;
+      self.name = name;
+      self.value = ko.observable(value);
+    }
+
+    function Selector(name, options) {
+      var self = this;
+      self.name = name;
+      self.value = ko.observable(options[0].value);
+      self.options = options;
+    }
+
+    ko.bindingHandlers.slider = {
+      init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        var slider = valueAccessor();
+        var $element = $(element);
+        $element.slider();
+        $element.slider("option", "animate", "fast");
+        $element.slider("option", "min", slider.minValue);
+        $element.slider("option", "max", slider.maxValue);
+        $element.slider("option", "step", slider.step);
+        $element.slider("option", "value", ko.utils.unwrapObservable(slider.value));
+
+        $element.on("slidechange", function (event, ui) {
+          slider.value(ui.value);
+        });
+        $element.on("slide", function (event, ui) {
+          slider.value(ui.value);
+        });
+
+        ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+          $element.slider("destroy");
+        });
+      },
+      update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        var slider = valueAccessor();
+        var value = ko.utils.unwrapObservable(slider.value);
+        var $element = $(element);
+
+        if (isNaN(value)) {
+          $element.slider("value", slider.minValue);
+        } else {
+          $element.slider("value", value);
+        }
+      }
+    };
+
+    //----------------------------------------------------
+
+    var viewModel = null;
+    var filterConfig = "{}";
+
+    $(document).ready(function () {
+      viewModel = new FilterDemoViewModel();
+      ko.applyBindings(viewModel);
+    });
+
+    var keyValue = function (key, value) {
+      this.key = key;
+      this.value = value;
+    };
+
+    function updateFilters(e) {
+      console.log("hhhh");
+    }
+
+    function FilterDemoViewModel() {
+      var self = this;
+
+      // colorMatrixFilter
+      self.colorMatrixFilter_enabled = new Checked("enabled", false);
+      self.colorMatrixFilter_filter = new Selector("filter", [
+        {"name": "invert", "value": "invert"},
+        {"name": "grayscale", "value": "grayscale"},
+        {"name": "brightness", "value": "brightness"},
+        {"name": "contrast", "value": "contrast"},
+        {"name": "saturation", "value": "saturation"},
+        {"name": "hue", "value": "hue"}]);
+
+      // alphaMaskFilter
+      self.alphaMaskFilter_enabled = new Checked("enabled", false);
+      self.alphaMaskFilter_mask = new Selector("mask", [
+        {"name": "Apple", "value": "apple"},
+        {"name": "Chrome", "value": "chrome"},
+        {"name": "Butterfly", "value": "butterfly"}]);
+
+      // displacementMapFilter
+      self.displacementMapFilter_enabled = new Checked("enabled", false);
+      self.displacementMapFilter_map = new Selector("map", [
+        {"name": "Bubble", "value": "bubble"},
+        {"name": "Twirl", "value": "twirl"},
+        {"name": "Ripple", "value": "ripple"}]);
+
+      // blurFilter
+      self.blurFilter_enabled = new Checked("enabled", false);
+      self.blurFilter_blurX = new Slider("blurX", 4, 0, 16, 1);
+      self.blurFilter_blurY = new Slider("blurY", 4, 0, 16, 1);
+
+      // dropShadowFilter
+      self.dropShadowFilter_enabled = new Checked("enabled", false);
+      self.dropShadowFilter_distance = new Slider("distance", 4, 0, 30, 1);
+      self.dropShadowFilter_angle = new Slider("angle", 45, 0, 360, 1);
+      self.dropShadowFilter_color = new Selector("color", [
+        {"name": "black", "value": 0xD0000000},
+        {"name": "red", "value": 0xD0FF0000},
+        {"name": "green", "value": 0xD000FF00},
+        {"name": "blue", "value": 0xD00000FF}]);
+      self.dropShadowFilter_blurX = new Slider("blurX", 4, 0, 16, 1);
+      self.dropShadowFilter_blurY = new Slider("blurY", 4, 0, 16, 1);
+
+      // glowFilter
+      self.glowFilter_enabled = new Checked("enabled", false);
+      self.glowFilter_color = new Selector("color", [
+        {"name": "black", "value": 0xFF000000},
+        {"name": "red", "value": 0xFFFF0000},
+        {"name": "green", "value": 0xFF00FF00},
+        {"name": "blue", "value": 0xFF0000FF}]);
+      self.glowFilter_blurX = new Slider("blurX", 8, 0, 16, 1);
+      self.glowFilter_blurY = new Slider("blurY", 8, 0, 16, 1);
+
+
+      self.computeFilterConfig = ko.computed(function() {
+        return {
+          "colorMatrixFilter": {
+             "enabled": self.colorMatrixFilter_enabled.value(),
+             "filter": self.colorMatrixFilter_filter.value()
+          },
+          "alphaMaskFilter": {
+            "enabled": self.alphaMaskFilter_enabled.value(),
+            "mask": self.alphaMaskFilter_mask.value()
+          },
+          "displacementMapFilter": {
+            "enabled": self.displacementMapFilter_enabled.value(),
+            "map": self.displacementMapFilter_map.value()
+          },
+          "blurFilter": {
+            "enabled": self.blurFilter_enabled.value(),
+            "blurX": self.blurFilter_blurX.value(),
+            "blurY": self.blurFilter_blurY.value()
+          },
+          "dropShadowFilter": {
+            "enabled": self.dropShadowFilter_enabled.value(),
+            "distance": self.dropShadowFilter_distance.value(),
+            "angle": self.dropShadowFilter_angle.value(),
+            "color": self.dropShadowFilter_color.value(),
+            "blurX": self.dropShadowFilter_blurX.value(),
+            "blurY": self.dropShadowFilter_blurY.value()
+          },
+          "glowFilter": {
+            "enabled": self.glowFilter_enabled.value(),
+            "color": self.glowFilter_color.value(),
+            "blurX": self.glowFilter_blurX.value(),
+            "blurY": self.glowFilter_blurY.value()
+          }
+        };
+      });
+
+      self.computeFilterConfig.subscribe(function(json) {
+        filterConfig = JSON.stringify(json);
+      });
+
+      filterConfig = JSON.stringify(self.computeFilterConfig());
+    }
+
+  </script>
+
+  <style type="text/css">
+  body {
+    background-color: LightGray;
+  }
+
+  #stage {
+    background-color: White;
+  }
+
+  #centerContainer {
+    position: absolute;
+    top: 50%;
+    margin-top: -275px;
+    left: 0;
+    width: 100%;
+  }
+
+  #centerContent {
+    width: 920px;
+    height: 550px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #accordionPanel {
+    width:300px;
+    height:500px;
+    float:left;
+    margin-right: 4px;
+    background-color: White;
+    padding: 5px;
+  }
+
+  </style>
+</head>
+
+<body>
+
+  <div id="centerContainer">
+    <div id="centerContent">
+
+      <div class="row" style="width:946px">
+
+        <div id="accordionPanel">
+          <div id="accordion" class="panel-group" >
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseColorMatrixFilter">
+                    <span class="glyphicon glyphicon-play"></span> ColorMatrixFilter
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseColorMatrixFilter" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <div data-bind="template: { name: 'checked-template', data: colorMatrixFilter_enabled }"></div>
+                  <div data-bind="template: { name: 'selector-template', data: colorMatrixFilter_filter }"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseAlphaMaskFilter">
+                    <span class="glyphicon glyphicon-play"></span> AlphaMaskFilter
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseAlphaMaskFilter" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <div data-bind="template: { name: 'checked-template', data: alphaMaskFilter_enabled }"></div>
+                  <div data-bind="template: { name: 'selector-template', data: alphaMaskFilter_mask }"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseDisplacementMapFilter">
+                    <span class="glyphicon glyphicon-play"></span> DisplacementMapFilter
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseDisplacementMapFilter" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <div data-bind="template: { name: 'checked-template', data: displacementMapFilter_enabled }"></div>
+                  <div data-bind="template: { name: 'selector-template', data: displacementMapFilter_map }"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseBlurFilter">
+                    <span class="glyphicon glyphicon-play"></span> BlurFilter
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseBlurFilter" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <div data-bind="template: { name: 'checked-template', data: blurFilter_enabled }"></div>
+                  <div data-bind="template: { name: 'slider-template', data: blurFilter_blurX }"></div>
+                  <div data-bind="template: { name: 'slider-template', data: blurFilter_blurY }"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseDropShadowFilter">
+                    <span class="glyphicon glyphicon-play"></span> DropShadowFilter
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseDropShadowFilter" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <div data-bind="template: { name: 'checked-template', data: dropShadowFilter_enabled }"></div>
+                  <div data-bind="template: { name: 'slider-template', data: dropShadowFilter_distance }"></div>
+                  <div data-bind="template: { name: 'slider-template', data: dropShadowFilter_angle }"></div>
+                  <div data-bind="template: { name: 'slider-template', data: dropShadowFilter_blurX }"></div>
+                  <div data-bind="template: { name: 'slider-template', data: dropShadowFilter_blurY }"></div>
+                  <div data-bind="template: { name: 'selector-template', data: dropShadowFilter_color }"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseGlowFilter">
+                    <span class="glyphicon glyphicon-play"></span> GlowFilter
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseGlowFilter" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <div data-bind="template: { name: 'checked-template', data: glowFilter_enabled }"></div>
+                  <div data-bind="template: { name: 'slider-template', data: glowFilter_blurX }"></div>
+                  <div data-bind="template: { name: 'slider-template', data: glowFilter_blurY }"></div>
+                  <div data-bind="template: { name: 'selector-template', data: glowFilter_color }"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div>
+          <canvas id="stage" width="640" height="500"></canvas>
+        </div>
+      </div>
+      <div class="row">
+        <div class="well well-sm" style="width: 946px">
+          <a href="../index.html#examples">
+            click here for more StageXL samples
+          </a>
+          <a target='_blank' href="https://github.com/bp74/StageXL_Samples/tree/master/web/filter" class="pull-right">
+            click here to see the source code
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="application/dart" src="index.dart"></script>
+  <script src="packages/browser/dart.js"></script>
+
+</body>
+</html>
