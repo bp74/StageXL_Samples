@@ -22,13 +22,20 @@
     background-color: LightGray;
   }
 
-  #richtext,#texttodraw {
+  #texttodraw {
     background-color: White;
     border-style: solid;
     border-width: 3px;
     border-color: #900000;
     float: left;
     padding-left: 5px;
+  }
+
+  #stage {
+    background-color: White;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #900000;
   }
 
   #texttodraw {
@@ -45,7 +52,7 @@
   }
 
   #content {
-    width: 900px;
+    width: 870px;
     height: 540px;
     margin-left: auto;
     margin-right: auto;
@@ -53,18 +60,19 @@
 
   #reload {
     position: absolute;
-    bottom: 38px;
-    margin-left: 283px;
+    bottom: 45px;
+    margin-left: 275px;
   }
   </style>
 </head>
 
 <body>
+
   <div id="container">
     <div id="content">
       <div class="row">
         <button id="reload" style="width: 320px">Change text on the left and click to redraw</button>
-        <textarea id="texttodraw" style="width: 430px; height: 490px">Some {b}bold{/b} text
+        <textarea id="texttodraw" style="width: 430px; height: 496px">Some {b}bold{/b} text
 Now {i}italic{/i} text
 Can do {u}underlines{/u} and {o}overlines{/o}
 Even {s}strikethrough{/s} text
@@ -74,7 +82,7 @@ Some {color=0xFF0000}red text{/color}
 I'm so {excited}excited, I just can't hide it!{/excited}
 
 Altogether {b}now, it is {u}so {i}easy{/i}{/u} to nest{/b} multiple {size=*1.5}tags!{/size}</textarea>
-        <canvas id="richtext" width="440" height="490"></canvas>
+        <canvas id="stage" width="440" height="490"></canvas>
       </div>
       <div class="row">
         <div class="well well-sm" style="width: 874px">
