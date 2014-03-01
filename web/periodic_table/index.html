@@ -3,16 +3,23 @@
 <html>
   <head>
     <title>StageXL Periodic Table Sample</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <meta property="og:image" content="http://www.stagexl.org/samples/common/img/stagexl064.png">
     <meta property="og:title" content="StageXL Periodic Table Sample">
     <meta property="og:type" content="website">
-    <meta property="og:description" content="This demo shows the periodic table of chemical elements.
-            All display objects are drawn as vector graphics and cached as 
-            bitmaps for optimal performance. The animations are done with the 
-            Juggler animation framework which is fully integrated in StageXL.
-            The stage is automatically scaled to fill the whole browser window.">
-    <meta property="og:image" content="http://www.stagexl.org/samples/common/img/stagexl064.png">
-    <link href="../common/img/favicon.ico" rel="shortcut icon" type="image/x-icon">    
+    <meta property="og:description"
+      content="This demo shows the periodic table of chemical elements.
+      All display objects are drawn as vector graphics and cached as
+      bitmaps for optimal performance. The animations are done with the
+      Juggler animation framework which is fully integrated in StageXL.
+      The stage is automatically scaled to fill the whole browser window.">
+
+    <link href="../common/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="../common/css/bootstrap.min.css" rel="stylesheet">
+
     <style type="text/css">
 
       /* stage-full-window */
@@ -38,11 +45,11 @@
       }
     </style>
   </head>
-  
+
   <body class="stage-full-window">
-  
+
     <canvas id="stage" class="stage-full-window stage-full-screen"></canvas>
-    
+
     <script type="application/dart" src="index.dart"></script>
     <script src="packages/browser/dart.js"></script>
   </body>

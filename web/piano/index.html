@@ -3,23 +3,30 @@
 <html>
 <head>
   <title>StageXL Piano Sample</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:image" content="http://www.stagexl.org/samples/common/img/stagexl064.png">
   <meta property="og:title" content="StageXL Piano Sample">
   <meta property="og:type" content="website">
-  <meta property="og:description" content="A virtual piano and four songs with a karaoke like experience. 
-          The demo shows the audio playback capabilities of StageXL in 
-          different browsers. Playing HTML5 audio can be tricky, but StageXL 
-          offers an easy to use cross browser Sound API (compatible to the Flash API).">
-  <meta property="og:image" content="http://www.stagexl.org/samples/common/img/stagexl064.png">
-  <link href="../common/img/favicon.ico" rel="shortcut icon" type="image/x-icon">    
+  <meta property="og:description"
+    content="A virtual piano and four songs with a karaoke like experience.
+    The demo shows the audio playback capabilities of StageXL in different
+    browsers. Playing HTML5 audio can be tricky, but StageXL offers an easy
+    to use cross browser Sound API (compatible to the Flash API).">
+
+  <link href="../common/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
   <link href="../common/css/bootstrap.min.css" rel="stylesheet">
   <link href='http://fonts.googleapis.com/css?family=Sofadi+One' rel='stylesheet' type='text/css'>
+
   <style type="text/css">
     body { background-color: LightGray; }
-    #lyrics { text-align: center; vertical-align: middle; padding: 20px 0px 10px 0px; font-family: Sofadi One; font-size: 20px; } 
+    #lyrics { text-align: center; vertical-align: middle; padding: 10px 0px 10px 0px; font-family: Sofadi One; font-size: 20px; }
     #lyrics #word { font-weight: bold; color: #00008b; }
     #stage { background-color: White; border-style: solid; border-width: 3px; border-color: #900000; }
     #centerContainer { position: absolute; top: 50%; margin-top: -270px; left: 0; width: 100%; }
-    #centerContent { width: 940px; height: 440px; margin-left: auto; margin-right: auto; }    
+    #centerContent { width: 940px; height: 440px; margin-left: auto; margin-right: auto; }
   </style>
 </head>
 
@@ -27,50 +34,36 @@
 
   <div id="centerContainer">
     <div id="centerContent">
-    
-      <div class="container">
-        <div class="row">
-          <div class="span2">
-            <button id="song-happy-birthday" class="btn btn-large btn-block btn-primary">Happy Birthday</button>
-          </div>
-          <div class="span2">
-            <button id="song-hey-jude" class="btn btn-large btn-block btn-primary">Hey Jude</button>
-          </div>
-          <div class="span3">
-            <button id="song-star-spangled-banner" class="btn btn-large btn-block btn-primary">Star-Spangled Banner</button>
-          </div>
-          <div class="span3">
-            <button id="song-you-are-my-sunshine" class="btn btn-large btn-block btn-primary">You are my sunshine</button>
-          </div>
-          <div class="span2">
-             <button id="startOver" class="btn btn-large btn-block btn-warning">Start over</button>
-           </div>      
-        </div>
+
+      <div class="row" style="width:946px">
+        <button id="song-happy-birthday" class="btn btn-primary btn-lg">Happy Birthday</button>
+        <button id="song-hey-jude" class="btn btn-primary btn-lg">Hey Jude</button>
+        <button id="song-star-spangled-banner" class="btn btn-primary btn-lg">Star-Spangled Banner</button>
+        <button id="song-you-are-my-sunshine" class="btn btn-primary btn-lg">You are my sunshine</button>
+        <button id="startOver" class="btn btn-warning btn-lg pull-right">Start over</button>
+      </div>
+
+      <div class="row" style="width:946px">
         <hr>
-        <div class="row">
-          <div class="span12">
-            <div id="lyrics"></div>
-          </div>
-        </div>
+        <div id="lyrics"></div>
         <hr>
-        <div class="row">
-          <div class="span12">
-            <canvas id="stage" width="940" height="250"></canvas>
-            <div class="well well-small" style="width:926px">
-              <a href="../index.html#demos">
-                click here for more StageXL samples
-              </a>
-              <a target='_blank' href="https://github.com/bp74/StageXL_Samples/tree/master/web/piano" class="pull-right">
-                click here to see the source code 
-              </a>
-            </div>      
-          </div>
+      </div>
+
+      <div class="row">
+        <canvas id="stage" width="940" height="250"></canvas>
+        <div class="well well-sm" style="width:946px">
+          <a href="../index.html#demos">
+            click here for more StageXL samples
+          </a>
+          <a target='_blank' href="https://github.com/bp74/StageXL_Samples/tree/master/web/piano" class="pull-right">
+            click here to see the source code
+          </a>
         </div>
       </div>
-      
+
     </div>
   </div>
-  
+
   <script type="application/dart" src="index.dart"></script>
   <script src="packages/browser/dart.js"></script>
 </body>

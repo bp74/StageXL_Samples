@@ -4,6 +4,14 @@ description: Sample applications showing features of the StageXL library.
 homepage: http://www.stagexl.org/
 dependencies:
   browser: any
-  stagexl: '>=0.9.0 <0.10.0'
+  stagexl: any
   stagexl_flump: any
-  stagexl_richtextfield: '>=0.1.1 <0.2.0'
+  stagexl_richtextfield: any
+transformers:
+- $dart2js:
+    commandLineOptions: ["--trust-type-annotations"]
+    minify: true
+dependency_overrides:
+  stagexl:
+    path:
+      D:\GitHub\bp74\StageXL

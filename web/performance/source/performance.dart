@@ -35,7 +35,7 @@ class Performance extends DisplayObjectContainer {
       juggler.add(flyingFlag);
     }
 
-    html.querySelector('#flagCounter').innerHtml = 'Flags: ${numChildren}';
+    html.querySelector('#flagCounter').innerHtml = 'flags: ${numChildren}';
   }
 
   //---------------------------------------------------------------------------------
@@ -50,6 +50,6 @@ class Performance extends DisplayObjectContainer {
       juggler.remove(displayObject);
     }
 
-    html.querySelector('#flagCounter').innerHtml = 'Flags: ${numChildren}';
+    html.querySelector('#flagCounter').innerHtml = 'flags: ${numChildren}';
   }
 }

@@ -1,42 +1,69 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-    <title>StageXL Escape Sample</title>
-    <meta property="og:title" content="StageXL Escape Sample">
-    <meta property="og:type" content="website">
-    <meta property="og:description" content="This game was developed with Adobe Flash and later ported to 
-            HTML5 with the help of Dart and StageXL. The whole process only took a few hours because 
-            no substantial code changes were necessary. The game uses bitmaps, sprites, sounds, text fields, 
-            event listeners, etc.">
-    <meta property="og:image" content="http://www.stagexl.org/samples/common/img/stagexl064.png">
-    <link href="../common/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
-    <link href="../common/css/bootstrap.min.css" rel="stylesheet">
-    <style type="text/css">
-      body { background-color:LightGray; }
-      #stage { background-color: White; border-style: solid; border-width: 3px; border-color: #900000; }
-      #container{ position: absolute; top: 50%; margin-top: -325px; left: 0; width: 100%; }
-      #content { width: 800px; height: 650px; margin-left: auto; margin-right: auto; }
-    </style>
-  </head>
-  
-  <body>
-    <div id="container">
-      <div id="content">
-      	<canvas id="stage" width="800" height="600"></canvas>
-        <div class="well well-small" style="width:786px">
-          <a href="../index.html#games">
-            click here for more StageXL samples
-          </a>
-          <a target='_blank' href="https://github.com/bp74/StageXL_Samples/tree/master/web/escape" class="pull-right">
-            click here to see the source code 
-          </a>
-        </div>
+<head>
+  <title>StageXL Escape Sample</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:image" content="http://www.stagexl.org/samples/common/img/stagexl064.png">
+  <meta property="og:title" content="StageXL Escape Sample">
+  <meta property="og:type" content="website">
+  <meta property="og:description"
+    content="This game was developed with Adobe Flash and later ported to
+    HTML5 with the help of Dart and StageXL. The whole process only took a
+    few hours because no substantial code changes were necessary. The game
+    uses bitmaps, sprites, sounds, text fields, event listeners, etc.">
+
+  <link href="../common/img/favicon.ico" rel="shortcut icon"
+    type="image/x-icon">
+  <link href="../common/css/bootstrap.min.css" rel="stylesheet">
+  <style type="text/css">
+  body {
+    background-color: LightGray;
+  }
+
+  #stage {
+    background-color: White;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #900000;
+  }
+
+  #container {
+    position: absolute;
+    top: 50%;
+    margin-top: -325px;
+    left: 0;
+    width: 100%;
+  }
+
+  #content {
+    width: 800px;
+    height: 650px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  </style>
+</head>
+
+<body>
+
+  <div id="container">
+    <div id="content">
+      <canvas id="stage" width="800" height="600"></canvas>
+      <div class="well well-sm" style="width: 806px">
+        <a href="../index.html#games"> click here for more StageXL
+          samples </a> <a target='_blank'
+          href="https://github.com/bp74/StageXL_Samples/tree/master/web/escape"
+          class="pull-right"> click here to see the source code </a>
       </div>
     </div>
-    
-    <script type="application/dart" src="index.dart"></script>
-    <script src="packages/browser/dart.js"></script>
-    
-  </body>
+  </div>
+
+  <script type="application/dart" src="index.dart"></script>
+  <script src="packages/browser/dart.js"></script>
+
+</body>
 </html>

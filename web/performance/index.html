@@ -3,58 +3,93 @@
 <html>
 <head>
   <title>StageXL Performance Sample</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:image" content="http://www.stagexl.org/samples/common/img/stagexl064.png">
   <meta property="og:title" content="StageXL Performance Sample">
   <meta property="og:type" content="website">
-  <meta property="og:description" content="This demo can be used as a benchmark for StageXL. It is all 
-            about drawing small images and doing animations. As with all
-            benchmarks, it's important to look at the use case and think
-            about how those numbers apply to your use case.">
-  <meta property="og:image" content="http://www.stagexl.org/samples/common/img/stagexl064.png">
+  <meta property="og:description"
+    content="This demo can be used as a benchmark for StageXL. It is all
+      about drawing small images and doing animations. As with all benchmarks,
+      it's important to look at the use case and think about how those numbers
+      apply to your use case.">
+
   <link href="../common/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
   <link href="../common/css/bootstrap.min.css" rel="stylesheet">
+
   <style type="text/css">
-    body { background-color: LightGray; }
-    #stage { background-color: White; border-style: solid; border-width: 3px; border-color: #900000; }
-    #centerContainer { position: absolute; top: 50%; margin-top: -300px; left: 0; width: 100%; }
-    #centerContent { width: 940px; height: 600px; margin-left: auto; margin-right: auto; }
+  body {
+    background-color: LightGray;
+  }
+
+  #stage {
+    background-color: White;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #900000;
+  }
+
+  #centerContainer {
+    position: absolute;
+    top: 50%;
+    margin-top: -300px;
+    left: 0;
+    width: 100%;
+  }
+
+  #centerContent {
+    width: 940px;
+    height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .infoDisplay {
+    float: left;
+    width: 120px;
+    padding: 12px;
+    margin-left: 10px;
+    background-color:White;
+    border-color: #285e8e;
+    border-radius: 4px;
+  }
+
   </style>
 </head>
 
 <body>
-  
+
   <div id="centerContainer">
     <div id="centerContent">
-    
-      <div id="container">
-        <div class="row">
-            <div class="span2">
-                <button id="minus100" class="btn btn-large btn-block btn-primary">
-                  <i class="icon-minus icon-white"></i> 100
-                </button>
-            </div>
-            <div class="span2">
-                <button id="plus100" class="btn btn-large btn-block btn-primary">
-                  <i class="icon-plus icon-white"></i> 100
-                </button>
-            </div>
-            <div class="offset4 span2">
-                <div class="alert alert-info" id="flagCounter">Flags: 0</div>
-            </div>
-            <div class="span2">
-                <div class="alert alert-success" id="fpsMeter">fps: 0.0</div>
-            </div>
+
+      <div class="row" style="width:946px; padding-bottom: 10px">
+        <button id="minus100" class="btn btn-lg btn-primary" style="width: 150px">
+          <span class="glyphicon glyphicon-minus"></span> 100
+        </button>
+        <button id="plus100" class="btn btn-lg btn-primary" style="width: 150px">
+          <span class="glyphicon glyphicon-plus"></span> 100
+        </button>
+        <div class="pull-right">
+          <div class="infoDisplay" id="flagCounter">
+            flags: 0
+          </div>
+          <div class="infoDisplay" id="fpsMeter">
+            fps: 0.0
+          </div>
         </div>
-        <div>
-          <canvas id="stage" width="940" height="500"></canvas>
-          <div class="well well-small" style="width:926px">
-            <a href="../index.html#demos">
-              click here for more StageXL samples
-            </a>
-            <a target='_blank' href="https://github.com/bp74/StageXL_Samples/tree/master/web/performance" class="pull-right">
-              click here to see the source code 
-            </a>
-          </div>      
-        </div>      
+      </div>
+
+      <div class="row">
+        <canvas id="stage" width="940" height="500"></canvas>
+        <div class="well well-sm" style="width: 946px">
+          <a href="../index.html#demos"> click here for more
+            StageXL samples </a> <a target='_blank'
+            href="https://github.com/bp74/StageXL_Samples/tree/master/web/performance"
+            class="pull-right"> click here to see the source code
+          </a>
+        </div>
       </div>
     </div>
   </div>
