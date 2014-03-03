@@ -7,3 +7,11 @@ dependencies:
   stagexl: any
   stagexl_flump: any
   stagexl_richtextfield: any
+transformers:
+- $dart2js:
+    commandLineOptions: ["--trust-type-annotations"]
+    minify: true
+dependency_overrides:
+  stagexl:
+    path:
+      D:\GitHub\bp74\StageXL

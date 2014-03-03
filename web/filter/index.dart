@@ -7,13 +7,14 @@ import 'dart:math' as math;
 import 'dart:html' as html;
 import 'package:stagexl/stagexl.dart';
 
-part 'source/flower_field.dart';
-
 Stage stage = new Stage(html.querySelector('#stage'), webGL: true);
 ResourceManager resourceManager  = new ResourceManager();
 RenderLoop renderLoop = new RenderLoop();
-FlowerField flowerField = null;
+Sprite flowerField = new Sprite();
+Random random = new Random();
 num totalTime = 0.0;
+
+//-------------------------------------------------------------------------------------------------
 
 void main() {
   renderLoop.addStage(stage);
@@ -31,11 +32,32 @@ void main() {
       ..load().then(createFlowerField);
 }
 
+//-------------------------------------------------------------------------------------------------
+
 void createFlowerField(ResourceManager resourceManager) {
-  stage.addChild(new Bitmap(resourceManager.getBitmapData('grass')));
-  flowerField = new FlowerField();
+
+  var textureAtlas = resourceManager.getTextureAtlas("flowers");
+  var flowers = textureAtlas.getBitmapDatas("Flower");
+
+  for(var i = 0; i < 100; i++) {
+    var flower = flowers[random.nextInt(flowers.length)];
+    var bitmap = new Bitmap(flower)
+      ..pivotX = 64
+      ..pivotY = 64
+      ..x = 80 + random.nextInt(640 - 160)
+      ..y = 80 + random.nextInt(500 - 160)
+      ..addTo(flowerField);
+
+    stage.juggler.tween(bitmap, 3600, TransitionFunction.linear)
+      ..animate.rotation.to(math.PI * 360.0);
+  }
+
   flowerField.x = flowerField.pivotX = 320;
   flowerField.y = flowerField.pivotY = 250;
+
+  //-------------
+
+  stage.addChild(new Bitmap(resourceManager.getBitmapData('grass')));
   stage.addChild(flowerField);
   stage.onEnterFrame.listen(onEnterFrame);
 
@@ -59,7 +81,10 @@ void createFlowerField(ResourceManager resourceManager) {
   }
 }
 
+//-------------------------------------------------------------------------------------------------
+
 void onEnterFrame(EnterFrameEvent e) {
+
   Map config = JSON.decode(context['filterConfig']);
   if  (config.keys.length == 0) return;
 
@@ -119,6 +144,7 @@ void onEnterFrame(EnterFrameEvent e) {
         scaleX = scaleY = 16;
         break;
     }
+
     if (bitmapData != null) {
       var matrix = new Matrix.fromIdentity();
       matrix.translate(-bitmapData.width / 2, -bitmapData.height / 2);
@@ -127,7 +153,6 @@ void onEnterFrame(EnterFrameEvent e) {
       filters.add(new DisplacementMapFilter(bitmapData, matrix, scaleX, scaleY));
     }
   }
-
 
   var blurFilterConfig = config['blurFilter'];
   if (blurFilterConfig['enabled']) {
