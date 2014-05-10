@@ -25,6 +25,10 @@ void main() {
 
   renderLoop.addStage(stage);
 
+  // Please note that this FontManager is experimental! We are still
+  // investigating the best way to load fonts and want to add it to
+  // the ResourceManager class in StageXL.
+
   FontManager fontManager = new FontManager()
     ..addGoogleFont('Poller One')
     ..addGoogleFont('Titillium Web', 900)
