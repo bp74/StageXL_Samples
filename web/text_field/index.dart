@@ -20,6 +20,7 @@ part 'source/text_you_win.dart';
 
 Stage stage = new Stage(html.querySelector('#stage'), webGL: true);
 RenderLoop renderLoop = new RenderLoop();
+DisplayObject currentText = null;
 
 void main() {
 
@@ -30,16 +31,16 @@ void main() {
   // the ResourceManager class in StageXL.
 
   FontManager fontManager = new FontManager()
-    ..addGoogleFont('Poller One')
-    ..addGoogleFont('Titillium Web', 900)
-    ..addGoogleFont('Parisienne')
-    ..addGoogleFont('Varela Round')
-    ..addGoogleFont('Poly')
-    ..addGoogleFont('Ceviche One')
-    ..addGoogleFont('Press Start 2P')
-    ..addGoogleFont('Norican')
-    ..addGoogleFont('Yanone Kaffeesatz')
-    ..addGoogleFont('VT323');
+      ..addGoogleFont('Poller One')
+      ..addGoogleFont('Titillium Web', 900)
+      ..addGoogleFont('Parisienne')
+      ..addGoogleFont('Varela Round')
+      ..addGoogleFont('Poly')
+      ..addGoogleFont('Ceviche One')
+      ..addGoogleFont('Press Start 2P')
+      ..addGoogleFont('Norican')
+      ..addGoogleFont('Yanone Kaffeesatz')
+      ..addGoogleFont('VT323');
 
   fontManager.load().then((_) => start());
 }
@@ -72,9 +73,21 @@ void showText(DisplayObject text) {
   var bounds = text.getBounds(text);
   text.pivotX = bounds.center.x;
   text.pivotY = bounds.center.y;
-  text.x = stage.contentRectangle.center.x;
-  text.y = stage.contentRectangle.center.y;
 
-  stage.removeChildren();
-  stage.addChild(text);
+  if (currentText == text) return;
+
+  if (currentText != null) {
+    stage.juggler.tween(currentText, 0.5, TransitionFunction.easeInQuartic)
+        ..animate.x.by(800)
+        ..onComplete = currentText.removeFromParent;
+  }
+
+  currentText = text
+      ..x = 740 / 2 - 800
+      ..y = 500 / 2
+      ..addTo(stage);
+
+  stage.juggler.tween(currentText, 0.5, TransitionFunction.easeOutQuartic)
+      ..delay = 0.4
+      ..animate.x.by(800);
 }
