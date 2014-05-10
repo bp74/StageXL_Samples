@@ -69,13 +69,7 @@ start() {
 
 void showText(DisplayObject text) {
 
-  text.pivotX = 0;
-  text.pivotY = 0;
-  text.x = 0;
-  text.y = 0;
-
-  var bounds = text.getBounds(null);
-
+  var bounds = text.getBounds(text);
   text.pivotX = bounds.center.x;
   text.pivotY = bounds.center.y;
   text.x = stage.contentRectangle.center.x;
