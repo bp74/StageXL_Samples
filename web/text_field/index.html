@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>StageXL Text Field Sample</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:image" content="http://www.stagexl.org/samples/common/img/stagexl064.png">
+    <meta property="og:title" content="StageXL Text Field Sample">
+    <meta property="og:type" content="website">
+    <meta property="og:description"
+      content="The TextField of StageXL offers powerful text formatting options
+          and works great with web fonts. This example shows text fields using
+          different Google Web Fonts and fancy text formats. In comparision to
+          bitmap fonts the text field enables perfect text scaling and support
+          for languages like greek, russian and chinese.">
+
+    <link href="../common/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="../common/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+
+      body {
+        background-color:LightGray;
+      }
+
+      #stage {
+        background-color: White;
+      }
+
+      #centerContainer {
+        position: absolute;
+        top: 50%;
+        margin-top: -275px;
+        left: 0;
+        width: 100%;
+      }
+
+      #centerContent {
+        width: 920px;
+        height: 550px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      #buttonPanel {
+        width:200px;
+        height:500px;
+        float:left;
+        margin-right: 4px;
+        background-color:White;
+        padding: 5px;
+      }
+      .btn {
+        width: 180px;
+        margin: 3px 5px 3px 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="centerContainer">
+      <div id="centerContent">
+
+        <div class="row" style="width:946px">
+          <div id="buttonPanel">
+            <button id="btnSugarSmash" class="btn btn-primary btn-lg">Sugar Smash</button>
+            <button id="btnHoldTheLine" class="btn btn-primary btn-lg">Hold The Line</button>
+            <button id="btnHotAndSpicy" class="btn btn-primary btn-lg">Hot &amp; Spicy</button>
+            <button id="btnYouWin" class="btn btn-primary btn-lg">You win</button>
+            <button id="btnSweet" class="btn btn-primary btn-lg">Sweet</button>
+            <button id="btnGameOn" class="btn btn-primary btn-lg">Game On!</button>
+            <button id="btnGameOver" class="btn btn-primary btn-lg">Game Over</button>
+            <button id="btnGetReady" class="btn btn-primary btn-lg">Get Ready</button>
+          </div>
+          <div>
+            <canvas id="stage" width="740" height="500"></canvas>
+          </div>
+        </div>
+
+        <div class="row" style="width: 946px">
+          <div class="well well-sm">
+            <a href="../index.html#examples">
+              click here for more StageXL samples
+            </a>
+            <a target='_blank' href="https://github.com/bp74/StageXL_Samples/tree/master/web/text_field" class="pull-right">
+              click here to see the source code
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script type="application/dart" src="index.dart"></script>
+    <script src="packages/browser/dart.js"></script>
+  </body>
+</html>
