@@ -21,6 +21,7 @@ part 'source/text_you_win.dart';
 Stage stage = new Stage(html.querySelector('#stage'), webGL: true);
 RenderLoop renderLoop = new RenderLoop();
 DisplayObject currentText = new Sprite();
+DisplayObject currentTextCached = new Sprite();
 
 void main() {
 
@@ -75,17 +76,28 @@ void showText(DisplayObject text) {
   var bounds = text.getBounds(text);
   text.pivotX = bounds.center.x;
   text.pivotY = bounds.center.y;
+  text.width = 600;
+  text.scaleY = text.scaleX;
 
-  stage.juggler.tween(currentText, 0.5, TransitionFunction.easeInQuartic)
+  var oldTextCached = currentTextCached;
+  stage.juggler.tween(oldTextCached, 0.5, TransitionFunction.easeInQuartic)
       ..animate.x.by(800)
-      ..onComplete = currentText.removeFromParent;
+      ..onComplete = () {
+        oldTextCached.removeFromParent();
+        oldTextCached.removeCache();
+      };
 
-  currentText = text
+  currentText = text;
+  currentTextCached = new Sprite()
       ..x = 740 / 2 - 800
       ..y = 500 / 2
+      ..addChild(currentText)
       ..addTo(stage);
 
-  stage.juggler.tween(currentText, 0.5, TransitionFunction.easeOutQuartic)
+  var size = currentTextCached.getBounds(currentTextCached).align();
+  currentTextCached.applyCache(size.left, size.top, size.width, size.height);
+
+  stage.juggler.tween(currentTextCached, 0.5, TransitionFunction.easeOutQuartic)
       ..delay = 0.4
       ..animate.x.by(800);
 }

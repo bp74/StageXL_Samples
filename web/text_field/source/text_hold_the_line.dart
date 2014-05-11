@@ -3,8 +3,8 @@ part of text_field;
 class TextHoldTheLine extends DisplayObjectContainer {
 
   TextHoldTheLine() {
-    addChild(_createTextArc("HOLD THE", 600, _deg2Rad(240), _deg2Rad(60)));
-    addChild(_createTextArc("LINE", 480, _deg2Rad(255), _deg2Rad(30)));
+    addChild(_createTextArc("HOLD THE", 200, _deg2Rad(235), _deg2Rad(70)));
+    addChild(_createTextArc("LINE", 150, _deg2Rad(250), _deg2Rad(40)));
   }
 
   num _deg2Rad(num deg) => deg * math.PI / 180.0;
@@ -12,10 +12,11 @@ class TextHoldTheLine extends DisplayObjectContainer {
   TextField _createTextField(String text) {
 
     return new TextField(text)
+        ..cacheAsBitmap = false
         ..autoSize = TextFieldAutoSize.CENTER
         ..defaultTextFormat.align = TextFormatAlign.CENTER
         ..defaultTextFormat.font = 'Poly'
-        ..defaultTextFormat.size = 80
+        ..defaultTextFormat.size = 32
         ..defaultTextFormat.color = 0xFFFCEE21;
   }
 
@@ -23,16 +24,16 @@ class TextHoldTheLine extends DisplayObjectContainer {
 
     return new Sprite()
         ..addChild(_createTextField(text)
-            ..y = -15
-            ..defaultTextFormat.strokeWidth = 20
+            ..y = -5
+            ..defaultTextFormat.strokeWidth = 7
             ..defaultTextFormat.strokeColor = Color.Black)
         ..addChild(_createTextField(text)
-            ..y = -4
-            ..defaultTextFormat.strokeWidth = 10
+            ..y = -1
+            ..defaultTextFormat.strokeWidth = 3
             ..defaultTextFormat.strokeColor = Color.White)
         ..addChild(_createTextField(text)
             ..y = 0
-            ..defaultTextFormat.strokeWidth = 6
+            ..defaultTextFormat.strokeWidth = 2
             ..defaultTextFormat.strokeColor = Color.Black);
   }
 

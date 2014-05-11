@@ -6,28 +6,30 @@ class TextGetReady extends DisplayObjectContainer {
 
     addChild(_createTextField()
         ..y = 0
-        ..defaultTextFormat.strokeWidth = 7
+        ..defaultTextFormat.strokeWidth = 2
         ..defaultTextFormat.strokeColor = 0xFF433F4E);
 
     addChild(_createTextField()
-        ..y = 3
-        ..defaultTextFormat.strokeWidth = 4
+        ..y = 1
+        ..defaultTextFormat.strokeWidth = 1
         ..defaultTextFormat.strokeColor = Color.White);
 
     addChild(_createTextField()
-        ..y = 8
+        ..y = 2.25
         ..defaultTextFormat.color = 0xFFDE631D);
 
     addChild(_createTextField()
-        ..y = 6
+        ..y = 1.75
         ..defaultTextFormat.color = 0xFFFFA147);
   }
 
   TextField _createTextField() {
     return new TextField('GET READY!')
-        ..width = 600
-        ..height = 200
-        ..defaultTextFormat.size = 140
+        ..cacheAsBitmap = false
+        ..width = 150
+        ..height = 40
+        ..defaultTextFormat.size = 32
+        ..defaultTextFormat.topMargin = -5
         ..defaultTextFormat.align = TextFormatAlign.CENTER
         ..defaultTextFormat.font = 'VT323';
   }
