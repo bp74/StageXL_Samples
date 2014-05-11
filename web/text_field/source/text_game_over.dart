@@ -13,12 +13,12 @@ class TextGameOver extends DisplayObjectContainer {
         ..addColorStop(0.4, 0xFFF8E123)
         ..addColorStop(1.0, 0xFFF05D26);
 
-    addChild(_createTextField("Over", 45)
-        ..y = 8
+    addChild(_createTextField("Over", 36)
+        ..y = 6
         ..defaultTextFormat.fillGradient = gradient2);
 
-    addChild(_createTextField("Game", 25)
-        ..x = 37
+    addChild(_createTextField("Game", 20)
+        ..x = 30
         ..defaultTextFormat.fillGradient = gradient1);
   }
 
@@ -28,7 +28,7 @@ class TextGameOver extends DisplayObjectContainer {
         ..autoSize = TextFieldAutoSize.LEFT
         ..defaultTextFormat.font = 'Poller One'
         ..defaultTextFormat.size = size
-        ..defaultTextFormat.strokeWidth = 4
+        ..defaultTextFormat.strokeWidth = 3
         ..defaultTextFormat.strokeColor = Color.Black
         ..defaultTextFormat.align = TextFormatAlign.CENTER;
   }

@@ -31,11 +31,11 @@ class TextYouWin extends DisplayObjectContainer {
     return new TextField("You win")
         ..cacheAsBitmap = false
         ..width = 240
-        ..height = 64
+        ..height = 70
         ..defaultTextFormat.align = TextFormatAlign.CENTER
         ..defaultTextFormat.font = 'Ceviche One'
         ..defaultTextFormat.size = 64
-        ..defaultTextFormat.topMargin = -20
+        ..defaultTextFormat.topMargin = -15
         ..defaultTextFormat.strokeColor = 0xFF3B615B;
   }
 }
