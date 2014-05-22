@@ -45,9 +45,9 @@ class Performance extends DisplayObjectContainer {
     var juggler = stage.juggler;
 
     while(--amount >= 0 && numChildren > 0) {
-      var displayObject = getChildAt(0);
-      displayObject.removeFromParent();
-      juggler.remove(displayObject);
+      var flyingFlag = getChildAt(0) as FlyingFlag;
+      flyingFlag.removeFromParent();
+      juggler.remove(flyingFlag);
     }
 
     html.querySelector('#flagCounter').innerHtml = 'flags: ${numChildren}';
