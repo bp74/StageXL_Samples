@@ -13,36 +13,18 @@
             was ported from ActionScript to Dart without much fuss. This
             game uses vector graphics, bitmaps, sounds, masks, etc.">
     <meta property="og:image" content="http://www.stagexl.org/samples/common/img/stagexl064.png">
+
+    <script async type="application/dart" src="index.dart"></script>
+    <script async src="packages/browser/dart.js"></script>
+
     <link href="../common/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
-    <link href="../common/css/bootstrap.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Russo+One' rel='stylesheet' type='text/css'>
-    <style type="text/css">
-      body { background-color:LightGray; }
-      #stage { background-color: White; border-style: solid; border-width: 3px; border-color: #900000; }
-      #container{ position: absolute; top: 50%; margin-top: -325px; left: 0; width: 100%; }
-      #content { width: 800px; height: 650px; margin-left: auto; margin-right: auto; }
-    </style>
+    <link rel="stylesheet" href="index.css">
   </head>
 
-  <body>
-    <div id="container">
-      <div id="content">
-      	<canvas id="stage" width="800" height="600"></canvas>
-        <div class="well well-sm" style="width:806px">
-          <a href="../index.html#games">
-            click here for more StageXL samples
-          </a>
-          <a target='_blank' href="https://github.com/bp74/StageXL_Samples/tree/master/web/supersonic" class="pull-right">
-            click here to see the source code
-          </a>
-        </div>
-      </div>
-    </div>
-
+  <body class="stage-full-window">
+    <canvas id="stage" class="stage-full-window"></canvas>
     <div style="font-family:'Russo One'">&nbsp;</div>
-
-    <script type="application/dart" src="index.dart"></script>
-    <script src="packages/browser/dart.js"></script>
-
   </body>
+
 </html>

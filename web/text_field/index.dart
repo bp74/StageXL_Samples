@@ -1,13 +1,10 @@
 library text_field;
 
 import 'dart:async';
+import 'dart:js' as js;
 import 'dart:html' as html;
 import 'dart:math' as math;
 import 'package:stagexl/stagexl.dart';
-
-part 'source/font.dart';
-part 'source/font_tester.dart';
-part 'source/font_manager.dart';
 
 part 'source/text_game_on.dart';
 part 'source/text_game_over.dart';
@@ -18,35 +15,52 @@ part 'source/text_sugar_smash.dart';
 part 'source/text_sweet.dart';
 part 'source/text_you_win.dart';
 
-Stage stage = new Stage(html.querySelector('#stage'), webGL: true);
-RenderLoop renderLoop = new RenderLoop();
+Stage stage;
+RenderLoop renderLoop;
 DisplayObject currentText = new Sprite();
 DisplayObject currentTextCached = new Sprite();
 
 void main() {
 
+  stage = new Stage(html.querySelector('#stage'), webGL: true);
+  stage.scaleMode = StageScaleMode.NO_SCALE;
+  stage.align = StageAlign.NONE;
+
+  renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
 
-  // Please note that this FontManager is experimental! We are still
-  // investigating the best way to load fonts and want to add it to
-  // the ResourceManager class in StageXL.
+  // https://github.com/typekit/webfontloader
 
-  FontManager fontManager = new FontManager()
-      ..addGoogleFont('Poller One')
-      ..addGoogleFont('Titillium Web', 900)
-      ..addGoogleFont('Parisienne')
-      ..addGoogleFont('Varela Round')
-      ..addGoogleFont('Poly')
-      ..addGoogleFont('Ceviche One')
-      ..addGoogleFont('Press Start 2P')
-      ..addGoogleFont('Norican')
-      ..addGoogleFont('Yanone Kaffeesatz')
-      ..addGoogleFont('VT323');
+  var completer = new Completer();
+  var googleFontFamilies = [
+      'Poller One', 'Titillium Web:900', 'Parisienne',
+      'Varela Round', 'Poly', 'Ceviche One', 'Press Start 2P',
+      'Norican', 'Yanone Kaffeesatz', 'VT323'];
 
-  fontManager.load().then((_) => start());
+  js.JsObject webFont = js.context["WebFont"];
+  js.JsObject webFontConfig = new js.JsObject.jsify({
+    "google": { "families": googleFontFamilies },
+    "loading": () => print("loading fonts"),
+    "active": () => completer.complete(null),
+    "inactive": () => completer.completeError("Error loading fonts"),
+    //"fontloading": (familyName, fvd) => print("fontloading: $familyName, $fvd"),
+    //"fontactive": (familyName, fvd) => print("fontactive: $familyName, $fvd"),
+    //"fontinactive": (familyName, fvd) => print("fontinactive: $familyName, $fvd")
+  });
+
+  webFont.callMethod("load", [webFontConfig]);
+  completer.future.then((_) => start());
 }
 
-start() {
+void start() {
+
+  var textField = new TextField();
+  textField.defaultTextFormat = new TextFormat("Arial", 36, Color.Black, align: TextFormatAlign.CENTER);
+  textField.width = 400;
+  textField.x = stage.contentRectangle.center.x - 200;
+  textField.y = stage.contentRectangle.center.y - 20;
+  textField.text = "tap to change text";
+  textField.addTo(stage);
 
   var textGameOn = new TextGameOn();
   var textGameOver = new TextGameOver();
@@ -57,31 +71,33 @@ start() {
   var textSweet = new TextSweet();
   var textYouWin = new TextYouWin();
 
-  html.querySelector("#btnGameOn").onClick.listen((_) => showText(textGameOn));
-  html.querySelector("#btnGameOver").onClick.listen((_) => showText(textGameOver));
-  html.querySelector("#btnGetReady").onClick.listen((_) => showText(textGetReady));
-  html.querySelector("#btnHoldTheLine").onClick.listen((_) => showText(textHoldTheLine));
-  html.querySelector("#btnHotAndSpicy").onClick.listen((_) => showText(textHotAndSpicy));
-  html.querySelector("#btnSugarSmash").onClick.listen((_) => showText(textSugarSmash));
-  html.querySelector("#btnSweet").onClick.listen((_) => showText(textSweet));
-  html.querySelector("#btnYouWin").onClick.listen((_) => showText(textYouWin));
+  var textIndex = 0;
+  var texts = [textGameOn, textGameOver, textGetReady, textHoldTheLine,
+      textHotAndSpicy, textSugarSmash, textSweet, textYouWin];
 
-  showText(textSugarSmash);
+  stage.onMouseClick.listen((e) {
+    textField.removeFromParent();
+    textIndex = (textIndex + 1) % texts.length;
+    showText(texts[textIndex]);
+  });
+
 }
+
+//-----------------------------------------------------------------------------
 
 void showText(DisplayObject text) {
 
-  if (currentText == text) return;
+  var rect = stage.contentRectangle;
+  var bounds = text.bounds;
+  var scale = math.min(rect.width / bounds.width, rect.height / bounds.height);
+  var oldTextCached = currentTextCached;
 
-  var bounds = text.getBounds(text);
   text.pivotX = bounds.center.x;
   text.pivotY = bounds.center.y;
-  text.width = 600;
-  text.scaleY = text.scaleX;
+  text.scaleY = text.scaleX = scale * 0.9;
 
-  var oldTextCached = currentTextCached;
-  stage.juggler.tween(oldTextCached, 0.5, TransitionFunction.easeInQuartic)
-      ..animate.x.by(800)
+  stage.juggler.tween(oldTextCached, 0.5, TransitionFunction.easeInCubic)
+      ..animate.x.to(rect.right - oldTextCached.bounds.left)
       ..onComplete = () {
         oldTextCached.removeFromParent();
         oldTextCached.removeCache();
@@ -89,15 +105,14 @@ void showText(DisplayObject text) {
 
   currentText = text;
   currentTextCached = new Sprite()
-      ..x = 740 / 2 - 800
-      ..y = 500 / 2
+      ..x = rect.left - currentText.width
+      ..y = rect.center.y
       ..addChild(currentText)
       ..addTo(stage);
 
-  var size = currentTextCached.getBounds(currentTextCached).align();
+  var size = currentTextCached.bounds.align();
   currentTextCached.applyCache(size.left, size.top, size.width, size.height);
 
-  stage.juggler.tween(currentTextCached, 0.5, TransitionFunction.easeOutQuartic)
-      ..delay = 0.4
-      ..animate.x.by(800);
+  stage.juggler.tween(currentTextCached, 0.5, TransitionFunction.easeInCubic)
+      ..animate.x.to(rect.center.x);
 }

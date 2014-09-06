@@ -1,0 +1,15 @@
+.container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 800px
+}
+
+-body {
+  background-color: #F8F8F8;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.2em;
+  margin: 15px;
+}
+

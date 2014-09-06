@@ -4,22 +4,31 @@ import 'dart:math';
 import 'dart:html';
 import 'package:stagexl/stagexl.dart';
 
-Stage stage = new Stage(querySelector('#stage'), webGL: true);
-RenderLoop renderLoop = new RenderLoop();
 Random random = new Random();
+Stage stage;
+RenderLoop renderLoop;
 
 void main() {
+
+  stage = new Stage(querySelector('#stage'), webGL: true, width:800, height: 600);
+  stage.scaleMode = StageScaleMode.SHOW_ALL;
+  stage.align = StageAlign.NONE;
+
+  renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
+
   BitmapData.load("images/logo.png").then(startAnimation);
 }
 
 void startAnimation(BitmapData logoBitmapData) {
 
+  var rect = stage.contentRectangle;
+
   var logoBitmap = new Bitmap(logoBitmapData)
     ..pivotX = logoBitmapData.width ~/ 2
     ..pivotY = logoBitmapData.height ~/ 2
-    ..x = random.nextInt(stage.stageWidth)
-    ..y = random.nextInt(stage.stageHeight)
+    ..x = rect.left + rect.width * random.nextDouble()
+    ..y = rect.top + rect.height * random.nextDouble()
     ..rotation = 0.4 * random.nextDouble() - 0.2
     ..scaleX = 0.0
     ..scaleY = 0.0
@@ -35,6 +44,6 @@ void startAnimation(BitmapData logoBitmapData) {
     ..animate.scaleY.to(0.0)
     ..onComplete = logoBitmap.removeFromParent;
 
-  stage.juggler.delayCall(() => startAnimation(logoBitmapData), 0.15);
+  stage.juggler.delayCall(() => startAnimation(logoBitmapData), 0.1);
 }
 

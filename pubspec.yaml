@@ -7,3 +7,9 @@ dependencies:
   stagexl: any
   stagexl_flump: any
   stagexl_richtextfield: any
+  stagexl_spine: any
+transformers:
+- $dart2js:
+    commandLineOptions:
+    - --trust-type-annotations
+    minify: true

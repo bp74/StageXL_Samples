@@ -1,5 +1,3 @@
-library flumpSample;
-
 import 'dart:html' as html;
 import 'package:stagexl/stagexl.dart';
 import 'package:stagexl_flump/stagexl_flump.dart';
@@ -10,52 +8,63 @@ ResourceManager resourceManager;
 
 void main() {
 
-  BitmapData.defaultLoadOptions.webp = true;
+  var canvas = html.querySelector('#stage');
 
-  stage = new Stage(html.querySelector('#stage'), webGL: true);
+  stage = new Stage(canvas, webGL: true, width:480, height: 600, color: Color.White);
+  stage.scaleMode = StageScaleMode.SHOW_ALL;
+  stage.align = StageAlign.NONE;
+
   renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
+
+  BitmapData.defaultLoadOptions.webp = true;
 
   resourceManager = new ResourceManager()
     ..addBitmapData("flumpAtlas", "images/flumpLibraryAtlas0.png")
     ..addCustomObject('flump', FlumpLibrary.load('images/flumpLibrary.json'))
-    ..load().then((result) => start());
+    ..load().then((result) => startFlump());
 }
 
-void start() {
+void startFlump() {
+
+  var textField = new TextField();
+  textField.defaultTextFormat = new TextFormat("Arial", 24, Color.Black, align: TextFormatAlign.CENTER);
+  textField.width = 480;
+  textField.x = 0;
+  textField.y = 450;
+  textField.text = "tap to change animation";
+  textField.addTo(stage);
 
   var flumpLibrary = resourceManager.getCustomObject('flump') as FlumpLibrary;
-  var juggler = stage.juggler;
-
-  var bitmapData = resourceManager.getBitmapData("flumpAtlas");
-  var bitmap = new Bitmap(bitmapData);
-  bitmap.x = 50;
-  bitmap.y = 50;
-  stage.addChild(bitmap);
 
   var idle = new FlumpMovie(flumpLibrary, 'idle');
-  idle.x = 120;
-  idle.y = 450;
-  stage.addChild(idle);
-  juggler.add(idle);
-
   var walk = new FlumpMovie(flumpLibrary, 'walk');
-  walk.x = 320;
-  walk.y = 450;
-  stage.addChild(walk);
-  juggler.add(walk);
-
   var attack = new FlumpMovie(flumpLibrary, 'attack');
-  attack.x = 540;
-  attack.y = 450;
-  stage.addChild(attack);
-  juggler.add(attack);
-
   var defeat = new FlumpMovie(flumpLibrary, 'defeat');
-  defeat.x = 760;
-  defeat.y = 450;
-  stage.addChild(defeat);
-  juggler.add(defeat);
+
+  var flumpMovies = [idle, walk, attack, defeat];
+  var flumpMovieIndex = 0;
+  var flumpMovie = flumpMovies[0];
+  flumpMovie.x = 250;
+  flumpMovie.y = 400;
+
+  stage.addChild(flumpMovie);
+  stage.juggler.add(flumpMovie);
+
+  stage.onMouseClick.listen((me) {
+
+    stage.removeChild(flumpMovie);
+    stage.juggler.remove(flumpMovie);
+
+    flumpMovieIndex = (flumpMovieIndex + 1) % flumpMovies.length;
+    flumpMovie = flumpMovies[flumpMovieIndex];
+    flumpMovie.x = 250;
+    flumpMovie.y = 400;
+
+    stage.addChild(flumpMovie);
+    stage.juggler.add(flumpMovie);
+
+  });
 }
 
 

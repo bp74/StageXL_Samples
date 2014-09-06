@@ -1,7 +1,7 @@
 library flipbook;
 
-import 'dart:math' as math;
-import 'dart:html' as html;
+import 'dart:math';
+import 'dart:html';
 import 'package:stagexl/stagexl.dart';
 
 //###########################################################################
@@ -18,7 +18,10 @@ void main() {
   // Initialize the Display List
   //------------------------------------------------------------------
 
-  stage = new Stage(html.querySelector('#stage'), webGL: true);
+  stage = new Stage(querySelector('#stage'), webGL: true, width: 800, height: 600);
+  stage.scaleMode = StageScaleMode.SHOW_ALL;
+  stage.align = StageAlign.NONE;
+
   renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
 
@@ -35,8 +38,8 @@ void main() {
 
 void startAnimation() {
 
-  var random = new math.Random();
-  var scaling = random.nextDouble();
+  var random = new Random();
+  var scaling = 0.5 + 0.5 * random.nextDouble();
 
   //------------------------------------------------------------------
   // Get all the "walk" bitmapDatas from the texture atlas.
@@ -49,11 +52,13 @@ void startAnimation() {
   // Create a flip book with the list of bitmapDatas.
   //------------------------------------------------------------------
 
+  var rect = stage.contentRectangle;
+
   var flipBook = new FlipBook(bitmapDatas, 30)
-    ..x = -128
-    ..y = 20.0 + 200.0 * scaling
-    ..scaleX = 0.5 + 0.5 * scaling
-    ..scaleY = 0.5 + 0.5 * scaling
+    ..x = rect.left - 128
+    ..y = rect.top + (scaling - 0.5) * 2.0 * (rect.height - 260)
+    ..scaleX = scaling
+    ..scaleY = scaling
     ..addTo(stage)
     ..play();
 
@@ -68,14 +73,14 @@ void startAnimation() {
   //------------------------------------------------------------------
 
   var transition = TransitionFunction.linear;
-  var tween = new Tween(flipBook, 5.0 + (1.0 - scaling) * 5.0, transition)
-    ..animate.x.to(940.0)
+  var tween = new Tween(flipBook, rect.width / 200.0 / scaling, transition)
+    ..animate.x.to(rect.right)
     ..onComplete = () => stopAnimation(flipBook);
 
   stage.juggler
     ..add(flipBook)
     ..add(tween)
-    ..delayCall(startAnimation, 0.15);
+    ..delayCall(startAnimation, 0.05);
 }
 
 void stopAnimation(FlipBook flipbook) {

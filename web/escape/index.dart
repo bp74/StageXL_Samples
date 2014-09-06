@@ -33,7 +33,10 @@ TextField loadingTextField;
 
 void main() {
 
-  stage = new Stage(html.querySelector('#stage'), webGL: true);
+  stage = new Stage(html.querySelector('#stage'), webGL: true, width: 800, height: 600);
+  stage.scaleMode = StageScaleMode.SHOW_ALL;
+  stage.align = StageAlign.NONE;
+
   renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
 
