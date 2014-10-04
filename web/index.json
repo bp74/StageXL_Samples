@@ -99,6 +99,15 @@
      "defines the way how textures are blended over the previously",
      "drawn textures or the background."]},
 
+{ "Name": "Sprite3D",
+  "Category": "Examples",
+  "TestUrl": "sprite_3d/index.html",
+  "SourceUrl": "https://github.com/bp74/StageXL_Samples/tree/master/web/sprite_3d",
+  "Description": [
+     "The Sprite3D class enables 3D transformations of 2D display objects.",
+     "This demo shows how to rotate and translate an object and that",
+     "the interaction with the mouse still works as expeceted."]},
+
 { "Name": "TextField",
   "Category": "Examples",
   "TestUrl": "text_field/index.html",
