@@ -36,6 +36,7 @@ To learn more about Dart and the StageXL library, please follow these links:
 
 * Dart programming language: <http://www.dartlang.org/>
 * StageXL homepage: <http://www.stagexl.org/>
-* StageXL on GitHub: <http://www.github.com/bp74/StageXL>
-
+* StageXL Wiki: <hhttp://www.stagexl.org/docs/wiki-articles.html>
+* StageXL API Reference: <http://www.stagexl.org/docs/api/index.html>
+* StageXL on GitHub: <http://www.github.com/bp74/StageXL/>
 
