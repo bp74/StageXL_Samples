@@ -4,13 +4,15 @@ This repository contains several samples, all built with the Dart programming
 language and the StageXL library. The source code of all samples is available
 in the "web" folder. You can try each of the sample here:
 
+More samples coming soon ....
+
 ### Examples
 
 * [Text Field](http://www.stagexl.org/samples/text_field "Text Foeld")
 * [Mask](http://www.stagexl.org/samples/mask "Mask")
 * [Filter](http://www.stagexl.org/samples/filter "Filter")
 * [Blend Mode](http://www.stagexl.org/samples/blend_mode "Blend Mode")
-* [Sprite3D](http://www.stagexl.org/samples/sprite3D "Sprite3D")
+* [Sprite3D](http://www.stagexl.org/samples/sprite_3d "Sprite3D")
 
 ### Demos
 
@@ -22,19 +24,18 @@ in the "web" folder. You can try each of the sample here:
 * [Dart Logo](http://www.stagexl.org/samples/dart_logo "Dart Logo")
 * [FlipBook](http://www.stagexl.org/samples/flipbook "FlipBook")
 
-#Runtimes
+### Runtimes
 
 * [Spine](http://www.stagexl.org/samples/spine "Spine")
 * [Flump](http://www.stagexl.org/samples/flump "Flump")
-* [RichTextField](http://www.stagexl.org/samples/richttextfield "RichTextField")
+* [RichTextField](http://www.stagexl.org/samples/richtextfield "RichTextField")
 
-More samples coming soon ....
-
----
+### Links
 
 To learn more about Dart and the StageXL library, please follow these links:
 
 * Dart programming language: <http://www.dartlang.org/>
 * StageXL homepage: <http://www.stagexl.org/>
 * StageXL on GitHub: <http://www.github.com/bp74/StageXL>
+
 
