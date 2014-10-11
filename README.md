@@ -4,15 +4,29 @@ This repository contains several samples, all built with the Dart programming
 language and the StageXL library. The source code of all samples is available
 in the "web" folder. You can try each of the sample here:
 
+### Examples
+
+* [Text Field](http://www.stagexl.org/samples/text_field "Text Foeld")
+* [Mask](http://www.stagexl.org/samples/mask "Mask")
+* [Filter](http://www.stagexl.org/samples/filter "Filter")
+* [Blend Mode](http://www.stagexl.org/samples/blend_mode "Blend Mode")
+* [Sprite3D](http://www.stagexl.org/samples/sprite3D "Sprite3D")
+
+### Demos
+
 * [Escape](http://www.stagexl.org/samples/escape "Escape")
 * [Supersonic](http://www.stagexl.org/samples/supersonic "Supersonic")
 * [Periodic Table](http://www.stagexl.org/samples/periodic_table "Periodic Table")
-* [Dart Logo](http://www.stagexl.org/samples/dart_logo "Dart Logo")
 * [Piano](http://www.stagexl.org/samples/piano "Piano")
 * [Performance](http://www.stagexl.org/samples/performance "Performance")
+* [Dart Logo](http://www.stagexl.org/samples/dart_logo "Dart Logo")
 * [FlipBook](http://www.stagexl.org/samples/flipbook "FlipBook")
-* [Mask](http://www.stagexl.org/samples/mask "Mask")
-* [Filter](http://www.stagexl.org/samples/filter "Filter")
+
+#Runtimes
+
+* [Spine](http://www.stagexl.org/samples/spine "Spine")
+* [Flump](http://www.stagexl.org/samples/flump "Flump")
+* [RichTextField](http://www.stagexl.org/samples/richttextfield "RichTextField")
 
 More samples coming soon ....
 
