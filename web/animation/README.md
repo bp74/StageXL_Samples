@@ -1,6 +1,6 @@
-#Dart Logo
+#Animation
 
-[Try it here](http://www.stagexl.org/samples/dart_logo/ "StageXL DartLogo Sample")
+[Try it here](http://www.stagexl.org/samples/animation/ "StageXL Animation Sample")
 
 ---
 
