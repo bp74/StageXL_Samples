@@ -32,10 +32,10 @@
      "StageXL. The stage is automatically scaled to fill the whole",
      "browser window."]},
 
-{ "Name": "Dart Logo",
+{ "Name": "Animation",
   "Category": "Demos",
-  "TestUrl": "dart_logo/index.html",
-  "SourceUrl": "https://github.com/bp74/StageXL_Samples/tree/master/web/dart_logo",
+  "TestUrl": "animation/index.html",
+  "SourceUrl": "https://github.com/bp74/StageXL_Samples/tree/master/web/animation",
   "Description": [
      "This demo shows an animation of the Dart logo with a minimum",
      "amount of source code. The demo has 40 lines of code, but only",

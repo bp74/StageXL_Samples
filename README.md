@@ -12,6 +12,7 @@ More samples coming soon ....
 * [Mask](http://www.stagexl.org/samples/mask "Mask")
 * [Filter](http://www.stagexl.org/samples/filter "Filter")
 * [Blend Mode](http://www.stagexl.org/samples/blend_mode "Blend Mode")
+* [Animation](http://www.stagexl.org/samples/animation "Animation")
 * [Sprite3D](http://www.stagexl.org/samples/sprite_3d "Sprite3D")
 
 ### Demos
@@ -21,7 +22,6 @@ More samples coming soon ....
 * [Periodic Table](http://www.stagexl.org/samples/periodic_table "Periodic Table")
 * [Piano](http://www.stagexl.org/samples/piano "Piano")
 * [Performance](http://www.stagexl.org/samples/performance "Performance")
-* [Dart Logo](http://www.stagexl.org/samples/dart_logo "Dart Logo")
 * [FlipBook](http://www.stagexl.org/samples/flipbook "FlipBook")
 
 ### Runtimes
