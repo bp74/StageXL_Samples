@@ -1,0 +1,53 @@
+
+body {
+  background-color: Black;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.2em;
+  margin: 0; 
+  padding: 0; 
+  overflow: hidden; 
+}
+
+#container {
+  height: 100%;
+  width: 100%;
+  max-width: 800px;
+  max-height: 600px;
+  overflow: hidden;
+  margin: auto;
+  position: absolute; 
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+
+#stage {
+  width: 100%; 
+  height: 100%;
+  position: absolute;
+}
+
+#counter {
+  background: #ccc;
+  width: 74px;
+  position: absolute;
+  background-color: #105CB6;
+  padding: 3px;
+  top: 50px;
+  color: #0ff;
+  font-family: Helvetica, Arial;
+  font-size: 9px;
+  font-weight: bold;
+}
+
+#clickImage {
+  position: absolute;
+  right: 140px;
+  bottom: 0px;
+}
+
+#logoLink{
+  position: absolute;
+  right: 3px;
+  bottom: 0px;
+}

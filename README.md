@@ -22,6 +22,7 @@ More samples coming soon ....
 * [Periodic Table](http://www.stagexl.org/samples/periodic_table "Periodic Table")
 * [Piano](http://www.stagexl.org/samples/piano "Piano")
 * [Performance](http://www.stagexl.org/samples/performance "Performance")
+* [Bunny Benchmark](http://www.stagexl.org/samples/bunny_bench "Bunny Benchmark")
 * [FlipBook](http://www.stagexl.org/samples/flipbook "FlipBook")
 
 ### Runtimes
