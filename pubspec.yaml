@@ -8,8 +8,12 @@ dependencies:
   stagexl_flump: any
   stagexl_richtextfield: any
   stagexl_spine: any
+dependency_overrides:
+  stagexl:
+    git: https://github.com/bp74/StageXL.git
+  stagexl_spine:
+    git: https://github.com/bp74/StageXL_Spine.git
 transformers:
 - $dart2js:
-    commandLineOptions:
-    - --trust-type-annotations
+    commandLineOptions: ["--trust-type-annotations", "--dump-info"]
     minify: true

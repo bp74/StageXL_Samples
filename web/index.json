@@ -105,8 +105,9 @@
   "SourceUrl": "https://github.com/bp74/StageXL_Samples/tree/master/web/sprite_3d",
   "Description": [
      "The Sprite3D class enables 3D transformations of 2D display objects.",
-     "This demo shows how to rotate and translate an object and that",
-     "the interaction with the mouse still works as expeceted."]},
+     "This demo was originally created for the awesome Starling framework.",
+     "The Starling framework also introduced the concept of Sprite3D first",
+     "and therefore was a great inspiration for StageXL."]},
 
 { "Name": "TextField",
   "Category": "Examples",
