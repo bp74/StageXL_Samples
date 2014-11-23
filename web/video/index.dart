@@ -80,6 +80,8 @@ void showVideo(e) {
   stage.removeChildren();
 
   video = resourceManager.getVideo("sintel");
+  video.loop = true;
+  video.play();
 
   videoContainer3D = new Sprite3D();
   videoContainer3D.x = 800;
@@ -104,9 +106,6 @@ void showVideo(e) {
     videoBitmap.addTo(videoContainer2D);
   }
 
-  video.loop = true;
-  video.play();
-
   addButtons();
 }
 
@@ -115,18 +114,18 @@ void showVideo(e) {
 void addButtons() {
 
   var buttons = [
-     new Button("Texture Split")..on(Event.CHANGE).listen(onSplitChanged),
-     new Button("2D Transform")..on(Event.CHANGE).listen(on2dChanged),
-     new Button("3D Transform")..on(Event.CHANGE).listen(on3dChanged),
-     new Button("Random Filter")..on(Event.CHANGE).listen(onFilterChanged),
-     new Button("Pause Video")..on(Event.CHANGE).listen(onPauseChanged)
-   ];
+    new Button("Texture Split")..on(Event.CHANGE).listen(onSplitChanged),
+    new Button("2D Transform")..on(Event.CHANGE).listen(on2dChanged),
+    new Button("3D Transform")..on(Event.CHANGE).listen(on3dChanged),
+    new Button("Random Filter")..on(Event.CHANGE).listen(onFilterChanged),
+    new Button("Pause Video")..on(Event.CHANGE).listen(onPauseChanged)
+  ];
 
-   for(int i = 0; i < buttons.length; i++) {
-     buttons[i].x = 82 + i * 293;
-     buttons[i].y = 680;
-     stage.addChild(buttons[i]);
-   }
+  for(int i = 0; i < buttons.length; i++) {
+    buttons[i].x = 82 + i * 293;
+    buttons[i].y = 680;
+    stage.addChild(buttons[i]);
+  }
 }
 
 //-----------------------------------------------------------------------------
@@ -134,49 +133,47 @@ void addButtons() {
 void onSplitChanged(Event event) {
 
   var button = event.target as Button;
-  var targetScale = button.state ? 0.8 : 1.0;
+  var scale = button.state ? 0.8 : 1.0;
   var ease = TransitionFunction.easeOutCubic;
 
   for(var bitmap in videoBitmaps) {
     stage.juggler.removeTweens(bitmap);
     stage.juggler.tween(bitmap, 0.3, ease)
-    ..animate.scaleX.to(targetScale)
-    ..animate.scaleY.to(targetScale);
+    ..animate.scaleX.to(scale)
+    ..animate.scaleY.to(scale);
   }
 }
 
 void on2dChanged(Event event) {
 
   var button = event.target as Button;
-  var targetRotation = button.state ? PI : 0.0;
+  var rotation = button.state ? PI : 0.0;
   var ease = TransitionFunction.easeInOutSine;
 
   stage.juggler.removeTweens(videoContainer2D);
   stage.juggler.tween(videoContainer2D, 0.3, ease)
-  ..animate.rotation.to(targetRotation);
+  ..animate.rotation.to(rotation);
 }
 
 void on3dChanged(Event event) {
 
   var button = event.target as Button;
-  var targetOffsetZ = button.state ? 600 : 0.0;
-  var targetRotationY = button.state ? 0.9 : 0.0;
+  var offsetZ = button.state ? 600 : 0.0;
+  var rotationY = button.state ? 0.9 : 0.0;
   var ease = TransitionFunction.easeInOutSine;
 
   stage.juggler.removeTweens(videoContainer3D);
   stage.juggler.tween(videoContainer3D, 0.3, ease)
-  ..animate3D.offsetZ.to(targetOffsetZ);
+  ..animate3D.offsetZ.to(offsetZ);
 
   stage.juggler.tween(videoContainer3D, 0.3, ease)
   ..delay = 0.3
-  ..animate3D.rotationY.to(targetRotationY);
+  ..animate3D.rotationY.to(rotationY);
 }
 
 void onFilterChanged(Event event) {
 
   var button = event.target as Button;
-  var displacement = resourceManager.getBitmapData("displacement");
-  var transform = new Matrix.fromIdentity();
   var random = new Random();
   var randomInt = button.state ? 1 + random.nextInt(3) : 0;
 
@@ -187,7 +184,8 @@ void onFilterChanged(Event event) {
   } else if (randomInt == 2) {
     videoContainer2D.filters.add(new BlurFilter(8, 8));
   } else if (randomInt == 3) {
-    transform = new Matrix.fromIdentity();
+    var displacement = resourceManager.getBitmapData("displacement");
+    var transform = new Matrix.fromIdentity();
     transform.translate(-displacement.width / 2, -displacement.height / 2);
     var filter = new DisplacementMapFilter(displacement, transform, 20, 20);
     videoContainer2D.filters.add(filter);
