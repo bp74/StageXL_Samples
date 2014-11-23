@@ -14,6 +14,7 @@ More samples coming soon ....
 * [Blend Mode](http://www.stagexl.org/samples/blend_mode "Blend Mode")
 * [Animation](http://www.stagexl.org/samples/animation "Animation")
 * [Sprite3D](http://www.stagexl.org/samples/sprite_3d "Sprite3D")
+* [Video](http://www.stagexl.org/samples/video "Video")
 
 ### Demos
 
