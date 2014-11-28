@@ -38,7 +38,7 @@ void main() {
       : MultitouchInputMode.NONE;
 
   resourceManager = new ResourceManager()
-    ..addVideo("sintel", "videos/sintel.mp4")
+    //..addVideo("sintel", "videos/sintel.mp4")
     ..addBitmapData("displacement", "images/displacement.png")
     ..load().then((rm) => waitForClick());
 }
@@ -69,19 +69,39 @@ void waitForClick() {
   info.text = "tap to start video";
   info.addTo(stage);
 
-  stage.onMouseDown.first.then(showVideo);
-  stage.onTouchBegin.first.then(showVideo);
+  stage.onMouseDown.first.then(loadAndPlayVideo);
+  stage.onTouchBegin.first.then(loadAndPlayVideo);
 }
 
 //-----------------------------------------------------------------------------
 
-void showVideo(e) {
+void loadAndPlayVideo(e) {
 
   stage.removeChildren();
 
-  video = resourceManager.getVideo("sintel");
+  var videoLoadOptions = Video.defaultLoadOptions;
+  var videoSources = videoLoadOptions.getOptimalVideoUrls("videos/sintel.mp4");
+
+  // We use the Video.load method (and not ResourceManager.addVideo) for better
+  // compatibility with mobile devices. On most mobile devices loading a video
+  // does only work from an input event and not from elsewhere.
+
+  Video.load("videos/sintel.mp4").then((Video sintelVideo) {
+    showVideo(sintelVideo);
+  }).catchError((e) {
+    html.window.alert(e.toString());
+  });
+}
+
+//-----------------------------------------------------------------------------
+
+void showVideo(Video sintelVideo) {
+
+  video = sintelVideo;
   video.loop = true;
   video.play();
+
+  videoBitmapData = new BitmapData.fromVideoElement(video.videoElement);
 
   videoContainer3D = new Sprite3D();
   videoContainer3D.x = 800;
@@ -93,7 +113,6 @@ void showVideo(e) {
   videoContainer2D.scaleY = 2.0;
   videoContainer2D.addTo(videoContainer3D);
 
-  videoBitmapData = new BitmapData.fromVideoElement(video.videoElement);
   videoBitmapDatas = videoBitmapData.sliceIntoFrames(50, 50);
   videoBitmaps = new List<Bitmap>(videoBitmapDatas.length);
 

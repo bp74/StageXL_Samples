@@ -109,6 +109,16 @@
      "The Starling framework also introduced the concept of Sprite3D first",
      "and therefore was a great inspiration for StageXL."]},
 
+{ "Name": "Video",
+  "Category": "Examples",
+  "TestUrl": "video/index.html",
+  "SourceUrl": "https://github.com/bp74/StageXL_Samples/tree/master/web/video",
+  "Description": [
+     "This example shows video playback and demonstrates that videos",
+     "are deeply integrated in the render pipeline of StageXL. A video is",
+     "rendered to a texture and therefore can be used the same way as you",
+     "may use an image."]},
+
 { "Name": "TextField",
   "Category": "Examples",
   "TestUrl": "text_field/index.html",
