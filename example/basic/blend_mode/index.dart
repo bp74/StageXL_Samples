@@ -28,7 +28,8 @@ void main() {
   renderLoop.addStage(stage);
 
   var textField = new TextField();
-  textField.defaultTextFormat = new TextFormat("Arial", 24, Color.White, align: TextFormatAlign.CENTER);
+  textField.defaultTextFormat = new TextFormat("Arial", 24, Color.White);
+  textField.defaultTextFormat.align = TextFormatAlign.CENTER;
   textField.width = 400;
   textField.x = 0;
   textField.y = 550;

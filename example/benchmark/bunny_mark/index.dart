@@ -3,7 +3,7 @@
 /// StageXL: http://www.stagexl.org/show/spine/bunny_bench/
 /// PixiJS: http://www.goodboydigital.com/pixijs/bunnymark/
 /// CreateJS: http://createjs.com/Demos/EaselJS/bunnymarkEasel/?c2d=0
-/// 
+///
 
 import 'dart:js';
 import 'dart:html' as html;
@@ -13,44 +13,54 @@ import 'package:stagexl/stagexl.dart';
 Random random = new Random();
 num gravity = 0.75;
 
-void main() {
-  
+main() async {
+
   // Do not automatically switch to HiDpi to make it
   // comparable with the Pixi JS benchmark.
-  
+
   Stage.autoHiDpi = false;
- 
+
   // Initialize StageXL
-  
+
   var canvas = html.querySelector('#stage');
   var stage = new Stage(canvas, webGL:true, color:Color.White);
   stage.scaleMode = StageScaleMode.NO_SCALE;
   stage.align = StageAlign.TOP_LEFT;
-  
+
   var renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
 
   // Switch to touch events if touch is available
-  
+
   Multitouch.inputMode = Multitouch.supportsTouchEvents
     ? MultitouchInputMode.TOUCH_POINT
     : MultitouchInputMode.NONE;
- 
-  // Load resources and create BunnyView when loaded
-  
+
+  // Load resources
+
   var resourceManager = new ResourceManager();
   resourceManager.addBitmapData('bunny', 'images/bunny.png');
-  
-  resourceManager.load().then((_) {
-    var bitmapData = resourceManager.getBitmapData('bunny');
-    var bunnyView = new BunnyView(bitmapData);
-    stage.addChild(bunnyView);
-    stage.onMouseDown.listen((me) => bunnyView.adding = true);
-    stage.onMouseUp.listen((me) => bunnyView.adding = false);
-    stage.onTouchBegin.listen((me) => bunnyView.adding = true);
-    stage.onTouchEnd.listen((me) => bunnyView.adding = false);
-  });
-  
+  resourceManager.addBitmapData('bunnyAtlas', 'images/bunnyAtlas.png');
+  await resourceManager.load();
+
+  var bunnyAtlas = resourceManager.getBitmapData("bunnyAtlas");
+  var bunnyBitmapDatas = <BitmapData>[
+    new BitmapData.fromBitmapData(bunnyAtlas, new Rectangle(2, 47, 26, 37)),
+    new BitmapData.fromBitmapData(bunnyAtlas, new Rectangle(2, 86, 26, 37)),
+    new BitmapData.fromBitmapData(bunnyAtlas, new Rectangle(2, 125, 26, 37)),
+    new BitmapData.fromBitmapData(bunnyAtlas, new Rectangle(2, 164, 26, 37)),
+    new BitmapData.fromBitmapData(bunnyAtlas, new Rectangle(2, 2, 26, 37))
+  ];
+
+  // Create BunnyView
+
+  var bunnyView = new BunnyView(bunnyBitmapDatas);
+  stage.addChild(bunnyView);
+  stage.onMouseDown.listen((me) => bunnyView.startAdding());
+  stage.onMouseUp.listen((me) => bunnyView.stopAdding());
+  stage.onTouchBegin.listen((me) => bunnyView.startAdding());
+  stage.onTouchEnd.listen((me) => bunnyView.stopAdding());
+
   var stats = context['stats'];
   stage.onEnterFrame.listen((e) => stats.callMethod("begin"));
   stage.onExitFrame.listen((e) => stats.callMethod("end"));
@@ -59,49 +69,56 @@ void main() {
 //-----------------------------------------------------------------------------
 
 class BunnyView extends DisplayObjectContainer {
-  
-  BitmapData bitmapData;
-  bool adding = false;
-  
-  BunnyView(this.bitmapData) {
-    
+
+  List<BitmapData> bitmapDatas;
+  html.Element _counterElement = html.querySelector("#counter");
+  bool _adding = false;
+  int _bunnyIndex = 0;
+
+  BunnyView(this.bitmapDatas) {
     _addBunny();
     _addBunny();
     _updateCounter();
-    
     this.onEnterFrame.listen(_onEnterFrame);
   }
-  
+
+  void startAdding() {
+    _adding = true;
+    _bunnyIndex = (_bunnyIndex + 1) % this.bitmapDatas.length;
+  }
+
+  void stopAdding() {
+    _adding = false;
+  }
+
   void _addBunny() {
-    
-    var bunny = new Bunny(this.bitmapData);
+    var bitmapData = this.bitmapDatas[_bunnyIndex];
+    var bunny = new Bunny(bitmapData);
     bunny.speedX = random.nextDouble() * 10.0;
     bunny.speedY = random.nextDouble() * 10.0 - 5.0;
     bunny.pivotX = 26 / 2;
     bunny.pivotY = 37;
-    
-    this.addChild(bunny);
+    bunny.addTo(this);
   }
-  
+
   void _updateCounter() {
-    var counter = this.numChildren;
-    html.querySelector("#counter").text = "$counter BUNNIES";
+    _counterElement.text = "${this.numChildren} BUNNIES";
   }
- 
+
   void _onEnterFrame(EnterFrameEvent e) {
-    
-    if (adding) {
+
+    if (_adding) {
       for(int i = 0; i < 50; i++) {
         _addBunny();
       }
       _updateCounter();
     }
-   
+
     // This is very benchmark specific. A real application
     // would probably use the Juggler animation framework.
-    
+
     var contentRectangle = stage.contentRectangle;
-    
+
     for(int i = 0; i < this.numChildren; i++) {
       var bunny = this.getChildAt(i);
       bunny.update(contentRectangle);
@@ -112,20 +129,20 @@ class BunnyView extends DisplayObjectContainer {
 //-----------------------------------------------------------------------------
 
 class Bunny extends Bitmap {
-  
+
   num posX = 0.0;
   num posY = 0.0;
   num speedX = 0.0;
   num speedY = 0.0;
-  
+
   Bunny(BitmapData bitmapData) : super(bitmapData);
-  
+
   void update(Rectangle contentRectangle) {
-    
+
     posX += speedX;
     posY += speedY;
     speedY += gravity;
-    
+
     if (posX > contentRectangle.right) {
       speedX = -speedX;
       posX = contentRectangle.right;
@@ -133,7 +150,7 @@ class Bunny extends Bitmap {
       speedX = -speedX;
       posX = contentRectangle.left;
     }
-        
+
     if (posY > contentRectangle.bottom) {
       speedY *= -0.85;
       posY = contentRectangle.bottom;
@@ -144,9 +161,9 @@ class Bunny extends Bitmap {
       speedY = 0.0;
       posY = contentRectangle.top;
     }
-    
+
     this.x = posX;
     this.y = posY;
   }
-  
+
 }
