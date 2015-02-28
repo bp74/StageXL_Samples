@@ -41,6 +41,7 @@ main() async {
 
   var guyPixelsBitmapData = resourceManager.getBitmapData("guy_pixels");
   var guyNormalBitmapData = resourceManager.getBitmapData("guy_normal");
+
   var normalMapfilter = new NormalMapFilter(guyNormalBitmapData);
   normalMapfilter.ambientColor = 0xFFA0A060;
   normalMapfilter.lightColor = 0xFFFF80FF;
@@ -60,8 +61,8 @@ main() async {
 
   //---------------
 
-  var setLightPosition = (InputEvent ie) {
-    var stagePosition = new Point<num>(ie.stageX, ie.stageY);
+  var setLightPosition = (InputEvent e) {
+    var stagePosition = new Point<num>(e.stageX, e.stageY);
     var guyPosition = guy.globalToLocal(stagePosition);
     normalMapfilter.lightX = guyPosition.x;
     normalMapfilter.lightY = guyPosition.y;
