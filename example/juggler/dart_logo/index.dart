@@ -23,6 +23,8 @@ void main() {
 void startAnimation(BitmapData logoBitmapData) {
 
   var rect = stage.contentRectangle;
+  var hue = random.nextDouble() * 2.0 - 1.0;
+  var hueFilter = new ColorMatrixFilter.adjust(hue: hue);
 
   var logoBitmap = new Bitmap(logoBitmapData)
     ..pivotX = logoBitmapData.width ~/ 2
@@ -30,6 +32,7 @@ void startAnimation(BitmapData logoBitmapData) {
     ..x = rect.left + rect.width * random.nextDouble()
     ..y = rect.top + rect.height * random.nextDouble()
     ..rotation = 0.4 * random.nextDouble() - 0.2
+    ..filters = [hueFilter]
     ..scaleX = 0.0
     ..scaleY = 0.0
     ..addTo(stage);
