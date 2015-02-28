@@ -46,11 +46,13 @@ main() async {
 
     void startDrag(Event e) {
       stage.addChild(sprite); // bring to foreground
+      sprite.scaleX = sprite.scaleY = 1.2;
       sprite.filters.add(new ColorMatrixFilter.adjust(hue: -0.5));
       sprite.startDrag(true);
     }
 
     void stopDrag(Event e) {
+      sprite.scaleX = sprite.scaleY = 1.0;
       sprite.filters.clear();
       sprite.stopDrag();
     }
