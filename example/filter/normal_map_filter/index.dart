@@ -44,8 +44,8 @@ main() async {
 
   var normalMapfilter = new NormalMapFilter(guyNormalBitmapData);
   normalMapfilter.ambientColor = 0xFFA0A060;
-  normalMapfilter.lightColor = 0xFFFF80FF;
-  normalMapfilter.lightRadius = 1500;
+  normalMapfilter.lightColor = 0xFFFFFFFF;
+  normalMapfilter.lightRadius = 3000;
   normalMapfilter.lightX = 0;
   normalMapfilter.lightY = 0;
   normalMapfilter.lightZ = 100;
