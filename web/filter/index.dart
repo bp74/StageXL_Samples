@@ -158,7 +158,7 @@ void onEnterFrame(EnterFrameEvent e) {
   if (blurFilterConfig['enabled']) {
     var blurX = blurFilterConfig['blurX'];
     var blurY = blurFilterConfig['blurY'];
-    filters.add(new BlurFilter(blurX, blurY));
+    filters.add(new BlurFilter(blurX, blurY, 5));
   }
 
   var dropShadowFilterConfig = config['dropShadowFilter'];
@@ -168,7 +168,7 @@ void onEnterFrame(EnterFrameEvent e) {
     var color = dropShadowFilterConfig['color'];
     var blurX = dropShadowFilterConfig['blurX'];
     var blurY = dropShadowFilterConfig['blurY'];
-    filters.add(new DropShadowFilter(distance, angle, color, blurX, blurY));
+    filters.add(new DropShadowFilter(distance, angle, color, blurX, blurY, 2));
   }
 
   var glowFilterConfig = config['glowFilter'];
