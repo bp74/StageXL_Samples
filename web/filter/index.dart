@@ -93,7 +93,6 @@ void onEnterFrame(EnterFrameEvent e) {
 
   var colorMatrixFilterConfig = config['colorMatrixFilter'];
   if (colorMatrixFilterConfig['enabled']) {
-    var filter = colorMatrixFilterConfig['filter'];
     switch(colorMatrixFilterConfig['filter']) {
       case 'invert': filters.add(new ColorMatrixFilter.invert()); break;
       case 'grayscale': filters.add(new ColorMatrixFilter.grayscale()); break;
@@ -176,7 +175,7 @@ void onEnterFrame(EnterFrameEvent e) {
     var color = glowFilterConfig['color'];
     var blurX = glowFilterConfig['blurX'];
     var blurY = glowFilterConfig['blurY'];
-    filters.add(new GlowFilter(color, blurX, blurY));
+    filters.add(new GlowFilter(color, blurX, blurY, 2));
   }
 
   flowerField.filters = filters;
