@@ -24,7 +24,6 @@ void main() {
   Video.defaultLoadOptions.corsEnabled = true;
 
   var canvas = html.querySelector('#stage');
-  var random = new Random();
 
   stage = new Stage(canvas, webGL: true, width:1600, height: 800);
   stage.scaleMode = StageScaleMode.SHOW_ALL;
@@ -86,7 +85,7 @@ void loadAndPlayVideo(e) {
   // compatibility with mobile devices. On most mobile devices loading a video
   // does only work from an input event and not from elsewhere.
 
-  Video.load("videos/sintel.mp4").then((Video sintelVideo) {
+  Video.load(videoSources.first).then((Video sintelVideo) {
     showVideo(sintelVideo);
   }).catchError((e) {
     html.window.alert(e.toString());
@@ -194,15 +193,20 @@ void onFilterChanged(Event event) {
 
   var button = event.target as Button;
   var random = new Random();
-  var randomInt = button.state ? 1 + random.nextInt(3) : 0;
+  var randomInt = button.state ? 1 + random.nextInt(5) : 0;
 
   if (randomInt == 0) {
     videoContainer2D.filters.clear();
   } else if (randomInt == 1) {
     videoContainer2D.filters.add(new ColorMatrixFilter.invert());
   } else if (randomInt == 2) {
-    videoContainer2D.filters.add(new BlurFilter(8, 8));
+    videoContainer2D.filters.add(new BlurFilter(8, 8, 3));
   } else if (randomInt == 3) {
+    videoContainer2D.filters.add(new TintFilter.fromColor(Color.Red));
+  } else if (randomInt == 4) {
+    var filter = new DropShadowFilter(6, PI / 4, 0x80000000, 3, 3, 2);
+    videoContainer2D.filters.add(filter);
+  } else if (randomInt == 5) {
     var displacement = resourceManager.getBitmapData("displacement");
     var transform = new Matrix.fromIdentity();
     transform.translate(-displacement.width / 2, -displacement.height / 2);
