@@ -118,11 +118,7 @@ class BunnyView extends DisplayObjectContainer {
     // would probably use the Juggler animation framework.
 
     var contentRectangle = stage.contentRectangle;
-
-    for(int i = 0; i < this.numChildren; i++) {
-      var bunny = this.getChildAt(i);
-      bunny.update(contentRectangle);
-    }
+    children.forEach((bunny) => bunny.update(contentRectangle));
   }
 }
 
