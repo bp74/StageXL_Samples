@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Readme</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%;
+  border-style: solid;
+  border-color: gray;
+  border-width: 1px;
+}
+</style>
+</head>
+<body>
+<h2>Getting started with StageXL and Texture Packer</h2>
+<iframe src="http://www.stagexl.org/example/basic/texture_atlas" width="960" height="400" frameborder="1">
+</iframe>
+<p>Get the source for this side scrolling demo <a href="https://github.com/bp74/StageXL_Samples/tree/master/example/basic/texture_atlas">here</a>.</p>
+<h2>What is StageXL and why should i care?</h2>
+<p>StageXL is a 2D render framework for the Dart programming language. The projected started in late 2012 with one goal: Providing an HTML5 framework for Flash developers that is familiar to use and does not require to write code in JavaScript. If you are used to work with ActionScript 3 you definitely don't want to write code in JavaScript.</p>
+<p>Today, StageXL not only provides an API that is very similar to the Flash API (DisplayList, EventDispatchers, Sounds, Filters, Masks, etc.) but also adds many features to make it easier to work with HTML5 and the Web. One of those features in StageXL is the support for TexturePacker. In fact the default texture atlas format in StageXL is the JsonArray format of TexturePacker - you will learn more about this in a short while.</p>
+<p>Even if StageXL started as an alternative to Flash, it is used by many developers who have no prior experience with Flash or ActionScript. The Dart language is fun to use, easy to learn , highly productive and should be considered by every developer who wants to write apps for the modern web.</p>
+<h2>What is TexturePacker and why should i care?</h2>
+<p>TexturePacker is probably the most commonly used tool to work with graphical assets. A web application like a game often uses dozens or even hundrets of images. In practice it is not recommended to download many images one by one from a web server. Downloading many small images (especially on mobile devices) does increase the download time and bandwidth usage. Therefore you want to merge many small images into one big image that is downloaded with a single http request. This is what TexturePacker does for you!</p>
+<p>Besides the optimized download there is another very important advantage in combining many small images into one big texture. Performance! The GPU in your PC, Mac or mobile phone will draw pixels much faster to the screen if you combine all your small images on one big texture.</p>
+<p>TexturePacker provides two funny videos which tells you a lot about texture atlases (also known as sprite sheets, which is the term used in the videos). The first video shows how sprite sheets are used to reduce memory usage and the second video shows how sprite sheets help to increase performance of your application or game.</p>
+<iframe width="400" height="225" src="https://www.youtube.com/embed/crrFUYabm6E" frameborder="0" allowfullscreen></iframe>
+<iframe width="400" height="225" src="https://www.youtube.com/embed/_KyUqyS5MLA" frameborder="0" allowfullscreen></iframe>
+<p>Of course the rendering is done by StageXL, but using a texture altas (or sprite sheet) will help StageXL to give you the best performance possible. Using a texture atlas will improve the render performance in most use cases by a factor of 10 or even more.</p>
+<h2>A simple web application with Dart and StageXL</h2>
+<p>The following guide will show you the necessary steps to write a simple web application in Dart. The application will load a texture atlas generated with TexturePacker and it will show the images from the texture atlas on the screen. This are the things we have to do to make everything work:</p>
+<ul>
+<li>How to download Dart Editor</li>
+<li>How to create a new project</li>
+<li>How to add StageXL to the project</li>
+<li>How to initialize StageXL</li>
+<li>How to create a texture atlas</li>
+<li>How to use a texture atlas in StageXL</li>
+</ul>
+<h3>How to download Dart Editor</h3>
+<p>Dart Editor is the development environment provided by the Dart team. It is an editor, a debugger, does code analysis, provides refactoring, shows errors, warnings and hints and last but not least compiles Dart code to JavaScript. This compiled JavaScript runs on all modern browsers.</p>
+<p>Please go to <a href="https://www.dartlang.org">www.dartlang.org</a> and download the Dart Editor for your operating system. Dart Editor is available for Windows, Mac and Linux. After the download you just have to extract the zip file to you disk and start Dart Editor. The website also has lots of information and getting started guides for Dart. Even if Dart looks very familiar to most developers right away, it may be a good idea to check out some of the information available on the website.</p>
+<h3>How to create a new project</h3>
+<p>Start Dart Editor and select File/New Project.</p>
+<p><img src="dart_new_project.png" alt="New Project" title="New Project" /></p>
+<p>Since we don't want to build a complicated HTML5 application, please choose the &quot;Uber Simple Web Application&quot; template. If you are interessted in more advanced web development you may take a look at the other project templates later. Enter a project name and the directory where the project should be created.</p>
+<p>The &quot;uber simple&quot; project doesn't do much right out of the box. This is good because we don't get distracted by stuff we don't need. The &quot;File&quot; view in Dart Editor shows your project - please open the &quot;web&quot; folder and find the &quot;index.html&quot; file. Right click on &quot;index.html&quot; and select &quot;Run in Dartium&quot;. A browser will open automatically and you will see your first Dart application - awesome!</p>
+<p>What is Dartium? Dartium is a version of Chromium (which is the open source version of the Chrome browser) that has a built in virtual machine for Dart code. A normal browser has a virtual machine for JavaScript, but since we want to write Dart code a browser with the Dart VM come in handy. Unfortunately no other browser has a built in Dart VM right now, but this isn't much of an issue since Dart code compiles perfectly fine to JavaScript code and therefore runs in all browsers. In developer mode the Dart VM is very useful because you can run and debug your application without any intermediate compile steps. Just by pressing F5 in the browser the application restarts immediately.</p>
+<h3>How to add StageXL to the project</h3>
+<p>Right now our application isn't doing much. The first step to build something useful is to add a dependency to StageXL. The Dart infrastructure provides a package manager called Pub. You can take a look at available packages (libraries) on the <a href="https://pub.dartlang.org/">Pub homepage</a> but for our first application all we need is StageXL. To add StageXL to our project please double click the &quot;pubspec.yaml&quot; file in your project.</p>
+<p><img src="dart_pubspec.png" alt="pubspec.yaml" title="pubspec.yaml" /></p>
+<p>Don't get distracted by all those settings. Just click the &quot;Add&quot; button and enter &quot;StageXL&quot;. You will see more than one search result - the reason is that there is a core StageXL package and also extension packages for StageXL. Just select the package called &quot;stagexl&quot; and click &quot;OK&quot;. Now the dependency list contains two packages: browser and stagexl. Press CTRL+S or click the Save icon and the pubspec.yaml file will be saved. By saving this file the Pub package manager automatically downloads the newly added package - which is StageXL of course.</p>
+<h3>How to initialize StageXL</h3>
+<p>The canvas HTML5 element is used to render arbitrary content on a web page. You don't need to know much about HTML5 and the canvas element, just open the &quot;index.html&quot; file in Dart Editor and change the body to look like this:</p>
+<pre><code>&lt;body&gt;
+  &lt;!-- &lt;div id=&quot;output&quot;&gt;&lt;/div&gt; --&gt;
+  &lt;canvas id=&quot;stage&quot; width=&quot;800&quot; height=&quot;600&quot;&gt;&lt;/canvas&gt;
+  &lt;script type=&quot;application/dart&quot; src=&quot;main.dart&quot;&gt;&lt;/script&gt;
+  &lt;script data-pub-inline src=&quot;packages/browser/dart.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<p>The script tags were previously added by the &quot;Uber Simple Web Application&quot; template. They are necessary to load and run the code of our application. You only have to add the line with the the canvas element and you should remove the line with the div element which was used by the &quot;Uber Simple Web Application&quot; template. The canvas element has a size of 800x600 pixels and StageXL will use this region to render its content.</p>
+<p>Next we have to write a little bit of code to initialze StageXL. Please open the file &quot;main.dart&quot; and replace it's current content with the code below. This code initializes StageXL and shows a simple red square, just to see if everything works as intended.</p>
+<pre><code>import 'dart:html';
+import 'package:stagexl/stagexl.dart';
+
+void main() {
+
+  // init the stage and render loop, opt in for webGL
+  var canvas = querySelector('#stage');
+  var stage = new Stage(canvas, webGL: true, color: Color.LightGray);
+  var renderLoop = new RenderLoop();
+  renderLoop.addStage(stage);
+
+  // create a red square to see if everything works as intended
+  var bitmapData = new BitmapData(200, 200, true, Color.Red);
+  var bitmap = new Bitmap(bitmapData);
+  bitmap.x = 100;
+  bitmap.y = 100;
+  stage.addChild(bitmap);
+}
+</code></pre>
+<p>Right click on the &quot;index.html&quot; file and select &quot;Run in Dartium&quot;. A browser windows should open and you should see the Stage (in light gray color) and the red square. Hurray! Those of you who have prior experience with Flash and ActionScript 3 will notice that the code for the BitmapData and Bitmap is pretty much identical to Flash.</p>
+<h3>How to create a texture atlas</h3>
+<p>Before we continue with StageXL we have to create a texture atlas with TexturePacker. TexturePacker has many features we won't show in this tutorial. Check out the the documentation on the <a href="https://www.codeandweb.com/texturepacker">TexturePacker homepage</a> to learn more about those features. TexturePacker is available as a free version for Windows, Mac and Linux. The free version provides all the features you will need to create a texture atlas, the full version is available for little money and provides more advanced features.</p>
+<p>Okay let's get started! Below are 6 images for a sprite sheet animation of a running boy. You can right click on the images and download the files to your local disk. Sprite sheet animations are perfectly suited for a texture atlas. The images are small and you need quite a few of those images to get a nice looking animation. Of course a texture atlas is also very useful for sprites which are not part of an animation.</p>
+<p><img src="atlas/frame-1.png" alt="frame-1.png" title="frame-1.png" />
+<img src="atlas/frame-2.png" alt="frame-2.png" title="frame-2.png" />
+<img src="atlas/frame-3.png" alt="frame-3.png" title="frame-3.png" />
+<img src="atlas/frame-4.png" alt="frame-4.png" title="frame-4.png" />
+<img src="atlas/frame-5.png" alt="frame-5.png" title="frame-5.png" />
+<img src="atlas/frame-6.png" alt="frame-6.png" title="frame-6.png" /></p>
+<p>Special thanks to <a href="http://bevouliin.com/">bevouliin.com</a> for the animation. CC0 1.0 Universal - Public Domain Dedication</p>
+<p>Please download and install <a href="https://www.codeandweb.com/texturepacker">TexturePacker</a>. Right after the start you have to select the framework you are using. If you can't find the StageXL framework, please select the generic JSON (Array) export format. The StageXL format is identical to the JSON (Array) format, but TexturePacker specializes the available settings for StageXL if StageXL is selected. StageXL also supports other formats like the one of LibGDX, but JSON (Array) is recommended and also the default.</p>
+<p><img src="texture_packer_new_project.png" alt="New Project" title="New Project" /></p>
+<p>Next, simply drag and drop the images to TexturePacker. Be sure to enter the correct file names for the JSON and PNG output file. The JSON file will contain the definitions where each image is located on the texture atlas, the PNG file will contain the texture atlas image. Save the project for later adjustments and press the &quot;Publish sprite sheet&quot; button to finaly export the texture altas files.</p>
+<p><img src="texture_packer.png" alt="TexturePacker" title="TexturePacker" /></p>
+<p>Please take a look at the JSON and PNG file exported by TexturePacker. The JSON file contains the location and size for each image. StageXL uses this information to access the images in the texture atlas and make them available to the developer as if the images are still separated. It's worth mentioning that the texture atlas in our example only contains a few images and is very simple. Your game may contain many more images with different sizes, all merged into one texture atlas. If the texture atlas image gets to big, it's reasonable to create more than one texture atlas. Put those images together which are rendered/visible at the same time. The GPU can only work with one texture atlas at a time and switching between textures is slow (as explained in the second video above).</p>
+<h3>How to use a texture atlas in StageXL</h3>
+<p>TODO TODO TODO TODO<br />
+TODO TODO TODO TODO<br />
+TODO TODO TODO TODO<br />
+TODO TODO TODO TODO<br />
+TODO TODO TODO TODO<br />
+TODO TODO TODO TODO<br />
+TODO TODO TODO TODO</p>
+<h2>More of everything</h2>
+<h3>StageXL homepage</h3>
+<p>The <a href="http://www.stagexl.org">StageXL homepage</a> rework is pending :) There is still some useful content to learn more about StageXL. Ask questions on the forum or send us an email, we try to answer all questions in a timely manner. Flash and ActionScript 3 developer may be interessted in the <a href="http://www.stagexl.org/docs/actionscript-dart.html">ActionScript to Dart</a> comparison to get a quick overview how Dart compares to ActionScript 3.</p>
+<p>The <a href="http://www.stagexl.org/docs/api/index.html">StageXL API reference</a> shows all the classes, method and properties available in StageXL. The documentation is not perfect and not complete but everyone is welcome to contribute to the project by sending a pull request on GitHub with improved documentation.</p>
+<p>Learn more about StageXL by reading the <a href="http://www.stagexl.org/docs/wiki-articles.html?article=introduction">Introducing StageXL</a> article. Users of the Starling framework may be familiar with the <a href="http://www.stagexl.org/docs/wiki-articles.html?article=juggler">Juggler framework</a>. The Juggler framework is part of StageXL and is used to animate display objects with just a few lines of code.</p>
+<h3>StageXL Samples</h3>
+<p>The <a href="https://github.com/bp74/StageXL_Samples">StageXL Samples</a> repository on GitHub contains more advanced samples. There are samples showing how to use filters, masks, blend modes, sounds, animation and much more. It also contains the example of the <a href="https://github.com/bp74/StageXL_Samples/tree/master/example/basic/texture_atlas">side scrolling demo</a> shown at the top of this page.</p>
+<h3>Support for Sprite Illuminator</h3>
+<p><a href="https://www.codeandweb.com/spriteilluminator">SpriteIlluminator</a> is another great tool from the makers of TexturePacker. It is a tool to create normal maps (light maps) for flat 2D images. The source code for the <a href="http://www.stagexl.org/example/filter/normal_map_filter">normal map demo</a> is also available in the GitHub repository for StageXL Samples as shown above.</p>
+<h3>Support for Spine</h3>
+<p><a href="http://esotericsoftware.com/">Spine</a> is a professional but still affordable 2D animation software. The Spine runtime for StageXL is available as an extension for the StageXL framework. Take a look at one of the 2D animations created with Spine: <a href="http://www.stagexl.org/show/spine/raptor/example.html">Raptor Example</a>. The Spine runtime for StageXL is available on <a href="https://github.com/bp74/StageXL_Spine">GitHub</a> and <a href="https://pub.dartlang.org/packages/stagexl_spine">Pub</a>.</p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
