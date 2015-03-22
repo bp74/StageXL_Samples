@@ -15,7 +15,7 @@ Even if StageXL started as an alternative to Flash, it is used by many developer
 
 ## What is TexturePacker and why should i care? ##
 
-TexturePacker is probably the most commonly used tool to work with graphical assets. A web application like a game often uses dozens or even hundrets of images. In practice it is not recommended to download many images one by one from a web server. Downloading many small images (especially on mobile devices) does increase the download time and bandwidth usage. Therefore you want to merge many small images into one big image that is downloaded with a single http request. This is what TexturePacker does for you!
+TexturePacker is probably the most commonly used tool to work with graphical assets. A web application like a game often uses dozens or even hundreds of images. In practice it is not recommended to download many images one by one from a web server. Downloading many small images (especially on mobile devices) does increase the download time and bandwidth usage. Therefore you want to merge many small images into one big image that is downloaded with a single http request. This is what TexturePacker does for you!
 
 Besides the optimized download there is another very important advantage in combining many small images into one big texture. Performance! The GPU in your PC, Mac or mobile phone will draw pixels much faster to the screen if you combine all your small images on one big texture.  
 
@@ -37,6 +37,7 @@ The following guide will show you the necessary steps to write a simple web appl
 * How to initialize StageXL
 * How to create a texture atlas
 * How to use a texture atlas in StageXL 
+* How to proceed from here on
 
 ### How to download Dart Editor ###
 
@@ -50,7 +51,7 @@ Start Dart Editor and select File/New Project.
 
 ![New Project](dart_new_project.png "New Project")
 
-Since we don't want to build a complicated HTML5 application, please choose the "Uber Simple Web Application" template. If you are interessted in more advanced web development you may take a look at the other project templates later. Enter a project name and the directory where the project should be created.   
+Since we don't want to build a complicated HTML5 application, please choose the "Uber Simple Web Application" template. If you are interested  in more advanced web development you may take a look at the other project templates later. Enter a project name and the directory where the project should be created.   
 
 The "uber simple" project doesn't do much right out of the box. This is good because we don't get distracted by stuff we don't need. The "File" view in Dart Editor shows your project - please open the "web" folder and find the "index.html" file. Right click on "index.html" and select "Run in Dartium". A browser will open automatically and you will see your first Dart application - awesome!
 
@@ -77,7 +78,7 @@ The canvas HTML5 element is used to render arbitrary content on a web page. You 
 
 The script tags were previously added by the "Uber Simple Web Application" template. They are necessary to load and run the code of our application. You only have to add the line with the the canvas element and you should remove the line with the div element which was used by the "Uber Simple Web Application" template. The canvas element has a size of 800x600 pixels and StageXL will use this region to render its content.
 
-Next we have to write a little bit of code to initialze StageXL. Please open the file "main.dart" and replace it's current content with the code below. This code initializes StageXL and shows a simple red square, just to see if everything works as intended.    
+Next we have to write a little bit of code to initialize StageXL. Please open the file "main.dart" and replace it's current content with the code below. This code initializes StageXL and shows a simple red square, just to see if everything works as intended.    
 	
 	import 'dart:html';
 	import 'package:stagexl/stagexl.dart';
@@ -119,28 +120,82 @@ Please download and install [TexturePacker](https://www.codeandweb.com/texturepa
 
 ![New Project](texture_packer_new_project.png "New Project")
 
-Next, simply drag and drop the images to TexturePacker. Be sure to enter the correct file names for the JSON and PNG output file. The JSON file will contain the definitions where each image is located on the texture atlas, the PNG file will contain the texture atlas image. Save the project for later adjustments and press the "Publish sprite sheet" button to finaly export the texture altas files.
+Next, simply drag and drop the images to TexturePacker. Be sure to enter the correct file names for the JSON and PNG output file. The JSON file will contain the definitions where each image is located on the texture atlas, the PNG file will contain the texture atlas image. Save the project for later adjustments and press the "Publish sprite sheet" button to finally export the texture altas files.
 
 ![TexturePacker](texture_packer.png "TexturePacker")
 
-Please take a look at the JSON and PNG file exported by TexturePacker. The JSON file contains the location and size for each image. StageXL uses this information to access the images in the texture atlas and make them available to the developer as if the images are still separated. It's worth mentioning that the texture atlas in our example only contains a few images and is very simple. Your game may contain many more images with different sizes, all merged into one texture atlas. If the texture atlas image gets to big, it's reasonable to create more than one texture atlas. Put those images together which are rendered/visible at the same time. The GPU can only work with one texture atlas at a time and switching between textures is slow (as explained in the second video above).
+Please take a look at the JSON and PNG file exported by TexturePacker. The JSON file contains the location and size for each image. StageXL uses this information to access the images in the texture atlas and make them available to the developer as if the images are still separated. It's worth mentioning that the texture atlas in our example only contains a few images and is very simple. Your game may contain many more images with different sizes, all merged into one texture atlas. If the texture atlas image gets too big, it's reasonable to create more than one texture atlas. Put those images together which are rendered/visible at the same time. The GPU can only work with one texture atlas at a time and switching between textures is slow (as explained in the second video above).
 
 ### How to use a texture atlas in StageXL ###
 
-TODO TODO TODO TODO  
-TODO TODO TODO TODO  
-TODO TODO TODO TODO  
-TODO TODO TODO TODO  
-TODO TODO TODO TODO  
-TODO TODO TODO TODO  
-TODO TODO TODO TODO  
+Last but not least we have to load the texture atlas and use it to draw content to the screen. You can open the "main.dart" file of the Dart project we have created earlier and replace the old code with this new code:
 
+	import 'dart:html';
+	import 'package:stagexl/stagexl.dart';
+	
+	void main() {
+	
+	  // init the stage and render loop, opt in for webGL
+	  var canvas = querySelector('#stage');
+	  var stage = new Stage(canvas, webGL: true, color: Color.LightGray);
+	  var renderLoop = new RenderLoop();
+	  renderLoop.addStage(stage);
+	
+	  // use the ResourceManager to load resources from the server
+	  var resourceManager = new ResourceManager();
+	  resourceManager.addTextureAtlas("atlas", "images/boy_atlas.json");
+	
+	  // loading resources is an asynchronous operation
+	  resourceManager.load().then((rm) {
+	    var atlas = rm.getTextureAtlas("atlas");
+	    var bitmapData = atlas.getBitmapData("frame-1");
+	    var bitmap = new Bitmap(bitmapData);
+	    stage.addChild(bitmap);
+	  });
+	}
+ 
+The Stage and RenderLoop initialization is the same as before. To load the texture atlas we use the ResourceManager class. In this example we only need to load one resource - the texture atlas. In a more advanced application you probably would use the ResourceManager to load several resources, including sound or text files.
+
+Loading resources over the web is an asynchronous operation. The load() method starts loading the files, but you won't get the result immediately. Obviously the then(..) method is called as soon as all resource files are loaded. In Dart this is called a Future. Please also check out the async/await pattern in Dart which give you synchronous looking code for asynchronous operations. 
+
+If your application only wants to load the texture atlas and no other resources, you don't need to use the ResourceManager class. Instead you could use the texture atlas loader directly (which is used by the ResourceManager internally).
+ 
+    TextureAtlas.load("images/boy_atlas.json").then((ta) {
+      var bitmapData = ta.getBitmapData("frame-1");
+      var bitmap = new Bitmap(bitmapData);
+      stage.addChild(bitmap);
+    });
+  
+Since the texture atlas in our example contains a sprite sheet animation it's about time to add it to our stage. StageXL provides the FlipBook class to show sprite sheet animations. Let's take a look at the following code:
+
+    resourceManager.load().then((rm) {
+      var atlas = rm.getTextureAtlas("atlas");
+      var bitmapDatas = atlas.getBitmapDatas("frame");
+      var flipbook = new FlipBook(bitmapDatas, 10)
+      flipbook.play();
+      flipbook.x = 300;
+      flipbook.y = 150;
+      stage.addChild(flipbook);
+      stage.juggler.add(flipbook);
+    });
+
+The code looks similar to the first code snippet we showed above. Instead of the Bitmap class we use the FlipBook class which shows a series of BitmapDatas. The images in the texture altas are called frame-1, frame-2, frame-3, frame-4, frame-5 and frame-6. The getBitmapDatas method of the texture atlas returns a list of BitmapDatas. The method is called with the name prefix of the images that should be returned. The texture atlas could contain many different images, but only those are returned whose name start with the specified name prefix.
+
+The FlipBook class is constructed with the list of BitmapDatas that should be used for the sprite sheet animation. The value 10 in our example specifies the frame rate for the animation. You can control the playback of the sprite sheet animation with the simple play and stop methods, or with the more advanced gotoAndPlay or gotoAndStop methods to start at a particular frame number.
+
+The last line in our example adds the FlipBook is a "Juggler" ... what is this? The Juggler is a small framework for animations which is built right into StageXL. It is used to control the time in your application and animate display objects (or values). You can learn more about the Juggler [here](http://www.stagexl.org/docs/wiki-articles.html?article=juggler). The FlipBook class implements the "Animatable" interface which allows the object to be added to the Juggler. The Juggler will advance the time of the FlipBook object and therefore a new frame will be shown every 1/10 of a second.
+
+### How to proceed from here on ###
+
+If you have worked through the previous steps you should have a working Dart application which uses StageXL to load a texture atlas and plays a sprite sheet animation. Try to add more images to the texture atlas and add them to the stage (use getBitmapData and new Bitmap). 
+
+The next important step is to learn how the display list in StageXL works. The display list is a hierachy of display objects which is added to the stage. Every display object has a parent display object and every parent display object has a list of children. Imagine a tree of display object where the root of the tree is the stage, and the leaves of the tree are Bitmaps, FlipBooks or other objects. The branches of tree are constructed with the Sprite (or DisplayObjectContainer) class. You can learn more about it by reading the [Introducing StageXL](http://www.stagexl.org/docs/wiki-articles.html?article=introduction) article on the StageXL homepage. The article also talks about interactive objects and how to respond to user input.
 
 ## More of everything ##
 
-### StageXL homepage ###
+### StageXL Homepage ###
 
-The [StageXL homepage](http://www.stagexl.org) rework is pending :) There is still some useful content to learn more about StageXL. Ask questions on the forum or send us an email, we try to answer all questions in a timely manner. Flash and ActionScript 3 developer may be interessted in the [ActionScript to Dart](http://www.stagexl.org/docs/actionscript-dart.html) comparison to get a quick overview how Dart compares to ActionScript 3.
+The [StageXL homepage](http://www.stagexl.org) rework is pending :) There is still some useful content to learn more about StageXL. Ask questions on the forum or send us an email, we try to answer all questions in a timely manner. Flash and ActionScript 3 developer may be interested in the [ActionScript to Dart](http://www.stagexl.org/docs/actionscript-dart.html) comparison to get a quick overview how Dart compares to ActionScript 3.
 
 The [StageXL API reference](http://www.stagexl.org/docs/api/index.html) shows all the classes, method and properties available in StageXL. The documentation is not perfect and not complete but everyone is welcome to contribute to the project by sending a pull request on GitHub with improved documentation. 
 
@@ -150,11 +205,11 @@ Learn more about StageXL by reading the [Introducing StageXL](http://www.stagexl
 
 The [StageXL Samples](https://github.com/bp74/StageXL_Samples) repository on GitHub contains more advanced samples. There are samples showing how to use filters, masks, blend modes, sounds, animation and much more. It also contains the example of the [side scrolling demo](https://github.com/bp74/StageXL_Samples/tree/master/example/basic/texture_atlas) shown at the top of this page.
 
-### Support for Sprite Illuminator ###
+### Sprite Illuminator Support ###
 
 [SpriteIlluminator](https://www.codeandweb.com/spriteilluminator) is another great tool from the makers of TexturePacker. It is a tool to create normal maps (light maps) for flat 2D images. The source code for the [normal map demo](http://www.stagexl.org/example/filter/normal_map_filter) is also available in the GitHub repository for StageXL Samples as shown above.
 
-### Support for Spine ###
+### Spine Runtime ###
 
 [Spine](http://esotericsoftware.com/) is a professional but still affordable 2D animation software. The Spine runtime for StageXL is available as an extension for the StageXL framework. Take a look at one of the 2D animations created with Spine: [Raptor Example](http://www.stagexl.org/show/spine/raptor/example.html). The Spine runtime for StageXL is available on [GitHub](https://github.com/bp74/StageXL_Spine) and [Pub](https://pub.dartlang.org/packages/stagexl_spine).
 
