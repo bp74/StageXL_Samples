@@ -43,7 +43,7 @@ The following guide will show you the necessary steps to write a simple web appl
 
 Dart Editor is the development environment provided by the Dart team. It is an editor, a debugger, does code analysis, provides refactoring, shows errors, warnings and hints and last but not least compiles Dart code to JavaScript. This compiled JavaScript runs on all modern browsers. 
 
-Please go to [www.dartlang.org](https://www.dartlang.org) and download the Dart Editor for your operating system. Dart Editor is available for Windows, Mac and Linux. After the download you just have to extract the zip file to you disk and start Dart Editor. The website also has lots of information and getting started guides for Dart. Even if Dart looks very familiar to most developers right away, it may be a good idea to check out some of the information available on the website.
+Please go to [www.dartlang.org](https://www.dartlang.org) and download the Dart Editor for your operating system. Dart Editor is available for Windows, Mac and Linux. After the download you just have to extract the zip file to your disk and start Dart Editor. The website also has lots of information and getting started guides for Dart. Even if Dart looks very familiar to most developers right away, it may be a good idea to check out some of the information available on the website.
 
 ### How to create a new project ###
 
@@ -183,7 +183,7 @@ The code looks similar to the first code snippet we showed above. Instead of the
 
 The FlipBook class is constructed with the list of BitmapDatas that should be used for the sprite sheet animation. The value 10 in our example specifies the frame rate for the animation. You can control the playback of the sprite sheet animation with the simple play and stop methods, or with the more advanced gotoAndPlay or gotoAndStop methods to start at a particular frame number.
 
-The last line in our example adds the FlipBook is a "Juggler" ... what is this? The Juggler is a small framework for animations which is built right into StageXL. It is used to control the time in your application and animate display objects (or values). You can learn more about the Juggler [here](http://www.stagexl.org/docs/wiki-articles.html?article=juggler). The FlipBook class implements the "Animatable" interface which allows the object to be added to the Juggler. The Juggler will advance the time of the FlipBook object and therefore a new frame will be shown every 1/10 of a second.
+The last line in our example adds the FlipBook to the "Juggler" ... what is this? The Juggler is a small framework for animations which is built right into StageXL. It is used to control the time in your application and animate display objects (or values). You can learn more about the Juggler [here](http://www.stagexl.org/docs/wiki-articles.html?article=juggler). The FlipBook class implements the "Animatable" interface which allows the object to be added to the Juggler. The Juggler will advance the time of the FlipBook object and therefore a new frame will be shown every 1/10 of a second.
 
 ### How to proceed from here on ###
 
