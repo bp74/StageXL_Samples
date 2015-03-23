@@ -7,7 +7,7 @@ Get the source for this side scrolling demo [here](https://github.com/bp74/Stage
 
 ## What is StageXL and why should i care? ##
 
-StageXL is a 2D render framework for the Dart programming language. The projected started in late 2012 with one goal: Providing an HTML5 framework for Flash developers that is familiar to use and does not require to write code in JavaScript. If you are used to work with ActionScript 3 you definitely don't want to write code in JavaScript.
+StageXL is a 2D render framework for the Dart programming language. The project started in late 2012 with one goal: Providing an HTML5 framework for Flash developers that is familiar to use and does not require to write code in JavaScript. If you are used to work with ActionScript 3 you definitely don't want to write code in JavaScript.
 
 Today, StageXL not only provides an API that is very similar to the Flash API (DisplayList, EventDispatchers, Sounds, Filters, Masks, etc.) but also adds many features to make it easier to work with HTML5 and the Web. One of those features in StageXL is the support for TexturePacker. In fact the default texture atlas format in StageXL is the JsonArray format of TexturePacker - you will learn more about this in a short while.
 
