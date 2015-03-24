@@ -124,7 +124,7 @@ Next, simply drag and drop the images to TexturePacker. Be sure to enter the cor
 
 ![TexturePacker](texture_packer.png "TexturePacker")
 
-Please take a look at the JSON and PNG file exported by TexturePacker. The JSON file contains the location and size for each image. StageXL uses this information to access the images in the texture atlas and make them available to the developer as if the images are still separated. It's worth mentioning that the texture atlas in our example only contains a few images and is very simple. Your game may contain many more images with different sizes, all merged into one texture atlas. If the texture atlas image gets too big, it's reasonable to create more than one texture atlas. Put those images together which are rendered/visible at the same time. The GPU can only work with one texture atlas at a time and switching between textures is slow (as explained in the second video above).
+Please take a look at the JSON and PNG file exported by TexturePacker. The JSON file contains the location and size for each image. StageXL uses this information to access the images in the texture atlas and make them available to the developer as if the images are still separated. It's worth mentioning that the texture atlas in our example only contains a few images and is very simple. Your game may contain many more images with different sizes, all merged into one texture atlas. If the texture atlas image gets to big, it's reasonable to create more than one texture atlas. Put those images together which are rendered/visible at the same time. The GPU can only work with one texture atlas at a time and switching between textures is slow (as explained in the second video above).
 
 ### How to use a texture atlas in StageXL ###
 
