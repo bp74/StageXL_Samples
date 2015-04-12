@@ -16,8 +16,12 @@ class MessageBox extends Sprite
     Bitmap background = new Bitmap(_resourceManager.getBitmapData("MessageBox"));
     addChild(background);
 
+    TextFormat textFormat = new TextFormat(
+        "Arial", 24, 0xFFFFFF,
+        bold:true, align:TextFormatAlign.CENTER);
+
     TextField textField = new TextField();
-    textField.defaultTextFormat = new TextFormat("Arial", 24, 0xFFFFFF, bold:true, align:TextFormatAlign.CENTER);
+    textField.defaultTextFormat = textFormat;
     textField.width = 240;
     textField.height = 200;
     textField.wordWrap = true;
@@ -32,6 +36,8 @@ class MessageBox extends Sprite
     _showTimeout = null;
 
     addEventListener(MouseEvent.CLICK, _onClick);
+
+    filters.add(new DropShadowFilter(16, math.PI /4, 0x80000000, 8, 8, 2));
   }
 
   //----------------------------------------------------------------------
