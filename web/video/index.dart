@@ -1,7 +1,8 @@
 library video_example;
 
-import 'dart:html' as html;
+import 'dart:async';
 import 'dart:math';
+import 'dart:html' as html;
 import 'package:stagexl/stagexl.dart';
 
 part 'button.dart';
@@ -19,32 +20,31 @@ List<Bitmap> videoBitmaps;
 
 //-----------------------------------------------------------------------------
 
-void main() {
+Future main() async {
 
-  Video.defaultLoadOptions.corsEnabled = true;
+  // configure StageXL default options
 
-  var canvas = html.querySelector('#stage');
+  StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
+  StageXL.stageOptions.inputEventMode = InputEventMode.MouseAndTouch;
+  StageXL.stageOptions.stageScaleMode = StageScaleMode.SHOW_ALL;
+  StageXL.stageOptions.stageAlign = StageAlign.NONE;
 
-  stage = new Stage(canvas, webGL: true, width:1600, height: 800);
-  stage.scaleMode = StageScaleMode.SHOW_ALL;
-  stage.align = StageAlign.NONE;
+  StageXL.videoLoadOptions.corsEnabled = true;
 
+  // init Stage and RenderLoop
+
+  stage = new Stage(html.querySelector('#stage'), width:1600, height: 800);
   renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
 
-  Multitouch.inputMode = Multitouch.supportsTouchEvents
-      ? MultitouchInputMode.TOUCH_POINT
-      : MultitouchInputMode.NONE;
+  // load resources
 
-  resourceManager = new ResourceManager()
-    //..addVideo("sintel", "videos/sintel.mp4")
-    ..addBitmapData("displacement", "images/displacement.png")
-    ..load().then((rm) => waitForClick());
-}
+  resourceManager = new ResourceManager();
+  //resourceManager.addVideo("sintel", "videos/sintel.mp4");
+  resourceManager.addBitmapData("displacement", "images/displacement.png");
+  await resourceManager.load();
 
-//-----------------------------------------------------------------------------
-
-void waitForClick() {
+  // show user information
 
   var textFormat = new TextFormat("Arial", 36, Color.Black);
   textFormat.align = TextFormatAlign.CENTER;
@@ -68,6 +68,10 @@ void waitForClick() {
   info.text = "tap to start video";
   info.addTo(stage);
 
+  // wait for a mouse click or touch press to start the video.
+  // On most mobile devices loading a video only works from an
+  // input event and not from elsewhere.
+
   stage.onMouseDown.first.then(loadAndPlayVideo);
   stage.onTouchBegin.first.then(loadAndPlayVideo);
 }
@@ -76,14 +80,12 @@ void waitForClick() {
 
 void loadAndPlayVideo(e) {
 
+  print(e);
+
   stage.removeChildren();
 
-  var videoLoadOptions = Video.defaultLoadOptions;
+  var videoLoadOptions = StageXL.videoLoadOptions;
   var videoSources = videoLoadOptions.getOptimalVideoUrls("videos/sintel.mp4");
-
-  // We use the Video.load method (and not ResourceManager.addVideo) for better
-  // compatibility with mobile devices. On most mobile devices loading a video
-  // does only work from an input event and not from elsewhere.
 
   Video.load(videoSources.first).then((Video sintelVideo) {
     showVideo(sintelVideo);
@@ -152,11 +154,11 @@ void onSplitChanged(Event event) {
 
   var button = event.target as Button;
   var scale = button.state ? 0.8 : 1.0;
-  var ease = TransitionFunction.easeOutCubic;
+  var transition = Transition.easeOutCubic;
 
   for(var bitmap in videoBitmaps) {
     stage.juggler.removeTweens(bitmap);
-    stage.juggler.tween(bitmap, 0.3, ease)
+    stage.juggler.addTween(bitmap, 0.3, transition)
     ..animate.scaleX.to(scale)
     ..animate.scaleY.to(scale);
   }
@@ -166,10 +168,10 @@ void on2dChanged(Event event) {
 
   var button = event.target as Button;
   var rotation = button.state ? PI : 0.0;
-  var ease = TransitionFunction.easeInOutSine;
+  var ease = Transition.easeInOutSine;
 
   stage.juggler.removeTweens(videoContainer2D);
-  stage.juggler.tween(videoContainer2D, 0.3, ease)
+  stage.juggler.addTween(videoContainer2D, 0.3, ease)
   ..animate.rotation.to(rotation);
 }
 
@@ -178,13 +180,13 @@ void on3dChanged(Event event) {
   var button = event.target as Button;
   var offsetZ = button.state ? 600 : 0.0;
   var rotationY = button.state ? 0.9 : 0.0;
-  var ease = TransitionFunction.easeInOutSine;
+  var ease = Transition.easeInOutSine;
 
   stage.juggler.removeTweens(videoContainer3D);
-  stage.juggler.tween(videoContainer3D, 0.3, ease)
+  stage.juggler.addTween(videoContainer3D, 0.3, ease)
   ..animate3D.offsetZ.to(offsetZ);
 
-  stage.juggler.tween(videoContainer3D, 0.3, ease)
+  stage.juggler.addTween(videoContainer3D, 0.3, ease)
   ..delay = 0.3
   ..animate3D.rotationY.to(rotationY);
 }

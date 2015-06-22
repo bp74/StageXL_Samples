@@ -8,7 +8,7 @@ class Head extends Sprite {
   List<BitmapData> _headBitmapDatas;
   Bitmap _headBitmap;
 
-  Transition _nodTransition;
+  Translation _nodTranslation;
 
   //--------------------------------------------------------------------------------------------
 
@@ -24,29 +24,29 @@ class Head extends Sprite {
 
     addChild(_headBitmap);
 
-    _nodTransition = null;
+    _nodTranslation = null;
   }
 
   //--------------------------------------------------------------------------------------------
 
   void nod(int count) {
 
-    _juggler.remove(_nodTransition);
+    _juggler.remove(_nodTranslation);
 
-    _nodTransition = new Transition(0, count, 0.5 * count, TransitionFunction.linear);
+    _nodTranslation = new Translation(0, count, 0.5 * count, Transition.linear);
 
-    _nodTransition.onUpdate = (value) {
+    _nodTranslation.onUpdate = (value) {
       int frame = ((value * _headBitmapDatas.length) % _headBitmapDatas.length).toInt();
       _headBitmap.bitmapData = _headBitmapDatas[frame];
       _headBitmap.y = math.sin(value * 2 * math.PI) * 3 - _headBitmap.height / 2;
     };
 
-    _juggler.add(_nodTransition);
+    _juggler.add(_nodTranslation);
   }
 
   void nodStop() {
 
-    _juggler.remove(_nodTransition);
+    _juggler.remove(_nodTranslation);
     _headBitmap.bitmapData = _headBitmapDatas[0];
   }
 

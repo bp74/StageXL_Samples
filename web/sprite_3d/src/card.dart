@@ -3,12 +3,14 @@ part of example;
 class Card extends Sprite3D {
 
   final int id;
+  final ResourceManager resourceManager;
+
   bool concealed = false;
 
   Sprite _front = new Sprite();
   Sprite _back = new Sprite();
 
-  Card(this.id, BitmapData iconBitmapData) {
+  Card(this.resourceManager, this.id, BitmapData iconBitmapData) {
 
     var atlas = resourceManager.getTextureAtlas("atlas");
     var frontBitmap = new Bitmap(atlas.getBitmapData("card-front"));

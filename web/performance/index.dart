@@ -1,5 +1,6 @@
 library performance;
 
+import 'dart:async';
 import 'dart:math' as math;
 import 'dart:html' as html;
 import 'package:stagexl/stagexl.dart';
@@ -7,42 +8,54 @@ import 'package:stagexl/stagexl.dart';
 part 'source/flying_flag.dart';
 part 'source/performance.dart';
 
-Stage stage;
-RenderLoop renderLoop;
-ResourceManager resourceManager;
+Future main() async {
 
-num _fpsAverage = null;
+  // configure StageXL default options.
 
-void main() {
+  StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
+  StageXL.bitmapDataLoadOptions.webp = true;
 
-  //---------------------------------------------
-  // Initialize the Display List
+  // init Stage and RenderLoop
 
-  stage = new Stage(html.querySelector('#stage'), webGL: true);
-  renderLoop = new RenderLoop();
-  resourceManager = new ResourceManager();
-
+  var stage = new Stage(html.querySelector('#stage'));
+  var renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
 
-  //---------------------------------------------
-  // Load the flags texture atlas, then start
-  // the performance demo.
+  // load the resources
 
-  BitmapData.defaultLoadOptions.webp = true;
+  var resourceManager = new ResourceManager();
+  resourceManager.addTextureAtlas('flags', 'images/flags.json');
+  await resourceManager.load();
 
-  resourceManager
-    ..addTextureAtlas('flags', 'images/flags.json', TextureAtlasFormat.JSONARRAY)
-    ..load().then((_) => stage.addChild(new Performance()));
+  // create the "Performance" display object
 
-  //---------------------------------------------
-  // add event listener to measure the fps.
+  var performance = new Performance(resourceManager);
+  performance.addFlags(500);
+  stage.addChild(performance);
+  stage.juggler.add(performance);
 
-  stage.onEnterFrame.listen((EnterFrameEvent e) {
-    if (_fpsAverage == null) {
-      _fpsAverage = 1.00 / e.passedTime;
-    } else {
-      _fpsAverage = 0.05 / e.passedTime + 0.95 * _fpsAverage;
-    }
-    html.querySelector('#fpsMeter').innerHtml = 'fps: ${_fpsAverage.round()}';
+  // add html-button event listeners
+
+  var flagCounter = html.querySelector('#flagCounter');
+
+  html.querySelector('#plus100').onClick.listen((e) {
+    performance.addFlags(100);
+    flagCounter.innerHtml = 'flags: ${performance.numChildren}';
   });
+
+  html.querySelector('#minus100').onClick.listen((e) {
+    performance.removeFlags(100);
+    flagCounter.innerHtml = 'flags: ${performance.numChildren}';
+  });
+
+  // measure the frames per second
+
+  var fpsAverage = 60.0;
+  var fpsMeter = html.querySelector('#fpsMeter');
+
+  await for (var enterFrame in stage.onEnterFrame) {
+    fpsAverage = 0.05 / enterFrame.passedTime + 0.95 * fpsAverage;
+    fpsMeter.innerHtml = 'fps: ${fpsAverage.round()}';
+  }
+
 }

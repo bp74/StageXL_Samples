@@ -14,43 +14,39 @@ ResourceManager resourceManager;
 
 void main() {
 
-  //------------------------------------------------------------------
-  // Initialize the Display List
-  //------------------------------------------------------------------
+  // configure StageXL default options
 
-  stage = new Stage(querySelector('#stage'), webGL: true, width: 800, height: 600);
-  stage.scaleMode = StageScaleMode.SHOW_ALL;
-  stage.align = StageAlign.NONE;
+  StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
+  StageXL.stageOptions.stageScaleMode = StageScaleMode.SHOW_ALL;
+  StageXL.stageOptions.stageAlign = StageAlign.NONE;
+  StageXL.bitmapDataLoadOptions.webp = true;
 
+  // init Stage and RenderLoop
+
+  stage = new Stage(querySelector('#stage'), width: 800, height: 600);
   renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
 
-  //------------------------------------------------------------------
-  // Load a TextureAtlas
-  //------------------------------------------------------------------
-
-  BitmapData.defaultLoadOptions.webp = true;
+  // load resources
 
   resourceManager = new ResourceManager()
-    ..addTextureAtlas("ta1", "images/walk.json", TextureAtlasFormat.JSONARRAY)
+    ..addTextureAtlas("ta1", "images/walk.json")
     ..load().then((result) => startAnimation());
 }
+
+//-----------------------------------------------------------------------------
 
 void startAnimation() {
 
   var random = new Random();
   var scaling = 0.5 + 0.5 * random.nextDouble();
 
-  //------------------------------------------------------------------
   // Get all the "walk" bitmapDatas from the texture atlas.
-  //------------------------------------------------------------------
 
   var textureAtlas = resourceManager.getTextureAtlas("ta1");
   var bitmapDatas = textureAtlas.getBitmapDatas("walk");
 
-  //------------------------------------------------------------------
   // Create a flip book with the list of bitmapDatas.
-  //------------------------------------------------------------------
 
   var rect = stage.contentRectangle;
 
@@ -68,11 +64,9 @@ void startAnimation() {
     return 0;
   });
 
-  //------------------------------------------------------------------
   // Let's add a tween so the man walks from the left to the right.
-  //------------------------------------------------------------------
 
-  var transition = TransitionFunction.linear;
+  var transition = Transition.linear;
   var tween = new Tween(flipBook, rect.width / 200.0 / scaling, transition)
     ..animate.x.to(rect.right)
     ..onComplete = () => stopAnimation(flipBook);

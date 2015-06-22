@@ -1,25 +1,25 @@
 library texture_atlas_example;
 
 import 'dart:async';
-import 'dart:math' as math;
 import 'dart:html' as html;
 import 'package:stagexl/stagexl.dart';
 
 Future main() async {
 
-  // init the stage and render loop, opt in for webGL
+  // configure StageXL default options.
+
+  StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
+  StageXL.stageOptions.backgroundColor = Color.AliceBlue;
+  StageXL.bitmapDataLoadOptions.maxPixelRatio = 3;
+
+  // init the stage and render loop
 
   var canvas = html.querySelector('#stage');
-  var stage = new Stage(canvas, webGL: true, width: 300, height: 300);
-  stage.scaleMode = StageScaleMode.SHOW_ALL;
-  stage.align = StageAlign.NONE;
-
+  var stage = new Stage(canvas, width: 300, height: 300);
   var renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
 
   // load the resources with a default size of @1x
-
-  BitmapData.defaultLoadOptions.maxPixelRatio = 3;
 
   var resourceManager = new ResourceManager();
   resourceManager.addBitmapData("background", "images/background@1x.jpg");
@@ -43,8 +43,4 @@ Future main() async {
 
   stage.addChild(flipbook);
   stage.juggler.add(flipbook);
-
-
-
-
 }

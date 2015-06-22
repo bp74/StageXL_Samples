@@ -2,11 +2,13 @@ part of example;
 
 class Game extends Sprite implements Animatable {
 
+  final ResourceManager resourceManager;
+
   PlayingField _playingField;
 
-  Game() {
+  Game(this.resourceManager) {
 
-    _playingField = new PlayingField();
+    _playingField = new PlayingField(resourceManager);
     _playingField.rotationX = -0.6;
     _playingField.x = 400;
     _playingField.y = 270;

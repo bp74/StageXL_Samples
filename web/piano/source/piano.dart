@@ -55,8 +55,8 @@ class Piano extends DisplayObjectContainer {
       _hintFinger.y = 0;
       _hintFinger.alpha = 1;
 
-      var tweenX = new Tween(this._hintFinger, 0.4, TransitionFunction.easeInOutCubic);
-      var tweenY = new Tween(this._hintFinger, 0.4, TransitionFunction.sine);
+      var tweenX = new Tween(this._hintFinger, 0.4, Transition.easeInOutCubic);
+      var tweenY = new Tween(this._hintFinger, 0.4, Transition.sine);
       tweenX.animate.x.to(pianoKey.x + pianoKey.width / 2);
       tweenY.animate.y.to(-10);
       stage.juggler.add(tweenX);
@@ -64,7 +64,7 @@ class Piano extends DisplayObjectContainer {
 
     } else {
 
-      var tween = new Tween(_hintFinger, 0.4, TransitionFunction.linear);
+      var tween = new Tween(_hintFinger, 0.4, Transition.linear);
       tween.animate.alpha.to(0);
       stage.juggler.add(tween);
     }

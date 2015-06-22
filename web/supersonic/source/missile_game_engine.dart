@@ -484,7 +484,7 @@ class MissileGameEngine extends GameComponent {
 
           if (pob.bitmap != null) {
             this.swishSound = resourceManager.getSound("swish");
-            var channel= this.swishSound.play();
+            this.swishSound.play();
           }
 
           if (pob.isBarrier) {

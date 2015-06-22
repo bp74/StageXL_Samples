@@ -18,29 +18,32 @@ part 'src/card.dart';
 part 'src/game.dart';
 part 'src/playing_field.dart';
 
-Stage stage;
-RenderLoop renderLoop;
-ResourceManager resourceManager;
+Future main() async {
 
-void main() {
+  // configure StageXL default options
 
-  stage = new Stage(html.querySelector('#stage'), webGL: true, width:800, height:600);
-  stage.backgroundColor = Color.Blue;
-  stage.scaleMode = StageScaleMode.SHOW_ALL;
-  stage.align = StageAlign.NONE;
+  StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
+  StageXL.stageOptions.inputEventMode = InputEventMode.MouseAndTouch;
+  StageXL.stageOptions.stageScaleMode = StageScaleMode.SHOW_ALL;
+  StageXL.stageOptions.stageAlign = StageAlign.NONE;
+  StageXL.stageOptions.backgroundColor = Color.Blue;
 
-  Multitouch.inputMode = Multitouch.supportsTouchEvents
-      ? MultitouchInputMode.TOUCH_POINT
-      : MultitouchInputMode.NONE;
+  // init Stage and RenderLoop
 
-  renderLoop = new RenderLoop();
+  var stage = new Stage(html.querySelector('#stage'), width:800, height:600);
+  var renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
 
-  resourceManager = new ResourceManager();
-  resourceManager.addTextureAtlas("atlas", "images/atlas.json", TextureAtlasFormat.JSONARRAY);
-  resourceManager.load().then((_) {
-    var game = new Game();
-    stage.addChild(game);
-    stage.juggler.add(game);
-  });
+  // load the resources
+
+  var resourceManager = new ResourceManager();
+  resourceManager.addTextureAtlas("atlas", "images/atlas.json");
+  await resourceManager.load();
+
+  // start the game
+
+  var game = new Game(resourceManager);
+  stage.addChild(game);
+  stage.juggler.add(game);
+
 }

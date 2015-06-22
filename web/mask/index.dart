@@ -6,7 +6,7 @@ import 'package:stagexl/stagexl.dart';
 
 part 'source/flower_field.dart';
 
-Stage stage = new Stage(html.querySelector('#stage'), webGL: true);
+Stage stage = new Stage(html.querySelector('#stage'));
 ResourceManager resourceManager  = new ResourceManager();
 RenderLoop renderLoop = new RenderLoop();
 
@@ -40,7 +40,7 @@ void main() {
   html.querySelector('#mask-circle').onClick.listen((e) => flowerField.mask = circleMask);
   html.querySelector('#mask-custom').onClick.listen((e) => flowerField.mask = customMask);
   html.querySelector('#mask-spin').onClick.listen((e) {
-    stage.juggler.tween(flowerField, 2.0, TransitionFunction.easeInOutBack)
+    stage.juggler.addTween(flowerField, 2.0, Transition.easeInOutBack)
       ..animate.rotation.to(math.PI * 4.0)
       ..onComplete = () => flowerField.rotation = 0.0;
     });

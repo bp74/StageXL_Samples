@@ -6,11 +6,10 @@ class PeriodicTable extends DisplayObjectContainer {
   Map table;
 
   DisplayObject _detail = null;
-  Juggler _juggler = stage.juggler;
 
   PeriodicTable(this.table, this.elements) {
     _addElementButtons();
-    _addCategorieButtons();
+    _addCategoryButtons();
 
     this.onMouseOver.capture(_onMouseOverCapture);
     this.onMouseOut.capture(_onMouseOutCapture);
@@ -19,7 +18,7 @@ class PeriodicTable extends DisplayObjectContainer {
   //-----------------------------------------------------------------------------------------------
   //-----------------------------------------------------------------------------------------------
 
-  _addElementButtons() {
+  void _addElementButtons() {
     for(var element in this.elements["elements"]) {
       var atomicNumber = element["atomic_number"] as int;
       var groupIndex = _getGroupNumber(atomicNumber) - 1;
@@ -42,7 +41,7 @@ class PeriodicTable extends DisplayObjectContainer {
     }
   }
 
-  _addCategorieButtons() {
+  void _addCategoryButtons() {
     var x = 0;
     for(var category in this.table["categories"]) {
       var categoryButton = new CategoryButton(category);
@@ -78,7 +77,7 @@ class PeriodicTable extends DisplayObjectContainer {
 
   //-----------------------------------------------------------------------------------------------
 
-  _onMouseOverCapture(MouseEvent event) {
+  void _onMouseOverCapture(MouseEvent event) {
     if (event.target is ElementButton) {
       _onElementButtonMouseOver(event.target);
     }
@@ -87,7 +86,7 @@ class PeriodicTable extends DisplayObjectContainer {
     }
   }
 
-  _onMouseOutCapture(MouseEvent event) {
+  void _onMouseOutCapture(MouseEvent event) {
     if (event.target is ElementButton) {
       _onElementButtonMouseOut(event.target);
     }
@@ -98,7 +97,7 @@ class PeriodicTable extends DisplayObjectContainer {
 
   //-----------------------------------------------------------------------------------------------
 
-  _onElementButtonMouseOver(ElementButton button) {
+  void _onElementButtonMouseOver(ElementButton button) {
     this.addChild(button);
     button.animateTo(0.70, 1.0);
 
@@ -108,7 +107,7 @@ class PeriodicTable extends DisplayObjectContainer {
     _detail.alpha = 0.0;
     _detail.addTo(this);
 
-    _juggler.tween(_detail, 0.3, TransitionFunction.linear)
+    stage.juggler.addTween(_detail, 0.3, Transition.linear)
       ..animate.alpha.to(1.0);
 
     for(int i = 0; i < this.numChildren; i++) {
@@ -123,11 +122,11 @@ class PeriodicTable extends DisplayObjectContainer {
     }
   }
 
-  _onElementButtonMouseOut(ElementButton button) {
+  void _onElementButtonMouseOut(ElementButton button) {
     button.animateTo(0.5, 1.0);
 
     if (_detail != null) {
-      _juggler.tween(_detail, 0.3, TransitionFunction.linear)
+      stage.juggler.addTween(_detail, 0.3, Transition.linear)
         ..animate.alpha.to(0.0)
         ..onComplete = _detail.removeFromParent;
       _detail = null;
@@ -143,7 +142,7 @@ class PeriodicTable extends DisplayObjectContainer {
 
   //-----------------------------------------------------------------------------------------------
 
-  _onCategoryButtonMouseOver(CategoryButton button) {
+  void _onCategoryButtonMouseOver(CategoryButton button) {
     this.addChild(button);
     button.animateTo(0.70, 1.0);
 
@@ -153,7 +152,7 @@ class PeriodicTable extends DisplayObjectContainer {
     _detail.alpha = 0.0;
     _detail.addTo(this);
 
-    _juggler.tween(_detail, 0.3, TransitionFunction.linear)
+    stage.juggler.addTween(_detail, 0.3, Transition.linear)
       ..animate.alpha.to(1.0);
 
     for(int i = 0; i < this.numChildren; i++) {
@@ -168,11 +167,11 @@ class PeriodicTable extends DisplayObjectContainer {
     }
   }
 
-  _onCategoryButtonMouseOut(CategoryButton button) {
+  void _onCategoryButtonMouseOut(CategoryButton button) {
     button.animateTo(0.5, 1.0);
 
     if (_detail != null) {
-      _juggler.tween(_detail, 0.3, TransitionFunction.linear)
+      stage.juggler.addTween(_detail, 0.3, Transition.linear)
         ..animate.alpha.to(0.0)
         ..onComplete = _detail.removeFromParent;
       _detail = null;

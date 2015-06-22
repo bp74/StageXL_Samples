@@ -96,7 +96,6 @@ class Segment {
     var rel_ps, rel_pe, ps, pe;
 
     if (rotPoint == null) {
-      var rotPoint = _ps;
       ps = this.ps;
     } else {
       rel_ps = _ps.subtract(rotPoint);
@@ -125,9 +124,9 @@ class Segment {
 
   Vector2D intersectStraight(Segment s2) {
 
-    var r = ( (_ps.y - s2._ps.y) * (s2._dir.x) - (_ps.x - s2._ps.x) * (s2._dir.y) ) / ( (_dir.x) * (s2._dir.y) - (_dir.y) * (s2._dir.x));
-    var s = ( (_ps.y - s2._ps.y) * (_dir.x) - (_ps.x - s2._ps.x) * (_dir.y) ) / ( (_dir.x) * (s2._dir.y) - (_dir.y) * (s2._dir.x));
-
+    var d = ((_dir.x) * (s2._dir.y) - (_dir.y) * (s2._dir.x));
+    var r = ((_ps.y - s2._ps.y) * (s2._dir.x) - (_ps.x - s2._ps.x) * (s2._dir.y)) / d;
+    //var s = ((_ps.y - s2._ps.y) * (_dir.x) - (_ps.x - s2._ps.x) * (_dir.y)) / d;
     var x = _ps.x + r * _dir.x;
     var y = _ps.y + r * _dir.y;
 

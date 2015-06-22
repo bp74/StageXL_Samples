@@ -24,20 +24,20 @@ class Bonus extends Sprite {
 
     //-------------------------------------------------
 
-    Transition transition = new Transition(0.0, 1.0, 1.5, TransitionFunction.easeOutCubic);
+    Translation translation = new Translation(0.0, 1.0, 1.5, Transition.easeOutCubic);
 
-    transition.onUpdate = (value) {
+    translation.onUpdate = (value) {
       textFieldContainer.alpha = 1 - value;
       textFieldContainer.y = - value * 50;
       textFieldContainer.scaleX = 1.0 + 0.1 * math.sin(value * 10);
       textFieldContainer.scaleY = 1.0 + 0.1 * math.cos(value * 10);
     };
 
-    transition.onComplete = () {
+    translation.onComplete = () {
       this.removeFromParent();
     };
 
-    juggler.add(transition);
+    juggler.add(translation);
   }
 
 }

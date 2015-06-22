@@ -2,12 +2,16 @@ part of example;
 
 class PlayingField extends Sprite3D {
 
+  final ResourceManager resourceManager;
+
   Sprite _cards = new Sprite();
   Juggler _juggler = new Juggler();
   List<Card> _selectedCards = new List<Card>();
   int _numTurnedCards = 0;
 
   final num ANIM_TIME = 0.5;
+
+  PlayingField(this.resourceManager);
 
   //---------------------------------------------------------------------------
 
@@ -73,8 +77,8 @@ class PlayingField extends Sprite3D {
 
     for (int i = 0; i < numColumns * numRows / 2; ++i) {
       var iconBitmapData = iconBitmapDatas.removeAt(0);
-      cards.add(new Card(i, iconBitmapData));
-      cards.add(new Card(i, iconBitmapData));
+      cards.add(new Card(resourceManager, i, iconBitmapData));
+      cards.add(new Card(resourceManager, i, iconBitmapData));
     }
 
     cards.shuffle();
@@ -143,7 +147,7 @@ class PlayingField extends Sprite3D {
     card.offsetZ = -150.0;
 
     _juggler.removeTweens(card);
-    _juggler.tween(card, ANIM_TIME, TransitionFunction.easeOutQuadratic)
+    _juggler.addTween(card, ANIM_TIME, Transition.easeOutQuadratic)
       ..delay = delay
       ..animate.alpha.to(1.0)
       ..animate3D.offsetZ.to(0.0)
@@ -160,7 +164,7 @@ class PlayingField extends Sprite3D {
     card.offsetZ = 0.0;
 
     _juggler.removeTweens(card);
-    _juggler.tween(card, ANIM_TIME, TransitionFunction.easeInQuadratic)
+    _juggler.addTween(card, ANIM_TIME, Transition.easeInQuadratic)
       ..delay = delay
       ..animate.alpha.to(0.0)
       ..animate3D.offsetZ.to(-150.0)
@@ -179,7 +183,7 @@ class PlayingField extends Sprite3D {
     card.concealed = !card.concealed;
 
     _juggler.removeTweens(card);
-    _juggler.tween(card, ANIM_TIME, TransitionFunction.easeInOutQuadratic)
+    _juggler.addTween(card, ANIM_TIME, Transition.easeInOutQuadratic)
       ..delay = delay
       ..animate3D.rotationY.to(r1)
       ..onComplete = () => completer.complete(card);

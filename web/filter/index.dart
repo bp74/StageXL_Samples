@@ -7,9 +7,9 @@ import 'dart:math' as math;
 import 'dart:html' as html;
 import 'package:stagexl/stagexl.dart';
 
-Stage stage = new Stage(html.querySelector('#stage'), webGL: true);
-ResourceManager resourceManager  = new ResourceManager();
-RenderLoop renderLoop = new RenderLoop();
+Stage stage;
+RenderLoop renderLoop;
+ResourceManager resourceManager = new ResourceManager();
 Sprite flowerField = new Sprite();
 Random random = new Random();
 num totalTime = 0.0;
@@ -17,11 +17,22 @@ num totalTime = 0.0;
 //-------------------------------------------------------------------------------------------------
 
 void main() {
+
+  // configure StageXL default options
+
+  StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
+  StageXL.bitmapDataLoadOptions.webp = true;
+
+  // init Stage and RenderLoop
+
+  stage = new Stage(html.querySelector('#stage'));
+  renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
-  BitmapData.defaultLoadOptions.webp = true;
+
+  // load resources
 
   resourceManager
-      ..addTextureAtlas('flowers', 'images/Flowers.json', TextureAtlasFormat.JSONARRAY)
+      ..addTextureAtlas('flowers', 'images/Flowers.json')
       ..addBitmapData('grass', 'images/grass.jpg')
       ..addBitmapData('apple', 'images/apple.png')
       ..addBitmapData('chrome', 'images/chrome.png')
@@ -48,7 +59,7 @@ void createFlowerField(ResourceManager resourceManager) {
       ..y = 80 + random.nextInt(500 - 160)
       ..addTo(flowerField);
 
-    stage.juggler.tween(bitmap, 3600, TransitionFunction.linear)
+    stage.juggler.addTween(bitmap, 3600, Transition.linear)
       ..animate.rotation.to(math.PI * 360.0);
   }
 

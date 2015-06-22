@@ -26,7 +26,6 @@ class Explosion extends Sprite implements Animatable {
 
     num angle;
     num velocity;
-    num rotatation;
 
     for(int y = 0; y <= 1; y++) {
       for(int x = 0; x <= 1; x++) {

@@ -4,20 +4,20 @@ import 'package:stagexl/stagexl.dart';
 
 main() async {
 
-  if (Multitouch.supportsTouchEvents) {
-    // opt in for touch events
-    Multitouch.inputMode = MultitouchInputMode.TOUCH_POINT;
-  }
+  // configure StageXL default options.
 
-  //----------------------------------
+  StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
+  StageXL.stageOptions.inputEventMode = InputEventMode.MouseAndTouch;
+  StageXL.stageOptions.backgroundColor = Color.Green;
 
-  var random = new math.Random();
+  // init Stage and RenderLoop
+
   var canvas = html.querySelector('#stage');
-  var stage = new Stage(canvas, webGL: true, width: 600, height: 600);
-  stage.backgroundColor = Color.Green;
-
+  var stage = new Stage(canvas, width: 600, height: 600);
   var renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
+
+  // load resources
 
   var resourceManager = new ResourceManager();
   resourceManager.addBitmapData("flower1", "images/flower1.png");
@@ -25,9 +25,11 @@ main() async {
   resourceManager.addBitmapData("flower3", "images/flower3.png");
   await resourceManager.load();
 
-  //----------------------------------
+  // Create 100 random flowers around the center of the Stage
 
-  for(var i = 0; i < 100; i++) {
+  var random = new math.Random();
+
+  for (var i = 0; i < 100; i++) {
 
     var f = 1 + random.nextInt(3);
     var bitmapData = resourceManager.getBitmapData("flower$f");
@@ -43,6 +45,8 @@ main() async {
     sprite.x = 300 + randomRadius * math.cos(randomAngle);
     sprite.y = 300 + randomRadius * math.sin(randomAngle);
     sprite.addTo(stage);
+
+    // add event handlers to start or stop dragging
 
     void startDrag(Event e) {
       stage.addChild(sprite); // bring to foreground

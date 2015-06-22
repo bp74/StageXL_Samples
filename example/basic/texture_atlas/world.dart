@@ -38,7 +38,7 @@ class World extends Sprite implements Animatable {
     layerGround.addChild(new Bitmap(ground)..x = 2398);
 
     // create FlipBooks with the monster animation
-    for(int i = 0; i < 6; i++) {
+    for (int i = 0; i < 6; i++) {
       layerMonsters.addChild(new FlipBook(monsters, 10)
         ..pivotX = monsters.first.width / 2
         ..pivotY = monsters.first.height / 2
@@ -48,7 +48,7 @@ class World extends Sprite implements Animatable {
     }
 
     // create FlipBooks with the boy animation
-    for(int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++) {
       layerBoys.addChild(new FlipBook(boys, 10)
         ..pivotX = boys.first.width / 2
         ..pivotY = boys.first.height
@@ -62,13 +62,12 @@ class World extends Sprite implements Animatable {
 
     _animationTime += time;
 
-    layerSky.x = - 600 - ((_animationTime / 16.0) % 1.0) * 1200;
-    layerMountain.x = - 600 - ((_animationTime / 12.0) % 1.0) * 1200;
-    layerGround.x = - 600 - ((_animationTime / 8.0) % 1.0) * 1200;
+    layerSky.x = -600 - ((_animationTime / 16.0) % 1.0) * 1200;
+    layerMountain.x = -600 - ((_animationTime / 12.0) % 1.0) * 1200;
+    layerGround.x = -600 - ((_animationTime / 8.0) % 1.0) * 1200;
     layerMonsters.children.forEach((c) => c.advanceTime(time));
     layerBoys.children.forEach((c) => c.advanceTime(time));
 
     return true;
   }
-
 }

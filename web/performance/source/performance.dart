@@ -1,55 +1,46 @@
 part of performance;
 
-class Performance extends DisplayObjectContainer {
+class Performance extends DisplayObjectContainer implements Animatable {
 
-  Performance() {
+  ResourceManager _resourceManager;
+  Juggler _juggler = new Juggler();
 
-    // let's start with 500 flags
-    _addFlags(500);
+  Performance(this._resourceManager);
 
-    // add html-button event listeners
-    html.querySelector('#minus100').onClick.listen((e) => _removeFlags(100));
-    html.querySelector('#plus100').onClick.listen((e) => _addFlags(100));
+  bool advanceTime(num time) {
+    _juggler.advanceTime(time);
+    return true;
   }
 
-  //---------------------------------------------------------------------------------
+  //---------------------------------------------------------------------------
 
-  _addFlags(int amount) {
+  void addFlags(int amount) {
 
     var random = new math.Random();
-    var textureAtlas = resourceManager.getTextureAtlas('flags');
+    var textureAtlas = _resourceManager.getTextureAtlas('flags');
     var flagNames = textureAtlas.frameNames;
-    var juggler = stage.juggler;
 
     while(--amount >= 0) {
       var flagName = flagNames[random.nextInt(flagNames.length)];
       var flagBitmapData = textureAtlas.getBitmapData(flagName);
       var velocityX = random.nextInt(200) - 100;
       var velocityY = random.nextInt(200) - 100;
-
       var flyingFlag = new FlyingFlag(flagBitmapData, velocityX, velocityY);
       flyingFlag.x = 30 + random.nextInt(940 - 60);
       flyingFlag.y = 30 + random.nextInt(500 - 60);
       addChild(flyingFlag);
-
-      juggler.add(flyingFlag);
+      _juggler.add(flyingFlag);
     }
-
-    html.querySelector('#flagCounter').innerHtml = 'flags: ${numChildren}';
   }
 
-  //---------------------------------------------------------------------------------
+  //---------------------------------------------------------------------------
 
-  _removeFlags(int amount) {
-
-    var juggler = stage.juggler;
+  void removeFlags(int amount) {
 
     while(--amount >= 0 && numChildren > 0) {
       var flyingFlag = getChildAt(0) as FlyingFlag;
       flyingFlag.removeFromParent();
-      juggler.remove(flyingFlag);
+      _juggler.remove(flyingFlag);
     }
-
-    html.querySelector('#flagCounter').innerHtml = 'flags: ${numChildren}';
   }
 }

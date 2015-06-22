@@ -95,14 +95,16 @@ class Board extends Sprite {
         field.y = y * 50 + 25 - 550;
         field.updateDisplayObjects(_chainLayer, _linkLayer, _specialLayer);
 
-        Transition transition = new Transition(field.y, y * 50 + 25, 0.4, TransitionFunction.easeOutCubic);
-        transition.delay = x * 0.03;
+        var transition = Transition.easeOutCubic;
+        var translation = new Translation(field.y, y * 50 + 25, 0.4, transition);
 
-        transition.onUpdate = (value) {
+        translation.delay = x * 0.03;
+
+        translation.onUpdate = (value) {
           field.y = value;
         };
 
-        transition.onComplete = () {
+        translation.onComplete = () {
           if (completeCounter.increment() == 100) {
             _updateLinks();
             _animationRunning = false;
@@ -111,7 +113,7 @@ class Board extends Sprite {
           }
         };
 
-        _juggler.add(transition);
+        _juggler.add(translation);
       }
     }
 
@@ -153,14 +155,15 @@ class Board extends Sprite {
         field.special = Special.None;
         field.updateDisplayObjects(_chainLayer, _linkLayer, _specialLayer);
 
-        Transition transition = new Transition(field.y, 500 + y * 50 + 25, 0.5, TransitionFunction.easeOutCubic);
-        transition.delay = x * 0.1;
+        var transition = Transition.easeOutCubic;
+        var translation = new Translation(field.y, 500 + y * 50 + 25, 0.5, transition);
+        translation.delay = x * 0.1;
 
-        transition.onUpdate = (value) {
+        translation.onUpdate = (value) {
           field.y = value;
         };
 
-        _juggler.add(transition);
+        _juggler.add(translation);
       }
     }
   }
@@ -374,18 +377,18 @@ class Board extends Sprite {
         Field field = _fields[x + y * 10];
         field.sinScale = 0.0;
 
-        Transition transition = new Transition(0.0, 1.0, 0.2, TransitionFunction.linear);
-        transition.delay = x * 0.06;
+        var translation = new Translation(0.0, 1.0, 0.2, Transition.linear);
+        translation.delay = x * 0.06;
 
-        transition.onUpdate = (value) {
+        translation.onUpdate = (value) {
           field.sinScale = value;
         };
 
-        transition.onStart = () {
+        translation.onStart = () {
           field.updateDisplayObjects(_chainLayer, _linkLayer, _specialLayer);
         };
 
-        transition.onComplete = () {
+        translation.onComplete = () {
           if (completeCounter.increment() == 100) {
             _updateLinks();
             _processCombinations();
@@ -393,7 +396,7 @@ class Board extends Sprite {
           }
         };
 
-        _juggler.add(transition);
+        _juggler.add(translation);
       }
     }
 
@@ -551,7 +554,7 @@ class Board extends Sprite {
       special.y = field.y;
       addChild(special);
 
-      Tween tween = new Tween(special, 0.5, TransitionFunction.easeOutCubic);
+      Tween tween = new Tween(special, 0.5, Transition.easeOutCubic);
       tween.animate.x.to(lock.x);
       tween.animate.y.to(lock.y - 10);
       tween.onComplete = () => removeChild(special);
@@ -668,13 +671,14 @@ class Board extends Sprite {
 
           animationCounter.increment();
 
-          Transition transition = new Transition(fieldTarget.y, 50 * target + 25, 0.1, TransitionFunction.linear);
+          var transition = Transition.linear;
+          var translation = new Translation(fieldTarget.y, 50 * target + 25, 0.1, transition);
 
-          transition.onUpdate = (value) {
+          translation.onUpdate = (value) {
             fieldTarget.y = value;
           };
 
-          transition.onComplete = () {
+          translation.onComplete = () {
             if (animationCounter.decrement() == 0) {
               _updateLinks();
               _processCombinations();
@@ -682,7 +686,7 @@ class Board extends Sprite {
             }
           };
 
-          _juggler.add(transition);
+          _juggler.add(translation);
         }
       }
     }

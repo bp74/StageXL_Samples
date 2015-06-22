@@ -38,10 +38,12 @@ const String defaultFont = "Russo One";
 
 void main() {
 
-  stage = new Stage(html.querySelector('#stage'), webGL: false, width: 800, height: 600);
-  stage.scaleMode = StageScaleMode.SHOW_ALL;
-  stage.align = StageAlign.NONE;
+  StageXL.stageOptions.renderEngine = RenderEngine.Canvas2D;
+  StageXL.stageOptions.stageScaleMode= StageScaleMode.SHOW_ALL;
+  StageXL.stageOptions.stageAlign = StageAlign.NONE;
+  StageXL.bitmapDataLoadOptions.webp = true;
 
+  stage = new Stage(html.querySelector('#stage'), width: 800, height: 600);
   renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
 
@@ -49,12 +51,10 @@ void main() {
 
   //-------------------------------------------
 
-  BitmapData.defaultLoadOptions.webp = true;
-
   Future<BitmapData> loading = BitmapData.load("images/Loading.png");
 
-  loading.then((bitmapData)
-  {
+  loading.then((bitmapData) {
+
     loadingBitmap = new Bitmap(bitmapData);
     loadingBitmap.pivotX = 20;
     loadingBitmap.pivotY = 20;
@@ -62,7 +62,7 @@ void main() {
     loadingBitmap.y = 270;
     stage.addChild(loadingBitmap);
 
-    loadingBitmapTween = new Tween(loadingBitmap, 100, TransitionFunction.linear);
+    loadingBitmapTween = new Tween(loadingBitmap, 100, Transition.linear);
     loadingBitmapTween.animate.rotation.to(100.0 * 2.0 * math.PI);
     renderJuggler.add(loadingBitmapTween);
 

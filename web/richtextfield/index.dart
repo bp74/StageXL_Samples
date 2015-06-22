@@ -3,7 +3,7 @@ import 'package:stagexl/stagexl.dart';
 import 'package:stagexl_richtextfield/stagexl_richtextfield.dart';
 
 CanvasElement canvas = querySelector("#stage");
-Stage stage = new Stage(canvas, webGL: true);
+Stage stage = new Stage(canvas);
 RenderLoop renderLoop = new RenderLoop();
 
 void main() {

@@ -51,7 +51,7 @@ class MessageBox extends Sprite
 
     _doneFunction = doneFunction;
 
-    Tween tween = new Tween(this, 0.3, TransitionFunction.easeOutCubic);
+    Tween tween = new Tween(this, 0.3, Transition.easeOutCubic);
     tween.animate.x.to(110);
     tween.onComplete = () => _showTimeout = _juggler.delayCall(_hide, 10);
 
@@ -69,7 +69,7 @@ class MessageBox extends Sprite
 
       _doneFunction();
 
-      Tween tween = new Tween(this, 0.4, TransitionFunction.easeInCubic);
+      Tween tween = new Tween(this, 0.4, Transition.easeInCubic);
       tween.animate.x.to(800);
       tween.onComplete = () => this.parent.removeChild(this);
 

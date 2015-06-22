@@ -19,7 +19,7 @@ void main() {
   // Initialize the Display List
   //------------------------------------------------------------------
 
-  stage = new Stage(html.querySelector('#stage'), webGL: true);
+  stage = new Stage(html.querySelector('#stage'));
   renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
 
@@ -70,8 +70,8 @@ void main() {
 
   resourceManager.load().then((_) {
 
-    var background = new Bitmap(resourceManager.getBitmapData('Background'))
-      ..addTo(stage);
+    var background = new Bitmap(resourceManager.getBitmapData('Background'));
+    stage.addChild(background);
 
     var piano = new Piano()
       ..x = 120

@@ -1,61 +1,56 @@
 library mesh_example;
 
+import 'dart:async';
 import 'dart:html' as html;
 import 'dart:math' as math;
 import 'package:stagexl/stagexl.dart';
 
-Stage stage;
-RenderLoop renderLoop;
-ResourceManager resourceManager;
+Future main() async {
 
-void main() {
+  // configure StageXL default options
 
-  var canvas = html.querySelector('#stage');
-  stage = new Stage(canvas, webGL: true, width:800, height: 800);
-  stage.scaleMode = StageScaleMode.SHOW_ALL;
-  stage.align = StageAlign.NONE;
+  StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
+  StageXL.stageOptions.stageScaleMode = StageScaleMode.SHOW_ALL;
+  StageXL.stageOptions.stageAlign = StageAlign.NONE;
+  StageXL.bitmapDataLoadOptions.webp = true;
 
-  renderLoop = new RenderLoop();
+  // init the Stage and RenderLoop
+
+  var stage = new Stage(html.querySelector('#stage'), width: 800, height: 800);
+  var renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
 
-  BitmapData.defaultLoadOptions.webp = true;
+  // load resources
 
-  resourceManager = new ResourceManager()
-    ..addBitmapData("earth", "images/earth.png")
-    ..load().then((rm) => showMesh());
-}
+  var resourceManager = new ResourceManager();
+  resourceManager.addBitmapData("earth", "images/earth.png");
+  await resourceManager.load();
 
-void showMesh() {
+  // create mesh with "earth" image
 
-  // TODO: Create a better example
-
-  var totalTime = 0.0;
   var bitmapData = resourceManager.getBitmapData("earth");
   var mesh = new Mesh.fromGrid(bitmapData, 8, 8);
-
   mesh.pivotX = bitmapData.width / 2;
   mesh.pivotY = bitmapData.height / 2;
   mesh.x = 400;
   mesh.y = 400;
   mesh.addTo(stage);
 
-  stage.onEnterFrame.listen((e) {
+  // animate the mesh on every frame
 
-    totalTime += e.passedTime;
+  var totalTime = 0.0;
 
+  await for (var enterFrame in stage.onEnterFrame) {
+    totalTime += enterFrame.passedTime;
     var dx = bitmapData.width / 8;
     var dy = bitmapData.height / 8;
-
-    for(int x = 0; x <= 8; x++) {
-      for(int y = 0; y <= 8; y++) {
+    for (int x = 0; x <= 8; x++) {
+      for (int y = 0; y <= 8; y++) {
         var vertex = x + y * 9;
         var px = x * dx + math.sin(x + totalTime * 6) * 15;
         var py = y * dy + math.sin(y + totalTime * 6) * 15;
         mesh.setVertexXY(vertex, px, py);
       }
     }
-  });
+  }
 }
-
-
-

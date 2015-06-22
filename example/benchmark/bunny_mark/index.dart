@@ -5,6 +5,7 @@
 /// CreateJS: http://createjs.com/Demos/EaselJS/bunnymarkEasel/?c2d=0
 ///
 
+import 'dart:async';
 import 'dart:js';
 import 'dart:html' as html;
 import 'dart:math' hide Point, Rectangle;
@@ -13,28 +14,22 @@ import 'package:stagexl/stagexl.dart';
 Random random = new Random();
 num gravity = 0.75;
 
-main() async {
+Future main() async {
 
-  // Do not automatically switch to HiDpi to make it
-  // comparable with the Pixi JS benchmark.
+  // configure StageXL default options
 
-  Stage.autoHiDpi = false;
+  StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
+  StageXL.stageOptions.inputEventMode = InputEventMode.MouseAndTouch;
+  StageXL.stageOptions.stageScaleMode = StageScaleMode.NO_SCALE;
+  StageXL.stageOptions.stageAlign = StageAlign.TOP_LEFT;
+  StageXL.stageOptions.backgroundColor = Color.White;
+  StageXL.stageOptions.maxPixelRatio = 1;
 
-  // Initialize StageXL
+  // Initialize Stage and RenderLoop
 
-  var canvas = html.querySelector('#stage');
-  var stage = new Stage(canvas, webGL:true, color:Color.White);
-  stage.scaleMode = StageScaleMode.NO_SCALE;
-  stage.align = StageAlign.TOP_LEFT;
-
+  var stage = new Stage(html.querySelector('#stage'));
   var renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
-
-  // Switch to touch events if touch is available
-
-  Multitouch.inputMode = Multitouch.supportsTouchEvents
-    ? MultitouchInputMode.TOUCH_POINT
-    : MultitouchInputMode.NONE;
 
   // Load resources
 
@@ -108,7 +103,7 @@ class BunnyView extends DisplayObjectContainer {
   void _onEnterFrame(EnterFrameEvent e) {
 
     if (_adding) {
-      for(int i = 0; i < 50; i++) {
+      for (int i = 0; i < 50; i++) {
         _addBunny();
       }
       _updateCounter();
@@ -161,5 +156,4 @@ class Bunny extends Bitmap {
     this.x = posX;
     this.y = posY;
   }
-
 }

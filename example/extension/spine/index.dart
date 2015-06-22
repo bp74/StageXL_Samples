@@ -1,40 +1,41 @@
+import 'dart:async';
 import 'dart:html' as html;
 import 'package:stagexl/stagexl.dart';
 import 'package:stagexl_spine/stagexl_spine.dart';
 
-Stage stage;
-RenderLoop renderLoop;
-ResourceManager resourceManager = new ResourceManager();
+Future main() async {
 
-void main() {
+  // configure StageXL default options
+
+  StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
+  StageXL.bitmapDataLoadOptions.webp = true;
+
+  // init Stage and RenderLoop
 
   var canvas = html.querySelector('#stage');
-
-  stage = new Stage(canvas, webGL: true, width:480, height: 600, color: Color.White);
-  stage.scaleMode = StageScaleMode.SHOW_ALL;
-  stage.align = StageAlign.NONE;
-
-  renderLoop = new RenderLoop();
+  var stage = new Stage(canvas, width:480, height: 600);
+  var renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
 
-  BitmapData.defaultLoadOptions.webp = true;
+  // load "Spineboy" skeleton resources
 
+  var resourceManager = new ResourceManager();
   resourceManager.addTextFile("spineboy", "spine/spineboy.json");
-  resourceManager.addTextureAtlas("spineboy", "atlas/spineboy.json", TextureAtlasFormat.JSONARRAY);
-  resourceManager.load().then((rm) => startSpineboy());
-}
+  resourceManager.addTextureAtlas("spineboy", "atlas/spineboy.json");
+  await resourceManager.load();
 
-//-----------------------------------------------------------------------------
-
-void startSpineboy() {
+  // add TextField with user instructions
 
   var textField = new TextField();
-  textField.defaultTextFormat = new TextFormat("Arial", 24, Color.Black, align: TextFormatAlign.CENTER);
+  textField.defaultTextFormat = new TextFormat("Arial", 24, Color.Black);
+  textField.defaultTextFormat.align = TextFormatAlign.CENTER;
   textField.width = 480;
   textField.x = 0;
   textField.y = 550;
   textField.text = "tap to change animation";
   textField.addTo(stage);
+
+  // load Spine skeleton
 
   var spineJson = resourceManager.getTextFile("spineboy");
   var textureAtlas = resourceManager.getTextureAtlas("spineboy");
@@ -42,27 +43,31 @@ void startSpineboy() {
   var skeletonLoader = new SkeletonLoader(attachmentLoader);
   var skeletonData = skeletonLoader.readSkeletonData(spineJson);
 
+  // configure Spine animation mix
+
   var animationStateData = new AnimationStateData(skeletonData);
   animationStateData.setMixByName("idle", "walk", 0.2);
   animationStateData.setMixByName("walk", "run", 0.2);
   animationStateData.setMixByName("run", "walk", 0.2);
   animationStateData.setMixByName("walk", "idle", 0.2);
 
+  // create the display object showing the skeleton animation
+
   var skeletonAnimation = new SkeletonAnimation(skeletonData, animationStateData);
   skeletonAnimation.x = 240;
   skeletonAnimation.y = 520;
   skeletonAnimation.scaleX = skeletonAnimation.scaleY = 0.7;
+  skeletonAnimation.state.setAnimationByName(0, "idle", true);
+  stage.addChild(skeletonAnimation);
+  stage.juggler.add(skeletonAnimation);
+
+  // change the animation on every mouse click
 
   var animations = ["idle", "walk", "run", "walk"];
   var animationIndex = 0;
 
-  stage.onMouseClick.listen((me) {
+  stage.onMouseClick.listen((_) {
     animationIndex = (animationIndex + 1) % animations.length;
     skeletonAnimation.state.setAnimationByName(0, animations[animationIndex], true);
   });
-
-  skeletonAnimation.state.setAnimationByName(0, "idle", true);
-
-  stage.addChild(skeletonAnimation);
-  stage.juggler.add(skeletonAnimation);
 }

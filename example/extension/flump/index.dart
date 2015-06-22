@@ -1,70 +1,74 @@
+import 'dart:async';
 import 'dart:html' as html;
 import 'package:stagexl/stagexl.dart';
 import 'package:stagexl_flump/stagexl_flump.dart';
 
-Stage stage;
-RenderLoop renderLoop;
-ResourceManager resourceManager;
+Future main() async {
 
-void main() {
+  // configure StageXL default options.
+
+  StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
+  StageXL.stageOptions.backgroundColor = Color.White;
+  StageXL.bitmapDataLoadOptions.webp = true;
+
+  // init Stage and RenderLoop
 
   var canvas = html.querySelector('#stage');
-
-  stage = new Stage(canvas, webGL: true, width:480, height: 600, color: Color.White);
-  stage.scaleMode = StageScaleMode.SHOW_ALL;
-  stage.align = StageAlign.NONE;
-
-  renderLoop = new RenderLoop();
+  var stage = new Stage(canvas, width: 480, height: 600);
+  var renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
 
-  BitmapData.defaultLoadOptions.webp = true;
+  // load resources
 
-  resourceManager = new ResourceManager()
-    ..addBitmapData("flumpAtlas", "images/flumpLibraryAtlas0.png")
-    ..addCustomObject('flump', FlumpLibrary.load('images/flumpLibrary.json'))
-    ..load().then((result) => startFlump());
-}
+  var resourceManager = new ResourceManager();
+  resourceManager..addBitmapData("flumpAtlas", "images/flumpLibraryAtlas0.png");
+  resourceManager.addCustomObject('flump', FlumpLibrary.load('images/flumpLibrary.json'));
+  await resourceManager.load();
 
-void startFlump() {
+  // show TextField with user instructions
 
   var textField = new TextField();
-  textField.defaultTextFormat = new TextFormat("Arial", 24, Color.Black, align: TextFormatAlign.CENTER);
+  textField.defaultTextFormat = new TextFormat("Arial", 24, Color.Black);
+  textField.defaultTextFormat.align = TextFormatAlign.CENTER;
   textField.width = 480;
   textField.x = 0;
   textField.y = 450;
   textField.text = "tap to change animation";
   textField.addTo(stage);
 
+  // get FlumpLibrary from resource manager.
+  // get FlumpMovies from the FlumpLibrary.
+
   var flumpLibrary = resourceManager.getCustomObject('flump') as FlumpLibrary;
 
-  var idle = new FlumpMovie(flumpLibrary, 'idle');
-  var walk = new FlumpMovie(flumpLibrary, 'walk');
-  var attack = new FlumpMovie(flumpLibrary, 'attack');
-  var defeat = new FlumpMovie(flumpLibrary, 'defeat');
+  var flumpMovies = [
+    new FlumpMovie(flumpLibrary, 'idle'),
+    new FlumpMovie(flumpLibrary, 'walk'),
+    new FlumpMovie(flumpLibrary, 'attack'),
+    new FlumpMovie(flumpLibrary, 'defeat')
+  ];
 
-  var flumpMovies = [idle, walk, attack, defeat];
+  // change the FlumpMovie on every mouse click.
+
+  var flumpJuggler = new Juggler();
+  stage.juggler.add(flumpJuggler);
+
+  var flumpLayer = new Sprite();
+  flumpLayer.addTo(stage);
+  flumpLayer.x = 250;
+  flumpLayer.y = 400;
+
   var flumpMovieIndex = 0;
   var flumpMovie = flumpMovies[0];
-  flumpMovie.x = 250;
-  flumpMovie.y = 400;
+  flumpLayer.addChild(flumpMovie);
+  flumpJuggler.add(flumpMovie);
 
-  stage.addChild(flumpMovie);
-  stage.juggler.add(flumpMovie);
-
-  stage.onMouseClick.listen((me) {
-
-    stage.removeChild(flumpMovie);
-    stage.juggler.remove(flumpMovie);
-
+  stage.onMouseClick.listen((_) {
+    flumpLayer.removeChildren();
+    flumpJuggler.remove(flumpMovie);
     flumpMovieIndex = (flumpMovieIndex + 1) % flumpMovies.length;
     flumpMovie = flumpMovies[flumpMovieIndex];
-    flumpMovie.x = 250;
-    flumpMovie.y = 400;
-
-    stage.addChild(flumpMovie);
-    stage.juggler.add(flumpMovie);
-
+    flumpLayer.addChild(flumpMovie);
+    flumpJuggler.add(flumpMovie);
   });
 }
-
-

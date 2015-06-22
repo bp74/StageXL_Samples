@@ -20,7 +20,7 @@ class FlowerField extends Sprite {
         ..y = 64 + random.nextInt(500 - 128)
         ..addTo(this);
 
-      stage.juggler.tween(bitmap, 600, TransitionFunction.linear)
+      stage.juggler.addTween(bitmap, 600, Transition.linear)
         ..animate.rotation.to(math.PI * 60.0);
     }
   }

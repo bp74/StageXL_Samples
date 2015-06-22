@@ -87,8 +87,7 @@ class Menu extends GameComponent implements Animatable {
       if (value > 1) value = 1;
       _timeProgress = value;
 
-      var ratio = (255 * _timeProgress).round().toInt();
-
+      //var ratio = (255 * _timeProgress).round().toInt();
       //var mat:Matrix = new Matrix();
       //mat.createGradientBox( 314, 5, 0, 140, 280 );
       //this.graphics.beginFill( 0xffffff, 1 );

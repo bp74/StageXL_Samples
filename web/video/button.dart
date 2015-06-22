@@ -16,8 +16,8 @@ class Button extends Sprite {
     textFormat.leftMargin = 20;
     textFormat.rightMargin = 20;
 
-    _stateBitmap0 = new Bitmap(new BitmapData(260, 80, false, Color.LightGray));
-    _stateBitmap1 = new Bitmap(new BitmapData(260, 80, false, Color.LightGreen));
+    _stateBitmap0 = new Bitmap(new BitmapData(260, 80, Color.LightGray));
+    _stateBitmap1 = new Bitmap(new BitmapData(260, 80, Color.LightGreen));
 
     _stateBitmap0.addTo(this);
     _stateBitmap1.addTo(this);
@@ -41,7 +41,7 @@ class Button extends Sprite {
     state = !state;
 
     stage.juggler.removeTweens(_stateBitmap1);
-    stage.juggler.tween(_stateBitmap1, 0.25)
+    stage.juggler.addTween(_stateBitmap1, 0.25)
       ..animate.alpha.to(state ? 1.0 : 0.0);
 
     this.dispatchEvent(new Event(Event.CHANGE));

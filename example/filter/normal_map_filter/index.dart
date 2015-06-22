@@ -5,27 +5,27 @@ import 'package:stagexl/stagexl.dart';
 
 main() async {
 
-  BitmapData.defaultLoadOptions.webp = true;
+  // configure StageXL default options.
 
-  if(Multitouch.supportsTouchEvents) {
-    Multitouch.inputMode = MultitouchInputMode.TOUCH_POINT;
-  }
+  StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
+  StageXL.stageOptions.inputEventMode = InputEventMode.MouseAndTouch;
+  StageXL.stageOptions.backgroundColor = Color.Black;
 
-  //---------------
+  // init Stage and RenderLoop
 
   var canvas = html.querySelector('#stage');
-  var stage = new Stage(canvas, webGL: true, width:800, height: 800);
-  stage.backgroundColor = Color.Black;
-  stage.scaleMode = StageScaleMode.SHOW_ALL;
-  stage.align = StageAlign.NONE;
-
+  var stage = new Stage(canvas, width: 800, height: 800);
   var renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
+
+  // load resources
 
   var resourceManager = new ResourceManager();
   resourceManager.addBitmapData("guy_pixels", "images/character-with-si-logo.png");
   resourceManager.addBitmapData("guy_normal", "images/character-with-si-logo_n.png");
   await resourceManager.load();
+
+  // add TextField with SpriteIlluminator information
 
   var textField = new TextField();
   textField.defaultTextFormat = new TextFormat("Arial", 22, Color.White);
@@ -37,21 +37,23 @@ main() async {
   textField.text = "Normal Map created with www.codeandweb.com/spriteilluminator";
   textField.addTo(stage);
 
-  //---------------
+  // create the NormalMapFilter with the image from the resource manager.
+
+  var guyNormalBitmapData = resourceManager.getBitmapData("guy_normal");
+  var normalMapFilter = new NormalMapFilter(guyNormalBitmapData);
+  normalMapFilter.ambientColor = 0xFFA0A060;
+  normalMapFilter.lightColor = 0xFFFFFFFF;
+  normalMapFilter.lightRadius = 3000;
+  normalMapFilter.lightX = 0;
+  normalMapFilter.lightY = 0;
+  normalMapFilter.lightZ = 100;
+
+  // create the Bitmap with the image from the resource manager
+  // and add the NormalMapFilter to the filters.
 
   var guyPixelsBitmapData = resourceManager.getBitmapData("guy_pixels");
-  var guyNormalBitmapData = resourceManager.getBitmapData("guy_normal");
-
-  var normalMapfilter = new NormalMapFilter(guyNormalBitmapData);
-  normalMapfilter.ambientColor = 0xFFA0A060;
-  normalMapfilter.lightColor = 0xFFFFFFFF;
-  normalMapfilter.lightRadius = 3000;
-  normalMapfilter.lightX = 0;
-  normalMapfilter.lightY = 0;
-  normalMapfilter.lightZ = 100;
-
   var guy = new Bitmap(guyPixelsBitmapData);
-  guy.filters.add(normalMapfilter);
+  guy.filters.add(normalMapFilter);
   guy.scaleX = guy.scaleY = 0.5;
   guy.pivotX = guyPixelsBitmapData.width / 2;
   guy.pivotY = guyPixelsBitmapData.height / 2;
@@ -59,13 +61,14 @@ main() async {
   guy.y = 400;
   guy.addTo(stage);
 
-  //---------------
+  // change the light position of the NormalMapFilter when moving
+  // the mouse or the touch point.
 
   var setLightPosition = (InputEvent e) {
     var stagePosition = new Point<num>(e.stageX, e.stageY);
     var guyPosition = guy.globalToLocal(stagePosition);
-    normalMapfilter.lightX = guyPosition.x;
-    normalMapfilter.lightY = guyPosition.y;
+    normalMapFilter.lightX = guyPosition.x;
+    normalMapFilter.lightY = guyPosition.y;
   };
 
   stage.onMouseDown.listen(setLightPosition);
@@ -73,4 +76,3 @@ main() async {
   stage.onTouchBegin.listen(setLightPosition);
   stage.onTouchMove.listen(setLightPosition);
 }
-

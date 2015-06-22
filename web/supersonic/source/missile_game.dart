@@ -200,7 +200,7 @@ class MissileGame extends Game {
 
     this.addChild( this.currentMenu );
 
-    var tween = new Tween(this.currentMenu, tweenDuration, TransitionFunction.linear);
+    var tween = new Tween(this.currentMenu, tweenDuration, Transition.linear);
     tween.animate.alpha.to(1);
     renderJuggler.add(tween);
 

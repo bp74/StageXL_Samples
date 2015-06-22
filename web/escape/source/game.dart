@@ -193,7 +193,7 @@ class Game extends Sprite {
     _infoBox.chains = chainCount;
     _infoBox.y = -210;
 
-    Tween tween = new Tween(_infoBox, 0.4, TransitionFunction.easeOutCubic);
+    Tween tween = new Tween(_infoBox, 0.4, Transition.easeOutCubic);
     tween.animate.y.to(-90);
 
     _juggler.add(tween);
@@ -210,19 +210,19 @@ class Game extends Sprite {
 
       if (_introSound != null)
       {
-        Transition transition = new Transition(1.0, 0.0, 4.0, TransitionFunction.linear);
+        Translation translation = new Translation(1.0, 0.0, 4.0, Transition.linear);
 
-        transition.onUpdate = (volume) {
+        translation.onUpdate = (volume) {
           _introSoundChannel.soundTransform.volume = volume;
           _introSoundChannel.soundTransform = _introSoundChannel.soundTransform;
         };
 
-        transition.onComplete = () {
+        translation.onComplete = () {
           _introSoundChannel.stop();
           _head.nodStop();
         };
 
-        _juggler.add(transition);
+        _juggler.add(translation);
         _introSound = null;
       }
     });
@@ -333,7 +333,7 @@ class Game extends Sprite {
       _pointsTextField.text = "$_points";
     }, 2.5);
 
-    Tween tween = new Tween(_infoBox, 0.5, TransitionFunction.easeOutCubic);
+    Tween tween = new Tween(_infoBox, 0.5, Transition.easeOutCubic);
     tween.animate.y.to(-210);
     tween.delay = 3.0;
 
@@ -372,7 +372,7 @@ class Game extends Sprite {
 
         _juggler.delayCall(() => _nextLevel(), 0.5);
 
-        Tween tween = new Tween(_infoBox, 0.5, TransitionFunction.easeOutCubic);
+        Tween tween = new Tween(_infoBox, 0.5, Transition.easeOutCubic);
         tween.animate.y.to(-210);
 
         _juggler.add(tween);
@@ -390,7 +390,7 @@ class Game extends Sprite {
 
         _juggler.delayCall(() => _gameOver(), 0.5);
 
-        Tween tween = new Tween(_infoBox, 0.5, TransitionFunction.easeOutCubic);
+        Tween tween = new Tween(_infoBox, 0.5, Transition.easeOutCubic);
         tween.animate.y.to(-210);
 
         _juggler.add(tween);
@@ -421,7 +421,7 @@ class Game extends Sprite {
     //_logger.info("onExitButtonClick");
 
     Sprite dark = new Sprite();
-    dark.addChild(new Bitmap(new BitmapData(800,600, false, 0x000000)));
+    dark.addChild(new Bitmap(new BitmapData(800, 600, Color.Black)));
     dark.alpha = 0.6;
 
     _exitLayer.addChild(dark);
@@ -470,7 +470,7 @@ class Game extends Sprite {
     _messageLayer.addChild(gameOverBox);
     _juggler.delayCall(() => _resourceManager.getSound("Laugh").play(), 0.3);
 
-    Tween tween = new Tween(gameOverBox, 0.3, TransitionFunction.easeOutCubic);
+    Tween tween = new Tween(gameOverBox, 0.3, Transition.easeOutCubic);
     tween.animate.y.to(150);
 
     _juggler.add(tween);

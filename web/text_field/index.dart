@@ -22,7 +22,7 @@ DisplayObject currentTextCached = new Sprite();
 
 void main() {
 
-  stage = new Stage(html.querySelector('#stage'), webGL: true);
+  stage = new Stage(html.querySelector('#stage'));
   stage.scaleMode = StageScaleMode.NO_SCALE;
   stage.align = StageAlign.NONE;
 
@@ -96,7 +96,7 @@ void showText(DisplayObject text) {
   text.pivotY = bounds.center.y;
   text.scaleY = text.scaleX = scale * 0.9;
 
-  stage.juggler.tween(oldTextCached, 0.5, TransitionFunction.easeInCubic)
+  stage.juggler.addTween(oldTextCached, 0.5, Transition.easeInCubic)
       ..animate.x.to(rect.right - oldTextCached.bounds.left)
       ..onComplete = () {
         oldTextCached.removeFromParent();
@@ -113,6 +113,6 @@ void showText(DisplayObject text) {
   var size = currentTextCached.bounds.align();
   currentTextCached.applyCache(size.left, size.top, size.width, size.height);
 
-  stage.juggler.tween(currentTextCached, 0.5, TransitionFunction.easeInCubic)
+  stage.juggler.addTween(currentTextCached, 0.5, Transition.easeInCubic)
       ..animate.x.to(rect.center.x);
 }
