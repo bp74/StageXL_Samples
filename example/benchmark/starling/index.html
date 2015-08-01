@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+  <title>StageXL Starling Benchmark</title>
+
+  <script src="js/stats.min.js"></script>
+  <script async type="application/dart" src="index.dart"></script>
+  <script async src="packages/browser/dart.js"></script>
+
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body class="stage-full-window">
+
+  <div id="container">
+    <canvas id="stage"></canvas>
+    <div id="stats"></div>
+    <div id="counter">0</div>
+  </div>
+
+  <script type="text/javascript">
+    var stats = new Stats();
+    stats.setMode(0); // 0: fps, 1: ms
+    stats.domElement.style.position = 'absolute';
+    stats.domElement.style.left = '0px';
+    stats.domElement.style.top = '0px';
+    document.getElementById("stats").appendChild(stats.domElement);
+  </script>
+
+</body>
+</html>
