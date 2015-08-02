@@ -54,7 +54,7 @@ Future main() async {
 
 class BenchmarkScene extends Sprite implements Animatable {
 
-  final int targetFps = 60;
+  final int targetFps = 30;
   final Random _random = new Random();
   final Sprite _container = new Sprite();
   final ResourceManager resourceManager;
