@@ -60,68 +60,78 @@ class BenchmarkScene extends Sprite implements Animatable {
   final ResourceManager resourceManager;
   final html.Element _counterElement = html.querySelector("#counter");
 
-  int _frameCount = 0;
-  int _failCount = 0;
-  num _averageFps = 0.0;
-  bool _benchmarkRunning = true;
+  num _averageFps = 60.0;
+  num _deltaToggleSign = 0;
+  int _deltaToggleCount = 0;
+
+  BitmapData bitmapData = null;
 
   BenchmarkScene(this.resourceManager) {
     this.addChild(_container);
-    _averageFps = this.targetFps;
+    this.bitmapData = resourceManager.getBitmapData("flash");
   }
 
   bool advanceTime(num time) {
 
-    _averageFps = 0.1 / time + 0.90 * _averageFps;
-    _frameCount = _frameCount + 1;
+    _averageFps = 0.05 / time + 0.95 * _averageFps;
 
-    var frameInterval = 1 + _failCount ~/ 5;
+    var children = _container.children;
+    var childCount = max(1, children.length);
+    var deltaCount = (_averageFps / targetFps - 1.0) * childCount;
+    var speedCount = min(20, pow(deltaCount.abs().ceil(), 0.25));
 
-    if (_frameCount % frameInterval == 0) {
-      if (_averageFps + 0.50 >= this.targetFps) {
-        _failCount = max(_failCount - 1, 0);
-        _addTestObjects();
-      } else {
-        _failCount = min(_failCount + 1, 40);
-        if (_failCount == 40) _benchmarkComplete();
+    // add a few bitmaps
+
+    if (deltaCount > 0) {
+      for(int i = 0; i < speedCount; i++) {
+        var bitmap = new Bitmap(bitmapData);
+        bitmap.x = _random.nextDouble() * (320 - 30) + 15;
+        bitmap.y = _random.nextDouble() * (480 - 30) + 15;
+        bitmap.rotation = _random.nextDouble() * 2.0 * PI;
+        children.add(bitmap);
       }
     }
 
-    for(var child in _container.children) {
-      child.rotation += PI / 2 * time;
+    // remove a few bitmaps
+
+    if (deltaCount < 0) {
+      speedCount = min(speedCount, children.length);
+      for(int i = 0; i < speedCount; i++) {
+        children.removeLast();
+      }
     }
 
-    return _benchmarkRunning;
-  }
+    // rotate all bitmaps
 
-  void _addTestObjects() {
+    _counterElement.text = children.length.toString();
 
-    int padding = 15;
-    int numObjects = 20 - _failCount ~/ 2;
-    var bitmapData = resourceManager.getBitmapData("flash");
-
-    for (int i = 0; i < numObjects; ++i) {
-      var bitmap = new Bitmap(bitmapData);
-      bitmap.x = padding + _random.nextDouble() * (320 - 2 * padding);
-      bitmap.y = padding + _random.nextDouble() * (480 - 2 * padding);
-      bitmap.rotation = _random.nextDouble() * 2.0 * PI;
-      _container.addChild(bitmap);
+    for(int i = 0; i < children.length; i++) {
+      children[i].rotation += PI / 2 * time;
     }
 
-    _counterElement.text = _container.numChildren.toString();
+    // check for steady state
+
+    if (_deltaToggleSign != deltaCount.sign) {
+      _deltaToggleSign = deltaCount.sign;
+      _deltaToggleCount += 1;
+    }
+
+    if (_deltaToggleCount >= 10) {
+      _container.removeFromParent();
+      _benchmarkComplete();
+      return false;
+    } else {
+      return true;
+    }
   }
 
   void _benchmarkComplete() {
 
     var numChildren = _container.numChildren;
     var targetFps = this.targetFps;
-
-    print("Benchmark complete!");
-    print("FPS: $targetFps");
-    print("Number of objects: $numChildren");
-
     var resultText = new TextField();
     var textFormat = new TextFormat("Arial, Helvetica", 30, Color.Black);
+
     resultText.width = 240;
     resultText.height = 200;
     resultText.text = "Result:\n$numChildren objects\nwith $targetFps fps";
@@ -129,9 +139,6 @@ class BenchmarkScene extends Sprite implements Animatable {
     resultText.x = 160 -  resultText.width / 2;
     resultText.y = 240 -  resultText.height / 2;
     addChild(resultText);
-
-    _container.removeFromParent();
-    _benchmarkRunning = false;
   }
 
 }
