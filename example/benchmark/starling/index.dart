@@ -130,7 +130,7 @@ class BenchmarkScene extends Sprite implements Animatable {
     resultText.y = 240 -  resultText.height / 2;
     addChild(resultText);
 
-    _container.removeChildren();
+    _container.removeFromParent();
     _benchmarkRunning = false;
   }
 
