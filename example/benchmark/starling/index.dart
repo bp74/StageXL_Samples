@@ -121,7 +121,7 @@ class BenchmarkScene extends Sprite implements Animatable {
     print("Number of objects: $numChildren");
 
     var resultText = new TextField();
-    var textFormat = new TextFormat("Verdana, Arial", 30, Color.Black);
+    var textFormat = new TextFormat("Arial, Helvetica", 30, Color.Black);
     resultText.width = 240;
     resultText.height = 200;
     resultText.text = "Result:\n$numChildren objects\nwith $targetFps fps";
