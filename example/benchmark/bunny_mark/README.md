@@ -7,7 +7,7 @@ of this benchmark do not necessarily correspond with the performance in real
 world application since real world performance depend on many different factors.
 
 ### StageXL for Dart
-<http://www.stagexl.org/samples/bunny_bench/>
+<http://www.stagexl.org/example/benchmark/bunny_mark/>
 
 ### PixiJS
 <http://www.goodboydigital.com/pixijs/bunnymark/>
