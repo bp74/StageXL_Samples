@@ -38,7 +38,7 @@ const String defaultFont = "Russo One";
 
 void main() {
 
-  StageXL.stageOptions.renderEngine = RenderEngine.Canvas2D;
+  StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
   StageXL.stageOptions.stageScaleMode= StageScaleMode.SHOW_ALL;
   StageXL.stageOptions.stageAlign = StageAlign.NONE;
   StageXL.bitmapDataLoadOptions.webp = true;
