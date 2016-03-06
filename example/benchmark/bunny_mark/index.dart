@@ -63,7 +63,7 @@ Future main() async {
 
 //-----------------------------------------------------------------------------
 
-class BunnyView extends DisplayObjectContainer {
+class BunnyView extends BitmapContainer {
 
   List<BitmapData> bitmapDatas;
   html.Element _counterElement = html.querySelector("#counter");
