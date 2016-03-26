@@ -9,6 +9,7 @@ dependencies:
   stagexl_flump: any
   stagexl_richtextfield: any
   stagexl_spine: any
+  stagexl_gaf: any
 transformers:
 - $dart2js:
     commandLineOptions: ["--trust-type-annotations", "--trust-primitives", "--dump-info"]
