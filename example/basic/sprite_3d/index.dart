@@ -65,7 +65,7 @@ class CubeFace extends Sprite3D {
     this.addChild(icon..alignPivot());
 
     // set perspective projection to none because this Sprite3D will
-    // be inside of another Spire3D (the cube) which will define the
+    // be inside of another Sprite3D (the cube) which will define the
     // perspective projection for all its children.
     this.perspectiveProjection = new PerspectiveProjection.none();
 
