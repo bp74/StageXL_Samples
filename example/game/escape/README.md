@@ -1,6 +1,6 @@
-# Supersonic
+#Escape
 
-[Try it here](http://www.stagexl.org/samples/supersonic/ "StageXL Supersonic Sample")
+Try it here: <http://www.stagexl.org/example/game/escape>
 
 ---
 
@@ -11,8 +11,8 @@ dart-files. The StageXL library provides all the DisplayList and Sound classes
 you need to port Flash code. In the end the port of the game only took a few
 hours.
 
-**Credits to [www.funwin.com](http://www.funwin.com) for providing the
-Flash sources and the artwork.**
+**Credits to [www.funwin.com](http://www.funwin.com) for providing
+the Flash sources and the artwork.**
 
 ---
 
