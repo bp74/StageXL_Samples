@@ -1,5 +1,6 @@
 library escape;
 
+import 'dart:async';
 import 'dart:math' as math;
 import 'dart:html' as html;
 import 'package:stagexl/stagexl.dart';
@@ -24,51 +25,42 @@ part 'source/special_joker_link.dart';
 part 'source/special_wobble.dart';
 part 'source/value_counter.dart';
 
-Stage stage;
-RenderLoop renderLoop;
+Future main() async {
 
-Bitmap loadingBitmap;
-Tween loadingBitmapTween;
-TextField loadingTextField;
+  StageXL.stageOptions.stageScaleMode = StageScaleMode.SHOW_ALL;
+  StageXL.stageOptions.stageAlign = StageAlign.NONE;
+  StageXL.bitmapDataLoadOptions.webp = true;
 
-void main() {
-
-  stage = new Stage(html.querySelector('#stage'), width: 800, height: 600);
-  stage.scaleMode = StageScaleMode.SHOW_ALL;
-  stage.align = StageAlign.NONE;
-
-  renderLoop = new RenderLoop();
+  var canvas = html.querySelector('#stage');
+  var stage = new Stage(canvas, width: 800, height: 600);
+  var renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
 
-  BitmapData.defaultLoadOptions.webp = true;
-  BitmapData.load("images/Loading.png").then((bitmapData) {
+  // create loading screen
 
-    loadingBitmap = new Bitmap(bitmapData);
-    loadingBitmap.pivotX = 20;
-    loadingBitmap.pivotY = 20;
-    loadingBitmap.x = 400;
-    loadingBitmap.y = 270;
-    stage.addChild(loadingBitmap);
+  var loadingBitmapData = await BitmapData.load("images/Loading.png");
+  var loadingBitmap = new Bitmap(loadingBitmapData);
+  loadingBitmap.pivotX = 20;
+  loadingBitmap.pivotY = 20;
+  loadingBitmap.x = 400;
+  loadingBitmap.y = 270;
+  stage.addChild(loadingBitmap);
 
-    loadingTextField = new TextField();
-    loadingTextField.defaultTextFormat = new TextFormat("Arial", 20, 0xA0A0A0, bold:true);;
-    loadingTextField.width = 240;
-    loadingTextField.height = 40;
-    loadingTextField.text = "... loading ...";
-    loadingTextField.x = 400 - loadingTextField.textWidth / 2;
-    loadingTextField.y = 320;
-    loadingTextField.mouseEnabled = false;
-    stage.addChild(loadingTextField);
+  var loadingTextField = new TextField();
+  loadingTextField.defaultTextFormat = new TextFormat("Arial", 20, 0xA0A0A0, bold:true);
+  loadingTextField.width = 240;
+  loadingTextField.height = 40;
+  loadingTextField.text = "... loading ...";
+  loadingTextField.x = 400 - loadingTextField.textWidth / 2;
+  loadingTextField.y = 320;
+  loadingTextField.mouseEnabled = false;
+  stage.addChild(loadingTextField);
 
-    loadingBitmapTween = new Tween(loadingBitmap, 100, Transition.linear);
-    loadingBitmapTween.animate.rotation.to(100.0 * 2.0 * math.PI);
-    stage.juggler.add(loadingBitmapTween);
+  var loadingBitmapTween = new Tween(loadingBitmap, 100, Transition.linear);
+  loadingBitmapTween.animate.rotation.to(100.0 * 2.0 * math.PI);
+  stage.juggler.add(loadingBitmapTween);
 
-    loadResources();
-  });
-}
-
-void loadResources() {
+  // load resources
 
   var resourceManager = new ResourceManager();
 
@@ -87,11 +79,11 @@ void loadResources() {
   resourceManager.addBitmapData("ShuffleButtonPressed", "images/ShuffleButtonPressed.png");
   resourceManager.addBitmapData("TimeGauge", "images/TimeGauge.png");
 
-  resourceManager.addTextureAtlas("Alarm", "images/AlarmTextureAtlas.json", TextureAtlasFormat.JSONARRAY);
-  resourceManager.addTextureAtlas("Head", "images/HeadTextureAtlas.json", TextureAtlasFormat.JSONARRAY);
-  resourceManager.addTextureAtlas("Elements", "images/ElementsTextureAtlas.json", TextureAtlasFormat.JSONARRAY);
-  resourceManager.addTextureAtlas("Levelup", "images/LevelupTextureAtlas.json", TextureAtlasFormat.JSONARRAY);
-  resourceManager.addTextureAtlas("Locks", "images/LocksTextureAtlas.json", TextureAtlasFormat.JSONARRAY);
+  resourceManager.addTextureAtlas("Alarm", "images/AlarmTextureAtlas.json");
+  resourceManager.addTextureAtlas("Head", "images/HeadTextureAtlas.json");
+  resourceManager.addTextureAtlas("Elements", "images/ElementsTextureAtlas.json");
+  resourceManager.addTextureAtlas("Levelup", "images/LevelupTextureAtlas.json");
+  resourceManager.addTextureAtlas("Locks", "images/LocksTextureAtlas.json");
 
   resourceManager.addSound("BonusAllUnlock", "sounds/BonusAllUnlock.mp3");
   resourceManager.addSound("BonusUniversal", "sounds/BonusUniversal.mp3");
@@ -125,23 +117,16 @@ void loadResources() {
   resourceManager.addText("GENtimeup", "Sorry! Your time is up.");
   resourceManager.addText("GENgameover", "Game Over");
 
-  resourceManager.load().then((res) {
+  // wait for resource manager, then start the game
 
-    stage.removeChild(loadingBitmap);
-    stage.removeChild(loadingTextField);
-    stage.juggler.remove(loadingBitmapTween);
+  await resourceManager.load();
 
-    var game = new Game(resourceManager, stage.juggler);
-    stage.addChild(new Bitmap(resourceManager.getBitmapData("Background")));
-    stage.addChild(game);
-    game.start();
+  stage.removeChild(loadingBitmap);
+  stage.removeChild(loadingTextField);
+  stage.juggler.remove(loadingBitmapTween);
 
-  }).catchError((error) {
-
-    for(var resource in resourceManager.failedResources) {
-      print("Loading resouce failed: ${resource.kind}.${resource.name} - ${resource.error}");
-    }
-  });
+  var game = new Game(resourceManager, stage.juggler);
+  stage.addChild(new Bitmap(resourceManager.getBitmapData("Background")));
+  stage.addChild(game);
+  game.start();
 }
-
-
