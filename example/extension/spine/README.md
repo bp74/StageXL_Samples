@@ -1,16 +1,17 @@
 #Spine Runtime
 
-[Try it here](http://www.stagexl.org/samples/spine/ "Spine Sample")
+Try it here:  
+<http://www.stagexl.org/example/extension/spine>
 
 ### More samples
 
-* Raptor: <http://www.stagexl.org/show/spine/raptor/example.html>
-* SpineBoy: <http://www.stagexl.org/show/spine/spineboy/example.html>
-* Goblins: <http://www.stagexl.org/show/spine/goblins-ffd/example.html>
-* PowerUp: <http://www.stagexl.org/show/spine/powerup/example.html>
+* <http://www.stagexl.org/show/spine/raptor/example.html>
+* <http://www.stagexl.org/show/spine/spineboy/example.html>
+* <http://www.stagexl.org/show/spine/goblins-ffd/example.html>
+* <http://www.stagexl.org/show/spine/powerup/example.html>
 
 ### Get Spine Runtime
 
-* GitHub: <https://github.com/bp74/StageXL_Spine>  
-* Pub: <https://pub.dartlang.org/packages/stagexl_spine>
+* <https://github.com/bp74/StageXL_Spine>  
+* <https://pub.dartlang.org/packages/stagexl_spine>
  
