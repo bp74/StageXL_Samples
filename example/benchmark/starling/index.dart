@@ -2,7 +2,7 @@ library benchmark_startling;
 
 /// Implementation of the Starling Benchmark
 ///
-/// StageXL: http://www.stagexl.org/show/spine/bunny_bench/
+/// StageXL: http://www.stagexl.org/example/benchmark/starling
 /// Starling: http://gamua.com/starling/demo/
 /// OpenFL: http://vroad.github.io/starling-samples/
 
