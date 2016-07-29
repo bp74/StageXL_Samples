@@ -36,22 +36,22 @@ Future main() async {
 
   var bitmapFont = await BitmapFont.load(fontUrl, BitmapFontFormat.FNT);
 
-  // create BitmapText and add it to the Stage
+  // create BitmapContainerText and add it to the Stage
 
-  var bitmapText = new BitmapText(bitmapFont);
-  bitmapText.x = 50;
-  bitmapText.y = 50;
-  bitmapText.text = text;
-  bitmapText.addTo(stage);
+  var bitmapContainerText = new BitmapContainerText(bitmapFont);
+  bitmapContainerText.x = 50;
+  bitmapContainerText.y = 50;
+  bitmapContainerText.text = text;
+  bitmapContainerText.addTo(stage);
 
-  animateBitmapText(bitmapText, stage.juggler);
+  animateBitmapText(bitmapContainerText, stage.juggler);
 }
 
 //-----------------------------------------------------------------------------
 
-Future animateBitmapText(BitmapText bitmapText, Juggler juggler) async {
+Future animateBitmapText(BitmapContainerText bct, Juggler juggler) async {
 
-  for (var bitmap in bitmapText.children) {
+  for (var bitmap in bct.children) {
     bitmap.pivotX = bitmap.width / 2;
     bitmap.pivotY = bitmap.height / 2;
     bitmap.x += bitmap.pivotX;
@@ -59,7 +59,7 @@ Future animateBitmapText(BitmapText bitmapText, Juggler juggler) async {
   }
 
   await for (var elapsedTime in juggler.onElapsedTimeChange) {
-    for (var bitmap in bitmapText.children) {
+    for (var bitmap in bct.children) {
       bitmap.rotation = 0.2 * math.sin(elapsedTime * 8 + bitmap.x);
     }
   }
