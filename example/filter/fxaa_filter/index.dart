@@ -49,11 +49,11 @@ main() async {
   shape.graphics.rectRound(-150, -150, 300, 300, 40, 40);
   shape.graphics.strokeColor(Color.Blue, 30);
 
-  for (int i = -5; i <= 5; i++) {
+  for (int i = -7; i <= 7; i++) {
     shape.graphics.beginPath();
     shape.graphics.moveTo(-100, i * 15);
     shape.graphics.lineTo( 100, i * 15);
-    shape.graphics.strokeColor(Color.Red, 4);
+    shape.graphics.strokeColor(Color.Red, 3 + i.abs());
   }
 
   // toggle the FxaaFilter on every touch
