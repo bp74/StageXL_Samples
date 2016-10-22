@@ -1,0 +1,135 @@
+{
+  "urls": [
+    "notes.ac3",
+    "notes.mp3",
+    "notes.m4a",
+    "notes.ogg"
+  ],
+  "sprite": {
+    "Note1": [
+      0,
+      1,
+      false
+    ],
+    "Note2": [
+      1.25,
+      1,
+      false
+    ],
+    "Note3": [
+      2.5,
+      1,
+      false
+    ],
+    "Note4": [
+      3.75,
+      1,
+      false
+    ],
+    "Note5": [
+      5,
+      1,
+      false
+    ],
+    "Note6": [
+      6.25,
+      1,
+      false
+    ],
+    "Note7": [
+      7.5,
+      1,
+      false
+    ],
+    "Note8": [
+      8.75,
+      1,
+      false
+    ],
+    "Note9": [
+      10,
+      1,
+      false
+    ],
+    "Note10": [
+      11.25,
+      1,
+      false
+    ],
+    "Note11": [
+      12.5,
+      1,
+      false
+    ],
+    "Note12": [
+      13.75,
+      1,
+      false
+    ],
+    "Note13": [
+      15,
+      1,
+      false
+    ],
+    "Note14": [
+      16.25,
+      1,
+      false
+    ],
+    "Note15": [
+      17.5,
+      1,
+      false
+    ],
+    "Note16": [
+      18.75,
+      1,
+      false
+    ],
+    "Note17": [
+      20,
+      1,
+      false
+    ],
+    "Note18": [
+      21.25,
+      1,
+      false
+    ],
+    "Note19": [
+      22.5,
+      1,
+      false
+    ],
+    "Note20": [
+      23.75,
+      1,
+      false
+    ],
+    "Note21": [
+      25,
+      1,
+      false
+    ],
+    "Note22": [
+      26.25,
+      1,
+      false
+    ],
+    "Note23": [
+      27.5,
+      1,
+      false
+    ],
+    "Note24": [
+      28.75,
+      1,
+      false
+    ],
+    "Note25": [
+      30,
+      1,
+      false
+    ]
+  }
+}

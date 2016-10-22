@@ -2,30 +2,31 @@ part of piano;
 
 class Piano extends DisplayObjectContainer {
 
-  final List<String> _pianoNotes = [
+  final List<String> noteNames = [
     'C3', 'C3#', 'D3', 'D3#', 'E3', 'F3', 'F3#', 'G3', 'G3#', 'A3', 'A3#', 'B3',
-    'C4', 'C4#', 'D4', 'D4#', 'E4', 'F4', 'F4#', 'G4', 'G4#', 'A4', 'A4#', 'B4', 'C5'];
+    'C4', 'C4#', 'D4', 'D4#', 'E4', 'F4', 'F4#', 'G4', 'G4#', 'A4', 'A4#', 'B4',
+    'C5'];
 
   Map<String, PianoKey> _pianoKeys = new Map<String, PianoKey>();
   Bitmap _hintFinger;
 
   Piano() {
 
-    for(int n = 0, x = 0; n < _pianoNotes.length; n++) {
+    for(int n = 0, x = 0; n < noteNames.length; n++) {
 
       // all piano key to this DisplayObjectContainer
 
-      var sound = resourceManager.getSound('Note${n+1}');
-      var pianoNote = _pianoNotes[n];
-      var pianoKey = new PianoKey(pianoNote, sound);
+      var noteName = noteNames[n];
+      var soundName = "Note${n+1}";
+      var pianoKey = new PianoKey(noteName, soundName);
 
       pianoKey.on(PianoEvent.NOTE_PLAYED).listen((event) {
         this.dispatchEvent(event);
       });
 
-      _pianoKeys[pianoNote] = pianoKey;
+      _pianoKeys[noteName] = pianoKey;
 
-      if (pianoNote.endsWith('#')) {
+      if (noteName.endsWith('#')) {
         pianoKey.x = x - 16;
         pianoKey.y = 35;
         addChild(pianoKey);

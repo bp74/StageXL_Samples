@@ -2,22 +2,22 @@ part of piano;
 
 class PianoKey extends Sprite {
 
-  final String note;
-  final Sound sound;
+  final String noteName;
+  final String soundName;
 
-  PianoKey(this.note, this.sound) {
+  PianoKey(this.noteName, this.soundName) {
 
     String key;
 
-    if (note.endsWith('#')) {
+    if (noteName.endsWith('#')) {
       key = 'KeyBlack';
-    } else if (note.startsWith('C5')) {
+    } else if (noteName.startsWith('C5')) {
       key = 'KeyWhite0';
-    } else if (note.startsWith('C') || note.startsWith('F')) {
+    } else if (noteName.startsWith('C') || noteName.startsWith('F')) {
       key = 'KeyWhite1';
-    } else if (note.startsWith('D') || note.startsWith('G') || note.startsWith('A')) {
+    } else if (noteName.startsWith('D') || noteName.startsWith('G') || noteName.startsWith('A')) {
       key = 'KeyWhite2';
-    } else if (note.startsWith('E') || note.startsWith('B')) {
+    } else if (noteName.startsWith('E') || noteName.startsWith('B')) {
       key = 'KeyWhite3';
     }
 
@@ -27,12 +27,12 @@ class PianoKey extends Sprite {
     this.addChild(bitmap);
 
     // add the note name to this Sprite
-    var textColor = note.endsWith('#') ? Color.White : Color.Black;
+    var textColor = noteName.endsWith('#') ? Color.White : Color.Black;
     var textFormat = new TextFormat('Helvetica,Arial', 10, textColor, align:TextFormatAlign.CENTER);
 
     var textField = new TextField();
     textField.defaultTextFormat = textFormat;
-    textField.text = note;
+    textField.text = noteName;
     textField.width = bitmapData.width;
     textField.height = 20;
     textField.mouseEnabled = false;
@@ -49,9 +49,15 @@ class PianoKey extends Sprite {
 
   _keyDown(MouseEvent me) {
     if (me.buttonDown) {
-      this.sound.play();
       this.alpha = 0.7;
-      this.dispatchEvent(new PianoEvent(this.note));
+      this.dispatchEvent(new PianoEvent(this.noteName));
+      if (resourceManager.containsSoundSprite("Notes")) {
+        var soundSprite = resourceManager.getSoundSprite("Notes");
+        soundSprite.getSegment(this.soundName).play();
+      } else {
+        var sound = resourceManager.getSound(this.soundName);
+        sound.play();
+      }
     }
   }
 
