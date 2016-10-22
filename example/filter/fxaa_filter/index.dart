@@ -62,7 +62,7 @@ main() async {
     if (shape.filters.length > 0) {
       shape.filters.clear();
     } else {
-      shape.filters = [new FxaaFilter()];
+      shape.filters.add(new FxaaFilter());
     }
   };
 
