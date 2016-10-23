@@ -33,10 +33,6 @@ main() async {
   // create a new Shape
 
   var shape = new Shape();
-  shape.addTo(stage);
-  shape.x = 400;
-  shape.y = 400;
-
   shape.graphics.beginPath();
   shape.graphics.rect(-210, -210, 420, 420);
   shape.graphics.fillColor(Color.Black);
@@ -58,18 +54,25 @@ main() async {
 
   // toggle the FxaaFilter on every touch
 
+  var container = new Sprite();
+  container.x = 400;
+  container.y = 400;
+  container.addChild(shape);
+  container.addTo(stage);
+
   var toggleFxaaFilter = (InputEvent e) {
-    if (shape.filters.length > 0) {
-      shape.filters.clear();
+    if (container.filters.length > 0) {
+      container.filters.clear();
     } else {
-      shape.filters.add(new FxaaFilter());
+      container.filters.add(new FxaaFilter());
     }
   };
 
   stage.onMouseClick.listen(toggleFxaaFilter);
   stage.onTouchTap.listen(toggleFxaaFilter);
 
-  // rotate the shape
+  // rotate the shape (not the container) to see the filter in action,
+  // but not the linear filtering of the rendered texture.
 
   await for (var time in stage.juggler.onElapsedTimeChange) {
     shape.rotation = time * 0.05;
