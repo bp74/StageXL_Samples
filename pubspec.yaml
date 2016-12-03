@@ -14,10 +14,6 @@ dependencies:
   stagexl_spine: any
   stagexl_gaf: any
 
-dependency_overrides:
-  stagexl:
-    path: C:\GitHub\bp74\StageXL
-
 transformers:
 - dart_to_js_script_rewriter
 - $dart2js:
