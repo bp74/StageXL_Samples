@@ -20,10 +20,15 @@ main() async {
   // load resources
 
   var resourceManager = new ResourceManager();
-  resourceManager.addBitmapData("flower1", "images/flower1.png");
-  resourceManager.addBitmapData("flower2", "images/flower2.png");
-  resourceManager.addBitmapData("flower3", "images/flower3.png");
+  resourceManager.addBitmapData("flowers", "images/flowers.png");
   await resourceManager.load();
+
+  var flowers = resourceManager.getBitmapData("flowers");
+  var flowersList = <BitmapData>[
+    new BitmapData.fromBitmapData(flowers, new Rectangle(0 * 128, 0, 128, 128)),
+    new BitmapData.fromBitmapData(flowers, new Rectangle(1 * 128, 0, 128, 128)),
+    new BitmapData.fromBitmapData(flowers, new Rectangle(2 * 128, 0, 128, 128)),
+  ];
 
   // Create 100 random flowers around the center of the Stage
 
@@ -31,9 +36,7 @@ main() async {
 
   for (var i = 0; i < 100; i++) {
 
-    var f = 1 + random.nextInt(3);
-    var bitmapData = resourceManager.getBitmapData("flower$f");
-
+    var bitmapData = flowersList[random.nextInt(3)];
     var bitmap = new Bitmap(bitmapData);
     bitmap.pivotX = 64;
     bitmap.pivotY = 64;
