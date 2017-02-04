@@ -2,13 +2,6 @@ import 'dart:async';
 import 'dart:html' as html;
 import 'dart:math' as math;
 import 'package:stagexl/stagexl.dart';
-import 'package:stagexl_bitmapfont/stagexl_bitmapfont.dart';
-
-String text = """
-Hello World!
-Grumpy wizards make
-toxic brew for the
-evil Queen and Jack.""";
 
 Future main() async {
 
