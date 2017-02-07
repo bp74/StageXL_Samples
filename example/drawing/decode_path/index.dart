@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:html' as html;
-import 'dart:math' as math;
 import 'package:stagexl/stagexl.dart';
 
 Future main() async {

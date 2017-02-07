@@ -26,7 +26,7 @@ Future main() async {
 
   // run the animation controlled by the juggler
 
-  await for (var counter in juggler.interval(delay).take(666)) {
+  await for (var _ in juggler.interval(delay).take(666)) {
 
     var rect = stage.contentRectangle;
     var hue = random.nextDouble() * 2.0 - 1.0;
