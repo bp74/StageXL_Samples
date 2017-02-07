@@ -74,38 +74,38 @@ class Segment {
 
   Segment enlarge(num left, num right) {
 
-    var tmp_ps, tmp_pe, tmp_dir;
+    var tmpPs, tmpPe, tmpDir;
 
-    tmp_ps = _ps.clone();
-    tmp_pe = _pe.clone();
-    tmp_dir = _dir.clone();
+    tmpPs = _ps.clone();
+    tmpPe = _pe.clone();
+    tmpDir = _dir.clone();
 
-    tmp_dir.length = right;
-    tmp_pe = _pe.add(tmp_dir);
+    tmpDir.length = right;
+    tmpPe = _pe.add(tmpDir);
 
-    tmp_dir.length = -left;
-    tmp_ps = _ps.add(tmp_dir);
+    tmpDir.length = -left;
+    tmpPs = _ps.add(tmpDir);
 
-    return new Segment(tmp_ps, tmp_pe);
+    return new Segment(tmpPs, tmpPe);
   }
 
   //-----------------------------------------------------------------------------------------------
 
   Segment rotate(num rotation, [Vector2D rotPoint]) {
 
-    var rel_ps, rel_pe, ps, pe;
+    var relPs, relPe, ps, pe;
 
     if (rotPoint == null) {
       ps = this.ps;
     } else {
-      rel_ps = _ps.subtract(rotPoint);
-      rel_ps.angleRad += rotation;
-      ps = rotPoint.add(rel_ps);
+      relPs = _ps.subtract(rotPoint);
+      relPs.angleRad += rotation;
+      ps = rotPoint.add(relPs);
     }
 
-    rel_pe = this.pe.subtract(rotPoint);
-    rel_pe.angleRad += rotation;
-    pe = rotPoint.add(rel_pe);
+    relPe = this.pe.subtract(rotPoint);
+    relPe.angleRad += rotation;
+    pe = rotPoint.add(relPe);
 
     return new Segment(ps, pe);
   }

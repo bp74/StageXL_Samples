@@ -24,10 +24,10 @@ class Vector3D {
     return new Vector3D( x, y, z );
   }
 
-  void copy(Vector3D p_oVector3D) {
-    x = p_oVector3D.x;
-    y = p_oVector3D.y;
-    z = p_oVector3D.z;
+  void copy(Vector3D p) {
+    x = p.x;
+    y = p.y;
+    z = p.z;
   }
 
   num getNorm() {
@@ -113,13 +113,13 @@ class Vector3D {
       var sin2 = 1 - (ncos * ncos);
 
       if (sin2 < 0)
-        sin2 = 0;
+        sin2 = 0.0;
 
       return math.atan2(math.sqrt(sin2), ncos);
     }
   }
 
-  bool equals(Vector3D p_Vector3D) {
-    return (p_Vector3D.x == x && p_Vector3D.y == y && p_Vector3D.z == z);
+  bool equals(Vector3D p) {
+    return (p.x == x && p.y == y && p.z == z);
   }
 }

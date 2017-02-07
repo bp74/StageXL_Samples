@@ -11,8 +11,6 @@ class AbortGameMenu extends Menu {
   int buttonBorderBottom = 40;
   int buttonBorderH = 30;
 
-  String fontName;
-
   AbortGameMenu(Game game, [String fontName = defaultFont]):super(game, true, fontName) {
     this.fontName = fontName;
 

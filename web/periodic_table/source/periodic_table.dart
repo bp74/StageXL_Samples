@@ -5,7 +5,7 @@ class PeriodicTable extends DisplayObjectContainer {
   Map elements;
   Map table;
 
-  DisplayObject _detail = null;
+  DisplayObject _detail;
 
   PeriodicTable(this.table, this.elements) {
     _addElementButtons();

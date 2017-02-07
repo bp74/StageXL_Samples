@@ -2,21 +2,21 @@ part of supersonic;
 
 class MissileGameEngine extends GameComponent {
 
-  static num MIN_Z = 0.025;
-  static num MAX_Z = 1.0;
-  static num Z_POWER = 1.0;
+  static final num MIN_Z = 0.025;
+  static final num MAX_Z = 1.0;
+  static final num Z_POWER = 1.0;
 
-  static int ASSET_SIDELENGTH = 600;
+  static final int ASSET_SIDELENGTH = 600;
 
-  static int GAME_WIDTH = 800;
-  static int GAME_HEIGHT = 600;
-  static int GAME_WIDTH_HALF = 400;
-  static int GAME_HEIGHT_HALF = 300;
+  static final int GAME_WIDTH = 800;
+  static final int GAME_HEIGHT = 600;
+  static final int GAME_WIDTH_HALF = 400;
+  static final int GAME_HEIGHT_HALF = 300;
 
-  static num GAME_NEAREST_RADIUS = math.sqrt( GAME_WIDTH * GAME_WIDTH + GAME_HEIGHT * GAME_HEIGHT);
-  static num ASSET_SCALE = (GAME_NEAREST_RADIUS * 2 / ASSET_SIDELENGTH);
+  static final num GAME_NEAREST_RADIUS = math.sqrt( GAME_WIDTH * GAME_WIDTH + GAME_HEIGHT * GAME_HEIGHT);
+  static final num ASSET_SCALE = (GAME_NEAREST_RADIUS * 2 / ASSET_SIDELENGTH);
 
-  static int GAME_NGON_CORNERS = 6;
+  static final int GAME_NGON_CORNERS = 6;
 
   //----------------------------------------
 
@@ -307,7 +307,7 @@ class MissileGameEngine extends GameComponent {
     var count= 0;
     for (var i = 0; i < pipeObjectsNum; i++) {
 
-      var pob = null;
+      PipeObject pob;
 
       if ( i == pipeObjectsNum-1 ) {
         //create finish-object here ...

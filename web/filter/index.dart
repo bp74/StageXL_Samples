@@ -99,7 +99,7 @@ void onEnterFrame(EnterFrameEvent e) {
   Map config = JSON.decode(context['filterConfig']);
   if  (config.keys.length == 0) return;
 
-  List filters = [];
+  var filters = <BitmapFilter>[];
   totalTime += e.passedTime;
 
   var colorMatrixFilterConfig = config['colorMatrixFilter'];
@@ -116,7 +116,7 @@ void onEnterFrame(EnterFrameEvent e) {
 
   var alphaMaskFilterConfig = config['alphaMaskFilter'];
   if (alphaMaskFilterConfig['enabled']) {
-    var bitmapData = null;
+    BitmapData bitmapData;
     switch(alphaMaskFilterConfig['mask']) {
       case 'apple': bitmapData = resourceManager.getBitmapData('apple'); break;
       case 'butterfly': bitmapData = resourceManager.getBitmapData('butterfly'); break;
@@ -132,7 +132,7 @@ void onEnterFrame(EnterFrameEvent e) {
 
   var displacementMapFilter = config['displacementMapFilter'];
   if (displacementMapFilter['enabled']) {
-    var bitmapData = null;
+    BitmapData bitmapData;
     var transform = new Matrix.fromIdentity();
     num scaleX = 16, scaleY = 16;
 
