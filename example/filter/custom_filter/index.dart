@@ -48,7 +48,6 @@ Future main() async {
   await for(var time in stage.juggler.onElapsedTimeChange) {
     filter.matrix.identity();
     filter.matrix.translate(-200, -200);
-    filter.matrix.rotate(time);
     filter.matrix.translate(math.sin(time) * 100, math.cos(time) * 100);
     filter.matrix.translate(256, 256);
   }
