@@ -46,8 +46,10 @@ Future main() async {
 
   // animate the alpha mask of the filter
   await for(var time in stage.juggler.onElapsedTimeChange) {
+    var scale = 1.0 + 0.2 * math.sin(time * 2.7);
     filter.matrix.identity();
     filter.matrix.translate(-200, -200);
+    filter.matrix.scale(scale, scale);
     filter.matrix.translate(math.sin(time) * 100, math.cos(time) * 100);
     filter.matrix.translate(256, 256);
   }
