@@ -6,7 +6,6 @@
 ///
 
 import 'dart:async';
-import 'dart:js';
 import 'dart:html' as html;
 import 'dart:math' hide Point, Rectangle;
 import 'package:stagexl/stagexl.dart';
@@ -56,9 +55,15 @@ Future main() async {
   stage.onTouchBegin.listen((me) => bunnyView.startAdding());
   stage.onTouchEnd.listen((me) => bunnyView.stopAdding());
 
-  var stats = context['stats'];
-  stage.onEnterFrame.listen((e) => stats.callMethod("begin"));
-  stage.onExitFrame.listen((e) => stats.callMethod("end"));
+  // show and update the stage console
+
+  stage.console.visible = true;
+  stage.console.alpha = 0.75;
+  stage.console.onUpdate.listen((e) {
+    var counter = bunnyView.numChildren;
+    stage.console.print("---------------");
+    stage.console.print("BUNNIES${counter.toString().padLeft(8)}");
+  });
 }
 
 //-----------------------------------------------------------------------------
@@ -66,14 +71,12 @@ Future main() async {
 class BunnyView extends BitmapContainer {
 
   List<BitmapData> bitmapDatas;
-  html.Element _counterElement = html.querySelector("#counter");
   bool _adding = false;
   int _bunnyIndex = 0;
 
   BunnyView(this.bitmapDatas) {
     _addBunny();
     _addBunny();
-    _updateCounter();
     this.onEnterFrame.listen(_onEnterFrame);
   }
 
@@ -96,17 +99,12 @@ class BunnyView extends BitmapContainer {
     bunny.addTo(this);
   }
 
-  void _updateCounter() {
-    _counterElement.text = "${this.numChildren} BUNNIES";
-  }
-
   void _onEnterFrame(EnterFrameEvent e) {
 
     if (_adding) {
       for (int i = 0; i < 50; i++) {
         _addBunny();
       }
-      _updateCounter();
     }
 
     // This is very benchmark specific. A real application

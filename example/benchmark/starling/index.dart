@@ -6,7 +6,6 @@ library benchmark_startling;
 /// Starling: http://gamua.com/starling/demo/
 /// OpenFL: http://vroad.github.io/starling-samples/
 
-import 'dart:js';
 import 'dart:async';
 import 'dart:html' as html;
 import 'dart:math' hide Point, Rectangle;
@@ -49,9 +48,13 @@ Future main() async {
   stage.addChild(benchmarkScene);
   stage.juggler.add(benchmarkScene);
 
-  // update fps display
+  // show and update the stage console
 
-  var stats = context['stats'];
-  stage.onEnterFrame.listen((e) => stats.callMethod("begin"));
-  stage.onExitFrame.listen((e) => stats.callMethod("end"));
+  stage.console.visible = true;
+  stage.console.alpha = 0.75;
+  stage.console.onUpdate.listen((e) {
+    var counter = benchmarkScene.counter;
+    stage.console.print("---------------");
+    stage.console.print("SPRITES${counter.toString().padLeft(8)}");
+  });
 }

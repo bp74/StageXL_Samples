@@ -11,31 +11,17 @@
     <title>StageXL Bunnymark</title>
 
     <link rel="stylesheet" href="index.css">
-    <script src="js/stats.min.js"></script>
     <script defer src="index.dart" type="application/dart"></script>
     <script defer src="packages/browser/dart.js"></script>
 </head>
 
 <body class="stage-full-window">
-
-<div id="container">
-    <canvas id="stage"></canvas>
-    <div id="stats"></div>
-    <div id="counter">0 BUNNIES</div>
-    <img id="clickImage" src="images/click.png">
-    <a id="logoLink" href="http://www.stagexl.org/" target="blank">
-        <img src="images/logo.png">
-    </a>
-</div>
-
-<script type="text/javascript">
-    var stats = new Stats();
-    stats.setMode(0); // 0: fps, 1: ms
-    stats.domElement.style.position = 'absolute';
-    stats.domElement.style.left = '0px';
-    stats.domElement.style.top = '0px';
-    document.getElementById("stats").appendChild(stats.domElement);
-</script>
-
+    <div id="container">
+        <canvas id="stage"></canvas>
+        <img id="clickImage" src="images/click.png">
+        <a id="logoLink" href="http://www.stagexl.org/" target="blank">
+            <img src="images/logo.png">
+        </a>
+    </div>
 </body>
 </html>

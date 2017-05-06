@@ -15,6 +15,8 @@ Future main() async {
   var stage = new Stage(canvas, width:480, height: 600);
   var renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
+  stage.console.visible = true;
+  stage.console.alpha = 0.75;
 
   // load "Spineboy" skeleton resources
 

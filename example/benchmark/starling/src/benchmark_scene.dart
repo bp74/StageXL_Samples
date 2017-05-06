@@ -12,7 +12,6 @@ class BenchmarkScene extends Sprite implements Animatable {
 
   final Random _random = new Random();
   final BitmapContainer _container = new BitmapContainer();
-  final html.Element _counterElement = html.querySelector("#counter");
 
   num _averageFrameRate = 60.0;
   num _deltaToggleSign = 0;
@@ -23,6 +22,8 @@ class BenchmarkScene extends Sprite implements Animatable {
     _container.y = 480 / 2;
     _container.addTo(this);
   }
+
+  int get counter => _container.children.length;
 
   bool advanceTime(num time) {
 
@@ -65,8 +66,6 @@ class BenchmarkScene extends Sprite implements Animatable {
     }
 
     // check for steady state
-
-    _counterElement.text = children.length.toString();
 
     if (_deltaToggleSign != deltaCount.sign) {
       _deltaToggleSign = deltaCount.sign;

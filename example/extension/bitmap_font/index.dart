@@ -24,6 +24,8 @@ Future main() async {
   var stage = new Stage(canvas, width: 800, height: 400);
   var renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
+  stage.console.visible = true;
+  stage.console.alpha = 0.75;
 
   // load BitmapFont
 
