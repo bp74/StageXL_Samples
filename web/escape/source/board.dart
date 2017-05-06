@@ -1,6 +1,6 @@
 part of escape;
 
-class Board extends Sprite {
+class Board extends ViewportContainer {
 
                       // LEVEL |  1 |  2 |  3 |  4 |  5 |  6 |  7 | ++
                       //-------|------------------------------------------
@@ -85,7 +85,8 @@ class Board extends Sprite {
 
     ValueCounter completeCounter = new ValueCounter();
 
-    this.mask = new Mask.rectangle(0.0, 0.0, 500.0, 500.0);
+    //this.mask = new Mask.rectangle(0.0, 0.0, 500.0, 500.0);
+    this.viewport = new Rectangle(0, 0, 500, 500);
 
     for(int x = 0; x < 10; x++) {
       for(int y = 0; y < 10; y++) {
@@ -109,7 +110,8 @@ class Board extends Sprite {
             _updateLinks();
             _animationRunning = false;
             _mouseBuffer.clear();
-            this.mask = null;
+            //this.mask = null;
+            this.viewport = null;
           }
         };
 
@@ -143,7 +145,8 @@ class Board extends Sprite {
 
   void dropFields() {
 
-    this.mask = new Mask.rectangle(0.0, 0.0, 500.0, 500.0);
+    //this.mask = new Mask.rectangle(0.0, 0.0, 500.0, 500.0);
+    this.viewport = new Rectangle(0, 0, 500, 500);
 
     for(int y = 0; y < 10; y++) {
       for(int x = 0; x < 10; x++) {
