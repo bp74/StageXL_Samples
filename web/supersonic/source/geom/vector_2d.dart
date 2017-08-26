@@ -33,7 +33,7 @@ class Vector2D {
     return math.sqrt( x * x + y * y);
   }
 
-  normalize() {
+  void normalize() {
 
     var mod = this.length;
     if (mod == 0) throw new UnsupportedError("divided by 0");
@@ -42,7 +42,7 @@ class Vector2D {
     y /= mod;
   }
 
-  scale( num n) {
+  void scale( num n) {
     x *= n;
     y *= n;
   }
@@ -69,7 +69,7 @@ class Vector2D {
     return (x * v.x) + (y * v.y);
   }
 
-  multNum(num value) {
+  void multNum(num value) {
     x *= value;
     y *= value;
   }

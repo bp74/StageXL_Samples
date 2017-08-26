@@ -24,6 +24,7 @@ class SpecialJokerLink extends Sprite implements Animatable {
 
   //------------------------------------------------
 
+  @override
   bool advanceTime(num time) {
 
     _currentTime += time;

@@ -44,7 +44,7 @@ class Karaoke {
 
   //-----------------------------------------------------------------------------------------------
 
-  _onPianoEvent(PianoEvent event) {
+  void _onPianoEvent(PianoEvent event) {
 
     if (_songNoteIndex < _songNotes.length && _songNotes[_songNoteIndex] == event.note) {
 
@@ -62,7 +62,7 @@ class Karaoke {
 
   //-----------------------------------------------------------------------------------------------
 
-  _updateLyrics() {
+  void _updateLyrics() {
 
     var lyricsDiv = html.querySelector('#lyrics');
     var wordIndex = -1;

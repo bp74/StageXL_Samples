@@ -5,7 +5,7 @@ import 'dart:html';
 import 'dart:async';
 import 'package:stagexl/stagexl.dart';
 
-var blendModes = [
+List<BlendMode> blendModes = [
   BlendMode.NORMAL,
   BlendMode.ADD,
   BlendMode.MULTIPLY,
@@ -16,7 +16,7 @@ var blendModes = [
   BlendMode.NONE
 ];
 
-var blendModeNames = [
+List<String> blendModeNames = [
   "NORMAL",
   "ADD",
   "MULTIPLY",
@@ -133,6 +133,7 @@ class Sample extends Sprite implements Animatable {
     this.onRemovedFromStage.listen((e) => this.stage.juggler.remove(this));
   }
 
+  @override
   bool advanceTime(num time) {
     totalTime += time;
     stars.forEach((star) => star.rotation = totalTime * 0.2);

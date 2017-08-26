@@ -25,6 +25,7 @@ class BenchmarkScene extends Sprite implements Animatable {
 
   int get counter => _container.children.length;
 
+  @override
   bool advanceTime(num time) {
 
     _averageFrameRate = 0.05 / time + 0.95 * _averageFrameRate;

@@ -33,7 +33,7 @@ class RegularPolygon extends Polygon {
 
   //-----------------------------------------------------------------------------------------------
 
-	_deriveSourcePointList() {
+	void _deriveSourcePointList() {
 
     var pointList = new List<Vector2D>();
     var angle = 0.0;

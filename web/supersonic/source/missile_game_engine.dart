@@ -69,7 +69,12 @@ class MissileGameEngine extends GameComponent {
   Bitmap crosshair;
 
   bool checkMouseDown = false;
-  num mouseX, mouseY;
+
+  @override
+  num mouseX;
+
+  @override
+  num mouseY;
 
   GlassPlate glassPlate;
   StreamSubscription<EnterFrameEvent> onEnterFrameSubscription;
@@ -108,9 +113,11 @@ class MissileGameEngine extends GameComponent {
     this.game.score = oldScore + (this.game as MissileGame).scorePerBarrier * (this.game.level * this.game.lives);
   }
 
+  @override
   void onGameSizeChanged(GameEvent event) {
   }
 
+  @override
   void onLevelChanged(GameEvent event) {
     super.onLevelChanged( event );
     this.startLevel();

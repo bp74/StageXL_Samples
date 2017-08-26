@@ -1,8 +1,9 @@
+import 'dart:async';
 import 'dart:math' as math;
 import 'dart:html' as html;
 import 'package:stagexl/stagexl.dart';
 
-main() async {
+Future main() async {
 
   // configure StageXL default options.
 

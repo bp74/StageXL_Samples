@@ -72,15 +72,14 @@ Future main() async {
   // On most mobile devices loading a video only works from an
   // input event and not from elsewhere.
 
-  stage.onMouseDown.first.then(loadAndPlayVideo);
-  stage.onTouchBegin.first.then(loadAndPlayVideo);
+  var f1 = stage.onMouseDown.first.then(loadAndPlayVideo);
+  var f2 = stage.onTouchBegin.first.then(loadAndPlayVideo);
+  await Future.any([f1, f2]);
 }
 
 //-----------------------------------------------------------------------------
 
-void loadAndPlayVideo(e) {
-
-  print(e);
+void loadAndPlayVideo(InputEvent e) {
 
   stage.removeChildren();
 

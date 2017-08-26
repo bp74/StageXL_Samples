@@ -19,6 +19,7 @@ class Game extends Sprite implements Animatable {
     _startGame();
   }
 
+  @override
   bool advanceTime(num time) {
     _playingField.advanceTime(time);
     return true;

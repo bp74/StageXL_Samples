@@ -47,7 +47,7 @@ class Piano extends DisplayObjectContainer {
 
   //---------------------------------------------------------------------------------
 
-  hintNote(String note) {
+  void hintNote(String note) {
 
     if (_pianoKeys.containsKey(note)) {
 

@@ -48,6 +48,7 @@ class Menu extends GameComponent implements Animatable {
       this.alpha = 0;
   }
 
+    @override
   bool advanceTime(num time) {
 
     this.showTime += time;

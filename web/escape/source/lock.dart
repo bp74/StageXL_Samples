@@ -29,7 +29,7 @@ class Lock extends Sprite {
   //-----------------------------------------------------------------
 
   bool get locked => _locked;
-  void set locked(bool value) { _locked = value; }
+  set locked(bool value) { _locked = value; }
 
   //-----------------------------------------------------------------
 

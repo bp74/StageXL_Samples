@@ -53,12 +53,12 @@ class InfoBox extends Sprite {
     addChild(chain);
   }
 
-  void set level(int value) {
+  set level(int value) {
     _level = value;
     _levelText.text = "Level $_level";
   }
 
-  void set chains(int value) {
+  set chains(int value) {
     _chains = value;
     _chainsText.text = "$_chains";
   }

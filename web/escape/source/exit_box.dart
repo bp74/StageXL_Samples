@@ -88,7 +88,7 @@ class ExitBox extends Sprite {
 
   //-----------------------------------------------------------------------------------
 
-  show(Function doneFunction) {
+  void show(Function doneFunction) {
     _doneFunction = doneFunction;
   }
 

@@ -62,6 +62,7 @@ class Explosion extends Sprite implements Animatable {
 
   //----------------------------------------------------------------------------------------------------------
 
+  @override
   bool advanceTime(num time) {
 
     _currentTime = math.min(0.8, _currentTime + time);

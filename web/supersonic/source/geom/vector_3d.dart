@@ -8,15 +8,15 @@ class Vector3D {
 
   Vector3D(this.x, this.y, this.z);
 
-  reset(num px, num py, num pz) {
+  void reset(num px, num py, num pz) {
     x = px; y = py; z = pz;
   }
 
-  resetToNegativeInfinity() {
+  void resetToNegativeInfinity() {
     x = y = z = double.NEGATIVE_INFINITY;
   }
 
-  resetToPositiveInfinity() {
+  void resetToPositiveInfinity() {
     x = y = z = double.INFINITY;
   }
 
@@ -34,7 +34,7 @@ class Vector3D {
     return math.sqrt( x*x + y*y + z*z );
   }
 
-  setLength(num l) {
+  void setLength(num l) {
     this.normalize();
     this.scale( l );
   }
@@ -51,13 +51,13 @@ class Vector3D {
     return new Vector3D(x - v.x, y - v.y, z - v.z);
   }
 
-  pow(num exponent) {
+  void pow(num exponent) {
     x = math.pow( x, exponent);
     y = math.pow( y, exponent);
     z = math.pow( z, exponent);
   }
 
-  scale(num n) {
+  void scale(num n) {
     x *= n;
     y *= n;
     z *= n;

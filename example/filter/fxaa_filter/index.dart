@@ -1,9 +1,10 @@
 library normal_map_filter;
 
+import 'dart:async';
 import 'dart:html' as html;
 import 'package:stagexl/stagexl.dart';
 
-main() async {
+Future main() async {
   // configure StageXL default options.
 
   StageXL.stageOptions.renderEngine = RenderEngine.WebGL;

@@ -18,7 +18,7 @@ class Polygon {
 
   //-----------------------------------------------------------------------------------------------
 
-  removePoint(int i) {
+  void removePoint(int i) {
     if ( i < pointList.length) {
 		  this.pointList.removeAt(i);
     }

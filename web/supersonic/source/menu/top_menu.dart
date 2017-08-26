@@ -104,14 +104,14 @@ class TopMenu extends GameComponent {
     }
   }
 
-  // Override
+  @override
   void onProgressChanged(GameEvent event) {
     this.progressShip.x = 25;
     this.progressShip.y = this.progressBar.y + (this.progressBar.height - ((this.progressBar.height - this.progressShip.height) * event.game.progress)) - (this.progressShip.height);
     //this.progressTextField.text = "Progress: " + Math.floor(event.game.progress * 100);
   }
 
-  // Override
+  @override
   void onLivesChanged(GameEvent event) {
 
     var mGame = event.game as MissileGame;
@@ -127,6 +127,7 @@ class TopMenu extends GameComponent {
     }
   }
 
+  @override
   void onScoreChanged(GameEvent event) {
 
     var mGame = event.game as MissileGame;
@@ -138,7 +139,7 @@ class TopMenu extends GameComponent {
     scoreTextField.text = sb.toString();
   }
 
-
+  @override
   void onLevelChanged(GameEvent event) {
 
     var mGame = event.game as MissileGame;
@@ -149,5 +150,4 @@ class TopMenu extends GameComponent {
 
     levelTextField.text = sb.toString();
   }
-
 }

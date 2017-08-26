@@ -57,6 +57,7 @@ class Curve extends Shape implements Animatable {
     this.advanceTime(0.0);
   }
 
+  @override
   bool advanceTime(num delta) {
 
     var t = Transition.easeInOutCubic(min(_time += delta, 1.0));

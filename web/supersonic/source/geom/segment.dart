@@ -13,8 +13,7 @@ class Segment {
 
     // ensure that line is a line and not a point
 
-    if (_ps.x == _pe.y && _ps.x == _pe.y)
-    {
+    if (_ps.x == _pe.x && _ps.y == _pe.y) {
       _ps.x -= 0.001;
       _ps.y -= 0.001;
       _pe.x += 0.001;

@@ -73,7 +73,8 @@ class AbortGameMenu extends Menu {
     this.text_no.text = mGame.getResource("GENno");
   }
 
-  defaultAction() {
+  @override
+  void defaultAction() {
     no(null);
   }
 

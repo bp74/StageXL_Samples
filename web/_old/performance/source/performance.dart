@@ -7,6 +7,7 @@ class Performance extends DisplayObjectContainer implements Animatable {
 
   Performance(this._resourceManager);
 
+  @override
   bool advanceTime(num time) {
     _juggler.advanceTime(time);
     return true;

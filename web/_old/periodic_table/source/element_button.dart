@@ -57,12 +57,11 @@ class ElementButton extends Sprite {
   //-----------------------------------------------------------------------------------------------
   //-----------------------------------------------------------------------------------------------
 
-  animateTo(num scale, num alpha) {
+  void animateTo(num scale, num alpha) {
     this.stage.juggler.removeTweens(this);
     this.stage.juggler.addTween(this, 0.25, Transition.easeOutQuadratic)
       ..animate.scaleX.to(scale)
       ..animate.scaleY.to(scale)
       ..animate.alpha.to(alpha);
   }
-
 }

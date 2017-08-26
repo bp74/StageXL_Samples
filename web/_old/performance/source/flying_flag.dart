@@ -9,6 +9,7 @@ class FlyingFlag extends Bitmap implements Animatable {
       this.pivotY = 24;
     }
 
+    @override
     bool advanceTime(num time) {
       var tx = x + vx * time;
       var ty = y + vy * time;

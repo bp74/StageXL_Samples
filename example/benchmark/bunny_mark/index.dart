@@ -111,7 +111,11 @@ class BunnyView extends BitmapContainer {
     // would probably use the Juggler animation framework.
 
     var contentRectangle = stage.contentRectangle;
-    children.forEach((bunny) => bunny.update(contentRectangle));
+
+    for (var child in children) {
+      Bunny bunny = child;
+      bunny.update(contentRectangle);
+    }
   }
 }
 

@@ -58,6 +58,7 @@ class World extends Sprite implements Animatable {
     }
   }
 
+  @override
   bool advanceTime(num time) {
 
     _animationTime += time;
@@ -65,8 +66,16 @@ class World extends Sprite implements Animatable {
     layerSky.x = -600 - ((_animationTime / 16.0) % 1.0) * 1200;
     layerMountain.x = -600 - ((_animationTime / 12.0) % 1.0) * 1200;
     layerGround.x = -600 - ((_animationTime / 8.0) % 1.0) * 1200;
-    layerMonsters.children.forEach((c) => c.advanceTime(time));
-    layerBoys.children.forEach((c) => c.advanceTime(time));
+
+    for (var child in layerMonsters.children) {
+      FlipBook flipBook = child;
+      flipBook.advanceTime(time);
+    }
+
+    for (var child in layerBoys.children) {
+      FlipBook flipBook = child;
+      flipBook.advanceTime(time);
+    }
 
     return true;
   }
