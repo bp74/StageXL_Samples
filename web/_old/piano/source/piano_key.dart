@@ -47,21 +47,23 @@ class PianoKey extends Sprite {
     this.onMouseOut.listen(_keyUp);
   }
 
-  _keyDown(MouseEvent me) {
+  void _keyDown(MouseEvent me) {
     if (me.buttonDown) {
       this.alpha = 0.7;
       this.dispatchEvent(new PianoEvent(this.noteName));
       if (resourceManager.containsSoundSprite("Notes")) {
         var soundSprite = resourceManager.getSoundSprite("Notes");
-        soundSprite.getSegment(this.soundName).play();
+        var soundChannel = soundSprite.getSegment(this.soundName).play();
+        soundChannel.onComplete.listen((e) => print("Complete $noteName"));
       } else {
         var sound = resourceManager.getSound(this.soundName);
-        sound.play();
+        var soundChannel = sound.play();
+        soundChannel.onComplete.listen((e) => print("Complete $noteName"));
       }
     }
   }
 
-  _keyUp(MouseEvent me) {
+  void _keyUp(MouseEvent me) {
       this.alpha = 1.0;
   }
 }

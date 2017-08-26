@@ -2,65 +2,65 @@
 
 {
 	"filename": "frame-1.png",
-	"frame": {"x":290,"y":2,"w":286,"h":486},
+	"frame": {"x":8,"y":8,"w":304,"h":496},
 	"rotated": false,
 	"trimmed": true,
-	"spriteSourceSize": {"x":7,"y":10,"w":286,"h":486},
+	"spriteSourceSize": {"x":0,"y":0,"w":304,"h":496},
 	"sourceSize": {"w":299,"h":496},
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
 	"filename": "frame-2.png",
-	"frame": {"x":866,"y":2,"w":290,"h":480},
+	"frame": {"x":8,"y":512,"w":304,"h":488},
 	"rotated": false,
 	"trimmed": true,
-	"spriteSourceSize": {"x":5,"y":16,"w":290,"h":480},
+	"spriteSourceSize": {"x":0,"y":8,"w":304,"h":488},
 	"sourceSize": {"w":299,"h":496},
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
 	"filename": "frame-3.png",
-	"frame": {"x":578,"y":2,"w":286,"h":482},
+	"frame": {"x":320,"y":8,"w":304,"h":496},
 	"rotated": false,
 	"trimmed": true,
-	"spriteSourceSize": {"x":7,"y":14,"w":286,"h":482},
+	"spriteSourceSize": {"x":0,"y":0,"w":304,"h":496},
 	"sourceSize": {"w":299,"h":496},
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
 	"filename": "frame-4.png",
-	"frame": {"x":2,"y":2,"w":286,"h":490},
+	"frame": {"x":632,"y":8,"w":304,"h":496},
 	"rotated": false,
 	"trimmed": true,
-	"spriteSourceSize": {"x":7,"y":6,"w":286,"h":490},
+	"spriteSourceSize": {"x":0,"y":0,"w":304,"h":496},
 	"sourceSize": {"w":299,"h":496},
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
 	"filename": "frame-5.png",
-	"frame": {"x":1446,"y":2,"w":290,"h":475},
+	"frame": {"x":320,"y":512,"w":304,"h":488},
 	"rotated": false,
 	"trimmed": true,
-	"spriteSourceSize": {"x":5,"y":21,"w":290,"h":475},
+	"spriteSourceSize": {"x":0,"y":8,"w":304,"h":488},
 	"sourceSize": {"w":299,"h":496},
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
 	"filename": "frame-6.png",
-	"frame": {"x":1158,"y":2,"w":286,"h":477},
+	"frame": {"x":632,"y":512,"w":304,"h":488},
 	"rotated": false,
 	"trimmed": true,
-	"spriteSourceSize": {"x":7,"y":19,"w":286,"h":477},
+	"spriteSourceSize": {"x":0,"y":8,"w":304,"h":488},
 	"sourceSize": {"w":299,"h":496},
 	"pivot": {"x":0.5,"y":0.5}
 }],
 "meta": {
 	"app": "http://www.codeandweb.com/texturepacker",
 	"version": "1.0",
-	"image": "atlas@2x.png",
+	"image": "atlas@2.00x.png",
 	"format": "RGBA8888",
-	"size": {"w":1738,"h":494},
+	"size": {"w":944,"h":1008},
 	"scale": "0.666667",
-	"smartupdate": "$TexturePacker:SmartUpdate:9d0710d231879cecffafaaeb2ca1bf64:efdff76ded7309380f2e0e864027e613:ce542f7b48e9da325e59dfd580418f35$"
+	"smartupdate": "$TexturePacker:SmartUpdate:152b61919ef035a788e2d8d9ada7aae2:efdff76ded7309380f2e0e864027e613:4627827218e89c6fd6d9d4def1644305$"
 }
 }

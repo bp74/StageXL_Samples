@@ -36,7 +36,6 @@ Future main() async {
   StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
   StageXL.stageOptions.backgroundColor = 0xFF303030;
   StageXL.stageOptions.transparent = true;
-  StageXL.bitmapDataLoadOptions.maxPixelRatio = 3;
 
   // init Stage and RenderLoop
 

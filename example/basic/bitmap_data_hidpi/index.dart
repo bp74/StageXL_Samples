@@ -10,7 +10,7 @@ Future main() async {
 
   StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
   StageXL.stageOptions.backgroundColor = Color.AliceBlue;
-  StageXL.bitmapDataLoadOptions.maxPixelRatio = 3;
+  StageXL.bitmapDataLoadOptions.pixelRatios = <double>[1.00, 1.25, 1.50, 2.00, 3.00];
 
   // init the stage and render loop
 
@@ -19,11 +19,21 @@ Future main() async {
   var renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
 
-  // load the resources with a default size of @1x
+  // adjust available pixelRatios depending on the stage scale
+
+  //  var stageScaleX = stage.stageHeight / stage.sourceHeight;
+  //  var stageScaleY = stage.stageWidth / stage.sourceWidth;
+  //  var stageScale = math.min(stageScaleX, stageScaleY);
+  //  var ratioScale = stageScale * StageXL.environment.devicePixelRatio;
+  //  var pixelRatios = <double>[1.0, 1.25, 1.50, 2.0, 3.0];
+  //  pixelRatios.removeWhere((r) => r < ratioScale && r != 3.0);
+  //  StageXL.bitmapDataLoadOptions.pixelRatios = pixelRatios;
+
+  // load the resources with a default size of @1.00x
 
   var resourceManager = new ResourceManager();
-  resourceManager.addBitmapData("background", "images/background@1x.jpg");
-  resourceManager.addTextureAtlas("atlas", "images/atlas@1x.json");
+  resourceManager.addBitmapData("background", "images/background@1.00x.jpg");
+  resourceManager.addTextureAtlas("atlas", "images/atlas@1.00x.json");
   await resourceManager.load();
 
   // show the background and the walking boy

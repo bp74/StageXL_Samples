@@ -14,6 +14,10 @@ dependencies:
   stagexl_spine: any
   stagexl_gaf: any
 
+web:
+  compiler:
+    debug: dartdevc
+
 transformers:
 - dart_to_js_script_rewriter
 - $dart2js:

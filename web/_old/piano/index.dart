@@ -36,13 +36,13 @@ void main() {
     ..addBitmapData('KeyWhite2','images/KeyWhite2.png')
     ..addBitmapData('KeyWhite3','images/KeyWhite3.png')
     ..addBitmapData('Finger','images/Finger.png')
-    ..addBitmapData('Background','images/Background.jpg');
+    ..addBitmapData('Background','images/Background.jpg')
+    ..addSound('Cheer','sounds/Cheer.mp3');
 
   var useSoundSprite = true;
   if (useSoundSprite) {
     resourceManager.addSoundSprite('Notes', 'soundsprite/notes.json');
   } else {
-    resourceManager.addSound('Cheer','sounds/Cheer.mp3');
     resourceManager.addSound('Note1','sounds/Note1.mp3');
     resourceManager.addSound('Note2','sounds/Note2.mp3');
     resourceManager.addSound('Note3','sounds/Note3.mp3');
