@@ -40,7 +40,7 @@ Future main() async {
 
   var totalTime = 0.0;
 
-  await for (var enterFrame in stage.onEnterFrame) {
+  stage.onEnterFrame.listen((enterFrame) {
     totalTime += enterFrame.passedTime;
     var dx = bitmapData.width / 8;
     var dy = bitmapData.height / 8;
@@ -52,5 +52,5 @@ Future main() async {
         mesh.setVertexXY(vertex, px, py);
       }
     }
-  }
+  });
 }
