@@ -181,7 +181,7 @@ class Board extends ViewportContainer {
     for(int l = 0; l < _levelLocks; l++) {
 
       Lock lock = new Lock(_resourceManager, _juggler, l);
-      lock.rotation = (_random.nextInt(30) - 15) * math.PI / 180;
+      lock.rotation = (_random.nextInt(30) - 15) * math.pi / 180;
       lock.x = 300 - (90 * _levelLocks) / 2 + l * 90 + _random.nextInt(20) - 10;
       lock.y = 550;
 

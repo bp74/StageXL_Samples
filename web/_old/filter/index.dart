@@ -60,7 +60,7 @@ void createFlowerField(ResourceManager resourceManager) {
       ..addTo(flowerField);
 
     stage.juggler.addTween(bitmap, 3600, Transition.linear)
-      ..animate.rotation.to(math.PI * 360.0);
+      ..animate.rotation.to(math.pi * 360.0);
   }
 
   flowerField.x = flowerField.pivotX = 320;
@@ -96,7 +96,7 @@ void createFlowerField(ResourceManager resourceManager) {
 
 void onEnterFrame(EnterFrameEvent e) {
 
-  Map config = JSON.decode(context['filterConfig']);
+  Map config = json.decode(context['filterConfig']);
   if  (config.keys.length == 0) return;
 
   var filters = <BitmapFilter>[];
@@ -174,7 +174,7 @@ void onEnterFrame(EnterFrameEvent e) {
   var dropShadowFilterConfig = config['dropShadowFilter'];
   if (dropShadowFilterConfig['enabled']) {
     var distance = dropShadowFilterConfig['distance'];
-    var angle = dropShadowFilterConfig['angle'] * PI / 180.0;
+    var angle = dropShadowFilterConfig['angle'] * pi / 180.0;
     var color = dropShadowFilterConfig['color'];
     var blurX = dropShadowFilterConfig['blurX'];
     var blurY = dropShadowFilterConfig['blurY'];

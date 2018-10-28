@@ -7,7 +7,7 @@ class TextHoldTheLine extends DisplayObjectContainer {
     addChild(_createTextArc("LINE", 150, _deg2Rad(250), _deg2Rad(40)));
   }
 
-  num _deg2Rad(num deg) => deg * math.PI / 180.0;
+  num _deg2Rad(num deg) => deg * math.pi / 180.0;
 
   TextField _createTextField(String text) {
 
@@ -47,7 +47,7 @@ class TextHoldTheLine extends DisplayObjectContainer {
       var letterBounds = letterSprite.getBounds(null);
       letterSprite.pivotY = offset;
       letterSprite.pivotX = letterBounds.center.x;
-      letterSprite.rotation = math.PI / 2 + arcStart + i * arcLength / (letters.length - 1);
+      letterSprite.rotation = math.pi / 2 + arcStart + i * arcLength / (letters.length - 1);
       letterSprite.addTo(container);
     }
 

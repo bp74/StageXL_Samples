@@ -21,7 +21,7 @@ class FlowerField extends Sprite {
         ..addTo(this);
 
       stage.juggler.addTween(bitmap, 600, Transition.linear)
-        ..animate.rotation.to(math.PI * 60.0);
+        ..animate.rotation.to(math.pi * 60.0);
     }
   }
 }

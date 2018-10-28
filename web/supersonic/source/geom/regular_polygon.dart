@@ -37,7 +37,7 @@ class RegularPolygon extends Polygon {
 
     var pointList = new List<Vector2D>();
     var angle = 0.0;
-    var step = 2 * math.PI / _n;
+    var step = 2 * math.pi / _n;
 
     for (var i = 0; i < _n; i++) {
 		  var v = new Vector2D(0, - _radius);

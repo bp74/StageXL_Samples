@@ -56,7 +56,7 @@ Future main() async {
   var transition = Transition.easeInOutBack;
 
   await juggler.delay(1.0);
-  await for (var r in juggler.translation(0, PI * 8, 10.0, transition)) {
+  await for (var r in juggler.translation(0, pi * 8, 10.0, transition)) {
     htmlObject.rotation = r;
   }
 

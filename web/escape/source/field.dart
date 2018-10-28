@@ -126,7 +126,7 @@ class Field {
 
   set sinScale(num n) {
     if (_chainDisplayObject != null) {
-      _chainDisplayObject.scaleX = _chainDisplayObject.scaleY = 1 + 0.3 * math.sin(n * math.PI);
+      _chainDisplayObject.scaleX = _chainDisplayObject.scaleY = 1 + 0.3 * math.sin(n * math.pi);
     }
   }
 

@@ -45,13 +45,13 @@ class BenchmarkScene extends Sprite implements Animatable {
       for(int i = 0; i < speedCount; i++) {
         var bitmap = new Bitmap(bitmapData);
         var bitmapScale = 1.0 / scale;
-        var angle  = _random.nextDouble() * PI * 2.0;
+        var angle  = _random.nextDouble() * pi * 2.0;
         var distance = (50 + _random.nextInt(150)) * bitmapScale;
         bitmap.x = cos(angle) * distance;
         bitmap.y = sin(angle) * distance;
         bitmap.pivotX = bitmapData.width / 2.0;
         bitmap.pivotY = bitmapData.height / 2.0;
-        bitmap.rotation = angle + PI / 2.0;
+        bitmap.rotation = angle + pi / 2.0;
         bitmap.scaleX = bitmap.scaleY = bitmapScale;
         children.add(bitmap);
       }

@@ -80,7 +80,7 @@ class MissileGame extends Game {
     }
   }
 
-  String getResource( String key, [List params = null]) {
+  String getResource( String key, [List params]) {
 
     var value = resourceManager.getText(key);
 
@@ -179,7 +179,7 @@ class MissileGame extends Game {
     this.removeMenu( event.menu );
   }
 
-  Menu createMenu([Menu menu = null, num tweenDuration = 1.0, bool autoStart = true]) {
+  Menu createMenu([Menu menu, num tweenDuration = 1.0, bool autoStart = true]) {
 
     if (this.currentMenu != null) this.removeMenu(this.currentMenu);
 

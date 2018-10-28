@@ -78,7 +78,7 @@ class Polygon {
 
   Polygon scale(num n) {
 
-    if (n == 0) n = double.MIN_POSITIVE;
+    if (n == 0) n = double.minPositive;
 
     var edgeNum = this.pointList.length;
     var pointList = new List<Vector2D>(edgeNum);

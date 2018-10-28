@@ -38,7 +38,7 @@ class Head extends Sprite {
     _nodTranslation.onUpdate = (value) {
       int frame = ((value * _headBitmapDatas.length) % _headBitmapDatas.length).toInt();
       _headBitmap.bitmapData = _headBitmapDatas[frame];
-      _headBitmap.y = math.sin(value * 2 * math.PI) * 3 - _headBitmap.height / 2;
+      _headBitmap.y = math.sin(value * 2 * math.pi) * 3 - _headBitmap.height / 2;
     };
 
     _juggler.add(_nodTranslation);

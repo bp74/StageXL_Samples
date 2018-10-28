@@ -27,12 +27,12 @@ Future main() async {
   // Create cube faces and set the position and orientation in 3D space.
 
   List<CubeFace> cubeFaces = [
-    new CubeFace(0xFFFF8080, flower1) ..offsetX = -75 ..rotationY =  PI / 2,
-    new CubeFace(0xFF80FF80, flower1) ..offsetX =  75 ..rotationY = -PI / 2,
-    new CubeFace(0xFF8080FF, flower2) ..offsetY = -75 ..rotationX = -PI / 2,
-    new CubeFace(0xFFFFFF80, flower2) ..offsetY =  75 ..rotationX =  PI / 2,
+    new CubeFace(0xFFFF8080, flower1) ..offsetX = -75 ..rotationY =  pi / 2,
+    new CubeFace(0xFF80FF80, flower1) ..offsetX =  75 ..rotationY = -pi / 2,
+    new CubeFace(0xFF8080FF, flower2) ..offsetY = -75 ..rotationX = -pi / 2,
+    new CubeFace(0xFFFFFF80, flower2) ..offsetY =  75 ..rotationX =  pi / 2,
     new CubeFace(0xFF80FFFF, flower3) ..offsetZ = -75 ..rotationY =  0,
-    new CubeFace(0xFFFF80FF, flower3) ..offsetZ =  75 ..rotationY =  PI
+    new CubeFace(0xFFFF80FF, flower3) ..offsetZ =  75 ..rotationY =  pi
   ];
 
   // Create a cube and rotate it in the 3D space.

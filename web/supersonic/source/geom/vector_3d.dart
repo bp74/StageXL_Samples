@@ -13,11 +13,11 @@ class Vector3D {
   }
 
   void resetToNegativeInfinity() {
-    x = y = z = double.NEGATIVE_INFINITY;
+    x = y = z = double.negativeInfinity;
   }
 
   void resetToPositiveInfinity() {
-    x = y = z = double.INFINITY;
+    x = y = z = double.infinity;
   }
 
   Vector3D clone() {

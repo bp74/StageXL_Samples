@@ -37,7 +37,7 @@ class MessageBox extends Sprite
 
     addEventListener(MouseEvent.CLICK, _onClick);
 
-    filters.add(new DropShadowFilter(16, math.PI /4, 0x80000000, 8, 8, 2));
+    filters.add(new DropShadowFilter(16, math.pi /4, 0x80000000, 8, 8, 2));
   }
 
   //----------------------------------------------------------------------

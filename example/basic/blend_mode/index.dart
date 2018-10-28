@@ -149,8 +149,8 @@ class Star extends Sprite {
     this.graphics.moveTo(150, 0);
 
     for (int i = 0; i < 6; i++) {
-      num a1 = (i * 60) * PI / 180;
-      num a2 = (i * 60 + 30) * PI / 180;
+      num a1 = (i * 60) * pi / 180;
+      num a2 = (i * 60 + 30) * pi / 180;
       this.graphics.lineTo(150 * cos(a1), 150 * sin(a1));
       this.graphics.lineTo(80 * cos(a2), 80 * sin(a2));
     }

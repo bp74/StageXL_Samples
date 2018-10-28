@@ -63,7 +63,7 @@ void main() {
     stage.addChild(loadingBitmap);
 
     loadingBitmapTween = new Tween(loadingBitmap, 100, Transition.linear);
-    loadingBitmapTween.animate.rotation.to(100.0 * 2.0 * math.PI);
+    loadingBitmapTween.animate.rotation.to(100.0 * 2.0 * math.pi);
     renderJuggler.add(loadingBitmapTween);
 
     loadingTextField = new TextField();

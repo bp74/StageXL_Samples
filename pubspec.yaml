@@ -3,9 +3,10 @@ author: Bernhard Pichler
 description: Sample applications showing features of the StageXL library.
 homepage: http://www.stagexl.org/
 
+environment:
+  sdk: '>=2.0.0 <3.0.0'
+
 dependencies:
-  browser: '>=0.10.0 <0.11.0'
-  dart_to_js_script_rewriter: '^1.0.1'
   stagexl: any
   stagexl_bitmapfont: any
   stagexl_dragonbones: any
@@ -14,12 +15,7 @@ dependencies:
   stagexl_spine: any
   stagexl_gaf: any
 
-web:
-  compiler:
-    debug: dartdevc
-
-transformers:
-- dart_to_js_script_rewriter
-- $dart2js:
-    commandLineOptions: ["--trust-type-annotations", "--trust-primitives", "--dump-info"]
-    minify: true
+dev_dependencies:
+  build_test: ^0.10.3+1
+  build_runner: ^0.10.1
+  build_web_compilers: ^0.4.2+1

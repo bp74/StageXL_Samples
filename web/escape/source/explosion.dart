@@ -30,12 +30,12 @@ class Explosion extends Sprite implements Animatable {
     for(int y = 0; y <= 1; y++) {
       for(int x = 0; x <= 1; x++) {
 
-        if (x == 0 && y == 0) { angle = math.PI * 1.15; rotation = - math.PI * 2; }
-        if (x == 1 && y == 0) { angle = math.PI * 1.85; rotation =   math.PI * 2; }
-        if (x == 1 && y == 1) { angle = math.PI * 0.15; rotation =   math.PI * 2; }
-        if (x == 0 && y == 1) { angle = math.PI * 0.85; rotation = - math.PI * 2; }
+        if (x == 0 && y == 0) { angle = math.pi * 1.15; rotation = - math.pi * 2; }
+        if (x == 1 && y == 0) { angle = math.pi * 1.85; rotation =   math.pi * 2; }
+        if (x == 1 && y == 1) { angle = math.pi * 0.15; rotation =   math.pi * 2; }
+        if (x == 0 && y == 1) { angle = math.pi * 0.85; rotation = - math.pi * 2; }
 
-        angle = angle + 0.2 * math.PI * random.nextDouble();
+        angle = angle + 0.2 * math.pi * random.nextDouble();
         velocity = 80.0 + 40.0 * random.nextDouble();
 
         Rectangle rectangle = new Rectangle(x * 25, y * 25, 25, 25);

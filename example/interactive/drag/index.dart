@@ -44,7 +44,7 @@ Future main() async {
 
     var sprite = new Sprite();
     var randomRadius = random.nextDouble() * 200;
-    var randomAngle = random.nextDouble() * 2 * math.PI;
+    var randomAngle = random.nextDouble() * 2 * math.pi;
     sprite.addChild(bitmap);
     sprite.x = 300 + randomRadius * math.cos(randomAngle);
     sprite.y = 300 + randomRadius * math.sin(randomAngle);

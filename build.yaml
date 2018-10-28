@@ -10,16 +10,29 @@ targets:
           filter_outputs: true
       build_web_compilers|entrypoint:
         generate_for:
-          - example/coin/example.dart
-          - example/goblins/example.dart
-          - example/hero/example.dart
-          - example/powerup/example.dart
-          - example/raptor/example.dart
-          - example/spineboy/example.dart
-          - example/stretchyman/example.dart
-          - example/tank/example.dart
-          - example/texture_atlas/example.dart
-          - example/vine/example.dart
+          - example/basic/bitmap_data_hidpi/index.dart
+          - example/basic/blend_mode/index.dart
+          - example/basic/html_object/index.dart
+          - example/basic/sprite_3d/index.dart
+          - example/basic/stage_size/index.dart
+          - example/basic/texture_atlas/index.dart
+          - example/benchmark/bunny_mark/index.dart
+          - example/benchmark/starling/index.dart
+          - example/drawing/decode_path/index.dart
+          - example/extension/bitmap_font/index.dart
+          - example/extension/dragonbones/index.dart
+          - example/extension/flump/index.dart
+          - example/extension/gaf/index.dart
+          - example/extension/spine/index.dart
+          - example/filter/custom_filter/index.dart
+          - example/filter/fxaa_filter/index.dart
+          - example/filter/normal_map_filter/index.dart
+          - example/interactive/drag/index.dart
+          - example/juggler/bezier_curve/index.dart
+          - example/juggler/dart_logo/index.dart
+          - web/escape/index.dart
+          - web/memory/index.dart
+          - web/supersonic/index.dart
         dev_options:
           compiler: dartdevc
         release_options:
@@ -33,4 +46,4 @@ targets:
             - --no-source-maps
             - --show-package-warnings
             - --trust-primitives
-            - --trust-type-annotations
+            - --omit-implicit-checks

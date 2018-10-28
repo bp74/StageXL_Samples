@@ -57,7 +57,7 @@ Future main() async {
   stage.addChild(loadingTextField);
 
   var loadingBitmapTween = new Tween(loadingBitmap, 100, Transition.linear);
-  loadingBitmapTween.animate.rotation.to(100.0 * 2.0 * math.PI);
+  loadingBitmapTween.animate.rotation.to(100.0 * 2.0 * math.pi);
   stage.juggler.add(loadingBitmapTween);
 
   // load resources

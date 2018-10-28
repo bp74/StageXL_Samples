@@ -34,8 +34,8 @@ Future main() async {
 
   // create the periodic table display object
 
-  var table = JSON.decode(resourceManager.getTextFile("table"));
-  var elements = JSON.decode(resourceManager.getTextFile("elements"));
+  var table = json.decode(resourceManager.getTextFile("table"));
+  var elements = json.decode(resourceManager.getTextFile("elements"));
   var periodicTable = new PeriodicTable(table, elements);
   stage.addChild(periodicTable);
 }

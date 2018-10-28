@@ -166,7 +166,7 @@ void onSplitChanged(Event event) {
 void on2dChanged(Event event) {
 
   var button = event.target as Button;
-  var rotation = button.state ? PI : 0.0;
+  var rotation = button.state ? pi : 0.0;
   var ease = Transition.easeInOutSine;
 
   stage.juggler.removeTweens(videoContainer2D);
@@ -205,7 +205,7 @@ void onFilterChanged(Event event) {
   } else if (randomInt == 3) {
     videoContainer2D.filters.add(new TintFilter.fromColor(Color.Red));
   } else if (randomInt == 4) {
-    var filter = new DropShadowFilter(6, PI / 4, 0x80000000, 3, 3, 2);
+    var filter = new DropShadowFilter(6, pi / 4, 0x80000000, 3, 3, 2);
     videoContainer2D.filters.add(filter);
   } else if (randomInt == 5) {
     var displacement = resourceManager.getBitmapData("displacement");

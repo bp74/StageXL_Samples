@@ -41,7 +41,7 @@ class Lock extends Sprite {
 
     Translation translation = new Translation(0.0, 1.0, 2.0, Transition.easeOutCubic);
     translation.onUpdate = (value) {
-      scaleX = scaleY = 1.0 + 0.2 * math.sin(value * 4 * math.PI);
+      scaleX = scaleY = 1.0 + 0.2 * math.sin(value * 4 * math.pi);
     };
 
     Tween tween1 = new Tween(this, 0.2, Transition.easeOutCubic);

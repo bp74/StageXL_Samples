@@ -176,8 +176,8 @@ class PlayingField extends Sprite3D {
   Future<Card> _turnCard(Card card, num delay) {
 
     var completer = new Completer<Card>();
-    var r0 = card.concealed ? PI : 0;
-    var r1 = card.concealed ? 0 : PI;
+    var r0 = card.concealed ? pi : 0;
+    var r1 = card.concealed ? 0 : pi;
 
     card.rotationY = r0;
     card.concealed = !card.concealed;

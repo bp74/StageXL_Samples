@@ -20,8 +20,8 @@ void main() {
   var starPath = new List<Point>();
 
   for(int i = 0; i < 6; i++) {
-    num a1 = (i * 60) * math.PI / 180;
-    num a2 = (i * 60 + 30) * math.PI / 180;
+    num a1 = (i * 60) * math.pi / 180;
+    num a2 = (i * 60 + 30) * math.pi / 180;
     starPath.add(new Point(470 + 200 * math.cos(a1), 250 + 200 * math.sin(a1)));
     starPath.add(new Point(470 + 100 * math.cos(a2), 250 + 100 * math.sin(a2)));
   }
@@ -41,7 +41,7 @@ void main() {
   html.querySelector('#mask-custom').onClick.listen((e) => flowerField.mask = customMask);
   html.querySelector('#mask-spin').onClick.listen((e) {
     stage.juggler.addTween(flowerField, 2.0, Transition.easeInOutBack)
-      ..animate.rotation.to(math.PI * 4.0)
+      ..animate.rotation.to(math.pi * 4.0)
       ..onComplete = () => flowerField.rotation = 0.0;
     });
 
