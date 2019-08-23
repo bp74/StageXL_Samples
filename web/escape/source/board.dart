@@ -42,7 +42,7 @@ class Board extends ViewportContainer {
     _resourceManager = resourceManager;
     _juggler = juggler;
 
-    _random = new math.Random();
+    _random = math.Random();
     _status = BoardStatus.Playing;
     _colors = colors;
 
@@ -54,15 +54,15 @@ class Board extends ViewportContainer {
     _levelQuints = quints;
     _levelColors = colors.length;
 
-    _mouseBuffer = new List<Point>();
+    _mouseBuffer = List<Point>();
 
     //----------------------------
 
-    _chainLayer = new Sprite();
-    _linkLayer = new Sprite();
-    _specialLayer = new Sprite();
-    _lockLayer = new Sprite();
-    _explosionLayer = new Sprite();
+    _chainLayer = Sprite();
+    _linkLayer = Sprite();
+    _specialLayer = Sprite();
+    _lockLayer = Sprite();
+    _explosionLayer = Sprite();
 
     addChild(_chainLayer);
     addChild(_linkLayer);
@@ -83,10 +83,10 @@ class Board extends ViewportContainer {
 
     _animationRunning = true;
 
-    ValueCounter completeCounter = new ValueCounter();
+    ValueCounter completeCounter = ValueCounter();
 
-    //this.mask = new Mask.rectangle(0.0, 0.0, 500.0, 500.0);
-    this.viewport = new Rectangle(0, 0, 500, 500);
+    //this.mask = Mask.rectangle(0.0, 0.0, 500.0, 500.0);
+    this.viewport = Rectangle(0, 0, 500, 500);
 
     for(int x = 0; x < 10; x++) {
       for(int y = 0; y < 10; y++) {
@@ -97,7 +97,7 @@ class Board extends ViewportContainer {
         field.updateDisplayObjects(_chainLayer, _linkLayer, _specialLayer);
 
         var transition = Transition.easeOutCubic;
-        var translation = new Translation(field.y, y * 50 + 25, 0.4, transition);
+        var translation = Translation(field.y, y * 50 + 25, 0.4, transition);
 
         translation.delay = x * 0.03;
 
@@ -136,8 +136,9 @@ class Board extends ViewportContainer {
     if (status == BoardStatus.Timeouting && _status == BoardStatus.Playing) {
        _status = status;
 
-       if (_animationRunning == false)
-         dispatchEvent(new BoardEvent(BoardEvent.Timeouted, null));
+       if (_animationRunning == false) {
+         dispatchEvent(BoardEvent(BoardEvent.Timeouted, null));
+       }
     }
   }
 
@@ -145,8 +146,8 @@ class Board extends ViewportContainer {
 
   void dropFields() {
 
-    //this.mask = new Mask.rectangle(0.0, 0.0, 500.0, 500.0);
-    this.viewport = new Rectangle(0, 0, 500, 500);
+    //this.mask = Mask.rectangle(0.0, 0.0, 500.0, 500.0);
+    this.viewport = Rectangle(0, 0, 500, 500);
 
     for(int y = 0; y < 10; y++) {
       for(int x = 0; x < 10; x++) {
@@ -159,7 +160,7 @@ class Board extends ViewportContainer {
         field.updateDisplayObjects(_chainLayer, _linkLayer, _specialLayer);
 
         var transition = Transition.easeOutCubic;
-        var translation = new Translation(field.y, 500 + y * 50 + 25, 0.5, transition);
+        var translation = Translation(field.y, 500 + y * 50 + 25, 0.5, transition);
         translation.delay = x * 0.1;
 
         translation.onUpdate = (value) {
@@ -176,11 +177,11 @@ class Board extends ViewportContainer {
 
   void initLocks() {
 
-    _locks = new List<Lock>();
+    _locks = List<Lock>();
 
     for(int l = 0; l < _levelLocks; l++) {
 
-      Lock lock = new Lock(_resourceManager, _juggler, l);
+      Lock lock = Lock(_resourceManager, _juggler, l);
       lock.rotation = (_random.nextInt(30) - 15) * math.pi / 180;
       lock.x = 300 - (90 * _levelLocks) / 2 + l * 90 + _random.nextInt(20) - 10;
       lock.y = 550;
@@ -237,9 +238,11 @@ class Board extends ViewportContainer {
 
             int colorIndex = 0;
 
-            for(int ci = 0; ci < _colors.length; ci++)
-              if (field.color == _colors[ci])
+            for(int ci = 0; ci < _colors.length; ci++) {
+              if (field.color == _colors[ci]) {
                 colorIndex = ci;
+              }
+            }
 
             field.color = _colors[(colorIndex + 1) % _colors.length];
             retry--;
@@ -265,15 +268,21 @@ class Board extends ViewportContainer {
 
   bool possibleCombinations() {
 
-    for(int y = 0; y < 10; y++)
-      for(int x = 1; x < 9; x++)
-        if (_fields[(x-1) + y*10].couldLink(_fields[x + y*10]) && _fields[x + y*10].couldLink(_fields[(x+1) + y*10]))
+    for(int y = 0; y < 10; y++) {
+      for(int x = 1; x < 9; x++) {
+        if (_fields[(x-1) + y*10].couldLink(_fields[x + y*10]) && _fields[x + y*10].couldLink(_fields[(x+1) + y*10])){
           return true;
+        }
+      }
+    }
 
-    for(int x = 0; x < 10; x++)
-      for(int y = 1; y < 9; y++)
-        if (_fields[x + (y-1)*10].couldLink(_fields[x + y*10]) && _fields[x + y*10].couldLink(_fields[x + (y+1)*10]))
+    for(int x = 0; x < 10; x++) {
+      for(int y = 1; y < 9; y++) {
+        if (_fields[x + (y-1)*10].couldLink(_fields[x + y*10]) && _fields[x + y*10].couldLink(_fields[x + (y+1)*10])) {
           return true;
+        }
+      }
+    }
 
     return false;
   }
@@ -296,37 +305,42 @@ class Board extends ViewportContainer {
 
   void initQueue() {
 
-    _queue = new List<Field>();
+    _queue = List<Field>();
 
     for(int i = 0; i < _levelChains; i++) {
 
       int color = _colors[_random.nextInt(_colors.length)];
       int direction = _random.nextInt(2);
 
-      _queue.add(new Field(_resourceManager, _juggler, color, direction));
+      _queue.add(Field(_resourceManager, _juggler, color, direction));
     }
 
-    for(int i = 0; i < _levelLocks * 2; i++)
+    for(int i = 0; i < _levelLocks * 2; i++) {
       _initQueuePlaceSpecial("Lock${(i % _levelLocks) + 1}", i, _levelLocks * 2);  // Lock1, Lock2, Lock3, ...
+    }
 
-    for(int i = 0; i < _levelJokers; i++)
+    for(int i = 0; i < _levelJokers; i++) {
       _initQueuePlaceSpecial(Special.Joker, i, _levelJokers);
+    }
 
-    for(int i = 0; i < _levelBlocks; i++)
+    for(int i = 0; i < _levelBlocks; i++) {
       _initQueuePlaceSpecial(Special.Block, i, _levelBlocks);
+    }
 
-    for(int i = 0; i < _levelDoubles; i++)
+    for(int i = 0; i < _levelDoubles; i++) {
       _initQueuePlaceSpecial(Special.Double, i, _levelDoubles);
+    }
 
-    for(int i = 0; i < _levelQuints; i++)
+    for(int i = 0; i < _levelQuints; i++) {
       _initQueuePlaceSpecial(Special.Quint, i, _levelQuints);
+    }
   }
 
   //-------------------------------------------------------------------------------------------------
 
   void initField() {
 
-    _fields = new List<Field>();
+    _fields = List<Field>();
 
     bool rebuild = true;
 
@@ -337,7 +351,7 @@ class Board extends ViewportContainer {
       for(int f = 0; f < 100; f++) {
         int color = _colors[_random.nextInt(_colors.length)];
         int direction = _random.nextInt(2);
-        _fields.add(new Field(_resourceManager, _juggler, color, direction));
+        _fields.add(Field(_resourceManager, _juggler, color, direction));
       }
 
       rebuild = clearCombinations();
@@ -348,8 +362,9 @@ class Board extends ViewportContainer {
 
   bool shuffleField() {
 
-    if (_animationRunning || _status != BoardStatus.Playing)
+    if (_animationRunning || _status != BoardStatus.Playing) {
       return false;
+    }
 
     bool rebuild = true;
 
@@ -372,7 +387,7 @@ class Board extends ViewportContainer {
 
     _resourceManager.getSound("BonusUniversal").play();
 
-    ValueCounter completeCounter = new ValueCounter();
+    ValueCounter completeCounter = ValueCounter();
 
     for(int x = 0; x < 10; x++) {
       for(int y = 0; y < 10; y++) {
@@ -380,7 +395,7 @@ class Board extends ViewportContainer {
         Field field = _fields[x + y * 10];
         field.sinScale = 0.0;
 
-        var translation = new Translation(0.0, 1.0, 0.2, Transition.linear);
+        var translation = Translation(0.0, 1.0, 0.2, Transition.linear);
         translation.delay = x * 0.06;
 
         translation.onUpdate = (value) {
@@ -466,7 +481,7 @@ class Board extends ViewportContainer {
 
         _resourceManager.getSound("ChainBlast").play();
 
-        Explosion explosion = new Explosion(_resourceManager, _juggler, field.color, field.direction);
+        Explosion explosion = Explosion(_resourceManager, _juggler, field.color, field.direction);
         explosion.x = px * 50;
         explosion.y = py * 50;
 
@@ -477,19 +492,20 @@ class Board extends ViewportContainer {
 
         //---------------------------------
 
-        if (animationCounter.decrement() == 0)
+        if (animationCounter.decrement() == 0) {
           _fillEmptyFields();
+        }
 
       }, 0.1 + l * 0.1);
     }
 
-    dispatchEvent(new BoardEvent(BoardEvent.Explosion, { "Length" : length, "Factor" : factor }));
+    dispatchEvent(BoardEvent(BoardEvent.Explosion, { "Length" : length, "Factor" : factor }));
   }
 
   void _processCombinations() {
 
     _animationRunning = false;
-    ValueCounter animationCounter = new ValueCounter();
+    ValueCounter animationCounter = ValueCounter();
 
     //------------------------------------------------------------------------------
     // check horizontal positions
@@ -499,11 +515,13 @@ class Board extends ViewportContainer {
 
         int length =  1;
 
-        while(x + length < 10 && _fields[x + length - 1 + y * 10].canLinkHorizontal(_fields[x + length + y * 10]))
+        while(x + length < 10 && _fields[x + length - 1 + y * 10].canLinkHorizontal(_fields[x + length + y * 10])) {
           length++;
+        }
 
-        if (length >= 3)
+        if (length >= 3) {
           _processCombinationsExplosion(animationCounter, x, y, length, 1, 0);
+        }
 
         x = x + length;
       }
@@ -517,11 +535,13 @@ class Board extends ViewportContainer {
 
         int length =  1;
 
-        while(y + length < 10 && _fields[x + (y + length - 1) * 10].canLinkVertical(_fields[x + (y + length) * 10]))
+        while(y + length < 10 && _fields[x + (y + length - 1) * 10].canLinkVertical(_fields[x + (y + length) * 10])) {
           length++;
+        }
 
-        if (length >= 3)
+        if (length >= 3) {
           _processCombinationsExplosion(animationCounter, x, y, length, 0, 1);
+        }
 
         y = y + length;
       }
@@ -532,14 +552,17 @@ class Board extends ViewportContainer {
 
     if (animationCounter.value == 0) {
 
-      if (_status == BoardStatus.Finalizing)
-        dispatchEvent(new BoardEvent(BoardEvent.Finalized, null));
+      if (_status == BoardStatus.Finalizing) {
+        dispatchEvent(BoardEvent(BoardEvent.Finalized, null));
+      }
 
-      if (_status == BoardStatus.Timeouting)
-        dispatchEvent(new BoardEvent(BoardEvent.Timeouted, null));
+      if (_status == BoardStatus.Timeouting) {
+        dispatchEvent(BoardEvent(BoardEvent.Timeouted, null));
+      }
 
-      if (_status == BoardStatus.Playing && possibleCombinations() == false)
+      if (_status == BoardStatus.Playing && possibleCombinations() == false) {
         shuffleField();
+      }
     }
   }
 
@@ -557,7 +580,7 @@ class Board extends ViewportContainer {
       special.y = field.y;
       addChild(special);
 
-      Tween tween = new Tween(special, 0.5, Transition.easeOutCubic);
+      Tween tween = Tween(special, 0.5, Transition.easeOutCubic);
       tween.animate.x.to(lock.x);
       tween.animate.y.to(lock.y - 10);
       tween.onComplete = () => removeChild(special);
@@ -575,10 +598,10 @@ class Board extends ViewportContainer {
     BoardEvent boardEvent;
 
     if (lock.locked) {
-      boardEvent = new BoardEvent(BoardEvent.Unlocked, { "Type" : "SingleLocked", "Position" : new Point(lock.x + 20, lock.y) });
+      boardEvent = BoardEvent(BoardEvent.Unlocked, { "Type" : "SingleLocked", "Position" : Point(lock.x + 20, lock.y) });
       _resourceManager.getSound("Unlock").play();
     } else {
-      boardEvent = new BoardEvent(BoardEvent.Unlocked, { "Type" : "SingleUnlocked", "Position" : new Point(lock.x + 20, lock.y) });
+      boardEvent = BoardEvent(BoardEvent.Unlocked, { "Type" : "SingleUnlocked", "Position" : Point(lock.x + 20, lock.y) });
     }
 
     dispatchEvent(boardEvent);
@@ -603,7 +626,7 @@ class Board extends ViewportContainer {
         _juggler.delayCall(() => _locks[(i + lockNumber) % _locks.length].showHappy(), i * 0.2);
       }
 
-      _juggler.delayCall(() => dispatchEvent(new BoardEvent(BoardEvent.Unlocked, { "Type" : "All", "Position" : new Point(280, 550) })), 0.75);
+      _juggler.delayCall(() => dispatchEvent(BoardEvent(BoardEvent.Unlocked, { "Type" : "All", "Position" : Point(280, 550) })), 0.75);
     }
   }
 
@@ -611,7 +634,7 @@ class Board extends ViewportContainer {
 
   void _fillEmptyFields() {
 
-    ValueCounter animationCounter = new ValueCounter();
+    ValueCounter animationCounter = ValueCounter();
 
     for(int x = 0; x < 10; x++) {
 
@@ -653,12 +676,12 @@ class Board extends ViewportContainer {
 
           } else {
 
-            if (_queue.length > 0) {
+            if (_queue.isNotEmpty) {
               fieldSource = _queue.removeAt(0);
             } else {
               var color = _colors[_random.nextInt(_colors.length)];
               var direction = _random.nextInt(2);
-              fieldSource = new Field(_resourceManager, _juggler, color, direction);
+              fieldSource = Field(_resourceManager, _juggler, color, direction);
             }
           }
 
@@ -675,7 +698,7 @@ class Board extends ViewportContainer {
           animationCounter.increment();
 
           var transition = Transition.linear;
-          var translation = new Translation(fieldTarget.y, 50 * target + 25, 0.1, transition);
+          var translation = Translation(fieldTarget.y, 50 * target + 25, 0.1, transition);
 
           translation.onUpdate = (value) {
             fieldTarget.y = value;
@@ -705,7 +728,7 @@ class Board extends ViewportContainer {
       int x = math.min(me.localX / 50, 9).toInt();
       int y = math.min(me.localY / 50, 9).toInt();
 
-      Point p = new Point(x, y);
+      Point p = Point(x, y);
 
       _mouseBuffer.add(p);
       _checkMouseBuffer();
@@ -714,7 +737,7 @@ class Board extends ViewportContainer {
 
   void _checkMouseBuffer() {
 
-    while(_status == BoardStatus.Playing && _animationRunning == false && _mouseBuffer.length > 0) {
+    while(_status == BoardStatus.Playing && _animationRunning == false && _mouseBuffer.isNotEmpty) {
 
       Point p = _mouseBuffer.removeAt(0);
 

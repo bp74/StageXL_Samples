@@ -19,8 +19,8 @@ void main() {
   // Initialize the Display List
   //------------------------------------------------------------------
 
-  stage = new Stage(html.querySelector('#stage'));
-  renderLoop = new RenderLoop();
+  stage = Stage(html.querySelector('#stage'));
+  renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
   //------------------------------------------------------------------
@@ -29,7 +29,7 @@ void main() {
 
   BitmapData.defaultLoadOptions.webp = true;
 
-  resourceManager = new ResourceManager()
+  resourceManager = ResourceManager()
     ..addBitmapData('KeyBlack','images/KeyBlack.png')
     ..addBitmapData('KeyWhite0','images/KeyWhite0.png')
     ..addBitmapData('KeyWhite1','images/KeyWhite1.png')
@@ -76,15 +76,15 @@ void main() {
 
   resourceManager.load().then((_) {
 
-    var background = new Bitmap(resourceManager.getBitmapData('Background'));
+    var background = Bitmap(resourceManager.getBitmapData('Background'));
     stage.addChild(background);
 
-    var piano = new Piano()
+    var piano = Piano()
       ..x = 120
       ..y = 30
       ..addTo(stage);
 
-    var karaoke = new Karaoke(happyBirthdayNotes, happyBirthdayLyrics, piano);
+    var karaoke = Karaoke(happyBirthdayNotes, happyBirthdayLyrics, piano);
 
     html.querySelector('#song-happy-birthday').onClick.listen((e) =>
         karaoke.updateSong(happyBirthdayNotes, happyBirthdayLyrics));

@@ -16,20 +16,20 @@ Future main() async {
 
   // init the Stage and RenderLoop
 
-  var stage = new Stage(html.querySelector('#stage'), width: 800, height: 800);
-  var renderLoop = new RenderLoop();
+  var stage = Stage(html.querySelector('#stage'), width: 800, height: 800);
+  var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
   // load resources
 
-  var resourceManager = new ResourceManager();
+  var resourceManager = ResourceManager();
   resourceManager.addBitmapData("earth", "images/earth.png");
   await resourceManager.load();
 
   // create mesh with "earth" image
 
   var bitmapData = resourceManager.getBitmapData("earth");
-  var mesh = new Mesh.fromGrid(bitmapData, 8, 8);
+  var mesh = Mesh.fromGrid(bitmapData, 8, 8);
   mesh.pivotX = bitmapData.width / 2;
   mesh.pivotY = bitmapData.height / 2;
   mesh.x = 400;

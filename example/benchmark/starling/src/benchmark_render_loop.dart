@@ -7,16 +7,16 @@ class BenchmarkRenderLoop {
   // useful for benchmarks and should not be used in real world
   // applications.
 
-  final Stopwatch _stopwatch = new Stopwatch()..start();
-  final List<Stage> _stages = new List<Stage>();
-  final EnterFrameEvent _enterFrameEvent = new EnterFrameEvent(0);
-  final ExitFrameEvent _exitFrameEvent = new ExitFrameEvent();
+  final Stopwatch _stopwatch = Stopwatch()..start();
+  final List<Stage> _stages = List<Stage>();
+  final EnterFrameEvent _enterFrameEvent = EnterFrameEvent(0);
+  final ExitFrameEvent _exitFrameEvent = ExitFrameEvent();
 
   double _deltaTime = 0.0;
   double _currentTime = 0.0;
 
   BenchmarkRenderLoop() {
-    new Timer.periodic(new Duration(milliseconds: 5), _onTimer);
+    Timer.periodic(Duration(milliseconds: 5), _onTimer);
   }
 
   void addStage(Stage stage) {

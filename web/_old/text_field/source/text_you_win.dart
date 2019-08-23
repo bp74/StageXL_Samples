@@ -4,7 +4,7 @@ class TextYouWin extends DisplayObjectContainer {
 
   TextYouWin() {
 
-    var textGradient = new GraphicsGradient.linear(0, 0, 240, 0)
+    var textGradient = GraphicsGradient.linear(0, 0, 240, 0)
         ..addColorStop(0.0, 0xFFFFD000)
         ..addColorStop(0.3, 0xFFFFFA00)
         ..addColorStop(0.6, 0xFFFFD000)
@@ -28,7 +28,7 @@ class TextYouWin extends DisplayObjectContainer {
 
   TextField _createTextField() {
 
-    return new TextField("You win")
+    return TextField("You win")
         ..cacheAsBitmap = false
         ..width = 240
         ..height = 70

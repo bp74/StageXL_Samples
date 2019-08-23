@@ -14,23 +14,23 @@ Future main() async {
   // init Stage and RenderLoop
 
   var canvas = html.querySelector('#stage');
-  var stage = new Stage(canvas, width: 480, height: 600);
-  var renderLoop = new RenderLoop();
+  var stage = Stage(canvas, width: 480, height: 600);
+  var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
   stage.console.visible = true;
   stage.console.alpha = 0.75;
 
   // load resources
 
-  var resourceManager = new ResourceManager();
+  var resourceManager = ResourceManager();
   resourceManager..addBitmapData("flumpAtlas", "images/flumpLibraryAtlas0.png");
   resourceManager.addCustomObject('flump', FlumpLibrary.load('images/flumpLibrary.json'));
   await resourceManager.load();
 
   // show TextField with user instructions
 
-  var textField = new TextField();
-  textField.defaultTextFormat = new TextFormat("Arial", 24, Color.Black);
+  var textField = TextField();
+  textField.defaultTextFormat = TextFormat("Arial", 24, Color.Black);
   textField.defaultTextFormat.align = TextFormatAlign.CENTER;
   textField.width = 480;
   textField.x = 0;
@@ -44,18 +44,18 @@ Future main() async {
   var flumpLibrary = resourceManager.getCustomObject('flump') as FlumpLibrary;
 
   var flumpMovies = [
-    new FlumpMovie(flumpLibrary, 'idle'),
-    new FlumpMovie(flumpLibrary, 'walk'),
-    new FlumpMovie(flumpLibrary, 'attack'),
-    new FlumpMovie(flumpLibrary, 'defeat')
+    FlumpMovie(flumpLibrary, 'idle'),
+    FlumpMovie(flumpLibrary, 'walk'),
+    FlumpMovie(flumpLibrary, 'attack'),
+    FlumpMovie(flumpLibrary, 'defeat')
   ];
 
   // change the FlumpMovie on every mouse click.
 
-  var flumpJuggler = new Juggler();
+  var flumpJuggler = Juggler();
   stage.juggler.add(flumpJuggler);
 
-  var flumpLayer = new Sprite();
+  var flumpLayer = Sprite();
   flumpLayer.addTo(stage);
   flumpLayer.x = 250;
   flumpLayer.y = 400;

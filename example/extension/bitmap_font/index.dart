@@ -21,8 +21,8 @@ Future main() async {
   // Init Stage and RenderLoop
 
   var canvas = html.querySelector('#stage');
-  var stage = new Stage(canvas, width: 800, height: 400);
-  var renderLoop = new RenderLoop();
+  var stage = Stage(canvas, width: 800, height: 400);
+  var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
   stage.console.visible = true;
   stage.console.alpha = 0.75;
@@ -40,7 +40,7 @@ Future main() async {
 
   // create BitmapContainerText and add it to the Stage
 
-  var bitmapContainerText = new BitmapContainerText(bitmapFont);
+  var bitmapContainerText = BitmapContainerText(bitmapFont);
   bitmapContainerText.x = 50;
   bitmapContainerText.y = 50;
   bitmapContainerText.text = text;

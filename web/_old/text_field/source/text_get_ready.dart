@@ -24,7 +24,7 @@ class TextGetReady extends DisplayObjectContainer {
   }
 
   TextField _createTextField() {
-    return new TextField('GET READY!')
+    return TextField('GET READY!')
         ..cacheAsBitmap = false
         ..width = 150
         ..height = 40

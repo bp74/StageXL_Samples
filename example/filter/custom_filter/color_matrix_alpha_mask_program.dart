@@ -4,9 +4,9 @@ part of custom_filter;
 
 class ColorMatrixAlphaMaskProgram extends RenderProgramSimple {
 
-  Matrix _matrix = new Matrix.fromIdentity();
-  Float32List _maskMatrix = new Float32List(9);
-  Float32List _maskBounds = new Float32List(4);
+  Matrix _matrix = Matrix.fromIdentity();
+  Float32List _maskMatrix = Float32List(9);
+  Float32List _maskBounds = Float32List(4);
 
   @override
   String get fragmentShaderSource => """

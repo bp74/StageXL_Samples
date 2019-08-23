@@ -22,14 +22,14 @@ class Segment {
 
     // pre calc dir vector
 
-    _dir = new Vector2D(_pe.x - _ps.x, _pe.y - _ps.y);
+    _dir = Vector2D(_pe.x - _ps.x, _pe.y - _ps.y);
   }
 
   //-----------------------------------------------------------------------------------------------
   //-----------------------------------------------------------------------------------------------
 
   Segment clone() {
-    return new Segment(_ps.clone(), _pe.clone());
+    return Segment(_ps.clone(), _pe.clone());
   }
 
   //-----------------------------------------------------------------------------------------------
@@ -40,12 +40,12 @@ class Segment {
 
   set ps(Vector2D v) {
     _ps = v.clone();
-    _dir = new Vector2D(_pe.x - _ps.x, _pe.y - _ps.y);
+    _dir = Vector2D(_pe.x - _ps.x, _pe.y - _ps.y);
   }
 
   set pe(Vector2D v) {
     _pe = v.clone();
-    _dir = new Vector2D(_pe.x - _ps.x, _pe.y - _ps.y);
+    _dir = Vector2D(_pe.x - _ps.x, _pe.y - _ps.y);
   }
 
   //-----------------------------------------------------------------------------------------------
@@ -66,7 +66,7 @@ class Segment {
       tmp_ps = _ps.add(tmp_dir);
     }
 
-    return new Segment(tmp_ps, tmp_pe);
+    return Segment(tmp_ps, tmp_pe);
   }
 
   //-----------------------------------------------------------------------------------------------
@@ -85,7 +85,7 @@ class Segment {
     tmpDir.length = -left;
     tmpPs = _ps.add(tmpDir);
 
-    return new Segment(tmpPs, tmpPe);
+    return Segment(tmpPs, tmpPe);
   }
 
   //-----------------------------------------------------------------------------------------------
@@ -106,7 +106,7 @@ class Segment {
     relPe.angleRad += rotation;
     pe = rotPoint.add(relPe);
 
-    return new Segment(ps, pe);
+    return Segment(ps, pe);
   }
 
   //-----------------------------------------------------------------------------------------------
@@ -116,7 +116,7 @@ class Segment {
     var len = _dir.length;
     var r = (((_ps.y - p.y) * (_ps.y - _pe.y)) - ((_ps.x - p.x) * (_pe.x - _ps.x))) / ((len * len));
 
-    return new Vector2D(_ps.x + r * (dir.x),  _ps.y + r * (dir.y));
+    return Vector2D(_ps.x + r * (dir.x),  _ps.y + r * (dir.y));
   }
 
   //-----------------------------------------------------------------------------------------------
@@ -129,7 +129,7 @@ class Segment {
     var x = _ps.x + r * _dir.x;
     var y = _ps.y + r * _dir.y;
 
-    return new Vector2D(x, y);
+    return Vector2D(x, y);
   }
 
   //-----------------------------------------------------------------------------------------------
@@ -142,7 +142,7 @@ class Segment {
     if ( r >= 0 && r <= 1 && s >= 0 && s <= 1) {
       var x = _ps.x + r * _dir.x;
       var y = _ps.y + r * _dir.y;
-      return new Vector2D(x, y);
+      return Vector2D(x, y);
     }
 
     return null;

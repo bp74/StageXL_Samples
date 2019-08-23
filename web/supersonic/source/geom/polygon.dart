@@ -5,7 +5,7 @@ class Polygon {
   List<Vector2D> pointList;
 
 	Polygon([List<Vector2D> pointList]) {
-    this.pointList = (pointList != null) ? pointList : new List();
+    this.pointList = (pointList != null) ? pointList : List();
   }
 
   //-----------------------------------------------------------------------------------------------
@@ -49,7 +49,7 @@ class Polygon {
   Polygon rotate( num angleRad) {
 
     var edgeNum = this.pointList.length;
-    var pointList = new List<Vector2D>(edgeNum);
+    var pointList = List<Vector2D>(edgeNum);
 
     for (var i = 0; i < edgeNum; i++) {
 		  var p = this.pointList[i].clone();
@@ -57,7 +57,7 @@ class Polygon {
       pointList[i] = p;
     }
 
-		return new Polygon(pointList);
+		return Polygon(pointList);
   }
 
   //-----------------------------------------------------------------------------------------------
@@ -65,13 +65,13 @@ class Polygon {
   Polygon translate(Vector2D delta) {
 
     var edgeNum = this.pointList.length;
-    var pointList = new List<Vector2D>(edgeNum);
+    var pointList = List<Vector2D>(edgeNum);
 
     for (var i = 0; i < edgeNum; i++) {
 		  pointList[i] = this.pointList[i].add( delta );
     }
 
-    return new Polygon( pointList );
+    return Polygon( pointList );
   }
 
   //-----------------------------------------------------------------------------------------------
@@ -81,7 +81,7 @@ class Polygon {
     if (n == 0) n = double.minPositive;
 
     var edgeNum = this.pointList.length;
-    var pointList = new List<Vector2D>(edgeNum);
+    var pointList = List<Vector2D>(edgeNum);
 
     for (var i = 0; i < edgeNum; i++) {
 		  var p = this.pointList[i].clone();
@@ -89,7 +89,7 @@ class Polygon {
 			pointList[i] = p;
     }
 
-    return new Polygon( pointList );
+    return Polygon( pointList );
 	}
 
   //-----------------------------------------------------------------------------------------------
@@ -97,7 +97,7 @@ class Polygon {
   Polygon transform(num scalation, num rotation, Vector2D translation) {
 
 	  var edgeNum = this.pointList.length;
-    var pointList = new List<Vector2D>(edgeNum);
+    var pointList = List<Vector2D>(edgeNum);
 
     for (var i = 0; i < edgeNum; i++) {
 		  var p = this.pointList[i].clone();
@@ -106,6 +106,6 @@ class Polygon {
 			pointList[i] = p.add(translation);
     }
 
-    return new Polygon( pointList );
+    return Polygon( pointList );
   }
 }

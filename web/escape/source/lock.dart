@@ -19,7 +19,7 @@ class Lock extends Sprite {
     _lockBitmapDatas = Grafix.getLock(_resourceManager, color);
     _locked = true;
 
-    _bitmap = new Bitmap(_lockBitmapDatas[0]);
+    _bitmap = Bitmap(_lockBitmapDatas[0]);
     _bitmap.x = -34;
     _bitmap.y = -50;
 
@@ -39,17 +39,17 @@ class Lock extends Sprite {
 
   void showHappy() {
 
-    Translation translation = new Translation(0.0, 1.0, 2.0, Transition.easeOutCubic);
+    Translation translation = Translation(0.0, 1.0, 2.0, Transition.easeOutCubic);
     translation.onUpdate = (value) {
       scaleX = scaleY = 1.0 + 0.2 * math.sin(value * 4 * math.pi);
     };
 
-    Tween tween1 = new Tween(this, 0.2, Transition.easeOutCubic);
+    Tween tween1 = Tween(this, 0.2, Transition.easeOutCubic);
     tween1.animate.alpha.to(0.0);
     tween1.delay = 2.0;
     tween1.onComplete = () => showLocked(_locked);
 
-    Tween tween2 = new Tween(this, 0.2, Transition.easeInCubic);
+    Tween tween2 = Tween(this, 0.2, Transition.easeInCubic);
     tween2.animate.alpha.to(1);
     tween2.delay = 2.2;
 

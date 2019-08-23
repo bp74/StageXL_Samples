@@ -14,35 +14,35 @@ Future main() async {
   // init Stage and RenderLoop
 
   var canvas = html.querySelector('#stage');
-  var stage = new Stage(canvas, width: 600, height: 600);
-  var renderLoop = new RenderLoop();
+  var stage = Stage(canvas, width: 600, height: 600);
+  var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
   // load resources
 
-  var resourceManager = new ResourceManager();
+  var resourceManager = ResourceManager();
   resourceManager.addBitmapData("flowers", "images/flowers.png");
   await resourceManager.load();
 
   var flowers = resourceManager.getBitmapData("flowers");
   var flowersList = <BitmapData>[
-    new BitmapData.fromBitmapData(flowers, new Rectangle(0 * 128, 0, 128, 128)),
-    new BitmapData.fromBitmapData(flowers, new Rectangle(1 * 128, 0, 128, 128)),
-    new BitmapData.fromBitmapData(flowers, new Rectangle(2 * 128, 0, 128, 128)),
+    BitmapData.fromBitmapData(flowers, Rectangle(0 * 128, 0, 128, 128)),
+    BitmapData.fromBitmapData(flowers, Rectangle(1 * 128, 0, 128, 128)),
+    BitmapData.fromBitmapData(flowers, Rectangle(2 * 128, 0, 128, 128)),
   ];
 
   // Create 100 random flowers around the center of the Stage
 
-  var random = new math.Random();
+  var random = math.Random();
 
   for (var i = 0; i < 100; i++) {
 
     var bitmapData = flowersList[random.nextInt(3)];
-    var bitmap = new Bitmap(bitmapData);
+    var bitmap = Bitmap(bitmapData);
     bitmap.pivotX = 64;
     bitmap.pivotY = 64;
 
-    var sprite = new Sprite();
+    var sprite = Sprite();
     var randomRadius = random.nextDouble() * 200;
     var randomAngle = random.nextDouble() * 2 * math.pi;
     sprite.addChild(bitmap);
@@ -55,7 +55,7 @@ Future main() async {
     void startDrag(Event e) {
       stage.addChild(sprite); // bring to foreground
       sprite.scaleX = sprite.scaleY = 1.2;
-      sprite.filters.add(new ColorMatrixFilter.adjust(hue: -0.5));
+      sprite.filters.add(ColorMatrixFilter.adjust(hue: -0.5));
       sprite.startDrag(true);
     }
 

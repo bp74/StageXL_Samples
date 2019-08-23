@@ -25,7 +25,7 @@ class PeriodicTable extends DisplayObjectContainer {
       var periodIndex = _getPeriodNumber(atomicNumber) - 1;
       var category = _getCategory(atomicNumber);
 
-      var elementButton = new ElementButton(element, category);
+      var elementButton = ElementButton(element, category);
       elementButton.x = 30 + groupIndex * 50 + 25;
       elementButton.y = 10 + periodIndex * 50 + 25;
 
@@ -44,7 +44,7 @@ class PeriodicTable extends DisplayObjectContainer {
   void _addCategoryButtons() {
     var x = 0;
     for(var category in this.table["categories"]) {
-      var categoryButton = new CategoryButton(category);
+      var categoryButton = CategoryButton(category);
       categoryButton.x = 80 + x;
       categoryButton.y = 530;
       x += 80;
@@ -101,7 +101,7 @@ class PeriodicTable extends DisplayObjectContainer {
     this.addChild(button);
     button.animateTo(0.70, 1.0);
 
-    _detail = new ElementDetail(button.element, button.category);
+    _detail = ElementDetail(button.element, button.category);
     _detail.x = 150;
     _detail.y = 10;
     _detail.alpha = 0.0;
@@ -146,7 +146,7 @@ class PeriodicTable extends DisplayObjectContainer {
     this.addChild(button);
     button.animateTo(0.70, 1.0);
 
-    _detail = new CategoryDetail(button.category);
+    _detail = CategoryDetail(button.category);
     _detail.x = 150;
     _detail.y = 10;
     _detail.alpha = 0.0;

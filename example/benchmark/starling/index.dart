@@ -27,24 +27,24 @@ Future main() async {
 
   // Initialize Stage and RenderLoop
 
-  var stage = new Stage(html.querySelector('#stage'));
-  var renderLoop = new BenchmarkRenderLoop();
+  var stage = Stage(html.querySelector('#stage'));
+  var renderLoop = BenchmarkRenderLoop();
   renderLoop.addStage(stage);
 
   // Load resources
 
-  var resourceManager = new ResourceManager();
+  var resourceManager = ResourceManager();
   resourceManager.addBitmapData('background', 'images/background.png');
   resourceManager.addBitmapData('flash', 'images/flash.png');
   await resourceManager.load();
 
   var background = resourceManager.getBitmapData("background");
-  stage.addChild(new Bitmap(background));
+  stage.addChild(Bitmap(background));
 
   // start benchmark
 
   var bitmapData = resourceManager.getBitmapData("flash");
-  var benchmarkScene = new BenchmarkScene(bitmapData, 60);
+  var benchmarkScene = BenchmarkScene(bitmapData, 60);
   stage.addChild(benchmarkScene);
   stage.juggler.add(benchmarkScene);
 

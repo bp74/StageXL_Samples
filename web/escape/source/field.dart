@@ -158,7 +158,7 @@ class Field {
       switch(_special)
       {
         case Special.Joker:
-          _chainDisplayObject = new SpecialJokerChain(_resourceManager, _juggler, _direction);
+          _chainDisplayObject = SpecialJokerChain(_resourceManager, _juggler, _direction);
           _chainDisplayObject.x = _x;
           _chainDisplayObject.y = _y;
           chainLayer.addChild(_chainDisplayObject);
@@ -185,7 +185,7 @@ class Field {
       if (_linked) {
 
         _linkDisplayObject = _linkedJoker
-            ? new SpecialJokerLink(_resourceManager, _juggler, _direction)
+            ? SpecialJokerLink(_resourceManager, _juggler, _direction)
             : Grafix.getLink(_resourceManager, _color, _direction);
 
         _linkDisplayObject.x = _x + ((_direction == 0) ? 25 : 0);
@@ -202,7 +202,7 @@ class Field {
         case Special.Block: break;
         case Special.Joker: break;
         default:
-          _specialDisplayObject = new SpecialWobble(_resourceManager, _juggler, _special);
+          _specialDisplayObject = SpecialWobble(_resourceManager, _juggler, _special);
           _specialDisplayObject.x = _x;
           _specialDisplayObject.y = _y;
           specialLayer.addChild(_specialDisplayObject);

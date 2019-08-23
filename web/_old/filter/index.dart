@@ -9,9 +9,9 @@ import 'package:stagexl/stagexl.dart';
 
 Stage stage;
 RenderLoop renderLoop;
-ResourceManager resourceManager = new ResourceManager();
-Sprite flowerField = new Sprite();
-Random random = new Random();
+ResourceManager resourceManager = ResourceManager();
+Sprite flowerField = Sprite();
+Random random = Random();
 num totalTime = 0.0;
 
 //-------------------------------------------------------------------------------------------------
@@ -25,8 +25,8 @@ void main() {
 
   // init Stage and RenderLoop
 
-  stage = new Stage(html.querySelector('#stage'));
-  renderLoop = new RenderLoop();
+  stage = Stage(html.querySelector('#stage'));
+  renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
   // load resources
@@ -52,7 +52,7 @@ void createFlowerField(ResourceManager resourceManager) {
 
   for(var i = 0; i < 100; i++) {
     var flower = flowers[random.nextInt(flowers.length)];
-    var bitmap = new Bitmap(flower)
+    var bitmap = Bitmap(flower)
       ..pivotX = 64
       ..pivotY = 64
       ..x = 80 + random.nextInt(640 - 160)
@@ -68,14 +68,14 @@ void createFlowerField(ResourceManager resourceManager) {
 
   //-------------
 
-  stage.addChild(new Bitmap(resourceManager.getBitmapData('grass')));
+  stage.addChild(Bitmap(resourceManager.getBitmapData('grass')));
   stage.addChild(flowerField);
   stage.onEnterFrame.listen(onEnterFrame);
 
   if (stage.renderEngine != RenderEngine.WebGL) {
     var font =  "Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif";
-    var textField = new TextField();
-    textField.defaultTextFormat = new TextFormat(font, 16, Color.White, bold:true);
+    var textField = TextField();
+    textField.defaultTextFormat = TextFormat(font, 16, Color.White, bold:true);
     textField.defaultTextFormat.leftMargin = 10;
     textField.defaultTextFormat.rightMargin = 10;
     textField.defaultTextFormat.topMargin = 10;
@@ -97,7 +97,7 @@ void createFlowerField(ResourceManager resourceManager) {
 void onEnterFrame(EnterFrameEvent e) {
 
   Map config = json.decode(context['filterConfig']);
-  if  (config.keys.length == 0) return;
+  if  (config.keys.isEmpty) return;
 
   var filters = <BitmapFilter>[];
   totalTime += e.passedTime;
@@ -105,12 +105,12 @@ void onEnterFrame(EnterFrameEvent e) {
   var colorMatrixFilterConfig = config['colorMatrixFilter'];
   if (colorMatrixFilterConfig['enabled']) {
     switch(colorMatrixFilterConfig['filter']) {
-      case 'invert': filters.add(new ColorMatrixFilter.invert()); break;
-      case 'grayscale': filters.add(new ColorMatrixFilter.grayscale()); break;
-      case 'brightness': filters.add(new ColorMatrixFilter.adjust(brightness: 0.2)); break;
-      case 'contrast': filters.add(new ColorMatrixFilter.adjust(contrast: 1.0)); break;
-      case 'saturation': filters.add(new ColorMatrixFilter.adjust(saturation: 1.0)); break;
-      case 'hue': filters.add(new ColorMatrixFilter.adjust(hue: -0.5)); break;
+      case 'invert': filters.add(ColorMatrixFilter.invert()); break;
+      case 'grayscale': filters.add(ColorMatrixFilter.grayscale()); break;
+      case 'brightness': filters.add(ColorMatrixFilter.adjust(brightness: 0.2)); break;
+      case 'contrast': filters.add(ColorMatrixFilter.adjust(contrast: 1.0)); break;
+      case 'saturation': filters.add(ColorMatrixFilter.adjust(saturation: 1.0)); break;
+      case 'hue': filters.add(ColorMatrixFilter.adjust(hue: -0.5)); break;
     }
   }
 
@@ -123,17 +123,17 @@ void onEnterFrame(EnterFrameEvent e) {
       case 'chrome': bitmapData = resourceManager.getBitmapData('chrome'); break;
     }
     if (bitmapData != null) {
-      var matrix = new Matrix.fromIdentity();
+      var matrix = Matrix.fromIdentity();
       matrix.translate(-bitmapData.width / 2, -bitmapData.height / 2);
       matrix.translate(320, 250);
-      filters.add(new AlphaMaskFilter(bitmapData, matrix));
+      filters.add(AlphaMaskFilter(bitmapData, matrix));
     }
   }
 
   var displacementMapFilter = config['displacementMapFilter'];
   if (displacementMapFilter['enabled']) {
     BitmapData bitmapData;
-    var transform = new Matrix.fromIdentity();
+    var transform = Matrix.fromIdentity();
     num scaleX = 16, scaleY = 16;
 
     switch(displacementMapFilter['map']) {
@@ -156,11 +156,11 @@ void onEnterFrame(EnterFrameEvent e) {
     }
 
     if (bitmapData != null) {
-      var matrix = new Matrix.fromIdentity();
+      var matrix = Matrix.fromIdentity();
       matrix.translate(-bitmapData.width / 2, -bitmapData.height / 2);
       matrix.concat(transform);
       matrix.translate(320, 250);
-      filters.add(new DisplacementMapFilter(bitmapData, matrix, scaleX, scaleY));
+      filters.add(DisplacementMapFilter(bitmapData, matrix, scaleX, scaleY));
     }
   }
 
@@ -168,7 +168,7 @@ void onEnterFrame(EnterFrameEvent e) {
   if (blurFilterConfig['enabled']) {
     var blurX = blurFilterConfig['blurX'];
     var blurY = blurFilterConfig['blurY'];
-    filters.add(new BlurFilter(blurX, blurY, 5));
+    filters.add(BlurFilter(blurX, blurY, 5));
   }
 
   var dropShadowFilterConfig = config['dropShadowFilter'];
@@ -178,7 +178,7 @@ void onEnterFrame(EnterFrameEvent e) {
     var color = dropShadowFilterConfig['color'];
     var blurX = dropShadowFilterConfig['blurX'];
     var blurY = dropShadowFilterConfig['blurY'];
-    filters.add(new DropShadowFilter(distance, angle, color, blurX, blurY, 2));
+    filters.add(DropShadowFilter(distance, angle, color, blurX, blurY, 2));
   }
 
   var glowFilterConfig = config['glowFilter'];
@@ -186,7 +186,7 @@ void onEnterFrame(EnterFrameEvent e) {
     var color = glowFilterConfig['color'];
     var blurX = glowFilterConfig['blurX'];
     var blurY = glowFilterConfig['blurY'];
-    filters.add(new GlowFilter(color, blurX, blurY, 2));
+    filters.add(GlowFilter(color, blurX, blurY, 2));
   }
 
   flowerField.filters = filters;

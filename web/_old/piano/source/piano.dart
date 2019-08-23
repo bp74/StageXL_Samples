@@ -7,7 +7,7 @@ class Piano extends DisplayObjectContainer {
     'C4', 'C4#', 'D4', 'D4#', 'E4', 'F4', 'F4#', 'G4', 'G4#', 'A4', 'A4#', 'B4',
     'C5'];
 
-  Map<String, PianoKey> _pianoKeys = new Map<String, PianoKey>();
+  Map<String, PianoKey> _pianoKeys = Map<String, PianoKey>();
   Bitmap _hintFinger;
 
   Piano() {
@@ -18,7 +18,7 @@ class Piano extends DisplayObjectContainer {
 
       var noteName = noteNames[n];
       var soundName = "Note${n+1}";
-      var pianoKey = new PianoKey(noteName, soundName);
+      var pianoKey = PianoKey(noteName, soundName);
 
       pianoKey.on(PianoEvent.NOTE_PLAYED).listen((event) {
         this.dispatchEvent(event);
@@ -40,7 +40,7 @@ class Piano extends DisplayObjectContainer {
 
     // add hint finger to this DisplayObjectContainer
 
-    _hintFinger = new Bitmap(resourceManager.getBitmapData('Finger'));
+    _hintFinger = Bitmap(resourceManager.getBitmapData('Finger'));
     _hintFinger.pivotX = 20;
     addChild(_hintFinger);
   }
@@ -56,8 +56,8 @@ class Piano extends DisplayObjectContainer {
       _hintFinger.y = 0;
       _hintFinger.alpha = 1;
 
-      var tweenX = new Tween(this._hintFinger, 0.4, Transition.easeInOutCubic);
-      var tweenY = new Tween(this._hintFinger, 0.4, Transition.sine);
+      var tweenX = Tween(this._hintFinger, 0.4, Transition.easeInOutCubic);
+      var tweenY = Tween(this._hintFinger, 0.4, Transition.sine);
       tweenX.animate.x.to(pianoKey.x + pianoKey.width / 2);
       tweenY.animate.y.to(-10);
       stage.juggler.add(tweenX);
@@ -65,7 +65,7 @@ class Piano extends DisplayObjectContainer {
 
     } else {
 
-      var tween = new Tween(_hintFinger, 0.4, Transition.linear);
+      var tween = Tween(_hintFinger, 0.4, Transition.linear);
       tween.animate.alpha.to(0);
       stage.juggler.add(tween);
     }

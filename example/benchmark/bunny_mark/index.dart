@@ -10,7 +10,7 @@ import 'dart:html' as html;
 import 'dart:math' hide Point, Rectangle;
 import 'package:stagexl/stagexl.dart';
 
-Random random = new Random();
+Random random = Random();
 num gravity = 0.75;
 
 Future main() async {
@@ -26,29 +26,29 @@ Future main() async {
 
   // Initialize Stage and RenderLoop
 
-  var stage = new Stage(html.querySelector('#stage'));
-  var renderLoop = new RenderLoop();
+  var stage = Stage(html.querySelector('#stage'));
+  var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
   // Load resources
 
-  var resourceManager = new ResourceManager();
+  var resourceManager = ResourceManager();
   resourceManager.addBitmapData('bunny', 'images/bunny.png');
   resourceManager.addBitmapData('bunnyAtlas', 'images/bunnyAtlas.png');
   await resourceManager.load();
 
   var bunnyAtlas = resourceManager.getBitmapData("bunnyAtlas");
   var bunnyBitmapDatas = <BitmapData>[
-    new BitmapData.fromBitmapData(bunnyAtlas, new Rectangle(2, 47, 26, 37)),
-    new BitmapData.fromBitmapData(bunnyAtlas, new Rectangle(2, 86, 26, 37)),
-    new BitmapData.fromBitmapData(bunnyAtlas, new Rectangle(2, 125, 26, 37)),
-    new BitmapData.fromBitmapData(bunnyAtlas, new Rectangle(2, 164, 26, 37)),
-    new BitmapData.fromBitmapData(bunnyAtlas, new Rectangle(2, 2, 26, 37))
+    BitmapData.fromBitmapData(bunnyAtlas, Rectangle(2, 47, 26, 37)),
+    BitmapData.fromBitmapData(bunnyAtlas, Rectangle(2, 86, 26, 37)),
+    BitmapData.fromBitmapData(bunnyAtlas, Rectangle(2, 125, 26, 37)),
+    BitmapData.fromBitmapData(bunnyAtlas, Rectangle(2, 164, 26, 37)),
+    BitmapData.fromBitmapData(bunnyAtlas, Rectangle(2, 2, 26, 37))
   ];
 
   // Create BunnyView
 
-  var bunnyView = new BunnyView(bunnyBitmapDatas);
+  var bunnyView = BunnyView(bunnyBitmapDatas);
   stage.addChild(bunnyView);
   stage.onMouseDown.listen((me) => bunnyView.startAdding());
   stage.onMouseUp.listen((me) => bunnyView.stopAdding());
@@ -91,7 +91,7 @@ class BunnyView extends BitmapContainer {
 
   void _addBunny() {
     var bitmapData = this.bitmapDatas[_bunnyIndex];
-    var bunny = new Bunny(bitmapData);
+    var bunny = Bunny(bitmapData);
     bunny.speedX = random.nextDouble() * 10.0;
     bunny.speedY = random.nextDouble() * 10.0 - 5.0;
     bunny.pivotX = 26 / 2;

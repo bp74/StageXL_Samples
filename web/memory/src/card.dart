@@ -7,15 +7,15 @@ class Card extends Sprite3D {
 
   bool concealed = false;
 
-  Sprite _front = new Sprite();
-  Sprite _back = new Sprite();
+  Sprite _front = Sprite();
+  Sprite _back = Sprite();
 
   Card(this.resourceManager, this.id, BitmapData iconBitmapData) {
 
     var atlas = resourceManager.getTextureAtlas("atlas");
-    var frontBitmap = new Bitmap(atlas.getBitmapData("card-front"));
-    var backBitmap = new Bitmap(atlas.getBitmapData("card-back"));
-    var iconBitmap = new Bitmap(iconBitmapData);
+    var frontBitmap = Bitmap(atlas.getBitmapData("card-front"));
+    var backBitmap = Bitmap(atlas.getBitmapData("card-back"));
+    var iconBitmap = Bitmap(iconBitmapData);
 
     frontBitmap.pivotX = frontBitmap.width / 2.0;
     frontBitmap.pivotY = frontBitmap.height / 2.0;
@@ -35,7 +35,7 @@ class Card extends Sprite3D {
     _back.addChild(backBitmap);
     _back.addTo(this);
 
-    this.perspectiveProjection = new PerspectiveProjection.none();
+    this.perspectiveProjection = PerspectiveProjection.none();
     this.mouseChildren = false;
   }
 

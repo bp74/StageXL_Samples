@@ -18,7 +18,7 @@ class Head extends Sprite {
     _juggler = juggler;
     _headBitmapDatas = Grafix.getHeads(_resourceManager);
 
-    _headBitmap = new Bitmap(_headBitmapDatas[0]);
+    _headBitmap = Bitmap(_headBitmapDatas[0]);
     _headBitmap.x = -_headBitmap.width / 2;
     _headBitmap.y = -_headBitmap.height / 2;
 
@@ -33,7 +33,7 @@ class Head extends Sprite {
 
     _juggler.remove(_nodTranslation);
 
-    _nodTranslation = new Translation(0, count, 0.5 * count, Transition.linear);
+    _nodTranslation = Translation(0, count, 0.5 * count, Transition.linear);
 
     _nodTranslation.onUpdate = (value) {
       int frame = ((value * _headBitmapDatas.length) % _headBitmapDatas.length).toInt();

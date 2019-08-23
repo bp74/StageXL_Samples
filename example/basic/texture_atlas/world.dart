@@ -2,11 +2,11 @@ part of texture_atlas_example;
 
 class World extends Sprite implements Animatable {
 
-  final Sprite layerSky = new Sprite();
-  final Sprite layerMountain = new Sprite();
-  final Sprite layerGround = new Sprite();
-  final Sprite layerMonsters = new Sprite();
-  final Sprite layerBoys = new Sprite();
+  final Sprite layerSky = Sprite();
+  final Sprite layerMountain = Sprite();
+  final Sprite layerGround = Sprite();
+  final Sprite layerMonsters = Sprite();
+  final Sprite layerBoys = Sprite();
 
   num _animationTime = 0.0;
 
@@ -27,19 +27,19 @@ class World extends Sprite implements Animatable {
     this.addChild(layerBoys);
 
     // add Bitmaps to the layers
-    layerSky.addChild(new Bitmap(sky)..x = 0);
-    layerSky.addChild(new Bitmap(sky)..x = 1199);
-    layerSky.addChild(new Bitmap(sky)..x = 2398);
-    layerMountain.addChild(new Bitmap(mountain)..x = 0);
-    layerMountain.addChild(new Bitmap(mountain)..x = 1199);
-    layerMountain.addChild(new Bitmap(mountain)..x = 2398);
-    layerGround.addChild(new Bitmap(ground)..x = 0);
-    layerGround.addChild(new Bitmap(ground)..x = 1199);
-    layerGround.addChild(new Bitmap(ground)..x = 2398);
+    layerSky.addChild(Bitmap(sky)..x = 0);
+    layerSky.addChild(Bitmap(sky)..x = 1199);
+    layerSky.addChild(Bitmap(sky)..x = 2398);
+    layerMountain.addChild(Bitmap(mountain)..x = 0);
+    layerMountain.addChild(Bitmap(mountain)..x = 1199);
+    layerMountain.addChild(Bitmap(mountain)..x = 2398);
+    layerGround.addChild(Bitmap(ground)..x = 0);
+    layerGround.addChild(Bitmap(ground)..x = 1199);
+    layerGround.addChild(Bitmap(ground)..x = 2398);
 
     // create FlipBooks with the monster animation
     for (int i = 0; i < 6; i++) {
-      layerMonsters.addChild(new FlipBook(monsters, 10)
+      layerMonsters.addChild(FlipBook(monsters, 10)
         ..pivotX = monsters.first.width / 2
         ..pivotY = monsters.first.height / 2
         ..x = 100 + i * 160
@@ -49,7 +49,7 @@ class World extends Sprite implements Animatable {
 
     // create FlipBooks with the boy animation
     for (int i = 0; i < 3; i++) {
-      layerBoys.addChild(new FlipBook(boys, 10)
+      layerBoys.addChild(FlipBook(boys, 10)
         ..pivotX = boys.first.width / 2
         ..pivotY = boys.first.height
         ..x = 200 + 300 * i

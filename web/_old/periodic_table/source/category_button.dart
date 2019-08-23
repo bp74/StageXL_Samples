@@ -23,10 +23,10 @@ class CategoryButton extends Sprite {
     this.graphics.strokeColor(Color.Black, 1);
 
     var font =  "Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif";
-    var textFormat = new TextFormat(font, 20, Color.Black, bold:true,
+    var textFormat = TextFormat(font, 20, Color.Black, bold:true,
         align: TextFormatAlign.CENTER);
 
-    var textField = new TextField()
+    var textField = TextField()
       ..defaultTextFormat = textFormat
       ..x = 5
       ..y = 12

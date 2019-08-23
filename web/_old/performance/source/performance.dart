@@ -3,7 +3,7 @@ part of performance;
 class Performance extends DisplayObjectContainer implements Animatable {
 
   ResourceManager _resourceManager;
-  Juggler _juggler = new Juggler();
+  Juggler _juggler = Juggler();
 
   Performance(this._resourceManager);
 
@@ -17,7 +17,7 @@ class Performance extends DisplayObjectContainer implements Animatable {
 
   void addFlags(int amount) {
 
-    var random = new math.Random();
+    var random = math.Random();
     var textureAtlas = _resourceManager.getTextureAtlas('flags');
     var flagNames = textureAtlas.frameNames;
 
@@ -26,7 +26,7 @@ class Performance extends DisplayObjectContainer implements Animatable {
       var flagBitmapData = textureAtlas.getBitmapData(flagName);
       var velocityX = random.nextInt(200) - 100;
       var velocityY = random.nextInt(200) - 100;
-      var flyingFlag = new FlyingFlag(flagBitmapData, velocityX, velocityY);
+      var flyingFlag = FlyingFlag(flagBitmapData, velocityX, velocityY);
       flyingFlag.x = 30 + random.nextInt(940 - 60);
       flyingFlag.y = 30 + random.nextInt(500 - 60);
       addChild(flyingFlag);

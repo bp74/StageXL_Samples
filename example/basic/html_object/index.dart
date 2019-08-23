@@ -14,14 +14,14 @@ Future main() async {
   // init Stage and RenderLoop
 
   var canvas = querySelector('#stage');
-  var stage = new Stage(canvas, width: 800, height: 600);
-  var renderLoop = new RenderLoop();
+  var stage = Stage(canvas, width: 800, height: 600);
+  var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
   // create some random lines on the StageXL stage
 
-  var background = new Sprite();
-  var random = new Random();
+  var background = Sprite();
+  var random = Random();
 
   for (int i = 0; i < 200; i++) {
     var r = random.nextInt(255);
@@ -43,7 +43,7 @@ Future main() async {
   // create HtmlObject display object
 
   var htmlElement = querySelector("#htmlObject");
-  var htmlObject = new HtmlObject(htmlElement);
+  var htmlObject = HtmlObject(htmlElement);
   htmlObject.x = 800 / 2;
   htmlObject.y = 600 / 2;
   htmlObject.pivotX = 600 / 2;

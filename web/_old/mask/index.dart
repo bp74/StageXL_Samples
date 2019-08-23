@@ -6,9 +6,9 @@ import 'package:stagexl/stagexl.dart';
 
 part 'source/flower_field.dart';
 
-Stage stage = new Stage(html.querySelector('#stage'));
-ResourceManager resourceManager  = new ResourceManager();
-RenderLoop renderLoop = new RenderLoop();
+Stage stage = Stage(html.querySelector('#stage'));
+ResourceManager resourceManager  = ResourceManager();
+RenderLoop renderLoop = RenderLoop();
 
 void main() {
 
@@ -17,23 +17,23 @@ void main() {
   //---------------------------------------------
   // define three different masks
 
-  var starPath = new List<Point>();
+  var starPath = List<Point>();
 
   for(int i = 0; i < 6; i++) {
     num a1 = (i * 60) * math.pi / 180;
     num a2 = (i * 60 + 30) * math.pi / 180;
-    starPath.add(new Point(470 + 200 * math.cos(a1), 250 + 200 * math.sin(a1)));
-    starPath.add(new Point(470 + 100 * math.cos(a2), 250 + 100 * math.sin(a2)));
+    starPath.add(Point(470 + 200 * math.cos(a1), 250 + 200 * math.sin(a1)));
+    starPath.add(Point(470 + 100 * math.cos(a2), 250 + 100 * math.sin(a2)));
   }
 
-  var rectangleMask = new Mask.rectangle(100, 100, 740, 300);
-  var circleMask = new Mask.circle(470, 250, 200);
-  var customMask = new Mask.custom(starPath);
+  var rectangleMask = Mask.rectangle(100, 100, 740, 300);
+  var circleMask = Mask.circle(470, 250, 200);
+  var customMask = Mask.custom(starPath);
 
   //---------------------------------------------
   // add html-button event listeners
 
-  var flowerField = new Sprite();
+  var flowerField = Sprite();
 
   html.querySelector('#mask-none').onClick.listen((e) => flowerField.mask = null);
   html.querySelector('#mask-rectangle').onClick.listen((e) => flowerField.mask = rectangleMask);
@@ -53,7 +53,7 @@ void main() {
   resourceManager
     ..addTextureAtlas('flowers', 'images/Flowers.json', TextureAtlasFormat.JSONARRAY)
     ..load().then((_) {
-      flowerField = new FlowerField()
+      flowerField = FlowerField()
         ..x = 470
         ..y = 250
         ..pivotX = 470

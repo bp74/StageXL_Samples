@@ -15,21 +15,21 @@ Future main() async {
   // init Stage and RenderLoop
 
   var canvas = html.querySelector('#stage');
-  var stage = new Stage(canvas, width: 800, height: 800);
-  var renderLoop = new RenderLoop();
+  var stage = Stage(canvas, width: 800, height: 800);
+  var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
   // load resources
 
-  var resourceManager = new ResourceManager();
+  var resourceManager = ResourceManager();
   resourceManager.addBitmapData("guy_pixels", "images/character-with-si-logo.png");
   resourceManager.addBitmapData("guy_normal", "images/character-with-si-logo_n.png");
   await resourceManager.load();
 
   // add TextField with SpriteIlluminator information
 
-  var textField = new TextField();
-  textField.defaultTextFormat = new TextFormat("Arial", 22, Color.White);
+  var textField = TextField();
+  textField.defaultTextFormat = TextFormat("Arial", 22, Color.White);
   textField.defaultTextFormat.align = TextFormatAlign.CENTER;
   textField.width = 800;
   textField.height = 40;
@@ -41,7 +41,7 @@ Future main() async {
   // create the NormalMapFilter with the image from the resource manager.
 
   var guyNormalBitmapData = resourceManager.getBitmapData("guy_normal");
-  var normalMapFilter = new NormalMapFilter(guyNormalBitmapData);
+  var normalMapFilter = NormalMapFilter(guyNormalBitmapData);
   normalMapFilter.ambientColor = 0xFFA0A060;
   normalMapFilter.lightColor = 0xFFFFFFFF;
   normalMapFilter.lightRadius = 3000;
@@ -53,7 +53,7 @@ Future main() async {
   // and add the NormalMapFilter to the filters.
 
   var guyPixelsBitmapData = resourceManager.getBitmapData("guy_pixels");
-  var guy = new Bitmap(guyPixelsBitmapData);
+  var guy = Bitmap(guyPixelsBitmapData);
   guy.filters.add(normalMapFilter);
   guy.scaleX = guy.scaleY = 0.5;
   guy.pivotX = guyPixelsBitmapData.width / 2;
@@ -66,7 +66,7 @@ Future main() async {
   // the mouse or the touch point.
 
   var setLightPosition = (InputEvent e) {
-    var stagePosition = new Point<num>(e.stageX, e.stageY);
+    var stagePosition = Point<num>(e.stageX, e.stageY);
     var guyPosition = guy.globalToLocal(stagePosition);
     normalMapFilter.lightX = guyPosition.x;
     normalMapFilter.lightY = guyPosition.y;

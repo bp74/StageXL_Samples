@@ -83,16 +83,16 @@ class MissileGameEngine extends GameComponent {
 
   MissileGameEngine(MissileGame game) : super(game) {
 
-    _mask = new Mask.rectangle(80,60, 690, 524);
+    _mask = Mask.rectangle(80,60, 690, 524);
     this.mask = _mask;
 
     this.bgSound = resourceManager.getSound("speedalizer");
     this.bgSoundChannel = this.bgSound.play(true);
 
-    this.tube = new Shape();
+    this.tube = Shape();
     this.addChild(this.tube);
 
-    glassPlate = new GlassPlate(800, 600);
+    glassPlate = GlassPlate(800, 600);
     addChild(glassPlate);
 
     mouseX = mouseY = 0;
@@ -135,7 +135,7 @@ class MissileGameEngine extends GameComponent {
     this.doZCount = false;
 
     num nFactor = 60;
-    this.nearestPolygon = new RegularPolygon( GAME_NEAREST_RADIUS, GAME_NGON_CORNERS * nFactor );
+    this.nearestPolygon = RegularPolygon( GAME_NEAREST_RADIUS, GAME_NGON_CORNERS * nFactor );
 
     for(var p = this.nearestPolygon.pointList.length; p >= 0; p--) {
       if ( p % nFactor != 0 && p % nFactor != 1 ) {
@@ -145,9 +145,9 @@ class MissileGameEngine extends GameComponent {
 
     // set game params of current level
 
-    this.center = new Vector2D( GAME_WIDTH_HALF, GAME_HEIGHT_HALF);
-    this.nirvana = new Vector3D( 0, 0, 0);
-    this.nearest = new Vector3D( 0, 0, MAX_Z);
+    this.center = Vector2D( GAME_WIDTH_HALF, GAME_HEIGHT_HALF);
+    this.nirvana = Vector3D( 0, 0, 0);
+    this.nearest = Vector3D( 0, 0, MAX_Z);
 
     this.pipeRotStep = (1 + (0.1 * this.game.level)) * math.pi / 180;
     this.zSpeed = 0.015 + (0.004 * this.game.level);
@@ -169,14 +169,14 @@ class MissileGameEngine extends GameComponent {
 
     if (this.scene != null) this.removeChild(this.scene);
 
-    this.scene = new Scene();
+    this.scene = Scene();
     this.addChild( this.scene );
 
     //----------------------------
 
     if (this.crosshair != null) this.removeChild(this.crosshair);
 
-    this.crosshair = new Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("crosshair"));
+    this.crosshair = Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("crosshair"));
     this.crosshair.scaleX = 0.5;
     this.crosshair.scaleY = 0.5;
     this.crosshair.x = (GAME_WIDTH / 2) - this.crosshair.width / 2;
@@ -192,17 +192,19 @@ class MissileGameEngine extends GameComponent {
     // create pipe - outline - polygon
 
     var nFactor = 60;
-    this.nearestPolygon = new RegularPolygon( GAME_NEAREST_RADIUS, GAME_NGON_CORNERS * nFactor );
+    this.nearestPolygon = RegularPolygon( GAME_NEAREST_RADIUS, GAME_NGON_CORNERS * nFactor );
 
-    for(var p = this.nearestPolygon.pointList.length; p >= 0; p--)
-      if ( p % nFactor != 0 && p % nFactor != 1 )
+    for(var p = this.nearestPolygon.pointList.length; p >= 0; p--) {
+      if ( p % nFactor != 0 && p % nFactor != 1 ) {
         this.nearestPolygon.removePoint(p);
+      }
+    }
 
     // set game params of current level
 
-    this.center = new Vector2D( GAME_WIDTH_HALF, GAME_HEIGHT_HALF);
-    this.nirvana = new Vector3D( 0, 0, 0);
-    this.nearest = new Vector3D( 0, 0, MAX_Z);
+    this.center = Vector2D( GAME_WIDTH_HALF, GAME_HEIGHT_HALF);
+    this.nirvana = Vector3D( 0, 0, 0);
+    this.nearest = Vector3D( 0, 0, MAX_Z);
 
     this.pipeRotStep = 2 * math.pi / 180;
     //this.zSpeed = 0.05;
@@ -216,7 +218,7 @@ class MissileGameEngine extends GameComponent {
       this.scene = null;
     }
 
-    this.scene = new Scene();
+    this.scene = Scene();
     this.addChild( this.scene );
 
     if (this.broken != null) {
@@ -234,7 +236,7 @@ class MissileGameEngine extends GameComponent {
 
     // dummy pipe slices
 
-    var pob = new PipeObject( null );
+    var pob = PipeObject( null );
     pob.continued = -1;
     pob.rotStep = 0;
     pob.position = this.nirvana.clone();
@@ -244,7 +246,7 @@ class MissileGameEngine extends GameComponent {
 
   void createCountdownObjects() {
 
-    var pob = new PipeObject(new Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("countdown01")));
+    var pob = PipeObject(Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("countdown01")));
     pob.continued = 0;
     pob.rotStep = 0;
     pob.position = this.nirvana.clone();
@@ -253,7 +255,7 @@ class MissileGameEngine extends GameComponent {
     pob.isCountdown = true;
     this.scene.addPipeObject( pob );
 
-    pob = new PipeObject(new Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("countdown02")));
+    pob = PipeObject(Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("countdown02")));
     pob.continued = 0;
     pob.rotStep = 0;
     pob.position = this.nirvana.clone();
@@ -262,7 +264,7 @@ class MissileGameEngine extends GameComponent {
     pob.isCountdown = true;
     this.scene.addPipeObject( pob );
 
-    pob = new PipeObject(new Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("countdown03")));
+    pob = PipeObject(Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("countdown03")));
     pob.continued = 0;
     pob.rotStep = 0;
     pob.position = this.nirvana.clone();
@@ -271,7 +273,7 @@ class MissileGameEngine extends GameComponent {
     pob.isCountdown = true;
     this.scene.addPipeObject( pob );
 
-    pob = new PipeObject(new Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("countdown04")));
+    pob = PipeObject(Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("countdown04")));
     pob.continued = 0;
     pob.rotStep = 0;
     pob.position = this.nirvana.clone();
@@ -286,13 +288,14 @@ class MissileGameEngine extends GameComponent {
 
     var maxId = 1 + this.game.level;
 
-    if (maxId >= this.barrierTypes.length)
+    if (maxId >= this.barrierTypes.length) {
       maxId = this.barrierTypes.length - 1;
+    }
 
     var rndId = RandomUtils.getIntByRange(0, maxId);
     var type = this.barrierTypes[rndId];
 
-    var pob = new PipeObject(new Bitmap(resourceManager.getBitmapData(type)));
+    var pob = PipeObject(Bitmap(resourceManager.getBitmapData(type)));
     pob.isBarrier = true;
     pob.rotation = RandomUtils.getIntByRange(0,359) * math.pi / 180;
     pob.rotStep = RandomUtils.getNumberByRange(this.pipeObjectRotMin, this.pipeObjectRotMax) * math.pi / 180;
@@ -318,7 +321,7 @@ class MissileGameEngine extends GameComponent {
 
       if ( i == pipeObjectsNum-1 ) {
         //create finish-object here ...
-        pob = new PipeObject(new Bitmap(resourceManager.getBitmapData("finish")));
+        pob = PipeObject(Bitmap(resourceManager.getBitmapData("finish")));
         pob.rotation = 0;
         pob.rotStep = 5 * math.pi / 180;
         pob.position = this.nirvana.clone();
@@ -331,21 +334,21 @@ class MissileGameEngine extends GameComponent {
         count ++;
         if (this.game.level == 1 && count <= 3) {
           if (count == 1) {
-            pob = new PipeObject(new Bitmap(resourceManager.getBitmapData("training01")));
+            pob = PipeObject(Bitmap(resourceManager.getBitmapData("training01")));
             pob.isBarrier = true;
             pob.rotation = 0;//RandomUtils.getIntByRange(0,359);
             pob.rotStep = 0;//RandomUtils.getNumberByRange(this.pipeObjectRotMin, this.pipeObjectRotMax);
             pob.position = this.nirvana.clone();
             pob.testObjectId = 1;
           } else if (count == 2) {
-            pob = new PipeObject(new Bitmap(resourceManager.getBitmapData("training02")));
+            pob = PipeObject(Bitmap(resourceManager.getBitmapData("training02")));
             pob.isBarrier = true;
             pob.rotation = 135 * math.pi / 180;//RandomUtils.getIntByRange(0,359);
             pob.rotStep = 0;//RandomUtils.getNumberByRange(this.pipeObjectRotMin, this.pipeObjectRotMax);
             pob.position = this.nirvana.clone();
             pob.testObjectId = 2;
           } else if (count == 3) {
-            pob = new PipeObject(new Bitmap(resourceManager.getBitmapData("training02")));
+            pob = PipeObject(Bitmap(resourceManager.getBitmapData("training02")));
             pob.isBarrier = true;
             pob.rotation = 315 * math.pi / 180;//RandomUtils.getIntByRange(0,359);
             pob.rotStep = 0;//RandomUtils.getNumberByRange(this.pipeObjectRotMin, this.pipeObjectRotMax);
@@ -376,8 +379,9 @@ class MissileGameEngine extends GameComponent {
     if (this.game.paused == false) {
       this.redrawObjects();
       var mGame = this.game as MissileGame;
-      if (mGame.trainingsMode && this.checkMouseDown && !mGame.mouseIsDown)
+      if (mGame.trainingsMode && this.checkMouseDown && !mGame.mouseIsDown) {
         mGame.onScreenRelease();
+      }
     } else {
       lastFrameTime = -1;
     }
@@ -385,7 +389,7 @@ class MissileGameEngine extends GameComponent {
 
   bool hitTest(PipeObject obj) {
 
-    Point localPoint = new Point(this.center.x, this.center.y);
+    Point localPoint = Point(this.center.x, this.center.y);
     localPoint = this.localToGlobal( localPoint );
     localPoint = obj.globalToLocal( localPoint );
     return obj.hitTest( localPoint );
@@ -420,7 +424,7 @@ class MissileGameEngine extends GameComponent {
     this.zSpeed = 0;
 
     if (this.broken != null) this.removeChild(this.broken);
-    this.broken = new Bitmap(resourceManager.getBitmapData("broken"));
+    this.broken = Bitmap(resourceManager.getBitmapData("broken"));
     this.addChild(this.broken);
 
     if ( this.accidentPipeObject.testObjectId > 0 && ++this.freeAccidents <= 5 ) {
@@ -430,8 +434,9 @@ class MissileGameEngine extends GameComponent {
     } else {
       this.game.lives--;
 
-      if (this.game.lives > 0)
+      if (this.game.lives > 0) {
         renderJuggler.delayCall(mGame.createRestartLevelMenu, 2.0);
+      }
     }
 
     this.bgSoundChannel.stop();
@@ -543,12 +548,13 @@ class MissileGameEngine extends GameComponent {
         }
       }
 
-      if (this.finishPipeObject != null)
+      if (this.finishPipeObject != null) {
         this.game.progress = (this.currentZ+3) / (this.finishPipeObject.originalZ+3);
+      }
   }
 
   Vector2D v3DtoV2D(Vector3D v) {
-    var v2d = new Vector2D( v.x, v.y );
+    var v2d = Vector2D( v.x, v.y );
     v2d.x *= zToScaleFactor(v.z);
     v2d.y *= zToScaleFactor(v.z);
     return v2d;

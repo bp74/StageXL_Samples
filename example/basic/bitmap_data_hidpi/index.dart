@@ -15,8 +15,8 @@ Future main() async {
   // init the stage and render loop
 
   var canvas = html.querySelector('#stage');
-  var stage = new Stage(canvas, width: 300, height: 300);
-  var renderLoop = new RenderLoop();
+  var stage = Stage(canvas, width: 300, height: 300);
+  var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
   // adjust available pixelRatios depending on the stage scale
@@ -31,7 +31,7 @@ Future main() async {
 
   // load the resources with a default size of @1.00x
 
-  var resourceManager = new ResourceManager();
+  var resourceManager = ResourceManager();
   resourceManager.addBitmapData("background", "images/background@1.00x.jpg");
   resourceManager.addTextureAtlas("atlas", "images/atlas@1.00x.json");
   await resourceManager.load();
@@ -39,12 +39,12 @@ Future main() async {
   // show the background and the walking boy
 
   var bitmapData = resourceManager.getBitmapData("background");
-  var bitmap = new Bitmap(bitmapData);
+  var bitmap = Bitmap(bitmapData);
   stage.addChild(bitmap);
 
   var textureAtlas = resourceManager.getTextureAtlas("atlas");
   var bitmapDatas = textureAtlas.getBitmapDatas("frame");
-  var flipbook = new FlipBook(bitmapDatas, 10);
+  var flipbook = FlipBook(bitmapDatas, 10);
   flipbook.pivotX = 75;
   flipbook.pivotY = 125;
   flipbook.x = 150;

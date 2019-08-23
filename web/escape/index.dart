@@ -32,22 +32,22 @@ Future main() async {
   StageXL.bitmapDataLoadOptions.webp = true;
 
   var canvas = html.querySelector('#stage');
-  var stage = new Stage(canvas, width: 800, height: 600);
-  var renderLoop = new RenderLoop();
+  var stage = Stage(canvas, width: 800, height: 600);
+  var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
   // create loading screen
 
   var loadingBitmapData = await BitmapData.load("images/Loading.png");
-  var loadingBitmap = new Bitmap(loadingBitmapData);
+  var loadingBitmap = Bitmap(loadingBitmapData);
   loadingBitmap.pivotX = 20;
   loadingBitmap.pivotY = 20;
   loadingBitmap.x = 400;
   loadingBitmap.y = 270;
   stage.addChild(loadingBitmap);
 
-  var loadingTextField = new TextField();
-  loadingTextField.defaultTextFormat = new TextFormat("Arial", 20, 0xA0A0A0, bold:true);
+  var loadingTextField = TextField();
+  loadingTextField.defaultTextFormat = TextFormat("Arial", 20, 0xA0A0A0, bold:true);
   loadingTextField.width = 240;
   loadingTextField.height = 40;
   loadingTextField.text = "... loading ...";
@@ -56,13 +56,13 @@ Future main() async {
   loadingTextField.mouseEnabled = false;
   stage.addChild(loadingTextField);
 
-  var loadingBitmapTween = new Tween(loadingBitmap, 100, Transition.linear);
+  var loadingBitmapTween = Tween(loadingBitmap, 100, Transition.linear);
   loadingBitmapTween.animate.rotation.to(100.0 * 2.0 * math.pi);
   stage.juggler.add(loadingBitmapTween);
 
   // load resources
 
-  var resourceManager = new ResourceManager();
+  var resourceManager = ResourceManager();
 
   resourceManager.addBitmapData("Background", "images/Background.jpg");
   resourceManager.addBitmapData("ExitBox", "images/ExitBox.png");
@@ -125,8 +125,8 @@ Future main() async {
   stage.removeChild(loadingTextField);
   stage.juggler.remove(loadingBitmapTween);
 
-  var game = new Game(resourceManager, stage.juggler);
-  stage.addChild(new Bitmap(resourceManager.getBitmapData("Background")));
+  var game = Game(resourceManager, stage.juggler);
+  stage.addChild(Bitmap(resourceManager.getBitmapData("Background")));
   stage.addChild(game);
   game.start();
 }

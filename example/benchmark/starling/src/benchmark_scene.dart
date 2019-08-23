@@ -10,8 +10,8 @@ class BenchmarkScene extends Sprite implements Animatable {
   final int targetFrameRate;
   final BitmapData bitmapData;
 
-  final Random _random = new Random();
-  final BitmapContainer _container = new BitmapContainer();
+  final Random _random = Random();
+  final BitmapContainer _container = BitmapContainer();
 
   num _averageFrameRate = 60.0;
   num _deltaToggleSign = 0;
@@ -43,7 +43,7 @@ class BenchmarkScene extends Sprite implements Animatable {
 
     if (deltaCount > 0) {
       for(int i = 0; i < speedCount; i++) {
-        var bitmap = new Bitmap(bitmapData);
+        var bitmap = Bitmap(bitmapData);
         var bitmapScale = 1.0 / scale;
         var angle  = _random.nextDouble() * pi * 2.0;
         var distance = (50 + _random.nextInt(150)) * bitmapScale;
@@ -86,8 +86,8 @@ class BenchmarkScene extends Sprite implements Animatable {
 
     var numChildren = _container.numChildren;
     var targetFps = this.targetFrameRate;
-    var resultText = new TextField();
-    var textFormat = new TextFormat("Arial, Helvetica", 30, Color.Black);
+    var resultText = TextField();
+    var textFormat = TextFormat("Arial, Helvetica", 30, Color.Black);
 
     resultText.width = 240;
     resultText.height = 200;

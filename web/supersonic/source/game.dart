@@ -19,7 +19,7 @@ class Game extends Sprite {
   void setWidthHeight(int w, int h) {
     _gameWidth = w;
     _gameHeight = h;
-    this.dispatchEvent(new GameEvent(GameEvent.TYPE_GAME_SIZE_CHANGED, this));
+    this.dispatchEvent(GameEvent(GameEvent.TYPE_GAME_SIZE_CHANGED, this));
   }
 
   //-----------------------------------------------------------------------------------------------
@@ -51,15 +51,15 @@ class Game extends Sprite {
 
   void start() {
     this.paused = false;
-    this.dispatchEvent(new GameEvent(GameEvent.TYPE_GAME_START, this));
+    this.dispatchEvent(GameEvent(GameEvent.TYPE_GAME_START, this));
   }
 
   void gameOver() {
-    this.dispatchEvent(new GameEvent(GameEvent.TYPE_GAME_OVER, this));
+    this.dispatchEvent(GameEvent(GameEvent.TYPE_GAME_OVER, this));
   }
 
   void abortGame() {
-    this.dispatchEvent(new GameEvent(GameEvent.TYPE_GAME_ABORT, this));
+    this.dispatchEvent(GameEvent(GameEvent.TYPE_GAME_ABORT, this));
   }
 
   set progress(num value) {
@@ -67,14 +67,14 @@ class Game extends Sprite {
     if (value > 1.0) value = 1.0;
     _progress = value;
 
-    this.dispatchEvent(new GameEvent(GameEvent.TYPE_PROGRESS_CHANGED, this));
+    this.dispatchEvent(GameEvent(GameEvent.TYPE_PROGRESS_CHANGED, this));
   }
 
   set lives(int value) {
     if (value < 0) value = 0;
     _lives = value;
 
-    this.dispatchEvent(new GameEvent(GameEvent.TYPE_LIVES_CHANGED, this));
+    this.dispatchEvent(GameEvent(GameEvent.TYPE_LIVES_CHANGED, this));
     if (_lives == 0 ) this.gameOver();
   }
 
@@ -82,14 +82,14 @@ class Game extends Sprite {
     if (value < 0) value = 0;
     _score= value;
 
-    this.dispatchEvent(new GameEvent(GameEvent.TYPE_SCORE_CHANGED, this));
+    this.dispatchEvent(GameEvent(GameEvent.TYPE_SCORE_CHANGED, this));
   }
 
   set level(int value) {
     if (value < 0) value = 0;
     _level = value;
 
-    this.dispatchEvent(new GameEvent(GameEvent.TYPE_LEVEL_CHANGED, this));
+    this.dispatchEvent(GameEvent(GameEvent.TYPE_LEVEL_CHANGED, this));
   }
 
   int nextLevel() {
@@ -99,6 +99,6 @@ class Game extends Sprite {
 
   set paused(bool value) {
     _paused = value;
-    this.dispatchEvent(new GameEvent(GameEvent.TYPE_PAUSE_CHANGED, this));
+    this.dispatchEvent(GameEvent(GameEvent.TYPE_PAUSE_CHANGED, this));
   }
 }

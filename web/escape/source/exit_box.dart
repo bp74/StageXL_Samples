@@ -10,11 +10,11 @@ class ExitBox extends Sprite {
 
   ExitBox(ResourceManager resourceManager, Juggler juggler) {
 
-    Bitmap background = new Bitmap(resourceManager.getBitmapData("ExitBox"));
+    Bitmap background = Bitmap(resourceManager.getBitmapData("ExitBox"));
     addChild(background);
 
-    TextField textField = new TextField();
-    textField.defaultTextFormat = new TextFormat("Arial", 24, 0xFFFFFF, bold:true, align:TextFormatAlign.CENTER);
+    TextField textField = TextField();
+    textField.defaultTextFormat = TextFormat("Arial", 24, 0xFFFFFF, bold:true, align:TextFormatAlign.CENTER);
     textField.width = 240;
     textField.height = 100;
     textField.wordWrap = true;
@@ -22,14 +22,14 @@ class ExitBox extends Sprite {
     textField.text = resourceManager.getText("GENexitquery");
     textField.x = 47;
     textField.y = 150 - textField.textHeight/2;
-    //textField.filters = [new GlowFilter(0x000000, 0.7, 3, 3)];    // ToDo
+    //textField.filters = [GlowFilter(0x000000, 0.7, 3, 3)];    // ToDo
     textField.mouseEnabled = false;
 
     addChild(textField);
 
     //---------------------
 
-    _timeGauge = new TimeGauge(7, resourceManager.getBitmapData("ExitGauge"), Gauge.DIRECTION_DOWN);
+    _timeGauge = TimeGauge(7, resourceManager.getBitmapData("ExitGauge"), Gauge.DIRECTION_DOWN);
     _timeGauge.x = 268;
     _timeGauge.y = 25;
     _timeGauge.addEventListener("TimeOver", _onTimeOver);
@@ -38,19 +38,19 @@ class ExitBox extends Sprite {
     _timeGauge.addAlarm("TimeOver", 0);
     _timeGauge.start();
 
-    Bitmap exitYesButtonNormal = new Bitmap(resourceManager.getBitmapData("ExitYesButtonNormal"));
-    Bitmap exitYesButtonPressed = new Bitmap(resourceManager.getBitmapData("ExitYesButtonPressed"));
+    Bitmap exitYesButtonNormal = Bitmap(resourceManager.getBitmapData("ExitYesButtonNormal"));
+    Bitmap exitYesButtonPressed = Bitmap(resourceManager.getBitmapData("ExitYesButtonPressed"));
 
-    _yesButton = new SimpleButton(exitYesButtonNormal, exitYesButtonNormal, exitYesButtonPressed, exitYesButtonPressed);
+    _yesButton = SimpleButton(exitYesButtonNormal, exitYesButtonNormal, exitYesButtonPressed, exitYesButtonPressed);
     _yesButton.x = 68;
     _yesButton.y = 239;
     _yesButton.addEventListener(MouseEvent.CLICK, _onYesButtonClicked);
     addChild(_yesButton);
 
-    Bitmap exitNoButtonNormal = new Bitmap(resourceManager.getBitmapData("ExitNoButtonNormal"));
-    Bitmap exitNoButtonPressed = new Bitmap(resourceManager.getBitmapData("ExitNoButtonPressed"));
+    Bitmap exitNoButtonNormal = Bitmap(resourceManager.getBitmapData("ExitNoButtonNormal"));
+    Bitmap exitNoButtonPressed = Bitmap(resourceManager.getBitmapData("ExitNoButtonPressed"));
 
-    _noButton = new SimpleButton(exitNoButtonNormal, exitNoButtonNormal, exitNoButtonPressed, exitNoButtonPressed);
+    _noButton = SimpleButton(exitNoButtonNormal, exitNoButtonNormal, exitNoButtonPressed, exitNoButtonPressed);
     _noButton.x = 173;
     _noButton.y = 232;
     _noButton.addEventListener(MouseEvent.CLICK, _onNoButtonClicked);

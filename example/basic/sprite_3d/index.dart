@@ -13,8 +13,8 @@ Future main() async {
   // init Stage and RenderLoop
 
   var canvas = querySelector('#stage');
-  var stage = new Stage(canvas, width: 400, height: 400);
-  var renderLoop = new RenderLoop();
+  var stage = Stage(canvas, width: 400, height: 400);
+  var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
   // load a texture atlas with 3 flower BitmapDatas
@@ -27,21 +27,21 @@ Future main() async {
   // Create cube faces and set the position and orientation in 3D space.
 
   List<CubeFace> cubeFaces = [
-    new CubeFace(0xFFFF8080, flower1) ..offsetX = -75 ..rotationY =  pi / 2,
-    new CubeFace(0xFF80FF80, flower1) ..offsetX =  75 ..rotationY = -pi / 2,
-    new CubeFace(0xFF8080FF, flower2) ..offsetY = -75 ..rotationX = -pi / 2,
-    new CubeFace(0xFFFFFF80, flower2) ..offsetY =  75 ..rotationX =  pi / 2,
-    new CubeFace(0xFF80FFFF, flower3) ..offsetZ = -75 ..rotationY =  0,
-    new CubeFace(0xFFFF80FF, flower3) ..offsetZ =  75 ..rotationY =  pi
+    CubeFace(0xFFFF8080, flower1) ..offsetX = -75 ..rotationY =  pi / 2,
+    CubeFace(0xFF80FF80, flower1) ..offsetX =  75 ..rotationY = -pi / 2,
+    CubeFace(0xFF8080FF, flower2) ..offsetY = -75 ..rotationX = -pi / 2,
+    CubeFace(0xFFFFFF80, flower2) ..offsetY =  75 ..rotationX =  pi / 2,
+    CubeFace(0xFF80FFFF, flower3) ..offsetZ = -75 ..rotationY =  0,
+    CubeFace(0xFFFF80FF, flower3) ..offsetZ =  75 ..rotationY =  pi
   ];
 
   // Create a cube and rotate it in the 3D space.
 
-  var cube = new Sprite3D();
+  var cube = Sprite3D();
   cube.x = 200;
   cube.y = 200;
   cube.children.addAll(cubeFaces);
-  cube.perspectiveProjection = new PerspectiveProjection.fromDepth(1000, 2);
+  cube.perspectiveProjection = PerspectiveProjection.fromDepth(1000, 2);
   cube.addTo(stage);
 
   stage.juggler.timespan(3600.0).listen((time) {
@@ -59,15 +59,15 @@ class CubeFace extends Sprite3D {
 
   CubeFace(int color, BitmapData bitmapData) {
 
-    Bitmap back = new Bitmap(new BitmapData(150, 150, color));
-    Bitmap icon = new Bitmap(bitmapData);
+    Bitmap back = Bitmap(BitmapData(150, 150, color));
+    Bitmap icon = Bitmap(bitmapData);
     this.addChild(back..alignPivot());
     this.addChild(icon..alignPivot());
 
     // set perspective projection to none because this Sprite3D will
     // be inside of another Sprite3D (the cube) which will define the
     // perspective projection for all its children.
-    this.perspectiveProjection = new PerspectiveProjection.none();
+    this.perspectiveProjection = PerspectiveProjection.none();
 
     // hide the CubeFace if it isn't forward facing
     this.onEnterFrame.listen(_onEnterFrame);

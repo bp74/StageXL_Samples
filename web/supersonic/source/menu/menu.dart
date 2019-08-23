@@ -22,13 +22,13 @@ class Menu extends GameComponent implements Animatable {
       this.width  = Menu.menuWidth;
       this.height = Menu.menuHeight;
 
-      this.bg = new Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("menu_bg"));
+      this.bg = Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("menu_bg"));
       this.addChild( this.bg );
 
-      this.textField = new TextField();
+      this.textField = TextField();
       this.textField.textColor = 0x000000;
       this.textField.wordWrap = true;
-      this.textField.defaultTextFormat = new TextFormat(fontName, 30, 0x000000, bold:true, align:TextFormatAlign.CENTER);
+      this.textField.defaultTextFormat = TextFormat(fontName, 30, 0x000000, bold:true, align:TextFormatAlign.CENTER);
       this.textField.width = 476;
       this.textField.height = 250;//182;
       this.textField.x = 60;
@@ -66,7 +66,7 @@ class Menu extends GameComponent implements Animatable {
 
       if (value == null) return;
 
-      var tf = new TextFormat(fontName, 30, 0x000000, bold:true, align:TextFormatAlign.CENTER);
+      var tf = TextFormat(fontName, 30, 0x000000, bold:true, align:TextFormatAlign.CENTER);
       tf.size = (value.length <= 30) ? 45 : 30;
 
       this.textField.defaultTextFormat = tf;
@@ -79,7 +79,7 @@ class Menu extends GameComponent implements Animatable {
     }
 
     void defaultAction() {
-      this.dispatchEvent(new MenuEvent(MenuEvent.TYPE_OK, this));
+      this.dispatchEvent(MenuEvent(MenuEvent.TYPE_OK, this));
     }
 
     set timeProgress( num value ) {
@@ -89,7 +89,7 @@ class Menu extends GameComponent implements Animatable {
       _timeProgress = value;
 
       //var ratio = (255 * _timeProgress).round().toInt();
-      //var mat:Matrix = new Matrix();
+      //var mat:Matrix = Matrix();
       //mat.createGradientBox( 314, 5, 0, 140, 280 );
       //this.graphics.beginFill( 0xffffff, 1 );
       //this.graphics.drawRect( 138, 277, 318, 10 );

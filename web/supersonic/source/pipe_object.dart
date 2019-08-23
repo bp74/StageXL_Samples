@@ -23,7 +23,7 @@ class PipeObject extends Sprite {
   num originalZ = 0;
 
   PipeObject(Bitmap bitmap) {
-    _blood = new Sprite();
+    _blood = Sprite();
     addChild(_blood);
 
     this.bitmap = bitmap;
@@ -44,7 +44,7 @@ class PipeObject extends Sprite {
       _bitmap.pivotY = MissileGameEngine.ASSET_SIDELENGTH / 2;
       addChild(_bitmap);
     } else {
-      _shape = new Shape();
+      _shape = Shape();
       addChild(_shape);
     }
 
@@ -83,7 +83,7 @@ class PipeObject extends Sprite {
 
     if (alpha > 0) {
       hit = true;
-      var bloodBitmap = new Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("blood"));
+      var bloodBitmap = Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("blood"));
       bloodBitmap.pivotX = 50;
       bloodBitmap.pivotY = 50;
       bloodBitmap.x = localPointInBitmap.x - MissileGameEngine.ASSET_SIDELENGTH / 2;

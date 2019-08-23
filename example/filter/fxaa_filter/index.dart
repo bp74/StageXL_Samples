@@ -14,14 +14,14 @@ Future main() async {
   // init Stage and RenderLoop
 
   var canvas = html.querySelector('#stage');
-  var stage = new Stage(canvas, width: 800, height: 800);
-  var renderLoop = new RenderLoop();
+  var stage = Stage(canvas, width: 800, height: 800);
+  var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
   // add TextField with instructions
 
-  var textField = new TextField();
-  textField.defaultTextFormat = new TextFormat("Arial", 22, Color.White);
+  var textField = TextField();
+  textField.defaultTextFormat = TextFormat("Arial", 22, Color.White);
   textField.defaultTextFormat.align = TextFormatAlign.CENTER;
   textField.width = 800;
   textField.height = 40;
@@ -32,7 +32,7 @@ Future main() async {
 
   // create a new Shape
 
-  var shape = new Shape();
+  var shape = Shape();
   shape.graphics.beginPath();
   shape.graphics.rect(-210, -210, 420, 420);
   shape.graphics.fillColor(Color.Black);
@@ -54,17 +54,17 @@ Future main() async {
 
   // toggle the FxaaFilter on every touch
 
-  var container = new Sprite();
+  var container = Sprite();
   container.x = 400;
   container.y = 400;
   container.addChild(shape);
   container.addTo(stage);
 
   var toggleFxaaFilter = (InputEvent e) {
-    if (container.filters.length > 0) {
+    if (container.filters.isNotEmpty) {
       container.filters.clear();
     } else {
-      container.filters.add(new FxaaFilter());
+      container.filters.add(FxaaFilter());
     }
   };
 

@@ -6,14 +6,14 @@ class FlowerField extends Sprite {
 
     // Add 150 rotating flowers to the field.
 
-    var random = new math.Random();
+    var random = math.Random();
     var textureAtlas = resourceManager.getTextureAtlas("flowers");
     var flowers = textureAtlas.getBitmapDatas("Flower");
 
     for(var i = 0; i < 150; i++) {
 
       var flower = flowers[random.nextInt(flowers.length)];
-      var bitmap = new Bitmap(flower)
+      var bitmap = Bitmap(flower)
         ..pivotX = 64
         ..pivotY = 64
         ..x = 64 + random.nextInt(940 - 128)

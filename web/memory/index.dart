@@ -30,19 +30,19 @@ Future main() async {
 
   // init Stage and RenderLoop
 
-  var stage = new Stage(html.querySelector('#stage'), width:800, height:600);
-  var renderLoop = new RenderLoop();
+  var stage = Stage(html.querySelector('#stage'), width:800, height:600);
+  var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
   // load the resources
 
-  var resourceManager = new ResourceManager();
+  var resourceManager = ResourceManager();
   resourceManager.addTextureAtlas("atlas", "images/atlas.json");
   await resourceManager.load();
 
   // start the game
 
-  var game = new Game(resourceManager);
+  var game = Game(resourceManager);
   stage.addChild(game);
   stage.juggler.add(game);
 

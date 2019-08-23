@@ -11,7 +11,7 @@ class TextHoldTheLine extends DisplayObjectContainer {
 
   TextField _createTextField(String text) {
 
-    return new TextField(text)
+    return TextField(text)
         ..cacheAsBitmap = false
         ..autoSize = TextFieldAutoSize.CENTER
         ..defaultTextFormat.align = TextFormatAlign.CENTER
@@ -22,7 +22,7 @@ class TextHoldTheLine extends DisplayObjectContainer {
 
   Sprite _createLetterSprite(String text) {
 
-    return new Sprite()
+    return Sprite()
         ..addChild(_createTextField(text)
             ..y = -5
             ..defaultTextFormat.strokeWidth = 7
@@ -40,7 +40,7 @@ class TextHoldTheLine extends DisplayObjectContainer {
   Sprite _createTextArc(String text, num offset, num arcStart, num arcLength) {
 
     var letters = text.split('');
-    var container = new Sprite();
+    var container = Sprite();
 
     for (int i = 0; i < letters.length; i++) {
       var letterSprite = _createLetterSprite(letters[i]);

@@ -17,9 +17,9 @@ class ElementDetail extends DisplayObjectContainer {
     var boilingPoint = element["boiling_point K"];
 
     var font =  "Open Sans,Helvetica Neue, Helvetica, Arial, sans-serif";
-    var nameTextFormat = new TextFormat(font, 30, Color.Black, bold:true);
+    var nameTextFormat = TextFormat(font, 30, Color.Black, bold:true);
 
-    var nameTextField = new TextField()
+    var nameTextField = TextField()
       ..defaultTextFormat = nameTextFormat
       ..cacheAsBitmap = false
       ..autoSize = TextFieldAutoSize.LEFT
@@ -40,9 +40,9 @@ class ElementDetail extends DisplayObjectContainer {
 
   void _addDataTextField(String text, int x, int y) {
     var font =  "Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif";
-    var dataTextFormat = new TextFormat(font, 14, Color.Black);
+    var dataTextFormat = TextFormat(font, 14, Color.Black);
 
-    var dataTextField = new TextField()
+    var dataTextField = TextField()
       ..defaultTextFormat = dataTextFormat
       ..x = x
       ..y = y

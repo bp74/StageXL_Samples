@@ -21,7 +21,7 @@ class Vector3D {
   }
 
   Vector3D clone() {
-    return new Vector3D( x, y, z );
+    return Vector3D( x, y, z );
   }
 
   void copy(Vector3D p) {
@@ -40,15 +40,15 @@ class Vector3D {
   }
 
   Vector3D negate() {
-    return new Vector3D( - x, - y, - z );
+    return Vector3D( - x, - y, - z );
   }
 
   Vector3D add(Vector3D v) {
-    return new Vector3D(x + v.x, y + v.y, z + v.z);
+    return Vector3D(x + v.x, y + v.y, z + v.z);
   }
 
   Vector3D sub( Vector3D v) {
-    return new Vector3D(x - v.x, y - v.y, z - v.z);
+    return Vector3D(x - v.x, y - v.y, z - v.z);
   }
 
   void pow(num exponent) {
@@ -76,7 +76,7 @@ class Vector3D {
   }
 
   Vector3D cross(Vector3D v) {
-    return new Vector3D(
+    return Vector3D(
       (y * v.z) - (z * v.y) ,
       (z * v.x) - (x * v.z) ,
       (x * v.y) - (y * v.x)
@@ -111,10 +111,7 @@ class Vector3D {
     } else {
       var ncos = dot( w ) / ( denom );
       var sin2 = 1 - (ncos * ncos);
-
-      if (sin2 < 0)
-        sin2 = 0.0;
-
+      if (sin2 < 0) sin2 = 0.0;
       return math.atan2(math.sqrt(sin2), ncos);
     }
   }

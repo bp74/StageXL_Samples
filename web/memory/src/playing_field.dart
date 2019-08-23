@@ -4,9 +4,9 @@ class PlayingField extends Sprite3D {
 
   final ResourceManager resourceManager;
 
-  Sprite _cards = new Sprite();
-  Juggler _juggler = new Juggler();
-  List<Card> _selectedCards = new List<Card>();
+  Sprite _cards = Sprite();
+  Juggler _juggler = Juggler();
+  List<Card> _selectedCards = List<Card>();
   int _numTurnedCards = 0;
 
   final num ANIM_TIME = 0.5;
@@ -30,7 +30,7 @@ class PlayingField extends Sprite3D {
     removeChildren();
     addChild(_cards);
 
-    var futures = new List<Future>();
+    var futures = List<Future>();
 
     for (int i = 0; i < _cards.numChildren; ++i) {
       var card = _cards.getChildAt(i) as Card;
@@ -43,7 +43,7 @@ class PlayingField extends Sprite3D {
 
   Future removeCards() {
 
-    var futures = new List<Future>();
+    var futures = List<Future>();
 
     for (int i = 0; i < _cards.numChildren; ++i) {
       var card = _cards.getChildAt(i) as Card;
@@ -66,19 +66,19 @@ class PlayingField extends Sprite3D {
 
   Sprite _createCardPlane(int numColumns, int numRows) {
 
-    var plane = new Sprite();
+    var plane = Sprite();
     addChild(plane);
 
     var atlas = resourceManager.getTextureAtlas("atlas");
     var iconBitmapDatas = atlas .getBitmapDatas("icon-");
     iconBitmapDatas.shuffle();
 
-    var cards = new List<Card>();
+    var cards = List<Card>();
 
     for (int i = 0; i < numColumns * numRows / 2; ++i) {
       var iconBitmapData = iconBitmapDatas.removeAt(0);
-      cards.add(new Card(resourceManager, i, iconBitmapData));
-      cards.add(new Card(resourceManager, i, iconBitmapData));
+      cards.add(Card(resourceManager, i, iconBitmapData));
+      cards.add(Card(resourceManager, i, iconBitmapData));
     }
 
     cards.shuffle();
@@ -124,7 +124,7 @@ class PlayingField extends Sprite3D {
         _numTurnedCards += 2;
         _selectedCards.clear();
         if (_numTurnedCards == _cards.numChildren) {
-          dispatchEvent(new Event(Event.COMPLETE, true));
+          dispatchEvent(Event(Event.COMPLETE, true));
         }
       } else {
         var f1 = _turnCard(_selectedCards[0], ANIM_TIME);
@@ -141,7 +141,7 @@ class PlayingField extends Sprite3D {
 
   Future<Card> _dealCard(Card card, num delay) {
 
-    var completer = new Completer<Card>();
+    var completer = Completer<Card>();
 
     card.alpha = 0;
     card.offsetZ = -150.0;
@@ -158,7 +158,7 @@ class PlayingField extends Sprite3D {
 
   Future<Card> _removeCard(Card card, num delay) {
 
-    var completer = new Completer<Card>();
+    var completer = Completer<Card>();
 
     card.alpha = 1.0;
     card.offsetZ = 0.0;
@@ -175,7 +175,7 @@ class PlayingField extends Sprite3D {
 
   Future<Card> _turnCard(Card card, num delay) {
 
-    var completer = new Completer<Card>();
+    var completer = Completer<Card>();
     var r0 = card.concealed ? pi : 0;
     var r1 = card.concealed ? 0 : pi;
 

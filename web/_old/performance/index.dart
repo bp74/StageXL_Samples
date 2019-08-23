@@ -17,19 +17,19 @@ Future main() async {
 
   // init Stage and RenderLoop
 
-  var stage = new Stage(html.querySelector('#stage'));
-  var renderLoop = new RenderLoop();
+  var stage = Stage(html.querySelector('#stage'));
+  var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
   // load the resources
 
-  var resourceManager = new ResourceManager();
+  var resourceManager = ResourceManager();
   resourceManager.addTextureAtlas('flags', 'images/flags.json');
   await resourceManager.load();
 
   // create the "Performance" display object
 
-  var performance = new Performance(resourceManager);
+  var performance = Performance(resourceManager);
   performance.addFlags(500);
   stage.addChild(performance);
   stage.juggler.add(performance);

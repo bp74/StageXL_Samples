@@ -17,13 +17,13 @@ Future main() async {
   // init the stage and render loop
 
   var canvas = html.querySelector('#stage');
-  var stage = new Stage(canvas, width: 1000, height: 600);
-  var renderLoop = new RenderLoop();
+  var stage = Stage(canvas, width: 1000, height: 600);
+  var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
   // init the resource manager and wait for completion.
 
-  var resourceManager = new ResourceManager();
+  var resourceManager = ResourceManager();
   resourceManager.addTextureAtlas("atlas", "images/atlas.json");
   await resourceManager.load();
 
@@ -31,7 +31,7 @@ Future main() async {
   // create a new world and add it to the stage and juggler
 
   var textureAtlas = resourceManager.getTextureAtlas("atlas");
-  var world = new World(textureAtlas);
+  var world = World(textureAtlas);
   stage.addChild(world);
   stage.juggler.add(world);
 }

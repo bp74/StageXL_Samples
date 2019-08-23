@@ -42,7 +42,7 @@ class MissileGame extends Game {
 
   set trainingsMode(bool value) {
     _trainingsMode = value;
-    this.dispatchEvent(new GameEvent(GameEvent.TYPE_LIVES_CHANGED, this )); // forces ingame menu to update
+    this.dispatchEvent(GameEvent(GameEvent.TYPE_LIVES_CHANGED, this )); // forces ingame menu to update
   }
 
   bool get trainingsMode => _trainingsMode;
@@ -104,14 +104,14 @@ class MissileGame extends Game {
   void createChildren() {
 
     // create engine
-    this.engine = new MissileGameEngine( this );
+    this.engine = MissileGameEngine( this );
     this.addChild(this.engine);
 
     // create exit button
     BitmapData buttonExit = resourceManager.getTextureAtlas("items").getBitmapData("button_exit");
     BitmapData buttonExit2 = resourceManager.getTextureAtlas("items").getBitmapData("button_exit_2");
 
-    this.exitButton = new SimpleButton(new Bitmap(buttonExit), new Bitmap(buttonExit2), new Bitmap(buttonExit), new Bitmap(buttonExit2));
+    this.exitButton = SimpleButton(Bitmap(buttonExit), Bitmap(buttonExit2), Bitmap(buttonExit), Bitmap(buttonExit2));
     this.exitButton.width = 75;
     this.exitButton.height = 66;
     this.exitButton.x = 707;//this.gameWidth - this.exitButton.width;
@@ -121,7 +121,7 @@ class MissileGame extends Game {
     this.exitButton.visible = false;
 
     // create IngameMenu
-    this.inGameMenu = new TopMenu( this, fontName );
+    this.inGameMenu = TopMenu( this, fontName );
     this.inGameMenu.x = 0;
     this.inGameMenu.y = 0;
     this.addChild( this.inGameMenu );
@@ -187,7 +187,7 @@ class MissileGame extends Game {
     this.inGameMenu.visible = true;
 
     if (menu == null) {
-      this.currentMenu = new Menu(this, autoStart, fontName );
+      this.currentMenu = Menu(this, autoStart, fontName );
     } else {
       this.currentMenu = menu;
     }
@@ -200,7 +200,7 @@ class MissileGame extends Game {
 
     this.addChild( this.currentMenu );
 
-    var tween = new Tween(this.currentMenu, tweenDuration, Transition.linear);
+    var tween = Tween(this.currentMenu, tweenDuration, Transition.linear);
     tween.animate.alpha.to(1);
     renderJuggler.add(tween);
 
@@ -246,7 +246,7 @@ class MissileGame extends Game {
 
     renderJuggler.remove(gameTimeOutCall);
 
-    this.gameTimeOutCall = new DelayedCall(this.gameTimeOutFunc, this.gameTimeOut);
+    this.gameTimeOutCall = DelayedCall(this.gameTimeOutFunc, this.gameTimeOut);
     renderJuggler.add(this.gameTimeOutCall);
 
     this.hasScreenReleaseHint = true;
@@ -274,7 +274,7 @@ class MissileGame extends Game {
 
     if (this.currentMenu is AbortGameMenu) return;
 
-    var abortGameMenu = new AbortGameMenu( this, fontName );
+    var abortGameMenu = AbortGameMenu( this, fontName );
 
     this.createMenu( abortGameMenu );
     this.paused = true;
@@ -285,7 +285,7 @@ class MissileGame extends Game {
 
   void onAbortGameMenuOK(MenuEvent event) {
 
-    this.dispatchEvent(new GameEvent(GameEvent.TYPE_GAME_ABORT, this));
+    this.dispatchEvent(GameEvent(GameEvent.TYPE_GAME_ABORT, this));
 
     this.currentMenu.removeEventListeners(MenuEvent.TYPE_OK);
     this.currentMenu.removeEventListeners(MenuEvent.TYPE_CANCEL);

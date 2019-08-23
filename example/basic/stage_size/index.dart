@@ -26,13 +26,13 @@ void main() {
   // init Stage and RenderLoop
 
   var canvas = querySelector('#stage');
-  var stage = new Stage(canvas, width: 400, height: 400);
-  var renderLoop = new RenderLoop();
+  var stage = Stage(canvas, width: 400, height: 400);
+  var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
   // draw a 10x10 grid
 
-  var backgroundGrid = new Shape();
+  var backgroundGrid = Shape();
   backgroundGrid.addTo(stage);
 
   backgroundGrid.graphics.beginPath();

@@ -23,14 +23,14 @@ class PianoKey extends Sprite {
 
     // add the key to this Sprite
     var bitmapData = resourceManager.getBitmapData(key);
-    var bitmap = new Bitmap(bitmapData);
+    var bitmap = Bitmap(bitmapData);
     this.addChild(bitmap);
 
     // add the note name to this Sprite
     var textColor = noteName.endsWith('#') ? Color.White : Color.Black;
-    var textFormat = new TextFormat('Helvetica,Arial', 10, textColor, align:TextFormatAlign.CENTER);
+    var textFormat = TextFormat('Helvetica,Arial', 10, textColor, align:TextFormatAlign.CENTER);
 
-    var textField = new TextField();
+    var textField = TextField();
     textField.defaultTextFormat = textFormat;
     textField.text = noteName;
     textField.width = bitmapData.width;
@@ -50,7 +50,7 @@ class PianoKey extends Sprite {
   void _keyDown(MouseEvent me) {
     if (me.buttonDown) {
       this.alpha = 0.7;
-      this.dispatchEvent(new PianoEvent(this.noteName));
+      this.dispatchEvent(PianoEvent(this.noteName));
       if (resourceManager.containsSoundSprite("Notes")) {
         var soundSprite = resourceManager.getSoundSprite("Notes");
         var soundChannel = soundSprite.getSegment(this.soundName).play();

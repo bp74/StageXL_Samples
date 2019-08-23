@@ -5,7 +5,7 @@ class Scene extends Sprite {
   List<PipeObject> pipeObjects;
 
   Scene() {
-    pipeObjects = new List<PipeObject>();
+    pipeObjects = List<PipeObject>();
   }
 
   void sortPipeObject() {
@@ -22,7 +22,7 @@ class Scene extends Sprite {
 
   void removePipeObject(PipeObject obj) {
 
-    if (this.pipeObjects.length > 0) {
+    if (this.pipeObjects.isNotEmpty) {
       var id = this.pipeObjects.indexOf(obj);
       if (id >= 0) this.pipeObjects.removeAt(id);
     }

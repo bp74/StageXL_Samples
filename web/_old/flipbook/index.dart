@@ -23,13 +23,13 @@ void main() {
 
   // init Stage and RenderLoop
 
-  stage = new Stage(querySelector('#stage'), width: 800, height: 600);
-  renderLoop = new RenderLoop();
+  stage = Stage(querySelector('#stage'), width: 800, height: 600);
+  renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
   // load resources
 
-  resourceManager = new ResourceManager()
+  resourceManager = ResourceManager()
     ..addTextureAtlas("ta1", "images/walk.json")
     ..load().then((result) => startAnimation());
 }
@@ -38,7 +38,7 @@ void main() {
 
 void startAnimation() {
 
-  var random = new Random();
+  var random = Random();
   var scaling = 0.5 + 0.5 * random.nextDouble();
 
   // Get all the "walk" bitmapDatas from the texture atlas.
@@ -50,7 +50,7 @@ void startAnimation() {
 
   var rect = stage.contentRectangle;
 
-  var flipBook = new FlipBook(bitmapDatas, 30)
+  var flipBook = FlipBook(bitmapDatas, 30)
     ..x = rect.left - 128
     ..y = rect.top + (scaling - 0.5) * 2.0 * (rect.height - 260)
     ..scaleX = scaling
@@ -67,7 +67,7 @@ void startAnimation() {
   // Let's add a tween so the man walks from the left to the right.
 
   var transition = Transition.linear;
-  var tween = new Tween(flipBook, rect.width / 200.0 / scaling, transition)
+  var tween = Tween(flipBook, rect.width / 200.0 / scaling, transition)
     ..animate.x.to(rect.right)
     ..onComplete = () => stopAnimation(flipBook);
 

@@ -17,22 +17,22 @@ Future main() async {
 
   // init Stage and RenderLoop
   var canvas = html.querySelector('#stage');
-  var stage = new Stage(canvas, width: 700, height: 700);
-  var renderLoop = new RenderLoop();
+  var stage = Stage(canvas, width: 700, height: 700);
+  var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
   // load main and mask image
   var mask = await BitmapData.load("images/mask.png");
   var ship = await BitmapData.load("images/ship.png");
 
-  var shipBitmap = new Bitmap(ship);
+  var shipBitmap = Bitmap(ship);
   shipBitmap.addTo(stage);
   shipBitmap.alignPivot();
   shipBitmap.x = 350;
   shipBitmap.y = 350;
 
   // create custom filter and add it to the ship image
-  var filter = new ColorMatrixAlphaMaskFilter(mask, new Matrix.fromIdentity());
+  var filter = ColorMatrixAlphaMaskFilter(mask, Matrix.fromIdentity());
   shipBitmap.filters.add(filter);
 
   // apply a dark grayscale color transformation

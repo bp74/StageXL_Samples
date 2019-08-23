@@ -11,10 +11,10 @@ class InfoBox extends Sprite {
 
   InfoBox(ResourceManager resourceManager, Juggler juggler) {
 
-    addChild(new Bitmap(resourceManager.getBitmapData("InfoBox")));
+    addChild(Bitmap(resourceManager.getBitmapData("InfoBox")));
 
-    _levelText = new TextField();
-    _levelText.defaultTextFormat = new TextFormat("Arial", 35, 0xFFFFFF, bold:true, align:TextFormatAlign.CENTER);
+    _levelText = TextField();
+    _levelText.defaultTextFormat = TextFormat("Arial", 35, 0xFFFFFF, bold:true, align:TextFormatAlign.CENTER);
     _levelText.width = 220;
     _levelText.height = 40;
     _levelText.wordWrap = false;
@@ -22,12 +22,12 @@ class InfoBox extends Sprite {
     _levelText.text = "Level 1";
     _levelText.x = 20;
     _levelText.y = 115;
-    //_levelText.filters = [new GlowFilter(0x000000, 0.7, 3, 3)];    // ToDo
+    //_levelText.filters = [GlowFilter(0x000000, 0.7, 3, 3)];    // ToDo
     _levelText.rotation = -2 * math.pi / 180;
     addChild(_levelText);
 
-    _chainsText = new TextField();
-    _chainsText.defaultTextFormat = new TextFormat("Arial", 25, 0xFFFFFF, bold:true, align:TextFormatAlign.CENTER);
+    _chainsText = TextField();
+    _chainsText.defaultTextFormat = TextFormat("Arial", 25, 0xFFFFFF, bold:true, align:TextFormatAlign.CENTER);
     _chainsText.width = 220;
     _chainsText.height = 30;
     _chainsText.wordWrap = false;
@@ -35,10 +35,10 @@ class InfoBox extends Sprite {
     _chainsText.text = "40";
     _chainsText.x = -_chainsText.width / 2;
     _chainsText.y = - _chainsText.height / 2;
-    //_chainsText.filters = [new GlowFilter(0x000000, 0.7, 3, 3)];   // ToDo
+    //_chainsText.filters = [GlowFilter(0x000000, 0.7, 3, 3)];   // ToDo
     _chainsText.rotation = -2 * math.pi / 180;
 
-    _chainsTextZoom = new Sprite();
+    _chainsTextZoom = Sprite();
     _chainsTextZoom.addChild(_chainsText);
     _chainsTextZoom.x = 150;
     _chainsTextZoom.y = 172;

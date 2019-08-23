@@ -16,13 +16,13 @@ class Explosion extends Sprite implements Animatable {
 
   Explosion(ResourceManager resourceManager, Juggler juggler, int color, int direction) {
 
-    _particles = new List<ExplosionParticle>();
+    _particles = List<ExplosionParticle>();
     _currentTime = 0.0;
 
     this.mouseEnabled = false;
 
     var chain = Grafix.getChain(resourceManager, color, direction);
-    var random = new math.Random();
+    var random = math.Random();
 
     num angle;
     num velocity;
@@ -38,16 +38,16 @@ class Explosion extends Sprite implements Animatable {
         angle = angle + 0.2 * math.pi * random.nextDouble();
         velocity = 80.0 + 40.0 * random.nextDouble();
 
-        Rectangle rectangle = new Rectangle(x * 25, y * 25, 25, 25);
-        BitmapData bitmapData = new BitmapData.fromBitmapData(chain.bitmapData, rectangle);
-        Bitmap bitmap = new Bitmap(bitmapData);
+        Rectangle rectangle = Rectangle(x * 25, y * 25, 25, 25);
+        BitmapData bitmapData = BitmapData.fromBitmapData(chain.bitmapData, rectangle);
+        Bitmap bitmap = Bitmap(bitmapData);
         bitmap.pivotX = 12.5;
         bitmap.pivotY = 12.5;
         bitmap.x = x * 25;
         bitmap.y = y * 25;
         addChild(bitmap);
 
-        ExplosionParticle particle = new ExplosionParticle();
+        ExplosionParticle particle = ExplosionParticle();
         particle.bitmap = bitmap;
         particle.startX = x * 25 + 12.5;
         particle.startY = y * 25 + 12.5;

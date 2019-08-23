@@ -8,20 +8,20 @@ class Vector2D {
   Vector2D(this.x, this.y);
 
   static Vector2D create(num x, num y) {
-    return new Vector2D( x, y);
+    return Vector2D( x, y);
   }
 
   static Vector2D pointToVector(Point p) {
-    return new Vector2D(p.x, p.y);
+    return Vector2D(p.x, p.y);
   }
 
   static Point vectorToPoint(Vector2D v) {
-    return new Point( v.x, v.y );
+    return Point( v.x, v.y );
   }
 
   static Vector2D cartesianToFlashCoords(Vector2D v) {
     if (v == null) return null;
-    return new Vector2D( v.x, -v.y );
+    return Vector2D( v.x, -v.y );
   }
 
   set length(num value) {
@@ -36,7 +36,7 @@ class Vector2D {
   void normalize() {
 
     var mod = this.length;
-    if (mod == 0) throw new UnsupportedError("divided by 0");
+    if (mod == 0) throw UnsupportedError("divided by 0");
     if (mod == 1) return;
     x /= mod;
     y /= mod;
@@ -48,17 +48,17 @@ class Vector2D {
   }
 
   Vector2D clone() {
-    return new Vector2D(x,y);
+    return Vector2D(x,y);
   }
 
   Vector2D add(Vector2D v) {
     if (v == null) return null;
-    return new Vector2D(x + v.x, y + v.y);
+    return Vector2D(x + v.x, y + v.y);
   }
 
   Vector2D subtract(Vector2D v) {
     if (v == null) return null;
-    return new Vector2D( x - v.x, y - v.y);
+    return Vector2D( x - v.x, y - v.y);
   }
 
   num distance(Vector2D v) {
@@ -79,11 +79,11 @@ class Vector2D {
   }
 
   Vector2D getLeftNormal() {
-    return new Vector2D(this.y,-this.x);
+    return Vector2D(this.y,-this.x);
   }
 
   Vector2D getRightNormal() {
-    return new Vector2D(-this.y,this.x);
+    return Vector2D(-this.y,this.x);
   }
 
   num inverseSkalar(Vector2D v) {

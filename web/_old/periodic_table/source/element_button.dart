@@ -25,10 +25,10 @@ class ElementButton extends Sprite {
     this.graphics.strokeColor(Color.Black, 1);
 
     var font =  "Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif";
-    var numberTextFormat = new TextFormat(font, 24, Color.Black, bold:true);
-    var symbolTextFormat = new TextFormat(font, 40, Color.Black, bold:true);
+    var numberTextFormat = TextFormat(font, 24, Color.Black, bold:true);
+    var symbolTextFormat = TextFormat(font, 40, Color.Black, bold:true);
 
-    var numberTextField = new TextField()
+    var numberTextField = TextField()
       ..defaultTextFormat = numberTextFormat
       ..x = 0
       ..y = 12
@@ -38,7 +38,7 @@ class ElementButton extends Sprite {
       ..mouseEnabled = false
       ..text = atomicNumber.toString();
 
-    var symbolTextField = new TextField()
+    var symbolTextField = TextField()
       ..defaultTextFormat = symbolTextFormat
       ..x = 0
       ..y = 40

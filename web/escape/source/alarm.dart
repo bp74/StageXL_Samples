@@ -20,7 +20,7 @@ class Alarm extends Sprite {
     _juggler = juggler;
 
     _alarmBitmapDatas = Grafix.getAlarms(_resourceManager);
-    _alarmBitmap = new Bitmap(_alarmBitmapDatas[0]);
+    _alarmBitmap = Bitmap(_alarmBitmapDatas[0]);
 
     _warning = _resourceManager.getSound("Warning");
     _warningChannel = null;
@@ -34,7 +34,7 @@ class Alarm extends Sprite {
 
     _warningChannel = _warning.play();
     _juggler.remove(_translation);
-    _translation = new Translation(0, 80, 9.0, Transition.linear);
+    _translation = Translation(0, 80, 9.0, Transition.linear);
 
     _translation.onUpdate = (value) {
       int frame = value.toInt() % 8;

@@ -13,15 +13,15 @@ Future main() async {
   // init Stage and RenderLoop
 
   var canvas = querySelector('#stage');
-  var stage = new Stage(canvas, width: 800, height: 600);
-  var renderLoop = new RenderLoop();
+  var stage = Stage(canvas, width: 800, height: 600);
+  var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
   // load the Dart logo and do some setup work
 
   var logoBitmapData = await BitmapData.load("images/logo.png");
   var juggler = stage.juggler;
-  var random = new Random();
+  var random = Random();
   var delay = 0.1;
 
   // run the animation controlled by the juggler
@@ -30,9 +30,9 @@ Future main() async {
 
     var rect = stage.contentRectangle;
     var hue = random.nextDouble() * 2.0 - 1.0;
-    var hueFilter = new ColorMatrixFilter.adjust(hue: hue);
+    var hueFilter = ColorMatrixFilter.adjust(hue: hue);
 
-    var logoBitmap = new Bitmap(logoBitmapData)
+    var logoBitmap = Bitmap(logoBitmapData)
       ..pivotX = logoBitmapData.width / 2
       ..pivotY = logoBitmapData.height / 2
       ..x = rect.left + rect.width * random.nextDouble()

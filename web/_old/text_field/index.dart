@@ -17,28 +17,28 @@ part 'source/text_you_win.dart';
 
 Stage stage;
 RenderLoop renderLoop;
-DisplayObject currentText = new Sprite();
-DisplayObject currentTextCached = new Sprite();
+DisplayObject currentText = Sprite();
+DisplayObject currentTextCached = Sprite();
 
 void main() {
 
-  stage = new Stage(html.querySelector('#stage'));
+  stage = Stage(html.querySelector('#stage'));
   stage.scaleMode = StageScaleMode.NO_SCALE;
   stage.align = StageAlign.NONE;
 
-  renderLoop = new RenderLoop();
+  renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
   // https://github.com/typekit/webfontloader
 
-  var completer = new Completer();
+  var completer = Completer();
   var googleFontFamilies = [
       'Poller One', 'Titillium Web:900', 'Parisienne',
       'Varela Round', 'Poly', 'Ceviche One', 'Press Start 2P',
       'Norican', 'Yanone Kaffeesatz', 'VT323'];
 
   js.JsObject webFont = js.context["WebFont"];
-  js.JsObject webFontConfig = new js.JsObject.jsify({
+  js.JsObject webFontConfig = js.JsObject.jsify({
     "google": { "families": googleFontFamilies },
     "loading": () => print("loading fonts"),
     "active": () => completer.complete(null),
@@ -54,22 +54,22 @@ void main() {
 
 void start() {
 
-  var textField = new TextField();
-  textField.defaultTextFormat = new TextFormat("Arial", 36, Color.Black, align: TextFormatAlign.CENTER);
+  var textField = TextField();
+  textField.defaultTextFormat = TextFormat("Arial", 36, Color.Black, align: TextFormatAlign.CENTER);
   textField.width = 400;
   textField.x = stage.contentRectangle.center.x - 200;
   textField.y = stage.contentRectangle.center.y - 20;
   textField.text = "tap to change text";
   textField.addTo(stage);
 
-  var textGameOn = new TextGameOn();
-  var textGameOver = new TextGameOver();
-  var textGetReady = new TextGetReady();
-  var textHoldTheLine = new TextHoldTheLine();
-  var textHotAndSpicy = new TextHotAndSpicy();
-  var textSugarSmash = new TextSugarSmash();
-  var textSweet = new TextSweet();
-  var textYouWin = new TextYouWin();
+  var textGameOn = TextGameOn();
+  var textGameOver = TextGameOver();
+  var textGetReady = TextGetReady();
+  var textHoldTheLine = TextHoldTheLine();
+  var textHotAndSpicy = TextHotAndSpicy();
+  var textSugarSmash = TextSugarSmash();
+  var textSweet = TextSweet();
+  var textYouWin = TextYouWin();
 
   var textIndex = 0;
   var texts = [textGameOn, textGameOver, textGetReady, textHoldTheLine,
@@ -104,7 +104,7 @@ void showText(DisplayObject text) {
       };
 
   currentText = text;
-  currentTextCached = new Sprite()
+  currentTextCached = Sprite()
       ..x = rect.left - currentText.width
       ..y = rect.center.y
       ..addChild(currentText)

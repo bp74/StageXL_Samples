@@ -12,15 +12,15 @@ Future main() async {
   // init Stage and RenderLoop
 
   var canvas = html.querySelector('#stage');
-  var stage = new Stage(canvas, width:480, height: 600);
-  var renderLoop = new RenderLoop();
+  var stage = Stage(canvas, width:480, height: 600);
+  var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
   stage.console.visible = true;
   stage.console.alpha = 0.75;
 
   // load "Spineboy" skeleton resources
 
-  var resourceManager = new ResourceManager();
+  var resourceManager = ResourceManager();
   var libgdx = TextureAtlasFormat.LIBGDX;
   resourceManager.addTextFile("spineboy", "spine/spineboy.json");
   resourceManager.addTextureAtlas("spineboy", "spine/spineboy.atlas", libgdx);
@@ -28,8 +28,8 @@ Future main() async {
 
   // add TextField with user instructions
 
-  var textField = new TextField();
-  textField.defaultTextFormat = new TextFormat("Arial", 24, Color.Black);
+  var textField = TextField();
+  textField.defaultTextFormat = TextFormat("Arial", 24, Color.Black);
   textField.defaultTextFormat.align = TextFormatAlign.CENTER;
   textField.width = 480;
   textField.x = 0;
@@ -41,13 +41,13 @@ Future main() async {
 
   var spineJson = resourceManager.getTextFile("spineboy");
   var textureAtlas = resourceManager.getTextureAtlas("spineboy");
-  var attachmentLoader = new TextureAtlasAttachmentLoader(textureAtlas);
-  var skeletonLoader = new SkeletonLoader(attachmentLoader);
+  var attachmentLoader = TextureAtlasAttachmentLoader(textureAtlas);
+  var skeletonLoader = SkeletonLoader(attachmentLoader);
   var skeletonData = skeletonLoader.readSkeletonData(spineJson);
 
   // configure Spine animation mix
 
-  var animationStateData = new AnimationStateData(skeletonData);
+  var animationStateData = AnimationStateData(skeletonData);
   animationStateData.setMixByName("idle", "walk", 0.2);
   animationStateData.setMixByName("walk", "run", 0.2);
   animationStateData.setMixByName("run", "walk", 0.2);
@@ -55,7 +55,7 @@ Future main() async {
 
   // create the display object showing the skeleton animation
 
-  var skeletonAnimation = new SkeletonAnimation(skeletonData, animationStateData);
+  var skeletonAnimation = SkeletonAnimation(skeletonData, animationStateData);
   skeletonAnimation.x = 240;
   skeletonAnimation.y = 520;
   skeletonAnimation.scaleX = skeletonAnimation.scaleY = 0.7;

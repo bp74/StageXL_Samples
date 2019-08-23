@@ -43,8 +43,8 @@ void main() {
   StageXL.stageOptions.stageAlign = StageAlign.NONE;
   StageXL.bitmapDataLoadOptions.webp = true;
 
-  stage = new Stage(html.querySelector('#stage'), width: 800, height: 600);
-  renderLoop = new RenderLoop();
+  stage = Stage(html.querySelector('#stage'), width: 800, height: 600);
+  renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
   renderJuggler = renderLoop.juggler;
@@ -55,19 +55,19 @@ void main() {
 
   loading.then((bitmapData) {
 
-    loadingBitmap = new Bitmap(bitmapData);
+    loadingBitmap = Bitmap(bitmapData);
     loadingBitmap.pivotX = 20;
     loadingBitmap.pivotY = 20;
     loadingBitmap.x = 400;
     loadingBitmap.y = 270;
     stage.addChild(loadingBitmap);
 
-    loadingBitmapTween = new Tween(loadingBitmap, 100, Transition.linear);
+    loadingBitmapTween = Tween(loadingBitmap, 100, Transition.linear);
     loadingBitmapTween.animate.rotation.to(100.0 * 2.0 * math.pi);
     renderJuggler.add(loadingBitmapTween);
 
-    loadingTextField = new TextField();
-    loadingTextField.defaultTextFormat = new TextFormat("Arial", 20, 0xA0A0A0, bold:true);
+    loadingTextField = TextField();
+    loadingTextField.defaultTextFormat = TextFormat("Arial", 20, 0xA0A0A0, bold:true);
     loadingTextField.width = 240;
     loadingTextField.height = 40;
     loadingTextField.text = "... loading ...";
@@ -82,7 +82,7 @@ void main() {
 
 void loadGame() {
 
-  resourceManager = new ResourceManager();
+  resourceManager = ResourceManager();
 
   resourceManager.onProgress.listen((e) {
     var finished = resourceManager.finishedResources;
@@ -135,7 +135,7 @@ void loadGame() {
 
     //------------------------------
 
-    Game game = new MissileGame(800, 600);
+    Game game = MissileGame(800, 600);
     game.addTo(stage);
     game.start();
 

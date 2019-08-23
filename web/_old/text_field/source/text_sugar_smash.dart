@@ -11,7 +11,7 @@ class TextSugarSmash extends DisplayObjectContainer {
 
   TextField _createTextField(String text) {
 
-    return new TextField(text)
+    return TextField(text)
         ..cacheAsBitmap = false
         ..width = 100
         ..height = 35
@@ -30,12 +30,12 @@ class TextSugarSmash extends DisplayObjectContainer {
 
   Sprite _createWord(String text) {
 
-    var gradient = new GraphicsGradient.linear(0, 0, 0, 20)
+    var gradient = GraphicsGradient.linear(0, 0, 0, 20)
         ..addColorStop(0.0, 0xFFFFDF4F)
         ..addColorStop(0.9, 0xFFD1701F)
         ..addColorStop(1.0, 0xFFEDA72D);
 
-    return new Sprite()
+    return Sprite()
         ..addChild(_createTextField(text)
             ..defaultTextFormat.strokeColor = 0xFF33150A
             ..defaultTextFormat.strokeWidth = 2)

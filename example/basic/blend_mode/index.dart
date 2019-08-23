@@ -40,14 +40,14 @@ Future main() async {
   // init Stage and RenderLoop
 
   var canvas = querySelector('#stage');
-  var stage = new Stage(canvas, width: 400, height: 600);
-  var renderLoop = new RenderLoop();
+  var stage = Stage(canvas, width: 400, height: 600);
+  var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
   // add TextField to tell the user what to do.
 
-  var textField = new TextField();
-  textField.defaultTextFormat = new TextFormat("Arial", 24, Color.White);
+  var textField = TextField();
+  textField.defaultTextFormat = TextFormat("Arial", 24, Color.White);
   textField.defaultTextFormat.align = TextFormatAlign.CENTER;
   textField.width = 400;
   textField.x = 0;
@@ -58,14 +58,14 @@ Future main() async {
   // change the blend mode on every mouse click.
 
   var blendModeIndex = 0;
-  stage.addChild(new BlendModeSample(blendModes[0], blendModeNames[0]));
+  stage.addChild(BlendModeSample(blendModes[0], blendModeNames[0]));
 
   stage.onMouseClick.listen((_) {
     blendModeIndex = (blendModeIndex + 1) % blendModes.length;
     var blendMode = blendModes[blendModeIndex];
     var blendModeName = blendModeNames[blendModeIndex];
     stage.removeChildren();
-    stage.addChild(new BlendModeSample(blendMode, blendModeName));
+    stage.addChild(BlendModeSample(blendMode, blendModeName));
     stage.addChild(textField);
   });
 }
@@ -74,23 +74,23 @@ Future main() async {
 
 class BlendModeSample extends Sprite {
   BlendModeSample(BlendMode blendMode, String blendModeName) {
-    var textFormat = new TextFormat("'Open Sans', sans-serif", 20, Color.White,
+    var textFormat = TextFormat("'Open Sans', sans-serif", 20, Color.White,
         bold: true, align: TextFormatAlign.CENTER, topMargin: 8);
 
     if (blendMode == BlendMode.BELOW || blendMode == BlendMode.ABOVE) {
-      new Bitmap(new BitmapData(320, 200, Color.Magenta))
+      Bitmap(BitmapData(320, 200, Color.Magenta))
         ..x = 40
         ..y = 200
         ..blendMode = BlendMode.ERASE
         ..addTo(this);
 
-      new Bitmap(new BitmapData(280, 160, 0x80606060))
+      Bitmap(BitmapData(280, 160, 0x80606060))
         ..x = 60
         ..y = 220
         ..addTo(this);
     }
 
-    new TextField(blendModeName, textFormat)
+    TextField(blendModeName, textFormat)
       ..width = 360
       ..height = 40
       ..x = 20
@@ -99,7 +99,7 @@ class BlendModeSample extends Sprite {
       ..borderColor = Color.White
       ..addTo(this);
 
-    new Sample()
+    Sample()
       ..x = 200
       ..y = 300
       ..addTo(this)
@@ -113,16 +113,16 @@ num totalTime = 0.0;
 
 class Sample extends Sprite implements Animatable {
 
-  List<Star> stars = new List<Star>();
+  List<Star> stars = List<Star>();
 
   Sample() {
-    var star1 = new Star(0xffff5050)
+    var star1 = Star(0xffff5050)
       ..x = -50
       ..y = -50;
-    var star2 = new Star(0xff50ff50)
+    var star2 = Star(0xff50ff50)
       ..x = 50
       ..y = -50;
-    var star3 = new Star(0xff5050ff)
+    var star3 = Star(0xff5050ff)
       ..x = 0
       ..y = 50;
 

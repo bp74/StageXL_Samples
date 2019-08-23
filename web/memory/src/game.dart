@@ -8,7 +8,7 @@ class Game extends Sprite implements Animatable {
 
   Game(this.resourceManager) {
 
-    _playingField = new PlayingField(resourceManager);
+    _playingField = PlayingField(resourceManager);
     _playingField.rotationX = -0.6;
     _playingField.x = 400;
     _playingField.y = 270;

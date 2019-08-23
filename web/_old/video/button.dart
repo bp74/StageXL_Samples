@@ -11,19 +11,19 @@ class Button extends Sprite {
 
   Button(String caption) : super() {
 
-    var textFormat = new TextFormat("Arial", 24, Color.Black);
+    var textFormat = TextFormat("Arial", 24, Color.Black);
     textFormat.align = TextFormatAlign.CENTER;
     textFormat.leftMargin = 20;
     textFormat.rightMargin = 20;
 
-    _stateBitmap0 = new Bitmap(new BitmapData(260, 80, Color.LightGray));
-    _stateBitmap1 = new Bitmap(new BitmapData(260, 80, Color.LightGreen));
+    _stateBitmap0 = Bitmap(BitmapData(260, 80, Color.LightGray));
+    _stateBitmap1 = Bitmap(BitmapData(260, 80, Color.LightGreen));
 
     _stateBitmap0.addTo(this);
     _stateBitmap1.addTo(this);
     _stateBitmap1.alpha = 0.0;
 
-    _textField = new TextField();
+    _textField = TextField();
     _textField.defaultTextFormat = textFormat;
     _textField.width = 260;
     _textField.height = 80;
@@ -44,6 +44,6 @@ class Button extends Sprite {
     stage.juggler.addTween(_stateBitmap1, 0.25)
       ..animate.alpha.to(state ? 1.0 : 0.0);
 
-    this.dispatchEvent(new Event(Event.CHANGE));
+    this.dispatchEvent(Event(Event.CHANGE));
   }
 }

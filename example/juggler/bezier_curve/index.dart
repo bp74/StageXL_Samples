@@ -12,25 +12,25 @@ void main() {
   // init Stage and RenderLoop
 
   var canvas = querySelector('#stage');
-  var stage = new Stage(canvas, width: 800, height: 600);
-  var renderLoop = new RenderLoop();
+  var stage = Stage(canvas, width: 800, height: 600);
+  var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
   // Create random bezier curves
 
-  var random = new Random();
+  var random = Random();
 
   for(int i = 0; i < 5; i++) {
 
-    var curveData1 = new CurveData.fromRandom(random);
-    var curveData2 = new CurveData.fromRandom(random);
-    var curve = new Curve(curveData1, curveData2);
+    var curveData1 = CurveData.fromRandom(random);
+    var curveData2 = CurveData.fromRandom(random);
+    var curve = Curve(curveData1, curveData2);
 
     stage.addChild(curve);
     stage.juggler.add(curve);
 
     stage.juggler.interval(1.5).listen((_) {
-      var cp = new CurveData.fromRandom(random);
+      var cp = CurveData.fromRandom(random);
       curve.animateTo(cp);
     });
   }
@@ -61,7 +61,7 @@ class Curve extends Shape implements Animatable {
   bool advanceTime(num delta) {
 
     var t = Transition.easeInOutCubic(min(_time += delta, 1.0));
-    var p = new CurveData.interpolate(_curveData1, _curveData2, t);
+    var p = CurveData.interpolate(_curveData1, _curveData2, t);
 
     _moveto.x = p.x1;
     _moveto.y = p.y1;

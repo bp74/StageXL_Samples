@@ -14,8 +14,8 @@ Future main() async {
   // init Stage and RenderLoop
 
   var canvas = html.querySelector('#stage');
-  var stage = new Stage(canvas, width: 400, height: 400);
-  var renderLoop = new RenderLoop();
+  var stage = Stage(canvas, width: 400, height: 400);
+  var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
   stage.console.visible = true;
   stage.console.alpha = 0.75;
@@ -25,7 +25,7 @@ Future main() async {
   var gafAsset = await GAFAsset.load('assets/skeleton/skeleton.gaf', 1, 2);
   var gafTimeline = gafAsset.getGAFTimelineByLinkage('rootTimeline');
 
-  var skeleton = new GAFMovieClip(gafTimeline);
+  var skeleton = GAFMovieClip(gafTimeline);
   skeleton.alignPivot(HorizontalAlign.Center, VerticalAlign.Center);
   skeleton.x = 200;
   skeleton.y = 220;

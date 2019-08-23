@@ -13,7 +13,7 @@ class SpecialJokerLink extends Sprite implements Animatable {
     _currentTime = 0.0;
     _jokerBitmapDatas = Grafix.getJokerLink(resourceManager, direction);
 
-     _bitmap = new Bitmap(_jokerBitmapDatas[0]);
+     _bitmap = Bitmap(_jokerBitmapDatas[0]);
      _bitmap.x = -25;
      _bitmap.y = -25;
     addChild(_bitmap);

@@ -4,11 +4,11 @@ class TextGameOn extends DisplayObjectContainer {
 
   TextGameOn() {
 
-    var gradient1 = new GraphicsGradient.linear(0, 0, 0, 32)
+    var gradient1 = GraphicsGradient.linear(0, 0, 0, 32)
         ..addColorStop(0.0, 0xFF4591B2)
         ..addColorStop(1.0, 0xFF7AEDD0);
 
-    var gradient2 = new GraphicsGradient.linear(0, 0, 0, 32)
+    var gradient2 = GraphicsGradient.linear(0, 0, 0, 32)
         ..addColorStop(0.0, 0xFFD85585)
         ..addColorStop(1.0, 0xFFF2B499);
 
@@ -22,7 +22,7 @@ class TextGameOn extends DisplayObjectContainer {
   }
 
   TextField _createTextField(String text) {
-    return new TextField(text)
+    return TextField(text)
         ..cacheAsBitmap = false
         ..autoSize = TextFieldAutoSize.LEFT
         ..defaultTextFormat.size = 32

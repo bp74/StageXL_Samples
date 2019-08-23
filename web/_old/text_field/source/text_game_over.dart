@@ -4,11 +4,11 @@ class TextGameOver extends DisplayObjectContainer {
 
   TextGameOver() {
 
-    var gradient1 = new GraphicsGradient.linear(0, 0, 75, 38)
+    var gradient1 = GraphicsGradient.linear(0, 0, 75, 38)
         ..addColorStop(0.0, 0xFFFBF4ED)
         ..addColorStop(1.0, 0xFFF8E123);
 
-    var gradient2 = new GraphicsGradient.linear(0, 0, 125, 75)
+    var gradient2 = GraphicsGradient.linear(0, 0, 125, 75)
         ..addColorStop(0.0, 0xFFFBF4ED)
         ..addColorStop(0.4, 0xFFF8E123)
         ..addColorStop(1.0, 0xFFF05D26);
@@ -23,7 +23,7 @@ class TextGameOver extends DisplayObjectContainer {
   }
 
   TextField _createTextField(String text, int size) {
-    return new TextField(text)
+    return TextField(text)
         ..cacheAsBitmap = false
         ..autoSize = TextFieldAutoSize.LEFT
         ..defaultTextFormat.font = 'Poller One'

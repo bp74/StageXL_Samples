@@ -21,13 +21,13 @@ Future main() async {
 
   // initialize Stage and RenderLoop
 
-  var stage = new Stage(html.querySelector('#stage'), width: 960, height: 570);
-  var renderLoop = new RenderLoop();
+  var stage = Stage(html.querySelector('#stage'), width: 960, height: 570);
+  var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
   // load the chemical element definition files
 
-  var resourceManager = new ResourceManager();
+  var resourceManager = ResourceManager();
   resourceManager.addTextFile("table", "data/table.json");
   resourceManager.addTextFile("elements", "data/elements.json");
   await resourceManager.load();
@@ -36,6 +36,6 @@ Future main() async {
 
   var table = json.decode(resourceManager.getTextFile("table"));
   var elements = json.decode(resourceManager.getTextFile("elements"));
-  var periodicTable = new PeriodicTable(table, elements);
+  var periodicTable = PeriodicTable(table, elements);
   stage.addChild(periodicTable);
 }

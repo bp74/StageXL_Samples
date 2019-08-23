@@ -22,7 +22,7 @@ class TopMenu extends GameComponent {
     this.font = fontName;
     this.createChildren();
 
-    StringBuffer sb = new StringBuffer();
+    StringBuffer sb = StringBuffer();
     sb.write((this.game as MissileGame).getResource("GENlevel"));
     sb.write(": 0");
 
@@ -31,15 +31,15 @@ class TopMenu extends GameComponent {
 
   void createChildren() {
 
-    this.bg = new Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("topbar"));
+    this.bg = Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("topbar"));
     this.bg.x = 0;
     this.bg.y = 0;
     this.addChild( this.bg );
 
     // create score textfield
 
-    this.scoreTextField = new TextField();
-    this.scoreTextField.defaultTextFormat = new TextFormat(font, 24, 0, bold:true, align:TextFormatAlign.LEFT);
+    this.scoreTextField = TextField();
+    this.scoreTextField.defaultTextFormat = TextFormat(font, 24, 0, bold:true, align:TextFormatAlign.LEFT);
     this.scoreTextField.textColor = 0x000000;
     this.scoreTextField.width = 400;
     this.scoreTextField.height = 100;
@@ -49,8 +49,8 @@ class TopMenu extends GameComponent {
 
     // create lives textfield
 
-    this.livesTextField = new TextField();
-    this.livesTextField.defaultTextFormat = new TextFormat(font, 24, 0, bold:true, align:TextFormatAlign.RIGHT);
+    this.livesTextField = TextField();
+    this.livesTextField.defaultTextFormat = TextFormat(font, 24, 0, bold:true, align:TextFormatAlign.RIGHT);
     this.livesTextField.textColor = 0x000000;
     this.livesTextField.width = 200;
     this.livesTextField.height = 100;
@@ -60,8 +60,8 @@ class TopMenu extends GameComponent {
 
     // create level textfield
 
-    this.levelTextField = new TextField();
-    this.levelTextField.defaultTextFormat = new TextFormat(font, 24, 0, bold:true, align:TextFormatAlign.RIGHT);
+    this.levelTextField = TextField();
+    this.levelTextField.defaultTextFormat = TextFormat(font, 24, 0, bold:true, align:TextFormatAlign.RIGHT);
     this.levelTextField.textColor = 0x000000;
     this.levelTextField.width = 200;
     this.levelTextField.height = 100;
@@ -71,8 +71,8 @@ class TopMenu extends GameComponent {
 
     // create progress textfield
 
-    this.progressTextField = new TextField();
-    this.progressTextField.defaultTextFormat = new TextFormat(font, 24, 0, bold:true, align:TextFormatAlign.CENTER);
+    this.progressTextField = TextField();
+    this.progressTextField.defaultTextFormat = TextFormat(font, 24, 0, bold:true, align:TextFormatAlign.CENTER);
     this.progressTextField.textColor = 0x000000;
     this.progressTextField.width = 200;
     this.progressTextField.height = 100;
@@ -81,22 +81,22 @@ class TopMenu extends GameComponent {
     this.addChild( progressTextField );
     this.progressTextField.visible = false;
 
-    this.progressBar = new Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("progressbar"));
+    this.progressBar = Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("progressbar"));
     this.progressBar.x = 25;
     this.progressBar.y = 82;
     this.addChild(this.progressBar);
 
-    this.progressShip = new Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("progressship"));
+    this.progressShip = Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("progressship"));
     this.progressShip.x = 25;
     this.progressShip.y = this.progressBar.y + (this.progressBar.height - (this.progressBar.height - this.progressShip.height)) - (this.progressShip.height);
     this.addChild(this.progressShip);
 
     // create ships ( lives )
 
-    this.ships = new List<Bitmap>();
+    this.ships = List<Bitmap>();
 
     for (var i = 0; i < 3; i++) {
-      var spaceShip= new Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("spaceship"));
+      var spaceShip= Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("spaceship"));
       spaceShip.y = 10;
       spaceShip.x = (this.game.gameWidth / 2) + 70 +( i * 35);
       this.addChild( spaceShip );
@@ -132,7 +132,7 @@ class TopMenu extends GameComponent {
 
     var mGame = event.game as MissileGame;
 
-    var sb = new StringBuffer();
+    var sb = StringBuffer();
     sb.write(mGame.getResource("GENscore"));
     sb.write(": ${event.game.scoreRounded.toString()}");
 
@@ -144,7 +144,7 @@ class TopMenu extends GameComponent {
 
     var mGame = event.game as MissileGame;
 
-    var sb = new StringBuffer();
+    var sb = StringBuffer();
     sb.write(mGame.getResource("GENlevel"));
     sb.write(": ${event.game.level.toString()}");
 
