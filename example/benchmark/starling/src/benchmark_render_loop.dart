@@ -1,7 +1,6 @@
 part of benchmark_startling;
 
 class BenchmarkRenderLoop {
-
   // This is a special implementation of the [RenderLoop] to achieve
   // frame rates higher than the display refresh rate. This is only
   // useful for benchmarks and should not be used in real world
@@ -24,7 +23,6 @@ class BenchmarkRenderLoop {
   }
 
   void _onTimer(Timer timer) {
-
     var elapsedTime = _stopwatch.elapsedMicroseconds / 1000000.0;
     _deltaTime = elapsedTime - _currentTime;
     _currentTime = elapsedTime;

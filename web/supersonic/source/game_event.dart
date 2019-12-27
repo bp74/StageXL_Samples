@@ -1,7 +1,6 @@
 part of supersonic;
 
 class GameEvent extends Event {
-
   static const String TYPE_LIVES_CHANGED = "GameEvent.TYPE_LIVES_CHANGED";
   static const String TYPE_PROGRESS_CHANGED = "GameEvent.TYPE_PROGRESS_CHANGED";
   static const String TYPE_PAUSE_CHANGED = "GameEvent.TYPE_PAUSE_CHANGED";
@@ -14,5 +13,5 @@ class GameEvent extends Event {
 
   Game game;
 
-  GameEvent(String type, this.game, [bool bubbles = false]):super(type, bubbles);
+  GameEvent(String type, this.game, [bool bubbles = false]) : super(type, bubbles);
 }

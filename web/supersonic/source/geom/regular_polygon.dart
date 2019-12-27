@@ -1,12 +1,10 @@
 part of supersonic;
 
 class RegularPolygon extends Polygon {
-
   num _radius;
   int _n;
 
-  RegularPolygon(num radius, int n):super() {
-
+  RegularPolygon(num radius, int n) : super() {
     if (n < 3) n = 3;
     if (radius == 0) radius = 1;
 
@@ -27,25 +25,24 @@ class RegularPolygon extends Polygon {
   }
 
   set n(int value) {
-	  _n = value;
+    _n = value;
     _deriveSourcePointList();
   }
 
   //-----------------------------------------------------------------------------------------------
 
-	void _deriveSourcePointList() {
-
+  void _deriveSourcePointList() {
     var pointList = List<Vector2D>();
     var angle = 0.0;
     var step = 2 * math.pi / _n;
 
     for (var i = 0; i < _n; i++) {
-		  var v = Vector2D(0, - _radius);
+      var v = Vector2D(0, -_radius);
       v.angleRad = angle;
       pointList.add(v);
       angle += step;
     }
 
-		this.pointList = pointList;
+    this.pointList = pointList;
   }
 }

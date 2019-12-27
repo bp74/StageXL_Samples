@@ -1,7 +1,6 @@
 part of escape;
 
 class ValueCounter {
-
   int value = 0;
 
   int increment([int inc = 1]) => (value += inc);

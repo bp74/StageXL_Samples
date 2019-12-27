@@ -6,7 +6,6 @@ import 'dart:math' as math;
 import 'package:stagexl/stagexl.dart';
 
 Future main() async {
-
   // configure StageXL default options
 
   StageXL.stageOptions.renderEngine = RenderEngine.WebGL;

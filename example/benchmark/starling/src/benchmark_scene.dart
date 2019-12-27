@@ -1,7 +1,6 @@
 part of benchmark_startling;
 
 class BenchmarkScene extends Sprite implements Animatable {
-
   // The implementation of the benchmark scene is slightly different to
   // the one of Starling. Since StageXL is capable of rendering much more
   // Bitmaps per frame, we need to add Bitmaps faster and scale down old
@@ -27,7 +26,6 @@ class BenchmarkScene extends Sprite implements Animatable {
 
   @override
   bool advanceTime(num time) {
-
     _averageFrameRate = 0.05 / time + 0.95 * _averageFrameRate;
 
     var children = _container.children;
@@ -42,10 +40,10 @@ class BenchmarkScene extends Sprite implements Animatable {
     // add a few bitmaps
 
     if (deltaCount > 0) {
-      for(int i = 0; i < speedCount; i++) {
+      for (int i = 0; i < speedCount; i++) {
         var bitmap = Bitmap(bitmapData);
         var bitmapScale = 1.0 / scale;
-        var angle  = _random.nextDouble() * pi * 2.0;
+        var angle = _random.nextDouble() * pi * 2.0;
         var distance = (50 + _random.nextInt(150)) * bitmapScale;
         bitmap.x = cos(angle) * distance;
         bitmap.y = sin(angle) * distance;
@@ -61,7 +59,7 @@ class BenchmarkScene extends Sprite implements Animatable {
 
     if (deltaCount < 0) {
       speedCount = min(speedCount, children.length);
-      for(int i = 0; i < speedCount; i++) {
+      for (int i = 0; i < speedCount; i++) {
         children.removeLast();
       }
     }
@@ -83,7 +81,6 @@ class BenchmarkScene extends Sprite implements Animatable {
   }
 
   void _benchmarkComplete() {
-
     var numChildren = _container.numChildren;
     var targetFps = this.targetFrameRate;
     var resultText = TextField();
@@ -93,9 +90,8 @@ class BenchmarkScene extends Sprite implements Animatable {
     resultText.height = 200;
     resultText.text = "Result:\n$numChildren objects\nwith $targetFps fps";
     resultText.defaultTextFormat = textFormat;
-    resultText.x = 160 -  resultText.width / 2;
-    resultText.y = 240 -  resultText.height / 2;
+    resultText.x = 160 - resultText.width / 2;
+    resultText.y = 240 - resultText.height / 2;
     addChild(resultText);
   }
 }
-

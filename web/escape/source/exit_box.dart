@@ -1,7 +1,6 @@
 part of escape;
 
 class ExitBox extends Sprite {
-
   TimeGauge _timeGauge;
   SimpleButton _yesButton;
   SimpleButton _noButton;
@@ -9,19 +8,19 @@ class ExitBox extends Sprite {
   Function _doneFunction;
 
   ExitBox(ResourceManager resourceManager, Juggler juggler) {
-
     Bitmap background = Bitmap(resourceManager.getBitmapData("ExitBox"));
     addChild(background);
 
     TextField textField = TextField();
-    textField.defaultTextFormat = TextFormat("Arial", 24, 0xFFFFFF, bold:true, align:TextFormatAlign.CENTER);
+    textField.defaultTextFormat =
+        TextFormat("Arial", 24, 0xFFFFFF, bold: true, align: TextFormatAlign.CENTER);
     textField.width = 240;
     textField.height = 100;
     textField.wordWrap = true;
     //textField.selectable = false;
     textField.text = resourceManager.getText("GENexitquery");
     textField.x = 47;
-    textField.y = 150 - textField.textHeight/2;
+    textField.y = 150 - textField.textHeight / 2;
     //textField.filters = [GlowFilter(0x000000, 0.7, 3, 3)];    // ToDo
     textField.mouseEnabled = false;
 
@@ -41,7 +40,8 @@ class ExitBox extends Sprite {
     Bitmap exitYesButtonNormal = Bitmap(resourceManager.getBitmapData("ExitYesButtonNormal"));
     Bitmap exitYesButtonPressed = Bitmap(resourceManager.getBitmapData("ExitYesButtonPressed"));
 
-    _yesButton = SimpleButton(exitYesButtonNormal, exitYesButtonNormal, exitYesButtonPressed, exitYesButtonPressed);
+    _yesButton = SimpleButton(
+        exitYesButtonNormal, exitYesButtonNormal, exitYesButtonPressed, exitYesButtonPressed);
     _yesButton.x = 68;
     _yesButton.y = 239;
     _yesButton.addEventListener(MouseEvent.CLICK, _onYesButtonClicked);
@@ -50,7 +50,8 @@ class ExitBox extends Sprite {
     Bitmap exitNoButtonNormal = Bitmap(resourceManager.getBitmapData("ExitNoButtonNormal"));
     Bitmap exitNoButtonPressed = Bitmap(resourceManager.getBitmapData("ExitNoButtonPressed"));
 
-    _noButton = SimpleButton(exitNoButtonNormal, exitNoButtonNormal, exitNoButtonPressed, exitNoButtonPressed);
+    _noButton = SimpleButton(
+        exitNoButtonNormal, exitNoButtonNormal, exitNoButtonPressed, exitNoButtonPressed);
     _noButton.x = 173;
     _noButton.y = 232;
     _noButton.addEventListener(MouseEvent.CLICK, _onNoButtonClicked);
@@ -91,5 +92,4 @@ class ExitBox extends Sprite {
   void show(Function doneFunction) {
     _doneFunction = doneFunction;
   }
-
 }

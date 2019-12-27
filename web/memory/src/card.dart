@@ -1,7 +1,6 @@
 part of example;
 
 class Card extends Sprite3D {
-
   final int id;
   final ResourceManager resourceManager;
 
@@ -11,7 +10,6 @@ class Card extends Sprite3D {
   Sprite _back = Sprite();
 
   Card(this.resourceManager, this.id, BitmapData iconBitmapData) {
-
     var atlas = resourceManager.getTextureAtlas("atlas");
     var frontBitmap = Bitmap(atlas.getBitmapData("card-front"));
     var backBitmap = Bitmap(atlas.getBitmapData("card-back"));
@@ -43,12 +41,10 @@ class Card extends Sprite3D {
 
   @override
   void render(RenderState renderState) {
-
     var isForwardFacing = this.isForwardFacing;
     _front.visible = isForwardFacing;
     _back.visible = !isForwardFacing;
 
     super.render(renderState);
   }
-
 }

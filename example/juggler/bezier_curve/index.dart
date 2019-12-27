@@ -3,7 +3,6 @@ import 'dart:html';
 import 'package:stagexl/stagexl.dart';
 
 void main() {
-
   // configure StageXL default options
 
   StageXL.stageOptions.renderEngine = RenderEngine.Canvas2D;
@@ -20,8 +19,7 @@ void main() {
 
   var random = Random();
 
-  for(int i = 0; i < 5; i++) {
-
+  for (int i = 0; i < 5; i++) {
     var curveData1 = CurveData.fromRandom(random);
     var curveData2 = CurveData.fromRandom(random);
     var curve = Curve(curveData1, curveData2);
@@ -39,7 +37,6 @@ void main() {
 //------------------------------------------------------------------------------
 
 class Curve extends Shape implements Animatable {
-
   CurveData _curveData1;
   CurveData _curveData2;
 
@@ -59,7 +56,6 @@ class Curve extends Shape implements Animatable {
 
   @override
   bool advanceTime(num delta) {
-
     var t = Transition.easeInOutCubic(min(_time += delta, 1.0));
     var p = CurveData.interpolate(_curveData1, _curveData2, t);
 
@@ -87,7 +83,6 @@ class Curve extends Shape implements Animatable {
 //------------------------------------------------------------------------------
 
 class CurveData {
-
   num x1 = 0, y1 = 0, x2 = 0, y2 = 0;
   num controlX1 = 0, controlY1 = 0;
   num controlX2 = 0, controlY2 = 0;

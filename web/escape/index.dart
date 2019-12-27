@@ -26,7 +26,6 @@ part 'source/special_wobble.dart';
 part 'source/value_counter.dart';
 
 Future main() async {
-
   StageXL.stageOptions.stageScaleMode = StageScaleMode.SHOW_ALL;
   StageXL.stageOptions.stageAlign = StageAlign.NONE;
   StageXL.bitmapDataLoadOptions.webp = true;
@@ -47,7 +46,7 @@ Future main() async {
   stage.addChild(loadingBitmap);
 
   var loadingTextField = TextField();
-  loadingTextField.defaultTextFormat = TextFormat("Arial", 20, 0xA0A0A0, bold:true);
+  loadingTextField.defaultTextFormat = TextFormat("Arial", 20, 0xA0A0A0, bold: true);
   loadingTextField.width = 240;
   loadingTextField.height = 40;
   loadingTextField.text = "... loading ...";
@@ -103,14 +102,20 @@ Future main() async {
   resourceManager.addSound("Warning", "sounds/Warning.mp3");
   resourceManager.addSound("Intro", "sounds/Intro.mp3");
 
-  resourceManager.addText("ESCAPE_INS_AIM_0", "Connect at least 3 chain links of the same colour to a horizontal or vertical chain.");
-  resourceManager.addText("ESCAPE_INS_DES_0", "You can change the direction of a chain link by touching it.");
-  resourceManager.addText("ESCAPE_INS_TIP_0", "Earn extra points for connecting chain links displaying a key symbol.");
+  resourceManager.addText("ESCAPE_INS_AIM_0",
+      "Connect at least 3 chain links of the same colour to a horizontal or vertical chain.");
+  resourceManager.addText(
+      "ESCAPE_INS_DES_0", "You can change the direction of a chain link by touching it.");
+  resourceManager.addText(
+      "ESCAPE_INS_TIP_0", "Earn extra points for connecting chain links displaying a key symbol.");
   resourceManager.addText("ESCBlockErrorHint", "Sorry but block chains can´t be twisted!");
-  resourceManager.addText("ESCLevelBoxText", "Connect {0} chain links and help the crook to escape!");
+  resourceManager.addText(
+      "ESCLevelBoxText", "Connect {0} chain links and help the crook to escape!");
   resourceManager.addText("ESCNoActionHint", "Press on the chain links to twist them.");
-  resourceManager.addText("ESCNoComboHint", "You have to connect at least 3 chain links of the same colour.");
-  resourceManager.addText("ESCStartText", "Form horizontal or vertical same-colour chains and become an escape agent!");
+  resourceManager.addText(
+      "ESCNoComboHint", "You have to connect at least 3 chain links of the same colour.");
+  resourceManager.addText(
+      "ESCStartText", "Form horizontal or vertical same-colour chains and become an escape agent!");
   resourceManager.addText("ESCtogo", "Chain links:");
   resourceManager.addText("GENexitquery", "Do you really want to quit the game?");
   resourceManager.addText("GEN2ndchancetime", "Time is up. Second chance!");

@@ -12,7 +12,6 @@ part 'source/element_detail.dart';
 part 'source/periodic_table.dart';
 
 Future main() async {
-
   // configure StageXL default options
 
   StageXL.stageOptions.renderEngine = RenderEngine.Canvas2D;

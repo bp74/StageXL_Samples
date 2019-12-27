@@ -1,7 +1,6 @@
 part of supersonic;
 
 class PipeObject extends Sprite {
-
   Bitmap _bitmap;
   Shape _shape;
   Sprite _blood;
@@ -9,7 +8,7 @@ class PipeObject extends Sprite {
   Vector3D position;
 
   num continued = -1;
-  num rotStep  = 0;
+  num rotStep = 0;
   num sf = 1;
 
   bool isBarrier = false;
@@ -53,7 +52,7 @@ class PipeObject extends Sprite {
 
   Bitmap get bitmap => _bitmap;
 
-  void setScale( num sf) {
+  void setScale(num sf) {
     this.sf = sf;
     if (_shape != null) {
       _shape.graphics.clear();
@@ -71,13 +70,15 @@ class PipeObject extends Sprite {
   }
 
   bool hitTest(Point localPoint) {
-
     if (_bitmap == null) return false;
 
     var localPointInBitmap = this.localToGlobal(localPoint);
     localPointInBitmap = _bitmap.globalToLocal(localPointInBitmap);
 
-    var color = this.bitmap.bitmapData.getPixel32(localPointInBitmap.x.toInt(), localPointInBitmap.y.toInt());
+    var color = this
+        .bitmap
+        .bitmapData
+        .getPixel32(localPointInBitmap.x.toInt(), localPointInBitmap.y.toInt());
     var alpha = (color >> 24) & 0xFF;
     var hit = false;
 
@@ -93,5 +94,4 @@ class PipeObject extends Sprite {
 
     return hit;
   }
-
 }

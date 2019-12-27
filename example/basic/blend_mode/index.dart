@@ -30,7 +30,6 @@ List<String> blendModeNames = [
 //-----------------------------------------------------------------------------
 
 Future main() async {
-
   // configure StageXL default options.
 
   StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
@@ -112,7 +111,6 @@ class BlendModeSample extends Sprite {
 num totalTime = 0.0;
 
 class Sample extends Sprite implements Animatable {
-
   List<Star> stars = List<Star>();
 
   Sample() {

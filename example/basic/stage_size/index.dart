@@ -5,7 +5,6 @@ import 'package:stagexl/stagexl.dart';
 /// http://www.stagexl.org/docs/wiki-articles.html?article=stagescale
 
 void main() {
-
   // configure StageXL default options.
 
   StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
@@ -51,5 +50,4 @@ void main() {
   // output the size of stage.contentRectangle
 
   stage.onResize.listen((e) => print(stage.contentRectangle));
-
 }

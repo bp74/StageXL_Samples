@@ -1,10 +1,9 @@
 part of supersonic;
 
 class MissileGame extends Game {
-
   static const String GAME_NAME = "Missile";
   static const num STD_VOLUME = 1.0;
-  static const num STD_SCORE_PER_BARRIER  = 100;
+  static const num STD_SCORE_PER_BARRIER = 100;
   static const int STD_BG_COLOR = 0xFFFFFF;
 
   num soundVolume = STD_VOLUME;
@@ -33,8 +32,7 @@ class MissileGame extends Game {
 
   //-----------------------------------------------------------------------------------------------
 
-  MissileGame(int gameWidth, int gameHeight):super(gameWidth, gameHeight) {
-
+  MissileGame(int gameWidth, int gameHeight) : super(gameWidth, gameHeight) {
     this.addEventListener(Event.ADDED_TO_STAGE, (e) {
       this.init();
     });
@@ -42,15 +40,14 @@ class MissileGame extends Game {
 
   set trainingsMode(bool value) {
     _trainingsMode = value;
-    this.dispatchEvent(GameEvent(GameEvent.TYPE_LIVES_CHANGED, this )); // forces ingame menu to update
+    this.dispatchEvent(
+        GameEvent(GameEvent.TYPE_LIVES_CHANGED, this)); // forces ingame menu to update
   }
 
   bool get trainingsMode => _trainingsMode;
 
   void init() {
-
     if (!isInitialized) {
-
       this.addEventListener(MouseEvent.MOUSE_UP, (e) => this.mouseIsDown = false);
       this.addEventListener(MouseEvent.MOUSE_DOWN, (e) => this.mouseIsDown = true);
 
@@ -80,12 +77,11 @@ class MissileGame extends Game {
     }
   }
 
-  String getResource( String key, [List params]) {
-
+  String getResource(String key, [List params]) {
     var value = resourceManager.getText(key);
 
     if (params != null) {
-      for(int i = 0; i < params.length; i++) {
+      for (int i = 0; i < params.length; i++) {
         value = value.replaceAll("{$i}", params[i].toString());
       }
     }
@@ -102,29 +98,30 @@ class MissileGame extends Game {
   }
 
   void createChildren() {
-
     // create engine
-    this.engine = MissileGameEngine( this );
+    this.engine = MissileGameEngine(this);
     this.addChild(this.engine);
 
     // create exit button
     BitmapData buttonExit = resourceManager.getTextureAtlas("items").getBitmapData("button_exit");
-    BitmapData buttonExit2 = resourceManager.getTextureAtlas("items").getBitmapData("button_exit_2");
+    BitmapData buttonExit2 =
+        resourceManager.getTextureAtlas("items").getBitmapData("button_exit_2");
 
-    this.exitButton = SimpleButton(Bitmap(buttonExit), Bitmap(buttonExit2), Bitmap(buttonExit), Bitmap(buttonExit2));
+    this.exitButton = SimpleButton(
+        Bitmap(buttonExit), Bitmap(buttonExit2), Bitmap(buttonExit), Bitmap(buttonExit2));
     this.exitButton.width = 75;
     this.exitButton.height = 66;
-    this.exitButton.x = 707;//this.gameWidth - this.exitButton.width;
+    this.exitButton.x = 707; //this.gameWidth - this.exitButton.width;
     this.exitButton.y = 525; //this.gameHeight - this.exitButton.height;
     this.exitButton.addEventListener(MouseEvent.MOUSE_DOWN, onExitButtonClick);
     this.addChild(this.exitButton);
     this.exitButton.visible = false;
 
     // create IngameMenu
-    this.inGameMenu = TopMenu( this, fontName );
+    this.inGameMenu = TopMenu(this, fontName);
     this.inGameMenu.x = 0;
     this.inGameMenu.y = 0;
-    this.addChild( this.inGameMenu );
+    this.addChild(this.inGameMenu);
   }
 
   // menu
@@ -133,17 +130,17 @@ class MissileGame extends Game {
   void createRestartLevelMenu() {
     var menu = this.createMenu();
     menu.text = this.getResource("MESSAGE_RESTART_LEVEL"); //"Ooops!\nGet Ready\nFor Restart!"
-    menu.addEventListener( MenuEvent.TYPE_OK, this.onRestartLevelMenuOk);
+    menu.addEventListener(MenuEvent.TYPE_OK, this.onRestartLevelMenuOk);
   }
 
   void createFreeLevelMenu(int testObjectId) {
     var menu = this.createMenu();
     menu.text = this.getResource("MESSAGE_FREE_LEVEL_BARRIER_$testObjectId");
-    menu.addEventListener( MenuEvent.TYPE_OK, this.onRestartLevelMenuOk);
+    menu.addEventListener(MenuEvent.TYPE_OK, this.onRestartLevelMenuOk);
   }
 
   void onRestartLevelMenuOk(MenuEvent event) {
-    this.removeMenu( event.menu );
+    this.removeMenu(event.menu);
     this.engine.continueLevel();
   }
 
@@ -151,43 +148,43 @@ class MissileGame extends Game {
 
   void createStartLevelMenu() {
     this.engine.flow();
-    var menu = this.createMenu( );
+    var menu = this.createMenu();
 
     if (this.level == 0) {
       menu.text = this.getResource("MESSAGE_FIRST_LEVEL_WEB");
     } else {
-      menu.text = this.getResource("MESSAGE_START_LEVEL", [(this.level + 1)]); //"Get Ready\nFor Level " + (this.level + 1);
+      menu.text = this.getResource(
+          "MESSAGE_START_LEVEL", [(this.level + 1)]); //"Get Ready\nFor Level " + (this.level + 1);
     }
 
-    menu.addEventListener( MenuEvent.TYPE_OK, this.onStartLevelMenuOk);
+    menu.addEventListener(MenuEvent.TYPE_OK, this.onStartLevelMenuOk);
   }
 
   void onStartLevelMenuOk(MenuEvent event) {
-    this.removeMenu( event.menu );
+    this.removeMenu(event.menu);
     this.nextLevel();
   }
 
   // create gameover menu
 
   void createGameOverMenu() {
-    var menu = this.createMenu( );
+    var menu = this.createMenu();
     menu.text = this.getResource("MESSAGE_GAME_OVER"); //"Game\nOver";
     menu.addEventListener(MenuEvent.TYPE_OK, this.onGameOverMenuOk);
   }
 
   void onGameOverMenuOk(MenuEvent event) {
-    this.removeMenu( event.menu );
+    this.removeMenu(event.menu);
   }
 
   Menu createMenu([Menu menu, num tweenDuration = 1.0, bool autoStart = true]) {
-
     if (this.currentMenu != null) this.removeMenu(this.currentMenu);
 
     this.exitButton.visible = false;
     this.inGameMenu.visible = true;
 
     if (menu == null) {
-      this.currentMenu = Menu(this, autoStart, fontName );
+      this.currentMenu = Menu(this, autoStart, fontName);
     } else {
       this.currentMenu = menu;
     }
@@ -198,7 +195,7 @@ class MissileGame extends Game {
     this.currentMenu.y = (this.gameHeight / 2) - (Menu.menuHeight / 2);
     this.currentMenu.alpha = 0;
 
-    this.addChild( this.currentMenu );
+    this.addChild(this.currentMenu);
 
     var tween = Tween(this.currentMenu, tweenDuration, Transition.linear);
     tween.animate.alpha.to(1);
@@ -208,7 +205,6 @@ class MissileGame extends Game {
   }
 
   void removeMenu(Menu menu) {
-
     this.paused = false;
     this.inGameMenu.visible = true;
     this.exitButton.visible = true;
@@ -216,8 +212,8 @@ class MissileGame extends Game {
     if (menu == null) return;
     menu.destroy();
 
-    if (this.contains( menu )) {
-      this.removeChild( menu );
+    if (this.contains(menu)) {
+      this.removeChild(menu);
     }
 
     this.currentMenu = null;
@@ -228,10 +224,9 @@ class MissileGame extends Game {
   // Event Handlers
 
   void gameTimeOutFunc() {
-
     renderJuggler.remove(gameTimeOutCall);
 
-    if (this.hasScreenReleaseHint) this.onScreenReleaseMessageOk( null );
+    if (this.hasScreenReleaseHint) this.onScreenReleaseMessageOk(null);
 
     this.mouseIsDown = true;
     this.trainingsMode = false;
@@ -240,7 +235,6 @@ class MissileGame extends Game {
   //-----------------------------------------------------------------------------------------------
 
   void onScreenRelease() {
-
     if (this.currentMenu != null) return;
     if (platformType.toLowerCase() == "web") return;
 
@@ -251,7 +245,7 @@ class MissileGame extends Game {
 
     this.hasScreenReleaseHint = true;
     this.paused = true;
-    var screenReleaseMenu = this.createMenu( null, 200, false );
+    var screenReleaseMenu = this.createMenu(null, 200, false);
 
     this.exitButton.visible = true;
 
@@ -260,7 +254,6 @@ class MissileGame extends Game {
   }
 
   void onScreenReleaseMessageOk(MenuEvent event) {
-
     renderJuggler.remove(this.gameTimeOutCall);
 
     this.hasScreenReleaseHint = false;
@@ -271,41 +264,37 @@ class MissileGame extends Game {
   //-----------------------------------------------------------------------------------------------
 
   void onExitButtonClick(MouseEvent event) {
-
     if (this.currentMenu is AbortGameMenu) return;
 
-    var abortGameMenu = AbortGameMenu( this, fontName );
+    var abortGameMenu = AbortGameMenu(this, fontName);
 
-    this.createMenu( abortGameMenu );
+    this.createMenu(abortGameMenu);
     this.paused = true;
 
-    abortGameMenu.addEventListener( MenuEvent.TYPE_OK, this.onAbortGameMenuOK);
-    abortGameMenu.addEventListener( MenuEvent.TYPE_CANCEL, this.onAbortGameMenuCancel);
+    abortGameMenu.addEventListener(MenuEvent.TYPE_OK, this.onAbortGameMenuOK);
+    abortGameMenu.addEventListener(MenuEvent.TYPE_CANCEL, this.onAbortGameMenuCancel);
   }
 
   void onAbortGameMenuOK(MenuEvent event) {
-
     this.dispatchEvent(GameEvent(GameEvent.TYPE_GAME_ABORT, this));
 
     this.currentMenu.removeEventListeners(MenuEvent.TYPE_OK);
     this.currentMenu.removeEventListeners(MenuEvent.TYPE_CANCEL);
 
-    this.removeMenu( this.currentMenu );
+    this.removeMenu(this.currentMenu);
     this.paused = true;
   }
 
   void onAbortGameMenuCancel(MenuEvent event) {
-
     this.currentMenu.removeEventListeners(MenuEvent.TYPE_OK);
     this.currentMenu.removeEventListeners(MenuEvent.TYPE_CANCEL);
 
-    this.removeMenu( currentMenu );
+    this.removeMenu(currentMenu);
   }
 
 //-----------------------------------------------------------------------------------------------
 
   void onGameStart(GameEvent event) {
-
     this.engine.flow();
     renderJuggler.delayCall(this.createStartLevelMenu, 0.5);
   }
@@ -314,25 +303,19 @@ class MissileGame extends Game {
     this.engine.flow();
   }
 
-  void onProgressChange(GameEvent event) {
-  }
+  void onProgressChange(GameEvent event) {}
 
-  void onLivesChange(GameEvent event) {
-  }
+  void onLivesChange(GameEvent event) {}
 
-  void onScoreChange(GameEvent event) {
-  }
+  void onScoreChange(GameEvent event) {}
 
-  void onLevelChange(GameEvent event) {
-  }
+  void onLevelChange(GameEvent event) {}
 
-  void onPauseChange(GameEvent event) {
-  }
+  void onPauseChange(GameEvent event) {}
 
   void onGameOver(GameEvent event) {
     renderJuggler.delayCall(this.createGameOverMenu, 2.0);
   }
 
-  void onGameAbort(GameEvent event) {
-  }
+  void onGameAbort(GameEvent event) {}
 }

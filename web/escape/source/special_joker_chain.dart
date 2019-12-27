@@ -1,13 +1,11 @@
 part of escape;
 
 class SpecialJokerChain extends Sprite implements Animatable {
-
   Bitmap _bitmap;
   List<BitmapData> _jokerBitmapDatas;
   num _currentTime;
 
   SpecialJokerChain(ResourceManager resourceManager, Juggler juggler, int direction) {
-
     this.mouseEnabled = false;
 
     _currentTime = 0.0;
@@ -26,7 +24,6 @@ class SpecialJokerChain extends Sprite implements Animatable {
 
   @override
   bool advanceTime(num time) {
-
     _currentTime += time;
 
     int frame = (_currentTime * 10).toInt() % _jokerBitmapDatas.length;
@@ -34,5 +31,4 @@ class SpecialJokerChain extends Sprite implements Animatable {
 
     return true;
   }
-
 }

@@ -3,7 +3,6 @@ part of custom_filter;
 /// The WebGL render program for the custom filter
 
 class ColorMatrixAlphaMaskProgram extends RenderProgramSimple {
-
   Matrix _matrix = Matrix.fromIdentity();
   Float32List _maskMatrix = Float32List(9);
   Float32List _maskBounds = Float32List(4);
@@ -39,11 +38,8 @@ class ColorMatrixAlphaMaskProgram extends RenderProgramSimple {
     }
     """;
 
-  void configure(
-      ColorMatrixAlphaMaskFilter filter,
-      RenderTextureQuad mainRenderTextureQuad,
+  void configure(ColorMatrixAlphaMaskFilter filter, RenderTextureQuad mainRenderTextureQuad,
       RenderTextureQuad maskRenderTextureQuad) {
-
     _matrix.copyFromAndConcat(filter.matrix, mainRenderTextureQuad.samplerMatrix);
     _matrix.invertAndConcat(maskRenderTextureQuad.samplerMatrix);
 

@@ -7,15 +7,19 @@ Stage stage = Stage(canvas);
 RenderLoop renderLoop = RenderLoop();
 
 void main() {
-
   renderLoop.addStage(stage);
 
   ButtonElement reload = querySelector('#reload');
   TextAreaElement textarea = querySelector('#texttodraw');
-  RichTextFormat format = RichTextFormat('Calibri, sans-serif', 25, 0x000000, align: TextFormatAlign.LEFT);
-  RichTextFormat excited = format.clone()..bold=true..italic=true..size=30..color=0xFF00FF;
+  RichTextFormat format =
+      RichTextFormat('Calibri, sans-serif', 25, 0x000000, align: TextFormatAlign.LEFT);
+  RichTextFormat excited = format.clone()
+    ..bold = true
+    ..italic = true
+    ..size = 30
+    ..color = 0xFF00FF;
 
-  RichTextField rtf = RichTextField('',format)
+  RichTextField rtf = RichTextField('', format)
     ..presets['excited'] = excited
     ..text = textarea.value
     ..width = stage.sourceWidth - 20

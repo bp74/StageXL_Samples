@@ -1,14 +1,13 @@
 part of supersonic;
 
 class Vector2D {
-
   num x;
   num y;
 
   Vector2D(this.x, this.y);
 
   static Vector2D create(num x, num y) {
-    return Vector2D( x, y);
+    return Vector2D(x, y);
   }
 
   static Vector2D pointToVector(Point p) {
@@ -16,12 +15,12 @@ class Vector2D {
   }
 
   static Point vectorToPoint(Vector2D v) {
-    return Point( v.x, v.y );
+    return Point(v.x, v.y);
   }
 
   static Vector2D cartesianToFlashCoords(Vector2D v) {
     if (v == null) return null;
-    return Vector2D( v.x, -v.y );
+    return Vector2D(v.x, -v.y);
   }
 
   set length(num value) {
@@ -30,11 +29,10 @@ class Vector2D {
   }
 
   num get length {
-    return math.sqrt( x * x + y * y);
+    return math.sqrt(x * x + y * y);
   }
 
   void normalize() {
-
     var mod = this.length;
     if (mod == 0) throw UnsupportedError("divided by 0");
     if (mod == 1) return;
@@ -42,13 +40,13 @@ class Vector2D {
     y /= mod;
   }
 
-  void scale( num n) {
+  void scale(num n) {
     x *= n;
     y *= n;
   }
 
   Vector2D clone() {
-    return Vector2D(x,y);
+    return Vector2D(x, y);
   }
 
   Vector2D add(Vector2D v) {
@@ -58,7 +56,7 @@ class Vector2D {
 
   Vector2D subtract(Vector2D v) {
     if (v == null) return null;
-    return Vector2D( x - v.x, y - v.y);
+    return Vector2D(x - v.x, y - v.y);
   }
 
   num distance(Vector2D v) {
@@ -79,15 +77,15 @@ class Vector2D {
   }
 
   Vector2D getLeftNormal() {
-    return Vector2D(this.y,-this.x);
+    return Vector2D(this.y, -this.x);
   }
 
   Vector2D getRightNormal() {
-    return Vector2D(-this.y,this.x);
+    return Vector2D(-this.y, this.x);
   }
 
   num inverseSkalar(Vector2D v) {
-    return (-x*v.x) + (-y*v.y);
+    return (-x * v.x) + (-y * v.y);
   }
 
   num get angleRad {

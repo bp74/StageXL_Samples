@@ -19,7 +19,6 @@ part 'src/game.dart';
 part 'src/playing_field.dart';
 
 Future main() async {
-
   // configure StageXL default options
 
   StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
@@ -30,7 +29,7 @@ Future main() async {
 
   // init Stage and RenderLoop
 
-  var stage = Stage(html.querySelector('#stage'), width:800, height:600);
+  var stage = Stage(html.querySelector('#stage'), width: 800, height: 600);
   var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
@@ -45,5 +44,4 @@ Future main() async {
   var game = Game(resourceManager);
   stage.addChild(game);
   stage.juggler.add(game);
-
 }

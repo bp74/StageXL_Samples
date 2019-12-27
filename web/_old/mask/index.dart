@@ -7,11 +7,10 @@ import 'package:stagexl/stagexl.dart';
 part 'source/flower_field.dart';
 
 Stage stage = Stage(html.querySelector('#stage'));
-ResourceManager resourceManager  = ResourceManager();
+ResourceManager resourceManager = ResourceManager();
 RenderLoop renderLoop = RenderLoop();
 
 void main() {
-
   renderLoop.addStage(stage);
 
   //---------------------------------------------
@@ -19,7 +18,7 @@ void main() {
 
   var starPath = List<Point>();
 
-  for(int i = 0; i < 6; i++) {
+  for (int i = 0; i < 6; i++) {
     num a1 = (i * 60) * math.pi / 180;
     num a2 = (i * 60 + 30) * math.pi / 180;
     starPath.add(Point(470 + 200 * math.cos(a1), 250 + 200 * math.sin(a1)));
@@ -43,7 +42,7 @@ void main() {
     stage.juggler.addTween(flowerField, 2.0, Transition.easeInOutBack)
       ..animate.rotation.to(math.pi * 4.0)
       ..onComplete = () => flowerField.rotation = 0.0;
-    });
+  });
 
   //---------------------------------------------
   // Load the flower images

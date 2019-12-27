@@ -1,7 +1,6 @@
 part of supersonic;
 
 class Game extends Sprite {
-
   num _score = 0;
   int _level = 0;
   bool _paused = true;
@@ -13,7 +12,7 @@ class Game extends Sprite {
   int _gameHeight;
 
   Game(int gameWidth, int gameHeight) {
-    setWidthHeight( gameWidth, gameHeight );
+    setWidthHeight(gameWidth, gameHeight);
   }
 
   void setWidthHeight(int w, int h) {
@@ -38,7 +37,7 @@ class Game extends Sprite {
   //-----------------------------------------------------------------------------------------------
 
   set gameWidth(int value) {
-    setWidthHeight( value, _gameHeight);
+    setWidthHeight(value, _gameHeight);
   }
 
   set gameHeight(int value) {
@@ -46,7 +45,7 @@ class Game extends Sprite {
   }
 
   void setSizes(int gameWidth, int gameHeight) {
-    setWidthHeight( gameWidth, gameHeight);
+    setWidthHeight(gameWidth, gameHeight);
   }
 
   void start() {
@@ -75,12 +74,12 @@ class Game extends Sprite {
     _lives = value;
 
     this.dispatchEvent(GameEvent(GameEvent.TYPE_LIVES_CHANGED, this));
-    if (_lives == 0 ) this.gameOver();
+    if (_lives == 0) this.gameOver();
   }
 
   set score(num value) {
     if (value < 0) value = 0;
-    _score= value;
+    _score = value;
 
     this.dispatchEvent(GameEvent(GameEvent.TYPE_SCORE_CHANGED, this));
   }

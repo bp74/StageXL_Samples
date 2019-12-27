@@ -1,7 +1,6 @@
 part of escape;
 
 class Field {
-
   ResourceManager _resourceManager;
   Juggler _juggler;
 
@@ -21,8 +20,7 @@ class Field {
 
   //---------------------------------------------------------------------------------
 
-  Field(ResourceManager resourceManager, Juggler juggler, int color, int direction){
-
+  Field(ResourceManager resourceManager, Juggler juggler, int color, int direction) {
     _resourceManager = resourceManager;
     _juggler = juggler;
     _color = color;
@@ -43,53 +41,64 @@ class Field {
   //---------------------------------------------------------------------------------
 
   int get color => _color;
-  set color(int value)  { _color = value; }
+  set color(int value) {
+    _color = value;
+  }
 
   int get direction => _direction;
-  set direction(int value) { _direction = value; }
+  set direction(int value) {
+    _direction = value;
+  }
 
   String get special => _special;
-  set special(String value) { _special = value; }
+  set special(String value) {
+    _special = value;
+  }
 
   bool get linked => _linked;
-  set linked(bool value) { _linked = value; }
+  set linked(bool value) {
+    _linked = value;
+  }
 
   bool get linkedJoker => _linkedJoker;
-  set linkedJoker(bool value) { _linkedJoker = value; }
+  set linkedJoker(bool value) {
+    _linkedJoker = value;
+  }
 
   bool get empty => _empty;
-  set empty(bool value) { _empty = value; }
+  set empty(bool value) {
+    _empty = value;
+  }
 
   //---------------------------------------------------------------------------------
 
   bool couldLink(Field field) {
-
-    bool link =
-        field != null &&
+    bool link = field != null &&
         (field.color == _color || field.special == Special.Joker || _special == Special.Joker) &&
-        field.special != Special.Block && _special != Special.Block;
+        field.special != Special.Block &&
+        _special != Special.Block;
 
     return link;
   }
 
   bool canLinkHorizontal(Field field) {
-
-    bool link =
-        field != null &&
+    bool link = field != null &&
         (field.color == _color || field.special == Special.Joker || _special == Special.Joker) &&
-        field.direction == 0 && _direction == 0 &&
-        field.special != Special.Block && _special != Special.Block;
+        field.direction == 0 &&
+        _direction == 0 &&
+        field.special != Special.Block &&
+        _special != Special.Block;
 
     return link;
   }
 
   bool canLinkVertical(Field field) {
-
-   bool link =
-       field != null &&
-       (field.color == _color || field.special == Special.Joker || _special == Special.Joker) &&
-       field.direction == 1 && _direction == 1 &&
-       field.special != Special.Block && _special != Special.Block;
+    bool link = field != null &&
+        (field.color == _color || field.special == Special.Joker || _special == Special.Joker) &&
+        field.direction == 1 &&
+        _direction == 1 &&
+        field.special != Special.Block &&
+        _special != Special.Block;
 
     return link;
   }
@@ -99,7 +108,6 @@ class Field {
   num get x => _x;
 
   set x(num value) {
-
     _x = value;
 
     if (_chainDisplayObject != null) _chainDisplayObject.x = value;
@@ -111,9 +119,8 @@ class Field {
 
   num get y => _y;
 
-  set y(num value){
-
-   _y = value;
+  set y(num value) {
+    _y = value;
 
     if (_chainDisplayObject != null) _chainDisplayObject.y = value;
     if (_linkDisplayObject != null) _linkDisplayObject.y = value;
@@ -134,7 +141,6 @@ class Field {
   //---------------------------------------------------------------------------------
 
   void updateDisplayObjects(Sprite chainLayer, Sprite linkLayer, Sprite specialLayer) {
-
     if (_chainDisplayObject != null) {
       _chainDisplayObject.parent.removeChild(_chainDisplayObject);
       _chainDisplayObject = null;
@@ -151,12 +157,10 @@ class Field {
     }
 
     if (empty == false) {
-
       //----------------------------------
       // chainLayer
 
-      switch(_special)
-      {
+      switch (_special) {
         case Special.Joker:
           _chainDisplayObject = SpecialJokerChain(_resourceManager, _juggler, _direction);
           _chainDisplayObject.x = _x;
@@ -183,7 +187,6 @@ class Field {
       // linkLayer
 
       if (_linked) {
-
         _linkDisplayObject = _linkedJoker
             ? SpecialJokerLink(_resourceManager, _juggler, _direction)
             : Grafix.getLink(_resourceManager, _color, _direction);
@@ -196,11 +199,13 @@ class Field {
       //----------------------------------
       // specialLayer
 
-      switch(_special) {
-
-        case Special.None: break;
-        case Special.Block: break;
-        case Special.Joker: break;
+      switch (_special) {
+        case Special.None:
+          break;
+        case Special.Block:
+          break;
+        case Special.Joker:
+          break;
         default:
           _specialDisplayObject = SpecialWobble(_resourceManager, _juggler, _special);
           _specialDisplayObject.x = _x;
@@ -210,5 +215,4 @@ class Field {
       }
     }
   }
-
 }

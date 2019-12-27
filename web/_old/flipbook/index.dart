@@ -13,7 +13,6 @@ RenderLoop renderLoop;
 ResourceManager resourceManager;
 
 void main() {
-
   // configure StageXL default options
 
   StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
@@ -37,7 +36,6 @@ void main() {
 //-----------------------------------------------------------------------------
 
 void startAnimation() {
-
   var random = Random();
   var scaling = 0.5 + 0.5 * random.nextDouble();
 
@@ -60,7 +58,7 @@ void startAnimation() {
 
   stage.sortChildren((c1, c2) {
     if (c1.y < c2.y) return -1;
-    if (c1.y > c2.y) return  1;
+    if (c1.y > c2.y) return 1;
     return 0;
   });
 
@@ -81,5 +79,3 @@ void stopAnimation(FlipBook flipbook) {
   stage.removeChild(flipbook);
   stage.juggler.remove(flipbook);
 }
-
-

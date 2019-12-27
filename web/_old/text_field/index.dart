@@ -21,7 +21,6 @@ DisplayObject currentText = Sprite();
 DisplayObject currentTextCached = Sprite();
 
 void main() {
-
   stage = Stage(html.querySelector('#stage'));
   stage.scaleMode = StageScaleMode.NO_SCALE;
   stage.align = StageAlign.NONE;
@@ -33,13 +32,21 @@ void main() {
 
   var completer = Completer();
   var googleFontFamilies = [
-      'Poller One', 'Titillium Web:900', 'Parisienne',
-      'Varela Round', 'Poly', 'Ceviche One', 'Press Start 2P',
-      'Norican', 'Yanone Kaffeesatz', 'VT323'];
+    'Poller One',
+    'Titillium Web:900',
+    'Parisienne',
+    'Varela Round',
+    'Poly',
+    'Ceviche One',
+    'Press Start 2P',
+    'Norican',
+    'Yanone Kaffeesatz',
+    'VT323'
+  ];
 
   js.JsObject webFont = js.context["WebFont"];
   js.JsObject webFontConfig = js.JsObject.jsify({
-    "google": { "families": googleFontFamilies },
+    "google": {"families": googleFontFamilies},
     "loading": () => print("loading fonts"),
     "active": () => completer.complete(null),
     "inactive": () => completer.completeError("Error loading fonts"),
@@ -53,7 +60,6 @@ void main() {
 }
 
 void start() {
-
   var textField = TextField();
   textField.defaultTextFormat = TextFormat("Arial", 36, Color.Black, align: TextFormatAlign.CENTER);
   textField.width = 400;
@@ -72,21 +78,27 @@ void start() {
   var textYouWin = TextYouWin();
 
   var textIndex = 0;
-  var texts = [textGameOn, textGameOver, textGetReady, textHoldTheLine,
-      textHotAndSpicy, textSugarSmash, textSweet, textYouWin];
+  var texts = [
+    textGameOn,
+    textGameOver,
+    textGetReady,
+    textHoldTheLine,
+    textHotAndSpicy,
+    textSugarSmash,
+    textSweet,
+    textYouWin
+  ];
 
   stage.onMouseClick.listen((e) {
     textField.removeFromParent();
     textIndex = (textIndex + 1) % texts.length;
     showText(texts[textIndex]);
   });
-
 }
 
 //-----------------------------------------------------------------------------
 
 void showText(DisplayObject text) {
-
   var rect = stage.contentRectangle;
   var bounds = text.bounds;
   var scale = math.min(rect.width / bounds.width, rect.height / bounds.height);
@@ -97,22 +109,22 @@ void showText(DisplayObject text) {
   text.scaleY = text.scaleX = scale * 0.9;
 
   stage.juggler.addTween(oldTextCached, 0.5, Transition.easeInCubic)
-      ..animate.x.to(rect.right - oldTextCached.bounds.left)
-      ..onComplete = () {
-        oldTextCached.removeFromParent();
-        oldTextCached.removeCache();
-      };
+    ..animate.x.to(rect.right - oldTextCached.bounds.left)
+    ..onComplete = () {
+      oldTextCached.removeFromParent();
+      oldTextCached.removeCache();
+    };
 
   currentText = text;
   currentTextCached = Sprite()
-      ..x = rect.left - currentText.width
-      ..y = rect.center.y
-      ..addChild(currentText)
-      ..addTo(stage);
+    ..x = rect.left - currentText.width
+    ..y = rect.center.y
+    ..addChild(currentText)
+    ..addTo(stage);
 
   var size = currentTextCached.bounds.align();
   currentTextCached.applyCache(size.left, size.top, size.width, size.height);
 
   stage.juggler.addTween(currentTextCached, 0.5, Transition.easeInCubic)
-      ..animate.x.to(rect.center.x);
+    ..animate.x.to(rect.center.x);
 }

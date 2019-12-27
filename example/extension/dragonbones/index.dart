@@ -4,7 +4,6 @@ import 'package:stagexl/stagexl.dart';
 import 'package:stagexl_dragonbones/stagexl_dragonbones.dart';
 
 Future main() async {
-
   // configure StageXL default options
 
   StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
@@ -23,7 +22,8 @@ Future main() async {
   // load the skeleton resources
 
   var resourceManager = ResourceManager();
-  resourceManager.addTextureAtlas("dragonTexture", "assets/texture.json", TextureAtlasFormat.STARLINGJSON);
+  resourceManager.addTextureAtlas(
+      "dragonTexture", "assets/texture.json", TextureAtlasFormat.STARLINGJSON);
   resourceManager.addTextFile("dragonJson", "assets/dragon_new.json");
   await resourceManager.load();
 
@@ -41,6 +41,4 @@ Future main() async {
   skeleton.showBones = false;
   stage.juggler.add(skeleton);
   stage.addChild(skeleton);
-
 }
-

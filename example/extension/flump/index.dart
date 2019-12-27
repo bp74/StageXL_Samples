@@ -4,7 +4,6 @@ import 'package:stagexl/stagexl.dart';
 import 'package:stagexl_flump/stagexl_flump.dart';
 
 Future main() async {
-
   // configure StageXL default options.
 
   StageXL.stageOptions.renderEngine = RenderEngine.WebGL;

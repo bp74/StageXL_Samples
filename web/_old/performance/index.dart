@@ -9,7 +9,6 @@ part 'source/flying_flag.dart';
 part 'source/performance.dart';
 
 Future main() async {
-
   // configure StageXL default options.
 
   StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
@@ -57,5 +56,4 @@ Future main() async {
     fpsAverage = 0.05 / enterFrame.passedTime + 0.95 * fpsAverage;
     fpsMeter.innerHtml = 'fps: ${fpsAverage.round()}';
   }
-
 }

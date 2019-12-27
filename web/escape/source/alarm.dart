@@ -1,7 +1,6 @@
 part of escape;
 
 class Alarm extends Sprite {
-
   ResourceManager _resourceManager;
   Juggler _juggler;
 
@@ -15,8 +14,7 @@ class Alarm extends Sprite {
   //--------------------------------------------------------------------------------------------
 
   Alarm(ResourceManager resourceManager, Juggler juggler) {
-
-    _resourceManager= resourceManager;
+    _resourceManager = resourceManager;
     _juggler = juggler;
 
     _alarmBitmapDatas = Grafix.getAlarms(_resourceManager);
@@ -31,7 +29,6 @@ class Alarm extends Sprite {
   //--------------------------------------------------------------------------------------------
 
   void start() {
-
     _warningChannel = _warning.play();
     _juggler.remove(_translation);
     _translation = Translation(0, 80, 9.0, Transition.linear);
@@ -45,7 +42,6 @@ class Alarm extends Sprite {
   }
 
   void stop() {
-
     if (_warningChannel != null) {
       _warningChannel.stop();
       _warningChannel = null;
@@ -54,5 +50,4 @@ class Alarm extends Sprite {
     _juggler.remove(_translation);
     _alarmBitmap.bitmapData = _alarmBitmapDatas[0];
   }
-
 }

@@ -4,7 +4,6 @@ import 'dart:html';
 import 'package:stagexl/stagexl.dart';
 
 Future main() async {
-
   // configure StageXL default options
 
   StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
@@ -27,7 +26,6 @@ Future main() async {
   // run the animation controlled by the juggler
 
   await for (var _ in juggler.interval(delay).take(666)) {
-
     var rect = stage.contentRectangle;
     var hue = random.nextDouble() * 2.0 - 1.0;
     var hueFilter = ColorMatrixFilter.adjust(hue: hue);
@@ -52,6 +50,5 @@ Future main() async {
       ..animate.scaleX.to(0.0)
       ..animate.scaleY.to(0.0)
       ..onComplete = logoBitmap.removeFromParent;
-
   }
 }

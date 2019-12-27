@@ -1,12 +1,10 @@
 part of periodic_table;
 
 class ElementButton extends Sprite {
-
   Map element;
   Map category;
 
   ElementButton(this.element, this.category) {
-
     var symbol = element["symbol"];
     var atomicNumber = element["atomic_number"];
     var categoryColor = int.parse(category["color"], radix: 16) | 0xFF000000;
@@ -24,9 +22,9 @@ class ElementButton extends Sprite {
     this.graphics.fillColor(categoryColor);
     this.graphics.strokeColor(Color.Black, 1);
 
-    var font =  "Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif";
-    var numberTextFormat = TextFormat(font, 24, Color.Black, bold:true);
-    var symbolTextFormat = TextFormat(font, 40, Color.Black, bold:true);
+    var font = "Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif";
+    var numberTextFormat = TextFormat(font, 24, Color.Black, bold: true);
+    var symbolTextFormat = TextFormat(font, 40, Color.Black, bold: true);
 
     var numberTextField = TextField()
       ..defaultTextFormat = numberTextFormat

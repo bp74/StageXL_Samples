@@ -1,7 +1,6 @@
 part of example;
 
 class PlayingField extends Sprite3D {
-
   final ResourceManager resourceManager;
 
   Sprite _cards = Sprite();
@@ -22,7 +21,6 @@ class PlayingField extends Sprite3D {
   //---------------------------------------------------------------------------
 
   Future dealCards(int numColumns, int numRows) {
-
     _cards = _createCardPlane(numColumns, numRows);
     _selectedCards.clear();
     _numTurnedCards = 0;
@@ -42,7 +40,6 @@ class PlayingField extends Sprite3D {
   }
 
   Future removeCards() {
-
     var futures = List<Future>();
 
     for (int i = 0; i < _cards.numChildren; ++i) {
@@ -55,7 +52,6 @@ class PlayingField extends Sprite3D {
   }
 
   void concealAllCards() {
-
     for (int i = 0; i < _cards.numChildren; ++i) {
       var future = _turnCard(_cards.getChildAt(i) as Card, 0.0);
       future.then((card) => card.mouseEnabled = true);
@@ -65,12 +61,11 @@ class PlayingField extends Sprite3D {
   //---------------------------------------------------------------------------
 
   Sprite _createCardPlane(int numColumns, int numRows) {
-
     var plane = Sprite();
     addChild(plane);
 
     var atlas = resourceManager.getTextureAtlas("atlas");
-    var iconBitmapDatas = atlas .getBitmapDatas("icon-");
+    var iconBitmapDatas = atlas.getBitmapDatas("icon-");
     iconBitmapDatas.shuffle();
 
     var cards = List<Card>();
@@ -108,7 +103,6 @@ class PlayingField extends Sprite3D {
   //---------------------------------------------------------------------------
 
   void _onCardSelected(Event event) {
-
     var card = event.target as Card;
     if (_selectedCards.length < 2) {
       _selectedCards.add(card);
@@ -118,7 +112,6 @@ class PlayingField extends Sprite3D {
   }
 
   void _onCardRevelead(Card card) {
-
     if (_selectedCards.indexOf(card) == 1) {
       if (_selectedCards[0].id == _selectedCards[1].id) {
         _numTurnedCards += 2;
@@ -140,7 +133,6 @@ class PlayingField extends Sprite3D {
   //---------------------------------------------------------------------------
 
   Future<Card> _dealCard(Card card, num delay) {
-
     var completer = Completer<Card>();
 
     card.alpha = 0;
@@ -157,7 +149,6 @@ class PlayingField extends Sprite3D {
   }
 
   Future<Card> _removeCard(Card card, num delay) {
-
     var completer = Completer<Card>();
 
     card.alpha = 1.0;
@@ -174,7 +165,6 @@ class PlayingField extends Sprite3D {
   }
 
   Future<Card> _turnCard(Card card, num delay) {
-
     var completer = Completer<Card>();
     var r0 = card.concealed ? pi : 0;
     var r1 = card.concealed ? 0 : pi;
@@ -190,5 +180,4 @@ class PlayingField extends Sprite3D {
 
     return completer.future;
   }
-
 }

@@ -164,8 +164,7 @@ void on2dChanged(Event event) {
   var ease = Transition.easeInOutSine;
 
   stage.juggler.removeTweens(videoContainer2D);
-  stage.juggler.addTween(videoContainer2D, 0.3, ease)
-    ..animate.rotation.to(rotation);
+  stage.juggler.addTween(videoContainer2D, 0.3, ease)..animate.rotation.to(rotation);
 }
 
 void on3dChanged(Event event) {
@@ -175,8 +174,7 @@ void on3dChanged(Event event) {
   var ease = Transition.easeInOutSine;
 
   stage.juggler.removeTweens(videoContainer3D);
-  stage.juggler.addTween(videoContainer3D, 0.3, ease)
-    ..animate3D.offsetZ.to(offsetZ);
+  stage.juggler.addTween(videoContainer3D, 0.3, ease)..animate3D.offsetZ.to(offsetZ);
 
   stage.juggler.addTween(videoContainer3D, 0.3, ease)
     ..delay = 0.3

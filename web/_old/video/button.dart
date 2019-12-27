@@ -1,7 +1,6 @@
 part of video_example;
 
 class Button extends Sprite {
-
   SimpleButton simpleButton;
   bool state = false;
 
@@ -10,7 +9,6 @@ class Button extends Sprite {
   TextField _textField;
 
   Button(String caption) : super() {
-
     var textFormat = TextFormat("Arial", 24, Color.Black);
     textFormat.align = TextFormatAlign.CENTER;
     textFormat.leftMargin = 20;
@@ -41,8 +39,7 @@ class Button extends Sprite {
     state = !state;
 
     stage.juggler.removeTweens(_stateBitmap1);
-    stage.juggler.addTween(_stateBitmap1, 0.25)
-      ..animate.alpha.to(state ? 1.0 : 0.0);
+    stage.juggler.addTween(_stateBitmap1, 0.25)..animate.alpha.to(state ? 1.0 : 0.0);
 
     this.dispatchEvent(Event(Event.CHANGE));
   }

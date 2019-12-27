@@ -4,7 +4,6 @@ import 'dart:html' as html;
 import 'package:stagexl/stagexl.dart';
 
 Future main() async {
-
   // configure StageXL default options.
 
   StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
@@ -36,7 +35,6 @@ Future main() async {
   var random = math.Random();
 
   for (var i = 0; i < 100; i++) {
-
     var bitmapData = flowersList[random.nextInt(3)];
     var bitmap = Bitmap(bitmapData);
     bitmap.pivotX = 64;

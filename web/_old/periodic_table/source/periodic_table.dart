@@ -1,7 +1,6 @@
 part of periodic_table;
 
 class PeriodicTable extends DisplayObjectContainer {
-
   Map elements;
   Map table;
 
@@ -19,7 +18,7 @@ class PeriodicTable extends DisplayObjectContainer {
   //-----------------------------------------------------------------------------------------------
 
   void _addElementButtons() {
-    for(var element in this.elements["elements"]) {
+    for (var element in this.elements["elements"]) {
       var atomicNumber = element["atomic_number"] as int;
       var groupIndex = _getGroupNumber(atomicNumber) - 1;
       var periodIndex = _getPeriodNumber(atomicNumber) - 1;
@@ -30,11 +29,11 @@ class PeriodicTable extends DisplayObjectContainer {
       elementButton.y = 10 + periodIndex * 50 + 25;
 
       if (atomicNumber >= 57 && atomicNumber <= 71) {
-        elementButton.x += (atomicNumber - 57)* 50;
+        elementButton.x += (atomicNumber - 57) * 50;
         elementButton.y += 2 * 50 + 25;
       }
       if (atomicNumber >= 89 && atomicNumber <= 103) {
-        elementButton.x += (atomicNumber - 89)* 50;
+        elementButton.x += (atomicNumber - 89) * 50;
         elementButton.y += 2 * 50 + 25;
       }
       addChild(elementButton);
@@ -43,7 +42,7 @@ class PeriodicTable extends DisplayObjectContainer {
 
   void _addCategoryButtons() {
     var x = 0;
-    for(var category in this.table["categories"]) {
+    for (var category in this.table["categories"]) {
       var categoryButton = CategoryButton(category);
       categoryButton.x = 80 + x;
       categoryButton.y = 530;
@@ -55,21 +54,21 @@ class PeriodicTable extends DisplayObjectContainer {
   //-----------------------------------------------------------------------------------------------
 
   int _getGroupNumber(int atomicNumber) {
-    for(var group in this.table["groups"]) {
+    for (var group in this.table["groups"]) {
       if (group["elements"].contains(atomicNumber)) return group["number"];
     }
     return -1;
   }
 
   int _getPeriodNumber(int atomicNumber) {
-    for(var period in this.table["periods"]) {
+    for (var period in this.table["periods"]) {
       if (period["elements"].contains(atomicNumber)) return period["number"];
     }
     return -1;
   }
 
   Map _getCategory(int atomicNumber) {
-    for(var category in this.table["categories"]) {
+    for (var category in this.table["categories"]) {
       if (category["elements"].contains(atomicNumber)) return category;
     }
     return null;
@@ -107,10 +106,9 @@ class PeriodicTable extends DisplayObjectContainer {
     _detail.alpha = 0.0;
     _detail.addTo(this);
 
-    stage.juggler.addTween(_detail, 0.3, Transition.linear)
-      ..animate.alpha.to(1.0);
+    stage.juggler.addTween(_detail, 0.3, Transition.linear)..animate.alpha.to(1.0);
 
-    for(int i = 0; i < this.numChildren; i++) {
+    for (int i = 0; i < this.numChildren; i++) {
       var child = this.getChildAt(i);
       if (child is CategoryButton) {
         if (identical(child.category, button.category)) {
@@ -132,7 +130,7 @@ class PeriodicTable extends DisplayObjectContainer {
       _detail = null;
     }
 
-    for(int i = 0; i < this.numChildren; i++) {
+    for (int i = 0; i < this.numChildren; i++) {
       var child = this.getChildAt(i);
       if (child is CategoryButton) {
         child.animateTo(0.50, 1.0);
@@ -152,10 +150,9 @@ class PeriodicTable extends DisplayObjectContainer {
     _detail.alpha = 0.0;
     _detail.addTo(this);
 
-    stage.juggler.addTween(_detail, 0.3, Transition.linear)
-      ..animate.alpha.to(1.0);
+    stage.juggler.addTween(_detail, 0.3, Transition.linear)..animate.alpha.to(1.0);
 
-    for(int i = 0; i < this.numChildren; i++) {
+    for (int i = 0; i < this.numChildren; i++) {
       var child = this.getChildAt(i);
       if (child is ElementButton) {
         if (identical(child.category, button.category)) {
@@ -177,12 +174,11 @@ class PeriodicTable extends DisplayObjectContainer {
       _detail = null;
     }
 
-    for(int i = 0; i < this.numChildren; i++) {
+    for (int i = 0; i < this.numChildren; i++) {
       var child = this.getChildAt(i);
       if (child is ElementButton) {
         child.animateTo(0.5, 1.0);
       }
     }
   }
-
 }

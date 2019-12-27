@@ -14,7 +14,6 @@ Random random = Random();
 num gravity = 0.75;
 
 Future main() async {
-
   // configure StageXL default options
 
   StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
@@ -69,7 +68,6 @@ Future main() async {
 //-----------------------------------------------------------------------------
 
 class BunnyView extends BitmapContainer {
-
   List<BitmapData> bitmapDatas;
   bool _adding = false;
   int _bunnyIndex = 0;
@@ -100,7 +98,6 @@ class BunnyView extends BitmapContainer {
   }
 
   void _onEnterFrame(EnterFrameEvent e) {
-
     if (_adding) {
       for (int i = 0; i < 50; i++) {
         _addBunny();
@@ -122,7 +119,6 @@ class BunnyView extends BitmapContainer {
 //-----------------------------------------------------------------------------
 
 class Bunny extends Bitmap {
-
   num posX = 0.0;
   num posY = 0.0;
   num speedX = 0.0;
@@ -131,7 +127,6 @@ class Bunny extends Bitmap {
   Bunny(BitmapData bitmapData) : super(bitmapData);
 
   void update(Rectangle contentRectangle) {
-
     posX += speedX;
     posY += speedY;
     speedY += gravity;

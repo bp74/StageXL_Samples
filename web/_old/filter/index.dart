@@ -17,7 +17,6 @@ num totalTime = 0.0;
 //-------------------------------------------------------------------------------------------------
 
 void main() {
-
   // configure StageXL default options
 
   StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
@@ -32,25 +31,24 @@ void main() {
   // load resources
 
   resourceManager
-      ..addTextureAtlas('flowers', 'images/Flowers.json')
-      ..addBitmapData('grass', 'images/grass.jpg')
-      ..addBitmapData('apple', 'images/apple.png')
-      ..addBitmapData('chrome', 'images/chrome.png')
-      ..addBitmapData('displacement_bubble', 'images/displacement_bubble.png')
-      ..addBitmapData('displacement_ripple', 'images/displacement_ripple.png')
-      ..addBitmapData('displacement_twirl', 'images/displacement_twirl.png')
-      ..addBitmapData('butterfly', 'images/butterfly.png')
-      ..load().then(createFlowerField);
+    ..addTextureAtlas('flowers', 'images/Flowers.json')
+    ..addBitmapData('grass', 'images/grass.jpg')
+    ..addBitmapData('apple', 'images/apple.png')
+    ..addBitmapData('chrome', 'images/chrome.png')
+    ..addBitmapData('displacement_bubble', 'images/displacement_bubble.png')
+    ..addBitmapData('displacement_ripple', 'images/displacement_ripple.png')
+    ..addBitmapData('displacement_twirl', 'images/displacement_twirl.png')
+    ..addBitmapData('butterfly', 'images/butterfly.png')
+    ..load().then(createFlowerField);
 }
 
 //-------------------------------------------------------------------------------------------------
 
 void createFlowerField(ResourceManager resourceManager) {
-
   var textureAtlas = resourceManager.getTextureAtlas("flowers");
   var flowers = textureAtlas.getBitmapDatas("Flower");
 
-  for(var i = 0; i < 100; i++) {
+  for (var i = 0; i < 100; i++) {
     var flower = flowers[random.nextInt(flowers.length)];
     var bitmap = Bitmap(flower)
       ..pivotX = 64
@@ -59,8 +57,7 @@ void createFlowerField(ResourceManager resourceManager) {
       ..y = 80 + random.nextInt(500 - 160)
       ..addTo(flowerField);
 
-    stage.juggler.addTween(bitmap, 3600, Transition.linear)
-      ..animate.rotation.to(math.pi * 360.0);
+    stage.juggler.addTween(bitmap, 3600, Transition.linear)..animate.rotation.to(math.pi * 360.0);
   }
 
   flowerField.x = flowerField.pivotX = 320;
@@ -73,9 +70,9 @@ void createFlowerField(ResourceManager resourceManager) {
   stage.onEnterFrame.listen(onEnterFrame);
 
   if (stage.renderEngine != RenderEngine.WebGL) {
-    var font =  "Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif";
+    var font = "Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif";
     var textField = TextField();
-    textField.defaultTextFormat = TextFormat(font, 16, Color.White, bold:true);
+    textField.defaultTextFormat = TextFormat(font, 16, Color.White, bold: true);
     textField.defaultTextFormat.leftMargin = 10;
     textField.defaultTextFormat.rightMargin = 10;
     textField.defaultTextFormat.topMargin = 10;
@@ -95,32 +92,49 @@ void createFlowerField(ResourceManager resourceManager) {
 //-------------------------------------------------------------------------------------------------
 
 void onEnterFrame(EnterFrameEvent e) {
-
   Map config = json.decode(context['filterConfig']);
-  if  (config.keys.isEmpty) return;
+  if (config.keys.isEmpty) return;
 
   var filters = <BitmapFilter>[];
   totalTime += e.passedTime;
 
   var colorMatrixFilterConfig = config['colorMatrixFilter'];
   if (colorMatrixFilterConfig['enabled']) {
-    switch(colorMatrixFilterConfig['filter']) {
-      case 'invert': filters.add(ColorMatrixFilter.invert()); break;
-      case 'grayscale': filters.add(ColorMatrixFilter.grayscale()); break;
-      case 'brightness': filters.add(ColorMatrixFilter.adjust(brightness: 0.2)); break;
-      case 'contrast': filters.add(ColorMatrixFilter.adjust(contrast: 1.0)); break;
-      case 'saturation': filters.add(ColorMatrixFilter.adjust(saturation: 1.0)); break;
-      case 'hue': filters.add(ColorMatrixFilter.adjust(hue: -0.5)); break;
+    switch (colorMatrixFilterConfig['filter']) {
+      case 'invert':
+        filters.add(ColorMatrixFilter.invert());
+        break;
+      case 'grayscale':
+        filters.add(ColorMatrixFilter.grayscale());
+        break;
+      case 'brightness':
+        filters.add(ColorMatrixFilter.adjust(brightness: 0.2));
+        break;
+      case 'contrast':
+        filters.add(ColorMatrixFilter.adjust(contrast: 1.0));
+        break;
+      case 'saturation':
+        filters.add(ColorMatrixFilter.adjust(saturation: 1.0));
+        break;
+      case 'hue':
+        filters.add(ColorMatrixFilter.adjust(hue: -0.5));
+        break;
     }
   }
 
   var alphaMaskFilterConfig = config['alphaMaskFilter'];
   if (alphaMaskFilterConfig['enabled']) {
     BitmapData bitmapData;
-    switch(alphaMaskFilterConfig['mask']) {
-      case 'apple': bitmapData = resourceManager.getBitmapData('apple'); break;
-      case 'butterfly': bitmapData = resourceManager.getBitmapData('butterfly'); break;
-      case 'chrome': bitmapData = resourceManager.getBitmapData('chrome'); break;
+    switch (alphaMaskFilterConfig['mask']) {
+      case 'apple':
+        bitmapData = resourceManager.getBitmapData('apple');
+        break;
+      case 'butterfly':
+        bitmapData = resourceManager.getBitmapData('butterfly');
+        break;
+      case 'chrome':
+        bitmapData = resourceManager.getBitmapData('chrome');
+        break;
     }
     if (bitmapData != null) {
       var matrix = Matrix.fromIdentity();
@@ -136,7 +150,7 @@ void onEnterFrame(EnterFrameEvent e) {
     var transform = Matrix.fromIdentity();
     num scaleX = 16, scaleY = 16;
 
-    switch(displacementMapFilter['map']) {
+    switch (displacementMapFilter['map']) {
       case 'bubble':
         bitmapData = resourceManager.getBitmapData('displacement_bubble');
         transform.scale(1.2, 1.2);

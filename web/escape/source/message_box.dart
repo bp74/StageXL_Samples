@@ -1,7 +1,6 @@
 part of escape;
 
-class MessageBox extends Sprite
-{
+class MessageBox extends Sprite {
   ResourceManager _resourceManager;
   Juggler _juggler;
 
@@ -9,16 +8,14 @@ class MessageBox extends Sprite
   Function _doneFunction;
 
   MessageBox(ResourceManager resourceManager, Juggler juggler, String text) {
-
     _resourceManager = resourceManager;
     _juggler = juggler;
 
     Bitmap background = Bitmap(_resourceManager.getBitmapData("MessageBox"));
     addChild(background);
 
-    TextFormat textFormat = TextFormat(
-        "Arial", 24, 0xFFFFFF,
-        bold:true, align:TextFormatAlign.CENTER);
+    TextFormat textFormat =
+        TextFormat("Arial", 24, 0xFFFFFF, bold: true, align: TextFormatAlign.CENTER);
 
     TextField textField = TextField();
     textField.defaultTextFormat = textFormat;
@@ -37,16 +34,15 @@ class MessageBox extends Sprite
 
     addEventListener(MouseEvent.CLICK, _onClick);
 
-    filters.add(DropShadowFilter(16, math.pi /4, 0x80000000, 8, 8, 2));
+    filters.add(DropShadowFilter(16, math.pi / 4, 0x80000000, 8, 8, 2));
   }
 
   //----------------------------------------------------------------------
   //----------------------------------------------------------------------
 
   void show(Function doneFunction) {
-
-    this.parent.addChild(this);  // move to top
-    this.x = - this.width;
+    this.parent.addChild(this); // move to top
+    this.x = -this.width;
     this.y = 150;
 
     _doneFunction = doneFunction;
@@ -61,9 +57,7 @@ class MessageBox extends Sprite
   //----------------------------------------------------------------------
 
   void _hide() {
-
     if (_showTimeout != null) {
-
       _juggler.remove(_showTimeout);
       _showTimeout = null;
 

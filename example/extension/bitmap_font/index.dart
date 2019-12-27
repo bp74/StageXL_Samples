@@ -11,7 +11,6 @@ toxic brew for the
 evil Queen and Jack.""";
 
 Future main() async {
-
   // Configure StageXL default options
 
   StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
@@ -52,7 +51,6 @@ Future main() async {
 //-----------------------------------------------------------------------------
 
 void animateBitmapText(BitmapContainerText bct, Juggler juggler) {
-
   for (var bitmap in bct.children) {
     bitmap.pivotX = bitmap.width / 2;
     bitmap.pivotY = bitmap.height / 2;

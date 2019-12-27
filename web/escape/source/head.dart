@@ -1,7 +1,6 @@
 part of escape;
 
 class Head extends Sprite {
-
   ResourceManager _resourceManager;
   Juggler _juggler;
 
@@ -13,7 +12,6 @@ class Head extends Sprite {
   //--------------------------------------------------------------------------------------------
 
   Head(ResourceManager resourceManager, Juggler juggler) {
-
     _resourceManager = resourceManager;
     _juggler = juggler;
     _headBitmapDatas = Grafix.getHeads(_resourceManager);
@@ -30,7 +28,6 @@ class Head extends Sprite {
   //--------------------------------------------------------------------------------------------
 
   void nod(int count) {
-
     _juggler.remove(_nodTranslation);
 
     _nodTranslation = Translation(0, count, 0.5 * count, Transition.linear);
@@ -45,9 +42,7 @@ class Head extends Sprite {
   }
 
   void nodStop() {
-
     _juggler.remove(_nodTranslation);
     _headBitmap.bitmapData = _headBitmapDatas[0];
   }
-
 }

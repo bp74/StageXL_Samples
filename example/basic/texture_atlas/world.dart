@@ -1,7 +1,6 @@
 part of texture_atlas_example;
 
 class World extends Sprite implements Animatable {
-
   final Sprite layerSky = Sprite();
   final Sprite layerMountain = Sprite();
   final Sprite layerGround = Sprite();
@@ -11,7 +10,6 @@ class World extends Sprite implements Animatable {
   num _animationTime = 0.0;
 
   World(TextureAtlas textureAtlas) {
-
     // get all BitmapDatas from the TextureAltas
     var sky = textureAtlas.getBitmapData("background/sky");
     var mountain = textureAtlas.getBitmapData("background/mountain");
@@ -60,7 +58,6 @@ class World extends Sprite implements Animatable {
 
   @override
   bool advanceTime(num time) {
-
     _animationTime += time;
 
     layerSky.x = -600 - ((_animationTime / 16.0) % 1.0) * 1200;

@@ -4,7 +4,6 @@ import 'package:stagexl/stagexl.dart';
 import 'package:stagexl_spine/stagexl_spine.dart';
 
 Future main() async {
-
   // configure StageXL default options
 
   StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
@@ -12,7 +11,7 @@ Future main() async {
   // init Stage and RenderLoop
 
   var canvas = html.querySelector('#stage');
-  var stage = Stage(canvas, width:480, height: 600);
+  var stage = Stage(canvas, width: 480, height: 600);
   var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
   stage.console.visible = true;

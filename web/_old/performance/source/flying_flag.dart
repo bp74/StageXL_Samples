@@ -10,7 +10,6 @@ class FlyingFlag extends Bitmap implements Animatable {
 
   @override
   bool advanceTime(num time) {
-    
     var tx = x + vx * time;
     var ty = y + vy * time;
 

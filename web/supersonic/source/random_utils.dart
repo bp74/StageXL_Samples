@@ -1,11 +1,9 @@
 part of supersonic;
 
 class RandomUtils {
-
   static math.Random _random = math.Random();
 
   static int getIntByRange(int min, int max) {
-
     if (max < min) {
       var tmp = min;
       min = max;
@@ -19,8 +17,7 @@ class RandomUtils {
     }
   }
 
-  static num getNumberByRange (num min, num max) {
-
+  static num getNumberByRange(num min, num max) {
     if (max < min) {
       var tmp = min;
       min = max;
@@ -43,8 +40,7 @@ class RandomUtils {
     return (_random.nextDouble() <= probability);
   }
 
-  static Object getRandomEntryFromArray (List arr) {
+  static Object getRandomEntryFromArray(List arr) {
     return arr[getIntByRange(0, arr.length - 1)];
   }
-
 }

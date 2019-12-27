@@ -4,7 +4,6 @@ import 'dart:async';
 import 'package:stagexl/stagexl.dart';
 
 Future main() async {
-
   // configure StageXL default options.
 
   StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
@@ -59,5 +58,4 @@ Future main() async {
   await for (var r in juggler.translation(0, pi * 8, 10.0, transition)) {
     htmlObject.rotation = r;
   }
-
 }

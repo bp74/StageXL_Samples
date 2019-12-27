@@ -1,12 +1,10 @@
 part of escape;
 
 class SpecialWobble extends Sprite implements Animatable {
-
   Bitmap _bitmap;
   num _currentTime;
 
   SpecialWobble(ResourceManager resourceManager, Juggler juggler, String special) {
-
     this.mouseEnabled = false;
 
     _currentTime = 0.0;
@@ -22,10 +20,8 @@ class SpecialWobble extends Sprite implements Animatable {
 
   @override
   bool advanceTime(num time) {
-
     _currentTime += time;
     this.rotation = math.sin(_currentTime * 7) * 10 * math.pi / 180;
     return true;
   }
-
 }

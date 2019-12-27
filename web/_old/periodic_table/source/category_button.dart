@@ -1,11 +1,9 @@
 part of periodic_table;
 
 class CategoryButton extends Sprite {
-
   Map category;
 
   CategoryButton(this.category) {
-
     var name = this.category["name"];
     var color = int.parse(category["color"], radix: 16) | 0xFF000000;
 
@@ -22,9 +20,8 @@ class CategoryButton extends Sprite {
     this.graphics.fillColor(color);
     this.graphics.strokeColor(Color.Black, 1);
 
-    var font =  "Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif";
-    var textFormat = TextFormat(font, 20, Color.Black, bold:true,
-        align: TextFormatAlign.CENTER);
+    var font = "Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif";
+    var textFormat = TextFormat(font, 20, Color.Black, bold: true, align: TextFormatAlign.CENTER);
 
     var textField = TextField()
       ..defaultTextFormat = textFormat
@@ -33,13 +30,13 @@ class CategoryButton extends Sprite {
       ..wordWrap = true
       ..multiline = true
       ..width = 150
-      ..height= 100
+      ..height = 100
       ..cacheAsBitmap = false
       ..mouseEnabled = false
       ..text = name;
 
     textField.height = textField.textHeight + 1;
-    textField.y = (100 -textField.textHeight) ~/ 2;
+    textField.y = (100 - textField.textHeight) ~/ 2;
 
     addChild(textField);
     applyCache(0, 0, 200, 100);
@@ -55,5 +52,4 @@ class CategoryButton extends Sprite {
       ..animate.scaleY.to(scale)
       ..animate.alpha.to(alpha);
   }
-
 }

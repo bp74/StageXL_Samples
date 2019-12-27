@@ -37,9 +37,8 @@ TextField loadingTextField;
 const String defaultFont = "Russo One";
 
 void main() {
-
   StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
-  StageXL.stageOptions.stageScaleMode= StageScaleMode.SHOW_ALL;
+  StageXL.stageOptions.stageScaleMode = StageScaleMode.SHOW_ALL;
   StageXL.stageOptions.stageAlign = StageAlign.NONE;
   StageXL.bitmapDataLoadOptions.webp = true;
 
@@ -54,7 +53,6 @@ void main() {
   Future<BitmapData> loading = BitmapData.load("images/Loading.png");
 
   loading.then((bitmapData) {
-
     loadingBitmap = Bitmap(bitmapData);
     loadingBitmap.pivotX = 20;
     loadingBitmap.pivotY = 20;
@@ -67,7 +65,7 @@ void main() {
     renderJuggler.add(loadingBitmapTween);
 
     loadingTextField = TextField();
-    loadingTextField.defaultTextFormat = TextFormat("Arial", 20, 0xA0A0A0, bold:true);
+    loadingTextField.defaultTextFormat = TextFormat("Arial", 20, 0xA0A0A0, bold: true);
     loadingTextField.width = 240;
     loadingTextField.height = 40;
     loadingTextField.text = "... loading ...";
@@ -81,14 +79,14 @@ void main() {
 }
 
 void loadGame() {
-
   resourceManager = ResourceManager();
 
   resourceManager.onProgress.listen((e) {
     var finished = resourceManager.finishedResources;
     var pending = resourceManager.pendingResources;
     var failed = resourceManager.failedResources;
-    print("Resource Progress -> finished: ${finished.length}, pending:${pending.length}, failed:${failed.length}");
+    print(
+        "Resource Progress -> finished: ${finished.length}, pending:${pending.length}, failed:${failed.length}");
   });
 
   resourceManager.addBitmapData("barrier01", "images/barrier01.png");
@@ -103,7 +101,8 @@ void loadGame() {
   resourceManager.addBitmapData("finish", "images/finish.png");
   resourceManager.addBitmapData("broken", "images/broken.png");
 
-  resourceManager.addTextureAtlas("items", "images/ItemTextureAtlas.json", TextureAtlasFormat.JSONARRAY);
+  resourceManager.addTextureAtlas(
+      "items", "images/ItemTextureAtlas.json", TextureAtlasFormat.JSONARRAY);
 
   resourceManager.addSound("crash", "sounds/crash.mp3");
   resourceManager.addSound("swish", "sounds/swish.mp3");
@@ -113,11 +112,16 @@ void loadGame() {
   resourceManager.addText("DISPLAY_LIVES", "Ships:");
   resourceManager.addText("DISPLAY_SCORE", "Score: {0}");
   resourceManager.addText("DISPLAY_TRAINING", "Training");
-  resourceManager.addText("MESSAGE_FIRST_LEVEL", "Remain with your finger on the screen in order to fly through the tunnel!");
-  resourceManager.addText("MESSAGE_FIRST_LEVEL_WEB", "Move the mouse pointer to navigate through the obstacles!");
-  resourceManager.addText("MESSAGE_FREE_LEVEL_BARRIER_1", "Navigate to the center to fly through the hole!");
-  resourceManager.addText("MESSAGE_FREE_LEVEL_BARRIER_2", "Navigate to the upper left side to fly through the hole!");
-  resourceManager.addText("MESSAGE_FREE_LEVEL_BARRIER_3", "Navigate to the bottom right side to fly through the hole!");
+  resourceManager.addText("MESSAGE_FIRST_LEVEL",
+      "Remain with your finger on the screen in order to fly through the tunnel!");
+  resourceManager.addText(
+      "MESSAGE_FIRST_LEVEL_WEB", "Move the mouse pointer to navigate through the obstacles!");
+  resourceManager.addText(
+      "MESSAGE_FREE_LEVEL_BARRIER_1", "Navigate to the center to fly through the hole!");
+  resourceManager.addText(
+      "MESSAGE_FREE_LEVEL_BARRIER_2", "Navigate to the upper left side to fly through the hole!");
+  resourceManager.addText(
+      "MESSAGE_FREE_LEVEL_BARRIER_3", "Navigate to the bottom right side to fly through the hole!");
   resourceManager.addText("MESSAGE_GAME_OVER", "Game\nOver!");
   resourceManager.addText("MESSAGE_RESTART_LEVEL", "Ooops!\nGet Ready\nFor Restart!");
   resourceManager.addText("MESSAGE_START_LEVEL", "Get Ready\nFor Level {0}!");
@@ -128,7 +132,6 @@ void loadGame() {
   resourceManager.addText("GENno", "No");
 
   resourceManager.load().then((res) {
-
     stage.removeChild(loadingBitmap);
     stage.removeChild(loadingTextField);
     renderJuggler.remove(loadingBitmapTween);
@@ -138,13 +141,9 @@ void loadGame() {
     Game game = MissileGame(800, 600);
     game.addTo(stage);
     game.start();
-
   }).catchError((error) {
-
-    for(var resource in resourceManager.failedResources) {
+    for (var resource in resourceManager.failedResources) {
       print("Loading resouce failed: ${resource.kind}.${resource.name} - ${resource.error}");
     }
   });
 }
-
-

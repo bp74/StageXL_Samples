@@ -8,7 +8,6 @@ import 'package:stagexl/stagexl.dart';
 part "world.dart";
 
 Future main() async {
-
   // configure StageXL default options.
 
   StageXL.stageOptions.renderEngine = RenderEngine.WebGL;

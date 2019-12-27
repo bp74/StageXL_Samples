@@ -10,7 +10,6 @@ part 'color_matrix_alpha_mask_filter.dart';
 part 'color_matrix_alpha_mask_program.dart';
 
 Future main() async {
-
   // configure StageXL default options
   StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
   StageXL.stageOptions.backgroundColor = Color.Black;
@@ -37,15 +36,27 @@ Future main() async {
 
   // apply a dark grayscale color transformation
   filter.colorMatrixList.setAll(0, <double>[
-    0.10, 0.25, 0.05, 0.00,
-    0.10, 0.25, 0.05, 0.00,
-    0.10, 0.25, 0.05, 0.00,
-    0.00, 0.00, 0.00, 1.00]);
-  filter.colorOffsetList.setAll(0, <double>[
-    0.00, 0.00, 0.00, 0.00]);
+    0.10,
+    0.25,
+    0.05,
+    0.00,
+    0.10,
+    0.25,
+    0.05,
+    0.00,
+    0.10,
+    0.25,
+    0.05,
+    0.00,
+    0.00,
+    0.00,
+    0.00,
+    1.00
+  ]);
+  filter.colorOffsetList.setAll(0, <double>[0.00, 0.00, 0.00, 0.00]);
 
   // animate the alpha mask of the filter
-  await for(var time in stage.juggler.onElapsedTimeChange) {
+  await for (var time in stage.juggler.onElapsedTimeChange) {
     var scale = 1.0 + 0.2 * math.sin(time * 2.7);
     filter.matrix.identity();
     filter.matrix.translate(-200, -200);

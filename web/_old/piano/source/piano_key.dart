@@ -1,12 +1,10 @@
 part of piano;
 
 class PianoKey extends Sprite {
-
   final String noteName;
   final String soundName;
 
   PianoKey(this.noteName, this.soundName) {
-
     String key;
 
     if (noteName.endsWith('#')) {
@@ -28,7 +26,7 @@ class PianoKey extends Sprite {
 
     // add the note name to this Sprite
     var textColor = noteName.endsWith('#') ? Color.White : Color.Black;
-    var textFormat = TextFormat('Helvetica,Arial', 10, textColor, align:TextFormatAlign.CENTER);
+    var textFormat = TextFormat('Helvetica,Arial', 10, textColor, align: TextFormatAlign.CENTER);
 
     var textField = TextField();
     textField.defaultTextFormat = textFormat;
@@ -64,6 +62,6 @@ class PianoKey extends Sprite {
   }
 
   void _keyUp(MouseEvent me) {
-      this.alpha = 1.0;
+    this.alpha = 1.0;
   }
 }

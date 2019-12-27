@@ -4,7 +4,6 @@ part of custom_filter;
 /// alpha mask at the same time. Just as an example ...
 
 class ColorMatrixAlphaMaskFilter extends BitmapFilter {
-
   final Matrix matrix;
   final BitmapData bitmapData;
   final Float32List colorMatrixList = Float32List(16);
@@ -22,12 +21,12 @@ class ColorMatrixAlphaMaskFilter extends BitmapFilter {
 
   @override
   void renderFilter(RenderState renderState, RenderTextureQuad renderTextureQuad, int pass) {
-
     RenderContextWebGL renderContext = renderState.renderContext;
     String programName = "ColorMatrixAlphaMaskProgram";
     ColorMatrixAlphaMaskProgram renderProgram;
 
-    renderProgram  = renderContext.getRenderProgram(programName, () => ColorMatrixAlphaMaskProgram());
+    renderProgram =
+        renderContext.getRenderProgram(programName, () => ColorMatrixAlphaMaskProgram());
     renderContext.activateRenderProgram(renderProgram);
     renderContext.activateRenderTextureAt(renderTextureQuad.renderTexture, 0);
     renderContext.activateRenderTextureAt(bitmapData.renderTexture, 1);

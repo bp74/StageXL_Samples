@@ -1,10 +1,9 @@
 part of escape;
 
 class Grafix {
-
   static Bitmap getChain(ResourceManager resourceManager, int color, int direction) {
-
-    Bitmap bitmap = Bitmap(resourceManager.getTextureAtlas("Elements").getBitmapData("Chain${color}${direction}"));
+    Bitmap bitmap = Bitmap(
+        resourceManager.getTextureAtlas("Elements").getBitmapData("Chain${color}${direction}"));
     bitmap.pivotX = 25;
     bitmap.pivotY = 25;
 
@@ -14,8 +13,8 @@ class Grafix {
   //--------------------------------------------------------------------------------------------
 
   static Bitmap getLink(ResourceManager resourceManager, int color, int direction) {
-
-    Bitmap bitmap = Bitmap(resourceManager.getTextureAtlas("Elements").getBitmapData("Link${color}${direction}"));
+    Bitmap bitmap = Bitmap(
+        resourceManager.getTextureAtlas("Elements").getBitmapData("Link${color}${direction}"));
     bitmap.pivotX = 25;
     bitmap.pivotY = 25;
 
@@ -24,9 +23,9 @@ class Grafix {
 
   //--------------------------------------------------------------------------------------------
 
-  static Bitmap getWhiteLink(ResourceManager resourceManager, int direction){
-
-    Bitmap bitmap = Bitmap(resourceManager.getTextureAtlas("Elements").getBitmapData("Link8${direction}"));
+  static Bitmap getWhiteLink(ResourceManager resourceManager, int direction) {
+    Bitmap bitmap =
+        Bitmap(resourceManager.getTextureAtlas("Elements").getBitmapData("Link8${direction}"));
     bitmap.pivotX = 25;
     bitmap.pivotY = 25;
 
@@ -36,7 +35,6 @@ class Grafix {
   //--------------------------------------------------------------------------------------------
 
   static Bitmap getSpecial(ResourceManager resourceManager, String special) {
-
     Bitmap bitmap = Bitmap(resourceManager.getTextureAtlas("Elements").getBitmapData(special));
     bitmap.pivotX = 25;
     bitmap.pivotY = 25;
@@ -47,17 +45,15 @@ class Grafix {
   //--------------------------------------------------------------------------------------------
 
   static Sprite getLevelUpAnimation(ResourceManager resourceManager, Juggler juggler) {
-
     Sprite sprite = Sprite();
     num offset = 0;
 
     TextureAtlas textureAtlas = resourceManager.getTextureAtlas("Levelup");
 
-    for(int i = 0; i < 7; i++)
-    {
+    for (int i = 0; i < 7; i++) {
       Bitmap bitmap = Bitmap(textureAtlas.getBitmapData("LevelUp${i}"));
-      bitmap.x = - bitmap.width / 2;
-      bitmap.y = - bitmap.height / 2;
+      bitmap.x = -bitmap.width / 2;
+      bitmap.y = -bitmap.height / 2;
       //bitmap.filters = [GlowFilter(0x000000, 0.5, 30, 30)];  // ToDo
 
       Sprite subSprite = Sprite();
@@ -90,7 +86,6 @@ class Grafix {
   //--------------------------------------------------------------------------------------------
 
   static List<BitmapData> getJokerChain(ResourceManager resourceManager, int direction) {
-
     TextureAtlas textureAtlas = resourceManager.getTextureAtlas("Elements");
 
     List<BitmapData> tmp = List<BitmapData>();
@@ -103,7 +98,6 @@ class Grafix {
   }
 
   static List<BitmapData> getJokerLink(ResourceManager resourceManager, int direction) {
-
     TextureAtlas textureAtlas = resourceManager.getTextureAtlas("Elements");
 
     List<BitmapData> tmp = List<BitmapData>();
@@ -116,7 +110,6 @@ class Grafix {
   }
 
   static List<BitmapData> getLock(ResourceManager resourceManager, int color) {
-
     TextureAtlas textureAtlas = resourceManager.getTextureAtlas("Locks");
 
     List<BitmapData> tmp = List<BitmapData>();
@@ -129,7 +122,6 @@ class Grafix {
   }
 
   static List<BitmapData> getHeads(ResourceManager resourceManager) {
-
     TextureAtlas textureAtlas = resourceManager.getTextureAtlas("Head");
 
     List<BitmapData> tmp = List<BitmapData>();
@@ -142,7 +134,6 @@ class Grafix {
   }
 
   static List<BitmapData> getAlarms(ResourceManager resourceManager) {
-
     TextureAtlas textureAtlas = resourceManager.getTextureAtlas("Alarm");
 
     List<BitmapData> tmp = List<BitmapData>();

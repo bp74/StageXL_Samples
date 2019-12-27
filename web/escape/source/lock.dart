@@ -1,7 +1,6 @@
 part of escape;
 
 class Lock extends Sprite {
-
   ResourceManager _resourceManager;
   Juggler _juggler;
 
@@ -11,7 +10,6 @@ class Lock extends Sprite {
   bool _locked;
 
   Lock(ResourceManager resourceManager, Juggler juggler, int color) {
-
     _resourceManager = resourceManager;
     _juggler = juggler;
 
@@ -29,7 +27,9 @@ class Lock extends Sprite {
   //-----------------------------------------------------------------
 
   bool get locked => _locked;
-  set locked(bool value) { _locked = value; }
+  set locked(bool value) {
+    _locked = value;
+  }
 
   //-----------------------------------------------------------------
 
@@ -38,7 +38,6 @@ class Lock extends Sprite {
   }
 
   void showHappy() {
-
     Translation translation = Translation(0.0, 1.0, 2.0, Transition.easeOutCubic);
     translation.onUpdate = (value) {
       scaleX = scaleY = 1.0 + 0.2 * math.sin(value * 4 * math.pi);
@@ -57,5 +56,4 @@ class Lock extends Sprite {
     _juggler.add(tween1);
     _juggler.add(tween2);
   }
-
 }

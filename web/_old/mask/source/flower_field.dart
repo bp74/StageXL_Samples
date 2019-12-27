@@ -1,17 +1,14 @@
 part of mask;
 
 class FlowerField extends Sprite {
-
   FlowerField() {
-
     // Add 150 rotating flowers to the field.
 
     var random = math.Random();
     var textureAtlas = resourceManager.getTextureAtlas("flowers");
     var flowers = textureAtlas.getBitmapDatas("Flower");
 
-    for(var i = 0; i < 150; i++) {
-
+    for (var i = 0; i < 150; i++) {
       var flower = flowers[random.nextInt(flowers.length)];
       var bitmap = Bitmap(flower)
         ..pivotX = 64
@@ -20,8 +17,7 @@ class FlowerField extends Sprite {
         ..y = 64 + random.nextInt(500 - 128)
         ..addTo(this);
 
-      stage.juggler.addTween(bitmap, 600, Transition.linear)
-        ..animate.rotation.to(math.pi * 60.0);
+      stage.juggler.addTween(bitmap, 600, Transition.linear)..animate.rotation.to(math.pi * 60.0);
     }
   }
 }

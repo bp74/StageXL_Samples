@@ -1,7 +1,6 @@
 part of escape;
 
 class Game extends Sprite {
-
   ResourceManager _resourceManager;
   Juggler _juggler;
 
@@ -31,14 +30,14 @@ class Game extends Sprite {
   //---------------------------------------------------------------------------------------------------
 
   Game(ResourceManager resourceManager, Juggler juggler) {
-
     _resourceManager = resourceManager;
     _juggler = juggler;
 
     Bitmap shuffleButtonNormal = Bitmap(_resourceManager.getBitmapData("ShuffleButtonNormal"));
     Bitmap shuffleButtonPressed = Bitmap(_resourceManager.getBitmapData("ShuffleButtonPressed"));
 
-    _shuffleButton = SimpleButton(shuffleButtonNormal, shuffleButtonNormal, shuffleButtonPressed, shuffleButtonPressed);
+    _shuffleButton = SimpleButton(
+        shuffleButtonNormal, shuffleButtonNormal, shuffleButtonPressed, shuffleButtonPressed);
     _shuffleButton.addEventListener(MouseEvent.CLICK, _onShuffleButtonClick);
     _shuffleButton.x = 530;
     _shuffleButton.y = 525;
@@ -47,7 +46,8 @@ class Game extends Sprite {
     Bitmap exitButtonNormal = Bitmap(_resourceManager.getBitmapData("ExitButtonNormal"));
     Bitmap exitButtonPressed = Bitmap(_resourceManager.getBitmapData("ExitButtonPressed"));
 
-    _exitButton = SimpleButton(exitButtonNormal, exitButtonNormal, exitButtonPressed, exitButtonPressed);
+    _exitButton =
+        SimpleButton(exitButtonNormal, exitButtonNormal, exitButtonPressed, exitButtonPressed);
     _exitButton.addEventListener(MouseEvent.CLICK, _onExitButtonClick);
     _exitButton.x = 700;
     _exitButton.y = 500;
@@ -79,7 +79,8 @@ class Game extends Sprite {
     //-------------------------------
 
     _pointsTextField = TextField();
-    _pointsTextField.defaultTextFormat = TextFormat("Arial", 30, 0xD0D0D0, bold:true, align:TextFormatAlign.CENTER);
+    _pointsTextField.defaultTextFormat =
+        TextFormat("Arial", 30, 0xD0D0D0, bold: true, align: TextFormatAlign.CENTER);
     _pointsTextField.width = 140;
     _pointsTextField.height = 36;
     _pointsTextField.wordWrap = false;
@@ -95,7 +96,8 @@ class Game extends Sprite {
     //-------------------------------
 
     _shufflesTextField = TextField();
-    _shufflesTextField.defaultTextFormat = TextFormat("Arial", 20, 0xFFFFFF, bold:true, align:TextFormatAlign.CENTER);
+    _shufflesTextField.defaultTextFormat =
+        TextFormat("Arial", 20, 0xFFFFFF, bold: true, align: TextFormatAlign.CENTER);
     _shufflesTextField.width = 44;
     _shufflesTextField.height = 30;
     _shufflesTextField.wordWrap = false;
@@ -127,13 +129,13 @@ class Game extends Sprite {
   //---------------------------------------------------------------------------------------------------
 
   void start() {
-
     _level = 1;
     _lives = 1;
     _points = 0;
     _shuffles = 3;
 
-    MessageBox messageBox  = MessageBox(_resourceManager, _juggler, _resourceManager.getText("ESCStartText"));
+    MessageBox messageBox =
+        MessageBox(_resourceManager, _juggler, _resourceManager.getText("ESCStartText"));
     _messageLayer.addChild(messageBox);
 
     _juggler.delayCall(() => _head.nod(21), 1);
@@ -144,7 +146,6 @@ class Game extends Sprite {
   //---------------------------------------------------------------------------------------------------
 
   void _nextLevel() {
-
     if (_board != null && this.contains(_board)) {
       _gameLayer.removeChild(_board);
     }
@@ -153,17 +154,48 @@ class Game extends Sprite {
     int chainCount = 0;
     num time = 0;
 
-    switch(_level) {
-      case 01: time = 50; _board = Board(_resourceManager, _juggler, chainCount = 40, 3, 0, 0, 0, 0, [0,1,2]); break;
-      case 02: time = 45; _board = Board(_resourceManager, _juggler, chainCount = 45, 3, 1, 0, 0, 0, [2,3,4]); break;
-      case 03: time = 40; _board = Board(_resourceManager, _juggler, chainCount = 50, 4, 2, 2, 1, 0, [5,6,7]); break;
-      case 04: time = 35; _board = Board(_resourceManager, _juggler, chainCount = 55, 4, 3, 3, 2, 0, [0,2,6]); break;
-      case 05: time = 30; _board = Board(_resourceManager, _juggler, chainCount = 60, 5, 4, 4, 2, 1, [1,3,5]); break;
-      case 06: time = 34; _board = Board(_resourceManager, _juggler, chainCount = 60, 5, 5, 5, 3, 2, [1,2,4,7]); break;
-      case 07: time = 33; _board = Board(_resourceManager, _juggler, chainCount = 65, 5, 5, 6, 3, 2, [0,1,2,3]); break;
-      case 08: time = 32; _board = Board(_resourceManager, _juggler, chainCount = 70, 5, 5, 6, 3, 2, [0,2,5,6]); break;
-      case 09: time = 31; _board = Board(_resourceManager, _juggler, chainCount = 75, 5, 5, 6, 3, 2, [1,4,5,7]); break;
-      default: time = 30; _board = Board(_resourceManager, _juggler, chainCount = 80 + (_level - 10) * 5, 5, 5, 6, 3, 2, [0,1,2,3]); break;
+    switch (_level) {
+      case 01:
+        time = 50;
+        _board = Board(_resourceManager, _juggler, chainCount = 40, 3, 0, 0, 0, 0, [0, 1, 2]);
+        break;
+      case 02:
+        time = 45;
+        _board = Board(_resourceManager, _juggler, chainCount = 45, 3, 1, 0, 0, 0, [2, 3, 4]);
+        break;
+      case 03:
+        time = 40;
+        _board = Board(_resourceManager, _juggler, chainCount = 50, 4, 2, 2, 1, 0, [5, 6, 7]);
+        break;
+      case 04:
+        time = 35;
+        _board = Board(_resourceManager, _juggler, chainCount = 55, 4, 3, 3, 2, 0, [0, 2, 6]);
+        break;
+      case 05:
+        time = 30;
+        _board = Board(_resourceManager, _juggler, chainCount = 60, 5, 4, 4, 2, 1, [1, 3, 5]);
+        break;
+      case 06:
+        time = 34;
+        _board = Board(_resourceManager, _juggler, chainCount = 60, 5, 5, 5, 3, 2, [1, 2, 4, 7]);
+        break;
+      case 07:
+        time = 33;
+        _board = Board(_resourceManager, _juggler, chainCount = 65, 5, 5, 6, 3, 2, [0, 1, 2, 3]);
+        break;
+      case 08:
+        time = 32;
+        _board = Board(_resourceManager, _juggler, chainCount = 70, 5, 5, 6, 3, 2, [0, 2, 5, 6]);
+        break;
+      case 09:
+        time = 31;
+        _board = Board(_resourceManager, _juggler, chainCount = 75, 5, 5, 6, 3, 2, [1, 4, 5, 7]);
+        break;
+      default:
+        time = 30;
+        _board = Board(_resourceManager, _juggler, chainCount = 80 + (_level - 10) * 5, 5, 5, 6, 3,
+            2, [0, 1, 2, 3]);
+        break;
     }
 
     _chainCount = chainCount;
@@ -183,7 +215,7 @@ class Game extends Sprite {
     _board.y = 16;
     _board.mouseEnabled = false;
 
-    _gameLayer.addChild(_board );
+    _gameLayer.addChild(_board);
 
     _timeGauge.reset(time);
     _timeGauge.addAlarm("TimeShort", 9);
@@ -205,12 +237,10 @@ class Game extends Sprite {
     _messageLayer.addChild(messageBox);
 
     messageBox.show(() {
-
       _board.mouseEnabled = true;
       _timeGauge.start();
 
-      if (_introSound != null)
-      {
+      if (_introSound != null) {
         Translation translation = Translation(1.0, 0.0, 4.0, Transition.linear);
 
         translation.onUpdate = (volume) {
@@ -289,11 +319,19 @@ class Game extends Sprite {
 
     int chainPoints = 0;
 
-    switch(chainLength) {
-      case 3: chainPoints = 1000; break;
-      case 4: chainPoints = 2000; break;
-      case 5: chainPoints = 5000; break;
-      default: chainPoints = 5000; break;
+    switch (chainLength) {
+      case 3:
+        chainPoints = 1000;
+        break;
+      case 4:
+        chainPoints = 2000;
+        break;
+      case 5:
+        chainPoints = 5000;
+        break;
+      default:
+        chainPoints = 5000;
+        break;
     }
 
     _points = _points + chainPoints * chainFactor;
@@ -303,7 +341,7 @@ class Game extends Sprite {
   //---------------------------------------------------------------------------------------------------
 
   void _onBoardEventFinalized(BoardEvent be) {
-   //_logger.info("onBoardEventFinalized");
+    //_logger.info("onBoardEventFinalized");
 
     _timeGauge.pause();
     _alarm.stop();
@@ -354,24 +392,22 @@ class Game extends Sprite {
   //---------------------------------------------------------------------------------------------------
 
   void _onBoardEventTimeouted(BoardEvent be) {
-
     _alarm.stop();
     _board.dropFields();
 
     MessageBox messageBox;
 
     if (_lives > 0) {
-
       //_logger.info("onBoardEventTimeouted (SecondChance)");
 
       _lives--;
 
-      messageBox = MessageBox(_resourceManager, _juggler, _resourceManager.getText("GEN2ndchancetime"));
+      messageBox =
+          MessageBox(_resourceManager, _juggler, _resourceManager.getText("GEN2ndchancetime"));
       _messageLayer.addChild(messageBox);
       _resourceManager.getSound("LevelUp").play();
 
       messageBox.show(() {
-
         _juggler.delayCall(() => _nextLevel(), 0.5);
 
         Tween tween = Tween(_infoBox, 0.5, Transition.easeOutCubic);
@@ -379,9 +415,7 @@ class Game extends Sprite {
 
         _juggler.add(tween);
       });
-
     } else {
-
       // _logger.info("onBoardEventTimeouted (GameOver)");
 
       messageBox = MessageBox(_resourceManager, _juggler, _resourceManager.getText("GENtimeup"));
@@ -389,7 +423,6 @@ class Game extends Sprite {
       _resourceManager.getSound("GameOver").play();
 
       messageBox.show(() {
-
         _juggler.delayCall(() => _gameOver(), 0.5);
 
         Tween tween = Tween(_infoBox, 0.5, Transition.easeOutCubic);
@@ -404,10 +437,9 @@ class Game extends Sprite {
   //---------------------------------------------------------------------------------------------------
 
   void _onShuffleButtonClick(MouseEvent me) {
-   //  _logger.info("onShuffleButtonClick");
+    //  _logger.info("onShuffleButtonClick");
 
     if (_board != null && _shuffles > 0) {
-
       bool shuffled = _board.shuffleField();
 
       if (shuffled) {
@@ -448,21 +480,21 @@ class Game extends Sprite {
   //---------------------------------------------------------------------------------------------------
 
   void _gameOver() {
-
     Sprite gameOverBox = Sprite();
 
     Bitmap background = Bitmap(_resourceManager.getBitmapData("ExitBox"));
     gameOverBox.addChild(background);
 
     TextField textField = TextField();
-    textField.defaultTextFormat = TextFormat("Arial", 30, 0xFFFFFF, bold:true, align:TextFormatAlign.CENTER);
+    textField.defaultTextFormat =
+        TextFormat("Arial", 30, 0xFFFFFF, bold: true, align: TextFormatAlign.CENTER);
     textField.width = 240;
     textField.height = 200;
     textField.wordWrap = true;
     //textField.selectable = false;
     textField.text = _resourceManager.getText("GENgameover");
     textField.x = 47;
-    textField.y = 30 + (textField.height - textField.textHeight)/2;
+    textField.y = 30 + (textField.height - textField.textHeight) / 2;
     //textField.filters = [GlowFilter(0x000000, 0.7, 3, 3)];
     textField.mouseEnabled = false;
     gameOverBox.addChild(textField);
@@ -497,5 +529,4 @@ class Game extends Sprite {
       //  GameApi.instance.exit(_points.intValue, gameEnded);
     }
   }
-
 }

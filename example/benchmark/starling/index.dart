@@ -15,7 +15,6 @@ part 'src/benchmark_render_loop.dart';
 part 'src/benchmark_scene.dart';
 
 Future main() async {
-
   // configure StageXL default options
 
   StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
