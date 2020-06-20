@@ -11,18 +11,18 @@ class World extends Sprite implements Animatable {
 
   World(TextureAtlas textureAtlas) {
     // get all BitmapDatas from the TextureAltas
-    var sky = textureAtlas.getBitmapData("background/sky");
-    var mountain = textureAtlas.getBitmapData("background/mountain");
-    var ground = textureAtlas.getBitmapData("background/ground");
-    var monsters = textureAtlas.getBitmapDatas("monster/frame");
-    var boys = textureAtlas.getBitmapDatas("boy/frame");
+    var sky = textureAtlas.getBitmapData('background/sky');
+    var mountain = textureAtlas.getBitmapData('background/mountain');
+    var ground = textureAtlas.getBitmapData('background/ground');
+    var monsters = textureAtlas.getBitmapDatas('monster/frame');
+    var boys = textureAtlas.getBitmapDatas('boy/frame');
 
     // add the layers
-    this.addChild(layerSky);
-    this.addChild(layerMountain);
-    this.addChild(layerGround);
-    this.addChild(layerMonsters);
-    this.addChild(layerBoys);
+    addChild(layerSky);
+    addChild(layerMountain);
+    addChild(layerGround);
+    addChild(layerMonsters);
+    addChild(layerBoys);
 
     // add Bitmaps to the layers
     layerSky.addChild(Bitmap(sky)..x = 0);
@@ -36,7 +36,7 @@ class World extends Sprite implements Animatable {
     layerGround.addChild(Bitmap(ground)..x = 2398);
 
     // create FlipBooks with the monster animation
-    for (int i = 0; i < 6; i++) {
+    for (var i = 0; i < 6; i++) {
       layerMonsters.addChild(FlipBook(monsters, 10)
         ..pivotX = monsters.first.width / 2
         ..pivotY = monsters.first.height / 2
@@ -46,7 +46,7 @@ class World extends Sprite implements Animatable {
     }
 
     // create FlipBooks with the boy animation
-    for (int i = 0; i < 3; i++) {
+    for (var i = 0; i < 3; i++) {
       layerBoys.addChild(FlipBook(boys, 10)
         ..pivotX = boys.first.width / 2
         ..pivotY = boys.first.height

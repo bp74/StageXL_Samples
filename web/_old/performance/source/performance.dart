@@ -1,8 +1,8 @@
 part of performance;
 
 class Performance extends DisplayObjectContainer implements Animatable {
-  ResourceManager _resourceManager;
-  Juggler _juggler = Juggler();
+  final ResourceManager _resourceManager;
+  final Juggler _juggler = Juggler();
 
   Performance(this._resourceManager);
 

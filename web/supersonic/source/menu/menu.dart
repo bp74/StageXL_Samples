@@ -17,41 +17,40 @@ class Menu extends GameComponent implements Animatable {
 
   Menu(Game game, [bool autoStart = true, String fontName = defaultFont]) : super(game) {
     this.fontName = fontName;
-    this.width = Menu.menuWidth;
-    this.height = Menu.menuHeight;
+    width = Menu.menuWidth;
+    height = Menu.menuHeight;
 
-    this.bg = Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("menu_bg"));
-    this.addChild(this.bg);
+    bg = Bitmap(resourceManager.getTextureAtlas('items').getBitmapData('menu_bg'));
+    addChild(bg);
 
-    this.textField = TextField();
-    this.textField.textColor = 0x000000;
-    this.textField.wordWrap = true;
-    this.textField.defaultTextFormat =
-        TextFormat(fontName, 30, 0x000000, bold: true, align: TextFormatAlign.CENTER);
-    this.textField.width = 476;
-    this.textField.height = 250; //182;
-    this.textField.x = 60;
-    this.textField.y = 90;
-    this.addChild(this.textField);
+    textField = TextField();
+    textField.textColor = 0x000000;
+    textField.wordWrap = true;
+    textField.defaultTextFormat = TextFormat(fontName, 30, 0x000000, bold: true, align: TextFormatAlign.CENTER);
+    textField.width = 476;
+    textField.height = 250; //182;
+    textField.x = 60;
+    textField.y = 90;
+    addChild(textField);
 
-    this.addEventListener(MouseEvent.MOUSE_DOWN, this.onClick);
+    addEventListener(MouseEvent.MOUSE_DOWN, onClick);
 
     if (autoStart) {
-      this.timeProgress = 0;
-      this.showTime = 0;
+      timeProgress = 0;
+      showTime = 0;
       renderJuggler.add(this);
     } else {
-      this.timeProgress = 1;
+      timeProgress = 1;
     }
 
-    this.alpha = 0;
+    alpha = 0;
   }
 
   @override
   bool advanceTime(num time) {
-    this.showTime += time;
+    showTime += time;
 
-    if (this.showTime > autoStartDelay) {
+    if (showTime > autoStartDelay) {
       destroy();
       defaultAction();
       return false;
@@ -66,8 +65,8 @@ class Menu extends GameComponent implements Animatable {
     var tf = TextFormat(fontName, 30, 0x000000, bold: true, align: TextFormatAlign.CENTER);
     tf.size = (value.length <= 30) ? 45 : 30;
 
-    this.textField.defaultTextFormat = tf;
-    this.textField.text = value;
+    textField.defaultTextFormat = tf;
+    textField.text = value;
   }
 
   void onClick(MouseEvent event) {
@@ -76,7 +75,7 @@ class Menu extends GameComponent implements Animatable {
   }
 
   void defaultAction() {
-    this.dispatchEvent(MenuEvent(MenuEvent.TYPE_OK, this));
+    dispatchEvent(MenuEvent(MenuEvent.TYPE_OK, this));
   }
 
   set timeProgress(num value) {

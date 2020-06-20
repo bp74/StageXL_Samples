@@ -29,7 +29,7 @@ void main() {
   // load resources
 
   resourceManager = ResourceManager()
-    ..addTextureAtlas("ta1", "images/walk.json")
+    ..addTextureAtlas('ta1', 'images/walk.json')
     ..load().then((result) => startAnimation());
 }
 
@@ -41,8 +41,8 @@ void startAnimation() {
 
   // Get all the "walk" bitmapDatas from the texture atlas.
 
-  var textureAtlas = resourceManager.getTextureAtlas("ta1");
-  var bitmapDatas = textureAtlas.getBitmapDatas("walk");
+  var textureAtlas = resourceManager.getTextureAtlas('ta1');
+  var bitmapDatas = textureAtlas.getBitmapDatas('walk');
 
   // Create a flip book with the list of bitmapDatas.
 

@@ -12,7 +12,7 @@ class Game extends Sprite implements Animatable {
     _playingField.y = 270;
     _playingField.addTo(this);
 
-    this.on(Event.COMPLETE).listen(_gameCompleted);
+    on(Event.COMPLETE).listen(_gameCompleted);
 
     _startGame();
   }

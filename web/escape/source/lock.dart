@@ -4,7 +4,6 @@ class Lock extends Sprite {
   ResourceManager _resourceManager;
   Juggler _juggler;
 
-  int _color;
   Bitmap _bitmap;
   List<BitmapData> _lockBitmapDatas;
   bool _locked;
@@ -13,7 +12,6 @@ class Lock extends Sprite {
     _resourceManager = resourceManager;
     _juggler = juggler;
 
-    _color = color;
     _lockBitmapDatas = Grafix.getLock(_resourceManager, color);
     _locked = true;
 
@@ -38,17 +36,17 @@ class Lock extends Sprite {
   }
 
   void showHappy() {
-    Translation translation = Translation(0.0, 1.0, 2.0, Transition.easeOutCubic);
+    var translation = Translation(0.0, 1.0, 2.0, Transition.easeOutCubic);
     translation.onUpdate = (value) {
       scaleX = scaleY = 1.0 + 0.2 * math.sin(value * 4 * math.pi);
     };
 
-    Tween tween1 = Tween(this, 0.2, Transition.easeOutCubic);
+    var tween1 = Tween(this, 0.2, Transition.easeOutCubic);
     tween1.animate.alpha.to(0.0);
     tween1.delay = 2.0;
     tween1.onComplete = () => showLocked(_locked);
 
-    Tween tween2 = Tween(this, 0.2, Transition.easeInCubic);
+    var tween2 = Tween(this, 0.2, Transition.easeInCubic);
     tween2.animate.alpha.to(1);
     tween2.delay = 2.2;
 

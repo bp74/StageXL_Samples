@@ -23,19 +23,19 @@ Future main() async {
 
   var resourceManager = ResourceManager();
   resourceManager.addTextureAtlas(
-      "dragonTexture", "assets/texture.json", TextureAtlasFormat.STARLINGJSON);
-  resourceManager.addTextFile("dragonJson", "assets/dragon_new.json");
+      'dragonTexture', 'assets/texture.json', TextureAtlasFormat.STARLINGJSON);
+  resourceManager.addTextFile('dragonJson', 'assets/dragon_new.json');
   await resourceManager.load();
 
   // create a skeleton and play the "stand" animation
 
-  var textureAtlas = resourceManager.getTextureAtlas("dragonTexture");
-  var dragonBonesJson = resourceManager.getTextFile("dragonJson");
+  var textureAtlas = resourceManager.getTextureAtlas('dragonTexture');
+  var dragonBonesJson = resourceManager.getTextFile('dragonJson');
   var dragonBones = DragonBones.fromJson(dragonBonesJson);
-  var skeleton = dragonBones.createSkeleton("armatureName");
+  var skeleton = dragonBones.createSkeleton('armatureName');
 
   skeleton.setSkin(textureAtlas);
-  skeleton.play("stand");
+  skeleton.play('stand');
   skeleton.x = 400;
   skeleton.y = 650;
   skeleton.showBones = false;

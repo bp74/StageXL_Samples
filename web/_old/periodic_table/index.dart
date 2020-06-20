@@ -27,14 +27,14 @@ Future main() async {
   // load the chemical element definition files
 
   var resourceManager = ResourceManager();
-  resourceManager.addTextFile("table", "data/table.json");
-  resourceManager.addTextFile("elements", "data/elements.json");
+  resourceManager.addTextFile('table', 'data/table.json');
+  resourceManager.addTextFile('elements', 'data/elements.json');
   await resourceManager.load();
 
   // create the periodic table display object
 
-  var table = json.decode(resourceManager.getTextFile("table"));
-  var elements = json.decode(resourceManager.getTextFile("elements"));
+  var table = json.decode(resourceManager.getTextFile('table'));
+  var elements = json.decode(resourceManager.getTextFile('elements'));
   var periodicTable = PeriodicTable(table, elements);
   stage.addChild(periodicTable);
 }

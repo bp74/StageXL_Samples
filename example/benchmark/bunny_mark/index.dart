@@ -36,7 +36,7 @@ Future main() async {
   resourceManager.addBitmapData('bunnyAtlas', 'images/bunnyAtlas.png');
   await resourceManager.load();
 
-  var bunnyAtlas = resourceManager.getBitmapData("bunnyAtlas");
+  var bunnyAtlas = resourceManager.getBitmapData('bunnyAtlas');
   var bunnyBitmapDatas = <BitmapData>[
     BitmapData.fromBitmapData(bunnyAtlas, Rectangle(2, 47, 26, 37)),
     BitmapData.fromBitmapData(bunnyAtlas, Rectangle(2, 86, 26, 37)),
@@ -60,8 +60,8 @@ Future main() async {
   stage.console.alpha = 0.75;
   stage.console.onUpdate.listen((e) {
     var counter = bunnyView.numChildren;
-    stage.console.print("---------------");
-    stage.console.print("BUNNIES${counter.toString().padLeft(8)}");
+    stage.console.print('---------------');
+    stage.console.print('BUNNIES${counter.toString().padLeft(8)}');
   });
 }
 
@@ -75,12 +75,12 @@ class BunnyView extends BitmapContainer {
   BunnyView(this.bitmapDatas) {
     _addBunny();
     _addBunny();
-    this.onEnterFrame.listen(_onEnterFrame);
+    onEnterFrame.listen(_onEnterFrame);
   }
 
   void startAdding() {
     _adding = true;
-    _bunnyIndex = (_bunnyIndex + 1) % this.bitmapDatas.length;
+    _bunnyIndex = (_bunnyIndex + 1) % bitmapDatas.length;
   }
 
   void stopAdding() {
@@ -88,7 +88,7 @@ class BunnyView extends BitmapContainer {
   }
 
   void _addBunny() {
-    var bitmapData = this.bitmapDatas[_bunnyIndex];
+    var bitmapData = bitmapDatas[_bunnyIndex];
     var bunny = Bunny(bitmapData);
     bunny.speedX = random.nextDouble() * 10.0;
     bunny.speedY = random.nextDouble() * 10.0 - 5.0;
@@ -99,7 +99,7 @@ class BunnyView extends BitmapContainer {
 
   void _onEnterFrame(EnterFrameEvent e) {
     if (_adding) {
-      for (int i = 0; i < 50; i++) {
+      for (var i = 0; i < 50; i++) {
         _addBunny();
       }
     }
@@ -150,7 +150,7 @@ class Bunny extends Bitmap {
       posY = contentRectangle.top;
     }
 
-    this.x = posX;
-    this.y = posY;
+    x = posX;
+    y = posY;
   }
 }

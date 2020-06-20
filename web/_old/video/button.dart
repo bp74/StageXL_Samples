@@ -9,7 +9,7 @@ class Button extends Sprite {
   TextField _textField;
 
   Button(String caption) : super() {
-    var textFormat = TextFormat("Arial", 24, Color.Black);
+    var textFormat = TextFormat('Arial', 24, Color.Black);
     textFormat.align = TextFormatAlign.CENTER;
     textFormat.leftMargin = 20;
     textFormat.rightMargin = 20;
@@ -31,8 +31,8 @@ class Button extends Sprite {
     _textField.mouseEnabled = false;
     _textField.addTo(this);
 
-    this.onMouseDown.listen(_toggleState);
-    this.onTouchBegin.listen(_toggleState);
+    onMouseDown.listen(_toggleState);
+    onTouchBegin.listen(_toggleState);
   }
 
   void _toggleState(e) {
@@ -41,6 +41,6 @@ class Button extends Sprite {
     stage.juggler.removeTweens(_stateBitmap1);
     stage.juggler.addTween(_stateBitmap1, 0.25)..animate.alpha.to(state ? 1.0 : 0.0);
 
-    this.dispatchEvent(Event(Event.CHANGE));
+    dispatchEvent(Event(Event.CHANGE));
   }
 }

@@ -22,7 +22,7 @@ class PianoKey extends Sprite {
     // add the key to this Sprite
     var bitmapData = resourceManager.getBitmapData(key);
     var bitmap = Bitmap(bitmapData);
-    this.addChild(bitmap);
+    addChild(bitmap);
 
     // add the note name to this Sprite
     var textColor = noteName.endsWith('#') ? Color.White : Color.Black;
@@ -38,30 +38,30 @@ class PianoKey extends Sprite {
     addChild(textField);
 
     // add mose event handlers
-    this.useHandCursor = true;
-    this.onMouseDown.listen(_keyDown);
-    this.onMouseOver.listen(_keyDown);
-    this.onMouseUp.listen(_keyUp);
-    this.onMouseOut.listen(_keyUp);
+    useHandCursor = true;
+    onMouseDown.listen(_keyDown);
+    onMouseOver.listen(_keyDown);
+    onMouseUp.listen(_keyUp);
+    onMouseOut.listen(_keyUp);
   }
 
   void _keyDown(MouseEvent me) {
     if (me.buttonDown) {
-      this.alpha = 0.7;
-      this.dispatchEvent(PianoEvent(this.noteName));
-      if (resourceManager.containsSoundSprite("Notes")) {
-        var soundSprite = resourceManager.getSoundSprite("Notes");
-        var soundChannel = soundSprite.getSegment(this.soundName).play();
-        soundChannel.onComplete.listen((e) => print("Complete $noteName"));
+      alpha = 0.7;
+      dispatchEvent(PianoEvent(noteName));
+      if (resourceManager.containsSoundSprite('Notes')) {
+        var soundSprite = resourceManager.getSoundSprite('Notes');
+        var soundChannel = soundSprite.getSegment(soundName).play();
+        soundChannel.onComplete.listen((e) => print('Complete $noteName'));
       } else {
-        var sound = resourceManager.getSound(this.soundName);
+        var sound = resourceManager.getSound(soundName);
         var soundChannel = sound.play();
-        soundChannel.onComplete.listen((e) => print("Complete $noteName"));
+        soundChannel.onComplete.listen((e) => print('Complete $noteName'));
       }
     }
   }
 
   void _keyUp(MouseEvent me) {
-    this.alpha = 1.0;
+    alpha = 1.0;
   }
 }

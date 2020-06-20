@@ -13,10 +13,10 @@ class Karaoke {
     _piano = piano;
 
     // listen to the piano event to get what note was played.
-    this._piano.on(PianoEvent.NOTE_PLAYED).listen(_onPianoEvent);
+    _piano.on(PianoEvent.NOTE_PLAYED).listen(_onPianoEvent);
 
     // start with the first note.
-    this.resetSong();
+    resetSong();
   }
 
   //-----------------------------------------------------------------------------------------------
@@ -27,7 +27,7 @@ class Karaoke {
     _updateLyrics();
 
     if (_songNoteIndex < _songNotes.length) {
-      this._piano.hintNote(_songNotes[_songNoteIndex]);
+      _piano.hintNote(_songNotes[_songNoteIndex]);
     }
   }
 
@@ -36,7 +36,7 @@ class Karaoke {
   void updateSong(List<String> songNotes, List<String> songLyrics) {
     _songNotes = songNotes;
     _songLyrics = songLyrics;
-    this.resetSong();
+    resetSong();
   }
 
   //-----------------------------------------------------------------------------------------------
@@ -48,9 +48,9 @@ class Karaoke {
 
       if (_songNoteIndex == _songNotes.length) {
         resourceManager.getSound('Cheer').play();
-        this._piano.hintNote(null);
+        _piano.hintNote(null);
       } else {
-        this._piano.hintNote(_songNotes[_songNoteIndex]);
+        _piano.hintNote(_songNotes[_songNoteIndex]);
       }
     }
   }
@@ -63,12 +63,12 @@ class Karaoke {
 
     lyricsDiv.innerHtml = '';
 
-    for (int w = 0, last = 0; w < _songLyrics.length; w++) {
+    for (var w = 0, last = 0; w < _songLyrics.length; w++) {
       if (_songLyrics[w] != '') last = w;
-      if (w == this._songNoteIndex) wordIndex = last;
+      if (w == _songNoteIndex) wordIndex = last;
     }
 
-    for (int w = 0; w < _songLyrics.length; w++) {
+    for (var w = 0; w < _songLyrics.length; w++) {
       if (w == wordIndex) {
         lyricsDiv.appendHtml('<span id="word">${_songLyrics[w]}</span>');
       } else {

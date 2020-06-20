@@ -11,13 +11,13 @@ class MessageBox extends Sprite {
     _resourceManager = resourceManager;
     _juggler = juggler;
 
-    Bitmap background = Bitmap(_resourceManager.getBitmapData("MessageBox"));
+    var background = Bitmap(_resourceManager.getBitmapData('MessageBox'));
     addChild(background);
 
-    TextFormat textFormat =
-        TextFormat("Arial", 24, 0xFFFFFF, bold: true, align: TextFormatAlign.CENTER);
+    var textFormat =
+        TextFormat('Arial', 24, 0xFFFFFF, bold: true, align: TextFormatAlign.CENTER);
 
-    TextField textField = TextField();
+    var textField = TextField();
     textField.defaultTextFormat = textFormat;
     textField.width = 240;
     textField.height = 200;
@@ -41,13 +41,13 @@ class MessageBox extends Sprite {
   //----------------------------------------------------------------------
 
   void show(Function doneFunction) {
-    this.parent.addChild(this); // move to top
-    this.x = -this.width;
-    this.y = 150;
+    parent.addChild(this); // move to top
+    x = -width;
+    y = 150;
 
     _doneFunction = doneFunction;
 
-    Tween tween = Tween(this, 0.3, Transition.easeOutCubic);
+    var tween = Tween(this, 0.3, Transition.easeOutCubic);
     tween.animate.x.to(110);
     tween.onComplete = () => _showTimeout = _juggler.delayCall(_hide, 10);
 
@@ -63,9 +63,9 @@ class MessageBox extends Sprite {
 
       _doneFunction();
 
-      Tween tween = Tween(this, 0.4, Transition.easeInCubic);
+      var tween = Tween(this, 0.4, Transition.easeInCubic);
       tween.animate.x.to(800);
-      tween.onComplete = () => this.parent.removeChild(this);
+      tween.onComplete = () => parent.removeChild(this);
 
       _juggler.add(tween);
     }

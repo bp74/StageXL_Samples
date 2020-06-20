@@ -11,11 +11,11 @@ class TextGameOver extends DisplayObjectContainer {
       ..addColorStop(0.4, 0xFFF8E123)
       ..addColorStop(1.0, 0xFFF05D26);
 
-    addChild(_createTextField("Over", 36)
+    addChild(_createTextField('Over', 36)
       ..y = 6
       ..defaultTextFormat.fillGradient = gradient2);
 
-    addChild(_createTextField("Game", 20)
+    addChild(_createTextField('Game', 20)
       ..x = 30
       ..defaultTextFormat.fillGradient = gradient1);
   }

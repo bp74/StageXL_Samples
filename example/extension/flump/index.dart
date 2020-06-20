@@ -22,19 +22,19 @@ Future main() async {
   // load resources
 
   var resourceManager = ResourceManager();
-  resourceManager..addBitmapData("flumpAtlas", "images/flumpLibraryAtlas0.png");
+  resourceManager..addBitmapData('flumpAtlas', 'images/flumpLibraryAtlas0.png');
   resourceManager.addCustomObject('flump', FlumpLibrary.load('images/flumpLibrary.json'));
   await resourceManager.load();
 
   // show TextField with user instructions
 
   var textField = TextField();
-  textField.defaultTextFormat = TextFormat("Arial", 24, Color.Black);
+  textField.defaultTextFormat = TextFormat('Arial', 24, Color.Black);
   textField.defaultTextFormat.align = TextFormatAlign.CENTER;
   textField.width = 480;
   textField.x = 0;
   textField.y = 450;
-  textField.text = "tap to change animation";
+  textField.text = 'tap to change animation';
   textField.addTo(stage);
 
   // get FlumpLibrary from resource manager.

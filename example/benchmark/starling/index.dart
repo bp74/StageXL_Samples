@@ -37,12 +37,12 @@ Future main() async {
   resourceManager.addBitmapData('flash', 'images/flash.png');
   await resourceManager.load();
 
-  var background = resourceManager.getBitmapData("background");
+  var background = resourceManager.getBitmapData('background');
   stage.addChild(Bitmap(background));
 
   // start benchmark
 
-  var bitmapData = resourceManager.getBitmapData("flash");
+  var bitmapData = resourceManager.getBitmapData('flash');
   var benchmarkScene = BenchmarkScene(bitmapData, 60);
   stage.addChild(benchmarkScene);
   stage.juggler.add(benchmarkScene);
@@ -53,7 +53,7 @@ Future main() async {
   stage.console.alpha = 0.75;
   stage.console.onUpdate.listen((e) {
     var counter = benchmarkScene.counter;
-    stage.console.print("---------------");
-    stage.console.print("SPRITES${counter.toString().padLeft(8)}");
+    stage.console.print('---------------');
+    stage.console.print('SPRITES${counter.toString().padLeft(8)}');
   });
 }

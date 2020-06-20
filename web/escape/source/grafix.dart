@@ -2,8 +2,8 @@ part of escape;
 
 class Grafix {
   static Bitmap getChain(ResourceManager resourceManager, int color, int direction) {
-    Bitmap bitmap = Bitmap(
-        resourceManager.getTextureAtlas("Elements").getBitmapData("Chain${color}${direction}"));
+    var bitmap = Bitmap(
+        resourceManager.getTextureAtlas('Elements').getBitmapData('Chain${color}${direction}'));
     bitmap.pivotX = 25;
     bitmap.pivotY = 25;
 
@@ -13,8 +13,8 @@ class Grafix {
   //--------------------------------------------------------------------------------------------
 
   static Bitmap getLink(ResourceManager resourceManager, int color, int direction) {
-    Bitmap bitmap = Bitmap(
-        resourceManager.getTextureAtlas("Elements").getBitmapData("Link${color}${direction}"));
+    var bitmap = Bitmap(
+        resourceManager.getTextureAtlas('Elements').getBitmapData('Link${color}${direction}'));
     bitmap.pivotX = 25;
     bitmap.pivotY = 25;
 
@@ -24,8 +24,8 @@ class Grafix {
   //--------------------------------------------------------------------------------------------
 
   static Bitmap getWhiteLink(ResourceManager resourceManager, int direction) {
-    Bitmap bitmap =
-        Bitmap(resourceManager.getTextureAtlas("Elements").getBitmapData("Link8${direction}"));
+    var bitmap =
+        Bitmap(resourceManager.getTextureAtlas('Elements').getBitmapData('Link8${direction}'));
     bitmap.pivotX = 25;
     bitmap.pivotY = 25;
 
@@ -35,7 +35,7 @@ class Grafix {
   //--------------------------------------------------------------------------------------------
 
   static Bitmap getSpecial(ResourceManager resourceManager, String special) {
-    Bitmap bitmap = Bitmap(resourceManager.getTextureAtlas("Elements").getBitmapData(special));
+    var bitmap = Bitmap(resourceManager.getTextureAtlas('Elements').getBitmapData(special));
     bitmap.pivotX = 25;
     bitmap.pivotY = 25;
 
@@ -45,18 +45,18 @@ class Grafix {
   //--------------------------------------------------------------------------------------------
 
   static Sprite getLevelUpAnimation(ResourceManager resourceManager, Juggler juggler) {
-    Sprite sprite = Sprite();
+    var sprite = Sprite();
     num offset = 0;
 
-    TextureAtlas textureAtlas = resourceManager.getTextureAtlas("Levelup");
+    var textureAtlas = resourceManager.getTextureAtlas('Levelup');
 
-    for (int i = 0; i < 7; i++) {
-      Bitmap bitmap = Bitmap(textureAtlas.getBitmapData("LevelUp${i}"));
+    for (var i = 0; i < 7; i++) {
+      var bitmap = Bitmap(textureAtlas.getBitmapData('LevelUp${i}'));
       bitmap.x = -bitmap.width / 2;
       bitmap.y = -bitmap.height / 2;
       //bitmap.filters = [GlowFilter(0x000000, 0.5, 30, 30)];  // ToDo
 
-      Sprite subSprite = Sprite();
+      var subSprite = Sprite();
       subSprite.addChild(bitmap);
       subSprite.x = offset + bitmap.width / 2;
       subSprite.scaleX = 0;
@@ -64,12 +64,12 @@ class Grafix {
 
       sprite.addChild(subSprite);
 
-      Tween tween1 = Tween(subSprite, 2.0, Transition.easeOutElastic);
+      var tween1 = Tween(subSprite, 2.0, Transition.easeOutElastic);
       tween1.animate.scaleX.to(1.0);
       tween1.animate.scaleY.to(1.0);
       tween1.delay = i * 0.05;
 
-      Tween tween2 = Tween(subSprite, 0.4, Transition.linear);
+      var tween2 = Tween(subSprite, 0.4, Transition.linear);
       tween2.animate.scaleX.to(0.0);
       tween2.animate.scaleY.to(0.0);
       tween2.delay = 3.0;
@@ -86,63 +86,63 @@ class Grafix {
   //--------------------------------------------------------------------------------------------
 
   static List<BitmapData> getJokerChain(ResourceManager resourceManager, int direction) {
-    TextureAtlas textureAtlas = resourceManager.getTextureAtlas("Elements");
+    var textureAtlas = resourceManager.getTextureAtlas('Elements');
 
-    List<BitmapData> tmp = List<BitmapData>();
-    tmp.add(textureAtlas.getBitmapData("JokerChain${direction}0"));
-    tmp.add(textureAtlas.getBitmapData("JokerChain${direction}1"));
-    tmp.add(textureAtlas.getBitmapData("JokerChain${direction}2"));
-    tmp.add(textureAtlas.getBitmapData("JokerChain${direction}3"));
-    tmp.add(textureAtlas.getBitmapData("JokerChain${direction}4"));
+    var tmp = <BitmapData>[];
+    tmp.add(textureAtlas.getBitmapData('JokerChain${direction}0'));
+    tmp.add(textureAtlas.getBitmapData('JokerChain${direction}1'));
+    tmp.add(textureAtlas.getBitmapData('JokerChain${direction}2'));
+    tmp.add(textureAtlas.getBitmapData('JokerChain${direction}3'));
+    tmp.add(textureAtlas.getBitmapData('JokerChain${direction}4'));
     return tmp;
   }
 
   static List<BitmapData> getJokerLink(ResourceManager resourceManager, int direction) {
-    TextureAtlas textureAtlas = resourceManager.getTextureAtlas("Elements");
+    var textureAtlas = resourceManager.getTextureAtlas('Elements');
 
-    List<BitmapData> tmp = List<BitmapData>();
-    tmp.add(textureAtlas.getBitmapData("JokerLink${direction}0"));
-    tmp.add(textureAtlas.getBitmapData("JokerLink${direction}1"));
-    tmp.add(textureAtlas.getBitmapData("JokerLink${direction}2"));
-    tmp.add(textureAtlas.getBitmapData("JokerLink${direction}3"));
-    tmp.add(textureAtlas.getBitmapData("JokerLink${direction}4"));
+    var tmp = <BitmapData>[];
+    tmp.add(textureAtlas.getBitmapData('JokerLink${direction}0'));
+    tmp.add(textureAtlas.getBitmapData('JokerLink${direction}1'));
+    tmp.add(textureAtlas.getBitmapData('JokerLink${direction}2'));
+    tmp.add(textureAtlas.getBitmapData('JokerLink${direction}3'));
+    tmp.add(textureAtlas.getBitmapData('JokerLink${direction}4'));
     return tmp;
   }
 
   static List<BitmapData> getLock(ResourceManager resourceManager, int color) {
-    TextureAtlas textureAtlas = resourceManager.getTextureAtlas("Locks");
+    var textureAtlas = resourceManager.getTextureAtlas('Locks');
 
-    List<BitmapData> tmp = List<BitmapData>();
-    tmp.add(textureAtlas.getBitmapData("Lock${color}0"));
-    tmp.add(textureAtlas.getBitmapData("Lock${color}1"));
-    tmp.add(textureAtlas.getBitmapData("Lock${color}2"));
-    tmp.add(textureAtlas.getBitmapData("Lock${color}3"));
-    tmp.add(textureAtlas.getBitmapData("Lock${color}4"));
+    var tmp = <BitmapData>[];
+    tmp.add(textureAtlas.getBitmapData('Lock${color}0'));
+    tmp.add(textureAtlas.getBitmapData('Lock${color}1'));
+    tmp.add(textureAtlas.getBitmapData('Lock${color}2'));
+    tmp.add(textureAtlas.getBitmapData('Lock${color}3'));
+    tmp.add(textureAtlas.getBitmapData('Lock${color}4'));
     return tmp;
   }
 
   static List<BitmapData> getHeads(ResourceManager resourceManager) {
-    TextureAtlas textureAtlas = resourceManager.getTextureAtlas("Head");
+    var textureAtlas = resourceManager.getTextureAtlas('Head');
 
-    List<BitmapData> tmp = List<BitmapData>();
-    tmp.add(textureAtlas.getBitmapData("Head1"));
-    tmp.add(textureAtlas.getBitmapData("Head2"));
-    tmp.add(textureAtlas.getBitmapData("Head3"));
-    tmp.add(textureAtlas.getBitmapData("Head2"));
-    tmp.add(textureAtlas.getBitmapData("Head1"));
+    var tmp = <BitmapData>[];
+    tmp.add(textureAtlas.getBitmapData('Head1'));
+    tmp.add(textureAtlas.getBitmapData('Head2'));
+    tmp.add(textureAtlas.getBitmapData('Head3'));
+    tmp.add(textureAtlas.getBitmapData('Head2'));
+    tmp.add(textureAtlas.getBitmapData('Head1'));
     return tmp;
   }
 
   static List<BitmapData> getAlarms(ResourceManager resourceManager) {
-    TextureAtlas textureAtlas = resourceManager.getTextureAtlas("Alarm");
+    var textureAtlas = resourceManager.getTextureAtlas('Alarm');
 
-    List<BitmapData> tmp = List<BitmapData>();
-    tmp.add(textureAtlas.getBitmapData("Alarm0"));
-    tmp.add(textureAtlas.getBitmapData("Alarm1"));
-    tmp.add(textureAtlas.getBitmapData("Alarm2"));
-    tmp.add(textureAtlas.getBitmapData("Alarm3"));
-    tmp.add(textureAtlas.getBitmapData("Alarm4"));
-    tmp.add(textureAtlas.getBitmapData("Alarm5"));
+    var tmp = <BitmapData>[];
+    tmp.add(textureAtlas.getBitmapData('Alarm0'));
+    tmp.add(textureAtlas.getBitmapData('Alarm1'));
+    tmp.add(textureAtlas.getBitmapData('Alarm2'));
+    tmp.add(textureAtlas.getBitmapData('Alarm3'));
+    tmp.add(textureAtlas.getBitmapData('Alarm4'));
+    tmp.add(textureAtlas.getBitmapData('Alarm5'));
     return tmp;
   }
 }

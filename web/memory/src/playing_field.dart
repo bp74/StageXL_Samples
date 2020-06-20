@@ -2,10 +2,10 @@ part of example;
 
 class PlayingField extends Sprite3D {
   final ResourceManager resourceManager;
+  final Juggler _juggler = Juggler();
+  final List<Card> _selectedCards = <Card>[];
 
   Sprite _cards = Sprite();
-  Juggler _juggler = Juggler();
-  List<Card> _selectedCards = List<Card>();
   int _numTurnedCards = 0;
 
   final num ANIM_TIME = 0.5;
@@ -28,9 +28,9 @@ class PlayingField extends Sprite3D {
     removeChildren();
     addChild(_cards);
 
-    var futures = List<Future>();
+    var futures = <Future>[];
 
-    for (int i = 0; i < _cards.numChildren; ++i) {
+    for (var i = 0; i < _cards.numChildren; ++i) {
       var card = _cards.getChildAt(i) as Card;
       var future = _dealCard(card, i * 0.075);
       futures.add(future);
@@ -40,9 +40,9 @@ class PlayingField extends Sprite3D {
   }
 
   Future removeCards() {
-    var futures = List<Future>();
+    var futures = <Future>[];
 
-    for (int i = 0; i < _cards.numChildren; ++i) {
+    for (var i = 0; i < _cards.numChildren; ++i) {
       var card = _cards.getChildAt(i) as Card;
       var future = _removeCard(card, i * 0.075);
       futures.add(future);
@@ -52,7 +52,7 @@ class PlayingField extends Sprite3D {
   }
 
   void concealAllCards() {
-    for (int i = 0; i < _cards.numChildren; ++i) {
+    for (var i = 0; i < _cards.numChildren; ++i) {
       var future = _turnCard(_cards.getChildAt(i) as Card, 0.0);
       future.then((card) => card.mouseEnabled = true);
     }
@@ -64,13 +64,13 @@ class PlayingField extends Sprite3D {
     var plane = Sprite();
     addChild(plane);
 
-    var atlas = resourceManager.getTextureAtlas("atlas");
-    var iconBitmapDatas = atlas.getBitmapDatas("icon-");
+    var atlas = resourceManager.getTextureAtlas('atlas');
+    var iconBitmapDatas = atlas.getBitmapDatas('icon-');
     iconBitmapDatas.shuffle();
 
-    var cards = List<Card>();
+    var cards = <Card>[];
 
-    for (int i = 0; i < numColumns * numRows / 2; ++i) {
+    for (var i = 0; i < numColumns * numRows / 2; ++i) {
       var iconBitmapData = iconBitmapDatas.removeAt(0);
       cards.add(Card(resourceManager, i, iconBitmapData));
       cards.add(Card(resourceManager, i, iconBitmapData));
@@ -81,8 +81,8 @@ class PlayingField extends Sprite3D {
     num margin = 20;
     num cardSize = 128;
 
-    for (int col = 0; col < numColumns; ++col) {
-      for (int row = 0; row < numRows; ++row) {
+    for (var col = 0; col < numColumns; ++col) {
+      for (var row = 0; row < numRows; ++row) {
         var card = cards.removeAt(0);
         card.x = (cardSize + margin) * col;
         card.y = (cardSize + margin) * row;

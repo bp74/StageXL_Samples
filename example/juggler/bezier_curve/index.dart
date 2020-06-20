@@ -19,7 +19,7 @@ void main() {
 
   var random = Random();
 
-  for (int i = 0; i < 5; i++) {
+  for (var i = 0; i < 5; i++) {
     var curveData1 = CurveData.fromRandom(random);
     var curveData2 = CurveData.fromRandom(random);
     var curve = Curve(curveData1, curveData2);
@@ -48,10 +48,10 @@ class Curve extends Shape implements Animatable {
   Curve(CurveData curveData1, CurveData curveData2) {
     _curveData1 = curveData1;
     _curveData2 = curveData2;
-    _moveto = this.graphics.moveTo(0, 0);
-    _bezier = this.graphics.bezierCurveTo(0, 0, 0, 0, 0, 0);
-    _stroke = this.graphics.strokeColor(Color.White, 15);
-    this.advanceTime(0.0);
+    _moveto = graphics.moveTo(0, 0);
+    _bezier = graphics.bezierCurveTo(0, 0, 0, 0, 0, 0);
+    _stroke = graphics.strokeColor(Color.White, 15);
+    advanceTime(0.0);
   }
 
   @override
@@ -122,10 +122,10 @@ class CurveData {
   }
 
   int get color {
-    int a = (colorA * 255).round();
-    int r = (colorR * 255).round();
-    int g = (colorG * 255).round();
-    int b = (colorB * 255).round();
+    var a = (colorA * 255).round();
+    var r = (colorR * 255).round();
+    var g = (colorG * 255).round();
+    var b = (colorB * 255).round();
     return (a << 24) + (r << 16) + (g << 8) + b;
   }
 }

@@ -16,9 +16,9 @@ void main() {
   //---------------------------------------------
   // define three different masks
 
-  var starPath = List<Point>();
+  var starPath = <Point>[];
 
-  for (int i = 0; i < 6; i++) {
+  for (var i = 0; i < 6; i++) {
     num a1 = (i * 60) * math.pi / 180;
     num a2 = (i * 60 + 30) * math.pi / 180;
     starPath.add(Point(470 + 200 * math.cos(a1), 250 + 200 * math.sin(a1)));

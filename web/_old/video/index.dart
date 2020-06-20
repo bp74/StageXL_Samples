@@ -40,12 +40,12 @@ Future main() async {
 
   resourceManager = ResourceManager();
   //resourceManager.addVideo("sintel", "videos/sintel.mp4");
-  resourceManager.addBitmapData("displacement", "images/displacement.png");
+  resourceManager.addBitmapData('displacement', 'images/displacement.png');
   await resourceManager.load();
 
   // show user information
 
-  var textFormat = TextFormat("Arial", 36, Color.Black);
+  var textFormat = TextFormat('Arial', 36, Color.Black);
   textFormat.align = TextFormatAlign.CENTER;
 
   var headline = TextField();
@@ -55,7 +55,7 @@ Future main() async {
   headline.width = 0;
   headline.x = 800;
   headline.y = 250;
-  headline.text = "Sintel Trailer";
+  headline.text = 'Sintel Trailer';
   headline.addTo(stage);
 
   var info = TextField();
@@ -64,7 +64,7 @@ Future main() async {
   info.width = 0;
   info.x = 800;
   info.y = 400;
-  info.text = "tap to start video";
+  info.text = 'tap to start video';
   info.addTo(stage);
 
   // wait for a mouse click or touch press to start the video.
@@ -82,7 +82,7 @@ void loadAndPlayVideo(InputEvent e) {
   stage.removeChildren();
 
   var videoLoadOptions = StageXL.videoLoadOptions;
-  var videoSources = videoLoadOptions.getOptimalVideoUrls("videos/sintel.mp4");
+  var videoSources = videoLoadOptions.getOptimalVideoUrls('videos/sintel.mp4');
 
   Video.load(videoSources.first).then((Video sintelVideo) {
     showVideo(sintelVideo);
@@ -113,7 +113,7 @@ void showVideo(Video sintelVideo) {
   videoBitmapDatas = videoBitmapData.sliceIntoFrames(50, 50);
   videoBitmaps = List<Bitmap>(videoBitmapDatas.length);
 
-  for (int i = 0; i < videoBitmapDatas.length; i++) {
+  for (var i = 0; i < videoBitmapDatas.length; i++) {
     var videoBitmap = videoBitmaps[i] = Bitmap(videoBitmapDatas[i]);
     videoBitmap.pivotX = 25;
     videoBitmap.pivotY = 25;
@@ -129,14 +129,14 @@ void showVideo(Video sintelVideo) {
 
 void addButtons() {
   var buttons = [
-    Button("Texture Split")..on(Event.CHANGE).listen(onSplitChanged),
-    Button("2D Transform")..on(Event.CHANGE).listen(on2dChanged),
-    Button("3D Transform")..on(Event.CHANGE).listen(on3dChanged),
-    Button("Random Filter")..on(Event.CHANGE).listen(onFilterChanged),
-    Button("Pause Video")..on(Event.CHANGE).listen(onPauseChanged)
+    Button('Texture Split')..on(Event.CHANGE).listen(onSplitChanged),
+    Button('2D Transform')..on(Event.CHANGE).listen(on2dChanged),
+    Button('3D Transform')..on(Event.CHANGE).listen(on3dChanged),
+    Button('Random Filter')..on(Event.CHANGE).listen(onFilterChanged),
+    Button('Pause Video')..on(Event.CHANGE).listen(onPauseChanged)
   ];
 
-  for (int i = 0; i < buttons.length; i++) {
+  for (var i = 0; i < buttons.length; i++) {
     buttons[i].x = 82 + i * 293;
     buttons[i].y = 680;
     stage.addChild(buttons[i]);
@@ -198,7 +198,7 @@ void onFilterChanged(Event event) {
     var filter = DropShadowFilter(6, pi / 4, 0x80000000, 3, 3, 2);
     videoContainer2D.filters.add(filter);
   } else if (randomInt == 5) {
-    var displacement = resourceManager.getBitmapData("displacement");
+    var displacement = resourceManager.getBitmapData('displacement');
     var transform = Matrix.fromIdentity();
     transform.translate(-displacement.width / 2, -displacement.height / 2);
     var filter = DisplacementMapFilter(displacement, transform, 20, 20);

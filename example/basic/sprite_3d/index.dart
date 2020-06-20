@@ -18,14 +18,14 @@ Future main() async {
 
   // load a texture atlas with 3 flower BitmapDatas
 
-  var textureAtlas = await TextureAtlas.load("images/Flowers.json");
-  var flower1 = textureAtlas.getBitmapData("Flower1");
-  var flower2 = textureAtlas.getBitmapData("Flower2");
-  var flower3 = textureAtlas.getBitmapData("Flower3");
+  var textureAtlas = await TextureAtlas.load('images/Flowers.json');
+  var flower1 = textureAtlas.getBitmapData('Flower1');
+  var flower2 = textureAtlas.getBitmapData('Flower2');
+  var flower3 = textureAtlas.getBitmapData('Flower3');
 
   // Create cube faces and set the position and orientation in 3D space.
 
-  List<CubeFace> cubeFaces = [
+  var cubeFaces = <CubeFace>[
     CubeFace(0xFFFF8080, flower1)
       ..offsetX = -75
       ..rotationY = pi / 2,
@@ -68,21 +68,21 @@ Future main() async {
 
 class CubeFace extends Sprite3D {
   CubeFace(int color, BitmapData bitmapData) {
-    Bitmap back = Bitmap(BitmapData(150, 150, color));
-    Bitmap icon = Bitmap(bitmapData);
-    this.addChild(back..alignPivot());
-    this.addChild(icon..alignPivot());
+    var back = Bitmap(BitmapData(150, 150, color));
+    var icon = Bitmap(bitmapData);
+    addChild(back..alignPivot());
+    addChild(icon..alignPivot());
 
     // set perspective projection to none because this Sprite3D will
     // be inside of another Sprite3D (the cube) which will define the
     // perspective projection for all its children.
-    this.perspectiveProjection = PerspectiveProjection.none();
+    perspectiveProjection = PerspectiveProjection.none();
 
     // hide the CubeFace if it isn't forward facing
-    this.onEnterFrame.listen(_onEnterFrame);
+    onEnterFrame.listen(_onEnterFrame);
   }
 
   void _onEnterFrame(EnterFrameEvent e) {
-    this.visible = this.isForwardFacing;
+    visible = isForwardFacing;
   }
 }

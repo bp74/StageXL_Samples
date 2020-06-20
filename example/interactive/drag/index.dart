@@ -20,10 +20,10 @@ Future main() async {
   // load resources
 
   var resourceManager = ResourceManager();
-  resourceManager.addBitmapData("flowers", "images/flowers.png");
+  resourceManager.addBitmapData('flowers', 'images/flowers.png');
   await resourceManager.load();
 
-  var flowers = resourceManager.getBitmapData("flowers");
+  var flowers = resourceManager.getBitmapData('flowers');
   var flowersList = <BitmapData>[
     BitmapData.fromBitmapData(flowers, Rectangle(0 * 128, 0, 128, 128)),
     BitmapData.fromBitmapData(flowers, Rectangle(1 * 128, 0, 128, 128)),

@@ -52,7 +52,7 @@ class Board extends ViewportContainer {
     _levelQuints = quints;
     _levelColors = colors.length;
 
-    _mouseBuffer = List<Point>();
+    _mouseBuffer = <Point>[];
 
     //----------------------------
 
@@ -81,14 +81,14 @@ class Board extends ViewportContainer {
 
     _animationRunning = true;
 
-    ValueCounter completeCounter = ValueCounter();
+    var completeCounter = ValueCounter();
 
     //this.mask = Mask.rectangle(0.0, 0.0, 500.0, 500.0);
-    this.viewport = Rectangle(0, 0, 500, 500);
+    viewport = Rectangle(0, 0, 500, 500);
 
-    for (int x = 0; x < 10; x++) {
-      for (int y = 0; y < 10; y++) {
-        Field field = _fields[x + y * 10];
+    for (var x = 0; x < 10; x++) {
+      for (var y = 0; y < 10; y++) {
+        var field = _fields[x + y * 10];
         field.x = x * 50 + 25;
         field.y = y * 50 + 25 - 550;
         field.updateDisplayObjects(_chainLayer, _linkLayer, _specialLayer);
@@ -108,7 +108,7 @@ class Board extends ViewportContainer {
             _animationRunning = false;
             _mouseBuffer.clear();
             //this.mask = null;
-            this.viewport = null;
+            viewport = null;
           }
         };
 
@@ -142,11 +142,11 @@ class Board extends ViewportContainer {
 
   void dropFields() {
     //this.mask = Mask.rectangle(0.0, 0.0, 500.0, 500.0);
-    this.viewport = Rectangle(0, 0, 500, 500);
+    viewport = Rectangle(0, 0, 500, 500);
 
-    for (int y = 0; y < 10; y++) {
-      for (int x = 0; x < 10; x++) {
-        Field field = _fields[x + y * 10];
+    for (var y = 0; y < 10; y++) {
+      for (var x = 0; x < 10; x++) {
+        var field = _fields[x + y * 10];
 
         field.linked = false;
         field.linkedJoker = false;
@@ -170,10 +170,10 @@ class Board extends ViewportContainer {
   //-------------------------------------------------------------------------------------------------
 
   void initLocks() {
-    _locks = List<Lock>();
+    _locks = <Lock>[];
 
-    for (int l = 0; l < _levelLocks; l++) {
-      Lock lock = Lock(_resourceManager, _juggler, l);
+    for (var l = 0; l < _levelLocks; l++) {
+      var lock = Lock(_resourceManager, _juggler, l);
       lock.rotation = (_random.nextInt(30) - 15) * math.pi / 180;
       lock.x = 300 - (90 * _levelLocks) / 2 + l * 90 + _random.nextInt(20) - 10;
       lock.y = 550;
@@ -186,18 +186,18 @@ class Board extends ViewportContainer {
   //-------------------------------------------------------------------------------------------------
 
   int countLinks(int x, int y) {
-    int linkCount = 0;
-    Field field = _fields[x + y * 10];
+    var linkCount = 0;
+    var field = _fields[x + y * 10];
 
     if (field.direction == 0) {
-      Field fieldWest = (x > 0) ? _fields[x - 1 + y * 10] : null;
-      Field fieldEast = (x < 9) ? _fields[x + 1 + y * 10] : null;
+      var fieldWest = (x > 0) ? _fields[x - 1 + y * 10] : null;
+      var fieldEast = (x < 9) ? _fields[x + 1 + y * 10] : null;
 
       if (field.canLinkHorizontal(fieldWest)) linkCount++;
       if (field.canLinkHorizontal(fieldEast)) linkCount++;
     } else {
-      Field fieldNorth = (y > 0) ? _fields[x + (y - 1) * 10] : null;
-      Field fieldSouth = (y < 9) ? _fields[x + (y + 1) * 10] : null;
+      var fieldNorth = (y > 0) ? _fields[x + (y - 1) * 10] : null;
+      var fieldSouth = (y < 9) ? _fields[x + (y + 1) * 10] : null;
 
       if (field.canLinkVertical(fieldNorth)) linkCount++;
       if (field.canLinkVertical(fieldSouth)) linkCount++;
@@ -209,19 +209,19 @@ class Board extends ViewportContainer {
   //-------------------------------------------------------------------------------------------------
 
   bool clearCombinations() {
-    for (int y = 0; y < 10; y++) {
-      for (int x = 0; x < 10; x++) {
-        Field field = _fields[x + y * 10];
-        int retry = _levelColors * 2;
+    for (var y = 0; y < 10; y++) {
+      for (var x = 0; x < 10; x++) {
+        var field = _fields[x + y * 10];
+        var retry = _levelColors * 2;
 
         while (countLinks(x, y) == 2 && retry > 0) {
           if (retry % 2 == 0) {
             field.direction = 1 - field.direction;
             retry--;
           } else {
-            int colorIndex = 0;
+            var colorIndex = 0;
 
-            for (int ci = 0; ci < _colors.length; ci++) {
+            for (var ci = 0; ci < _colors.length; ci++) {
               if (field.color == _colors[ci]) {
                 colorIndex = ci;
               }
@@ -236,10 +236,10 @@ class Board extends ViewportContainer {
 
     //-----------------------------------------
 
-    bool rebuild = false;
+    var rebuild = false;
 
-    for (int y = 0; y < 10; y++) {
-      for (int x = 0; x < 10; x++) {
+    for (var y = 0; y < 10; y++) {
+      for (var x = 0; x < 10; x++) {
         rebuild = rebuild || (countLinks(x, y) == 2);
       }
     }
@@ -250,8 +250,8 @@ class Board extends ViewportContainer {
   //-------------------------------------------------------------------------------------------------
 
   bool possibleCombinations() {
-    for (int y = 0; y < 10; y++) {
-      for (int x = 1; x < 9; x++) {
+    for (var y = 0; y < 10; y++) {
+      for (var x = 1; x < 9; x++) {
         if (_fields[(x - 1) + y * 10].couldLink(_fields[x + y * 10]) &&
             _fields[x + y * 10].couldLink(_fields[(x + 1) + y * 10])) {
           return true;
@@ -259,8 +259,8 @@ class Board extends ViewportContainer {
       }
     }
 
-    for (int x = 0; x < 10; x++) {
-      for (int y = 1; y < 9; y++) {
+    for (var x = 0; x < 10; x++) {
+      for (var y = 1; y < 9; y++) {
         if (_fields[x + (y - 1) * 10].couldLink(_fields[x + y * 10]) &&
             _fields[x + y * 10].couldLink(_fields[x + (y + 1) * 10])) {
           return true;
@@ -274,9 +274,9 @@ class Board extends ViewportContainer {
   //-------------------------------------------------------------------------------------------------
 
   void _initQueuePlaceSpecial(String special, int current, int maximum) {
-    for (int retry = 0; retry < 20; retry++) {
-      int range = _levelChains ~/ maximum;
-      int index = current * range + _random.nextInt(range);
+    for (var retry = 0; retry < 20; retry++) {
+      var range = _levelChains ~/ maximum;
+      var index = current * range + _random.nextInt(range);
 
       if (_queue[index].special == Special.None) {
         _queue[index].special = special;
@@ -286,33 +286,33 @@ class Board extends ViewportContainer {
   }
 
   void initQueue() {
-    _queue = List<Field>();
+    _queue = <Field>[];
 
-    for (int i = 0; i < _levelChains; i++) {
-      int color = _colors[_random.nextInt(_colors.length)];
-      int direction = _random.nextInt(2);
+    for (var i = 0; i < _levelChains; i++) {
+      var color = _colors[_random.nextInt(_colors.length)];
+      var direction = _random.nextInt(2);
 
       _queue.add(Field(_resourceManager, _juggler, color, direction));
     }
 
-    for (int i = 0; i < _levelLocks * 2; i++) {
+    for (var i = 0; i < _levelLocks * 2; i++) {
       _initQueuePlaceSpecial(
-          "Lock${(i % _levelLocks) + 1}", i, _levelLocks * 2); // Lock1, Lock2, Lock3, ...
+          'Lock${(i % _levelLocks) + 1}', i, _levelLocks * 2); // Lock1, Lock2, Lock3, ...
     }
 
-    for (int i = 0; i < _levelJokers; i++) {
+    for (var i = 0; i < _levelJokers; i++) {
       _initQueuePlaceSpecial(Special.Joker, i, _levelJokers);
     }
 
-    for (int i = 0; i < _levelBlocks; i++) {
+    for (var i = 0; i < _levelBlocks; i++) {
       _initQueuePlaceSpecial(Special.Block, i, _levelBlocks);
     }
 
-    for (int i = 0; i < _levelDoubles; i++) {
+    for (var i = 0; i < _levelDoubles; i++) {
       _initQueuePlaceSpecial(Special.Double, i, _levelDoubles);
     }
 
-    for (int i = 0; i < _levelQuints; i++) {
+    for (var i = 0; i < _levelQuints; i++) {
       _initQueuePlaceSpecial(Special.Quint, i, _levelQuints);
     }
   }
@@ -320,16 +320,16 @@ class Board extends ViewportContainer {
   //-------------------------------------------------------------------------------------------------
 
   void initField() {
-    _fields = List<Field>();
+    _fields = <Field>[];
 
-    bool rebuild = true;
+    var rebuild = true;
 
     while (rebuild) {
       _fields.clear();
 
-      for (int f = 0; f < 100; f++) {
-        int color = _colors[_random.nextInt(_colors.length)];
-        int direction = _random.nextInt(2);
+      for (var f = 0; f < 100; f++) {
+        var color = _colors[_random.nextInt(_colors.length)];
+        var direction = _random.nextInt(2);
         _fields.add(Field(_resourceManager, _juggler, color, direction));
       }
 
@@ -344,13 +344,13 @@ class Board extends ViewportContainer {
       return false;
     }
 
-    bool rebuild = true;
+    var rebuild = true;
 
     _animationRunning = true;
 
     while (rebuild) {
-      for (int f = 0; f < _fields.length; f++) {
-        Field field = _fields[f];
+      for (var f = 0; f < _fields.length; f++) {
+        var field = _fields[f];
         field.linked = false;
         field.linkedJoker = false;
         field.updateDisplayObjects(_chainLayer, _linkLayer, _specialLayer);
@@ -362,13 +362,13 @@ class Board extends ViewportContainer {
       rebuild = clearCombinations() || (possibleCombinations() == false);
     }
 
-    _resourceManager.getSound("BonusUniversal").play();
+    _resourceManager.getSound('BonusUniversal').play();
 
-    ValueCounter completeCounter = ValueCounter();
+    var completeCounter = ValueCounter();
 
-    for (int x = 0; x < 10; x++) {
-      for (int y = 0; y < 10; y++) {
-        Field field = _fields[x + y * 10];
+    for (var x = 0; x < 10; x++) {
+      for (var y = 0; y < 10; y++) {
+        var field = _fields[x + y * 10];
         field.sinScale = 0.0;
 
         var translation = Translation(0.0, 1.0, 0.2, Transition.linear);
@@ -400,14 +400,14 @@ class Board extends ViewportContainer {
   //-------------------------------------------------------------------------------------------------
 
   void _updateLinks() {
-    for (int y = 0; y < 10; y++) {
-      for (int x = 0; x < 10; x++) {
-        Field field = _fields[x + y * 10];
-        Field fieldEast = (x < 9) ? _fields[x + 1 + y * 10] : null;
-        Field fieldSouth = (y < 9) ? _fields[x + (y + 1) * 10] : null;
+    for (var y = 0; y < 10; y++) {
+      for (var x = 0; x < 10; x++) {
+        var field = _fields[x + y * 10];
+        var fieldEast = (x < 9) ? _fields[x + 1 + y * 10] : null;
+        var fieldSouth = (y < 9) ? _fields[x + (y + 1) * 10] : null;
 
-        bool linked = false;
-        bool linkedJoker = false;
+        var linked = false;
+        var linkedJoker = false;
 
         if (field.canLinkHorizontal(fieldEast)) {
           linked = true;
@@ -436,24 +436,24 @@ class Board extends ViewportContainer {
     _animationRunning = true;
     animationCounter.increment(length);
 
-    int factor = 1;
+    var factor = 1;
 
-    for (int l = 0; l < length; l++) {
-      Field field = _fields[x + l * dx + (y + l * dy) * 10];
+    for (var l = 0; l < length; l++) {
+      var field = _fields[x + l * dx + (y + l * dy) * 10];
 
       if (field.special == Special.Double) factor = factor * 2;
       if (field.special == Special.Quint) factor = factor * 5;
 
-      int px = x + l * dx;
-      int py = y + l * dy;
+      var px = x + l * dx;
+      var py = y + l * dy;
 
       _juggler.delayCall(() {
         field.empty = true;
         field.updateDisplayObjects(_chainLayer, _linkLayer, _specialLayer);
 
-        _resourceManager.getSound("ChainBlast").play();
+        _resourceManager.getSound('ChainBlast').play();
 
-        Explosion explosion = Explosion(_resourceManager, _juggler, field.color, field.direction);
+        var explosion = Explosion(_resourceManager, _juggler, field.color, field.direction);
         explosion.x = px * 50;
         explosion.y = py * 50;
 
@@ -470,19 +470,19 @@ class Board extends ViewportContainer {
       }, 0.1 + l * 0.1);
     }
 
-    dispatchEvent(BoardEvent(BoardEvent.Explosion, {"Length": length, "Factor": factor}));
+    dispatchEvent(BoardEvent(BoardEvent.Explosion, {'Length': length, 'Factor': factor}));
   }
 
   void _processCombinations() {
     _animationRunning = false;
-    ValueCounter animationCounter = ValueCounter();
+    var animationCounter = ValueCounter();
 
     //------------------------------------------------------------------------------
     // check horizontal positions
 
-    for (int y = 0; y < 10; y++) {
-      for (int x = 0; x < 10;) {
-        int length = 1;
+    for (var y = 0; y < 10; y++) {
+      for (var x = 0; x < 10;) {
+        var length = 1;
 
         while (x + length < 10 &&
             _fields[x + length - 1 + y * 10].canLinkHorizontal(_fields[x + length + y * 10])) {
@@ -500,9 +500,9 @@ class Board extends ViewportContainer {
     //------------------------------------------------------------------------------
     // check vertical positions
 
-    for (int x = 0; x < 10; x++) {
-      for (int y = 0; y < 10;) {
-        int length = 1;
+    for (var x = 0; x < 10; x++) {
+      for (var y = 0; y < 10;) {
+        var length = 1;
 
         while (y + length < 10 &&
             _fields[x + (y + length - 1) * 10].canLinkVertical(_fields[x + (y + length) * 10])) {
@@ -538,16 +538,16 @@ class Board extends ViewportContainer {
   //-------------------------------------------------------------------------------------------------
 
   void processSpecial(Field field) {
-    if (field.special.indexOf("Lock") == 0) {
-      int lockNumber = int.parse(field.special.substring(4, 5)) - 1;
-      Lock lock = _locks[lockNumber];
+    if (field.special.indexOf('Lock') == 0) {
+      var lockNumber = int.parse(field.special.substring(4, 5)) - 1;
+      var lock = _locks[lockNumber];
 
-      Bitmap special = Grafix.getSpecial(_resourceManager, field.special);
+      var special = Grafix.getSpecial(_resourceManager, field.special);
       special.x = field.x;
       special.y = field.y;
       addChild(special);
 
-      Tween tween = Tween(special, 0.5, Transition.easeOutCubic);
+      var tween = Tween(special, 0.5, Transition.easeOutCubic);
       tween.animate.x.to(lock.x);
       tween.animate.y.to(lock.y - 10);
       tween.onComplete = () => removeChild(special);
@@ -560,16 +560,16 @@ class Board extends ViewportContainer {
   //-------------------------------------------------------------------------------------------------
 
   void openLock(int lockNumber) {
-    Lock lock = _locks[lockNumber];
+    var lock = _locks[lockNumber];
     BoardEvent boardEvent;
 
     if (lock.locked) {
       boardEvent = BoardEvent(
-          BoardEvent.Unlocked, {"Type": "SingleLocked", "Position": Point(lock.x + 20, lock.y)});
-      _resourceManager.getSound("Unlock").play();
+          BoardEvent.Unlocked, {'Type': 'SingleLocked', 'Position': Point(lock.x + 20, lock.y)});
+      _resourceManager.getSound('Unlock').play();
     } else {
       boardEvent = BoardEvent(
-          BoardEvent.Unlocked, {"Type": "SingleUnlocked", "Position": Point(lock.x + 20, lock.y)});
+          BoardEvent.Unlocked, {'Type': 'SingleUnlocked', 'Position': Point(lock.x + 20, lock.y)});
     }
 
     dispatchEvent(boardEvent);
@@ -579,23 +579,23 @@ class Board extends ViewportContainer {
 
     //---------------------------------
 
-    bool allUnlocked = true;
+    var allUnlocked = true;
 
-    for (int i = 0; i < _locks.length; i++) {
+    for (var i = 0; i < _locks.length; i++) {
       allUnlocked = allUnlocked && (_locks[i].locked == false);
     }
 
     if (allUnlocked) {
-      _resourceManager.getSound("BonusAllUnlock").play();
+      _resourceManager.getSound('BonusAllUnlock').play();
 
-      for (int i = 0; i < _locks.length; i++) {
+      for (var i = 0; i < _locks.length; i++) {
         _locks[i].locked = true;
         _juggler.delayCall(() => _locks[(i + lockNumber) % _locks.length].showHappy(), i * 0.2);
       }
 
       _juggler.delayCall(
           () => dispatchEvent(
-              BoardEvent(BoardEvent.Unlocked, {"Type": "All", "Position": Point(280, 550)})),
+              BoardEvent(BoardEvent.Unlocked, {'Type': 'All', 'Position': Point(280, 550)})),
           0.75);
     }
   }
@@ -603,11 +603,11 @@ class Board extends ViewportContainer {
   //-------------------------------------------------------------------------------------------------
 
   void _fillEmptyFields() {
-    ValueCounter animationCounter = ValueCounter();
+    var animationCounter = ValueCounter();
 
-    for (int x = 0; x < 10; x++) {
-      int target = 9;
-      int source = 8;
+    for (var x = 0; x < 10; x++) {
+      var target = 9;
+      var source = 8;
 
       while (target >= 0) {
         while (target >= 0 && _fields[x + target * 10].empty == false) {
@@ -684,11 +684,11 @@ class Board extends ViewportContainer {
   //-------------------------------------------------------------------------------------------------
 
   void _onMouseDown(MouseEvent me) {
-    if (me.target == _chainLayer && this.mouseEnabled) {
-      int x = math.min(me.localX / 50, 9).toInt();
-      int y = math.min(me.localY / 50, 9).toInt();
+    if (me.target == _chainLayer && mouseEnabled) {
+      var x = math.min(me.localX / 50, 9).toInt();
+      var y = math.min(me.localY / 50, 9).toInt();
 
-      Point p = Point(x, y);
+      var p = Point(x, y);
 
       _mouseBuffer.add(p);
       _checkMouseBuffer();
@@ -698,21 +698,21 @@ class Board extends ViewportContainer {
   void _checkMouseBuffer() {
     while (
         _status == BoardStatus.Playing && _animationRunning == false && _mouseBuffer.isNotEmpty) {
-      Point p = _mouseBuffer.removeAt(0);
+      var p = _mouseBuffer.removeAt(0);
 
-      int x = p.x.toInt();
-      int y = p.y.toInt();
+      var x = p.x.toInt();
+      var y = p.y.toInt();
 
-      Field field = _fields[x + y * 10];
-      Field fieldWest = (x > 0) ? _fields[x - 1 + y * 10] : null;
-      Field fieldEast = (x < 9) ? _fields[x + 1 + y * 10] : null;
-      Field fieldNorth = (y > 0) ? _fields[x + (y - 1) * 10] : null;
-      Field fieldSouth = (y < 9) ? _fields[x + (y + 1) * 10] : null;
+      var field = _fields[x + y * 10];
+      var fieldWest = (x > 0) ? _fields[x - 1 + y * 10] : null;
+      var fieldEast = (x < 9) ? _fields[x + 1 + y * 10] : null;
+      var fieldNorth = (y > 0) ? _fields[x + (y - 1) * 10] : null;
+      var fieldSouth = (y < 9) ? _fields[x + (y + 1) * 10] : null;
 
-      bool playChainLink = false;
+      var playChainLink = false;
 
       if (field.special == Special.Block) {
-        _resourceManager.getSound("ChainError").play();
+        _resourceManager.getSound('ChainError').play();
         continue;
       }
 
@@ -736,7 +736,7 @@ class Board extends ViewportContainer {
       field.linked = false;
       field.linkedJoker = false;
 
-      _resourceManager.getSound("ChainRotate").play();
+      _resourceManager.getSound('ChainRotate').play();
 
       if (field.canLinkHorizontal(fieldEast)) {
         field.linked = true;
@@ -774,7 +774,7 @@ class Board extends ViewportContainer {
       //--------------------------------------------
 
       if (playChainLink) {
-        _resourceManager.getSound("ChainLink").play();
+        _resourceManager.getSound('ChainLink').play();
       }
 
       //--------------------------------------------

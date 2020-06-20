@@ -21,13 +21,13 @@ Future main() async {
   // add TextField with instructions
 
   var textField = TextField();
-  textField.defaultTextFormat = TextFormat("Arial", 22, Color.White);
+  textField.defaultTextFormat = TextFormat('Arial', 22, Color.White);
   textField.defaultTextFormat.align = TextFormatAlign.CENTER;
   textField.width = 800;
   textField.height = 40;
   textField.x = 0;
   textField.y = 760;
-  textField.text = "Tap to toggle FXAA filter on/off";
+  textField.text = 'Tap to toggle FXAA filter on/off';
   textField.addTo(stage);
 
   // create a new Shape
@@ -45,7 +45,7 @@ Future main() async {
   shape.graphics.rectRound(-150, -150, 300, 300, 40, 40);
   shape.graphics.strokeColor(Color.Blue, 30);
 
-  for (int i = -7; i <= 7; i++) {
+  for (var i = -7; i <= 7; i++) {
     shape.graphics.beginPath();
     shape.graphics.moveTo(-100, i * 15);
     shape.graphics.lineTo(100, i * 15);

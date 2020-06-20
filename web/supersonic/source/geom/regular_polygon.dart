@@ -32,7 +32,7 @@ class RegularPolygon extends Polygon {
   //-----------------------------------------------------------------------------------------------
 
   void _deriveSourcePointList() {
-    var pointList = List<Vector2D>();
+    var pointList = <Vector2D>[];
     var angle = 0.0;
     var step = 2 * math.pi / _n;
 

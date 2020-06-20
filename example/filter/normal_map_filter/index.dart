@@ -21,25 +21,25 @@ Future main() async {
   // load resources
 
   var resourceManager = ResourceManager();
-  resourceManager.addBitmapData("guy_pixels", "images/character-with-si-logo.png");
-  resourceManager.addBitmapData("guy_normal", "images/character-with-si-logo_n.png");
+  resourceManager.addBitmapData('guy_pixels', 'images/character-with-si-logo.png');
+  resourceManager.addBitmapData('guy_normal', 'images/character-with-si-logo_n.png');
   await resourceManager.load();
 
   // add TextField with SpriteIlluminator information
 
   var textField = TextField();
-  textField.defaultTextFormat = TextFormat("Arial", 22, Color.White);
+  textField.defaultTextFormat = TextFormat('Arial', 22, Color.White);
   textField.defaultTextFormat.align = TextFormatAlign.CENTER;
   textField.width = 800;
   textField.height = 40;
   textField.x = 0;
   textField.y = 760;
-  textField.text = "Normal Map created with www.codeandweb.com/spriteilluminator";
+  textField.text = 'Normal Map created with www.codeandweb.com/spriteilluminator';
   textField.addTo(stage);
 
   // create the NormalMapFilter with the image from the resource manager.
 
-  var guyNormalBitmapData = resourceManager.getBitmapData("guy_normal");
+  var guyNormalBitmapData = resourceManager.getBitmapData('guy_normal');
   var normalMapFilter = NormalMapFilter(guyNormalBitmapData);
   normalMapFilter.ambientColor = 0xFFA0A060;
   normalMapFilter.lightColor = 0xFFFFFFFF;
@@ -51,7 +51,7 @@ Future main() async {
   // create the Bitmap with the image from the resource manager
   // and add the NormalMapFilter to the filters.
 
-  var guyPixelsBitmapData = resourceManager.getBitmapData("guy_pixels");
+  var guyPixelsBitmapData = resourceManager.getBitmapData('guy_pixels');
   var guy = Bitmap(guyPixelsBitmapData);
   guy.filters.add(normalMapFilter);
   guy.scaleX = guy.scaleY = 0.5;

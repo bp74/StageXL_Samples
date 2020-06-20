@@ -20,7 +20,7 @@ class Alarm extends Sprite {
     _alarmBitmapDatas = Grafix.getAlarms(_resourceManager);
     _alarmBitmap = Bitmap(_alarmBitmapDatas[0]);
 
-    _warning = _resourceManager.getSound("Warning");
+    _warning = _resourceManager.getSound('Warning');
     _warningChannel = null;
 
     addChild(_alarmBitmap);
@@ -34,7 +34,7 @@ class Alarm extends Sprite {
     _translation = Translation(0, 80, 9.0, Transition.linear);
 
     _translation.onUpdate = (value) {
-      int frame = value.toInt() % 8;
+      var frame = value.toInt() % 8;
       _alarmBitmap.bitmapData = _alarmBitmapDatas[(frame <= 4) ? frame + 1 : 8 - frame];
     };
 

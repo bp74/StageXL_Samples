@@ -36,8 +36,8 @@ class Vector3D {
   }
 
   void setLength(num l) {
-    this.normalize();
-    this.scale(l);
+    normalize();
+    scale(l);
   }
 
   Vector3D negate() {

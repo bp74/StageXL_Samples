@@ -10,10 +10,10 @@ class ColorMatrixAlphaMaskFilter extends BitmapFilter {
   final Float32List colorOffsetList = Float32List(4);
 
   ColorMatrixAlphaMaskFilter(this.bitmapData, this.matrix) {
-    this.colorMatrixList[00] = 1.0;
-    this.colorMatrixList[05] = 1.0;
-    this.colorMatrixList[10] = 1.0;
-    this.colorMatrixList[15] = 1.0;
+    colorMatrixList[00] = 1.0;
+    colorMatrixList[05] = 1.0;
+    colorMatrixList[10] = 1.0;
+    colorMatrixList[15] = 1.0;
   }
 
   @override
@@ -22,7 +22,7 @@ class ColorMatrixAlphaMaskFilter extends BitmapFilter {
   @override
   void renderFilter(RenderState renderState, RenderTextureQuad renderTextureQuad, int pass) {
     RenderContextWebGL renderContext = renderState.renderContext;
-    String programName = "ColorMatrixAlphaMaskProgram";
+    var programName = 'ColorMatrixAlphaMaskProgram';
     ColorMatrixAlphaMaskProgram renderProgram;
 
     renderProgram =

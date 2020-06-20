@@ -17,105 +17,96 @@ class TopMenu extends GameComponent {
   List<Bitmap> ships;
 
   TopMenu(Game game, [String fontName = defaultFont]) : super(game) {
-    this.font = fontName;
-    this.createChildren();
+    font = fontName;
+    createChildren();
 
-    StringBuffer sb = StringBuffer();
-    sb.write((this.game as MissileGame).getResource("GENlevel"));
-    sb.write(": 0");
+    var sb = StringBuffer();
+    sb.write((this.game as MissileGame).getResource('GENlevel'));
+    sb.write(': 0');
 
     levelTextField.text = sb.toString(); //"Level: 0";
   }
 
   void createChildren() {
-    this.bg = Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("topbar"));
-    this.bg.x = 0;
-    this.bg.y = 0;
-    this.addChild(this.bg);
+    bg = Bitmap(resourceManager.getTextureAtlas('items').getBitmapData('topbar'));
+    bg.x = 0;
+    bg.y = 0;
+    addChild(bg);
 
     // create score textfield
 
-    this.scoreTextField = TextField();
-    this.scoreTextField.defaultTextFormat =
-        TextFormat(font, 24, 0, bold: true, align: TextFormatAlign.LEFT);
-    this.scoreTextField.textColor = 0x000000;
-    this.scoreTextField.width = 400;
-    this.scoreTextField.height = 100;
-    this.scoreTextField.x = 20;
-    this.scoreTextField.y = txtY;
-    this.addChild(scoreTextField);
+    scoreTextField = TextField();
+    scoreTextField.defaultTextFormat = TextFormat(font, 24, 0, bold: true, align: TextFormatAlign.LEFT);
+    scoreTextField.textColor = 0x000000;
+    scoreTextField.width = 400;
+    scoreTextField.height = 100;
+    scoreTextField.x = 20;
+    scoreTextField.y = txtY;
+    addChild(scoreTextField);
 
     // create lives textfield
 
-    this.livesTextField = TextField();
-    this.livesTextField.defaultTextFormat =
-        TextFormat(font, 24, 0, bold: true, align: TextFormatAlign.RIGHT);
-    this.livesTextField.textColor = 0x000000;
-    this.livesTextField.width = 200;
-    this.livesTextField.height = 100;
-    this.livesTextField.x = (this.game.gameWidth / 2) - this.livesTextField.width + 60;
-    this.livesTextField.y = txtY;
-    this.addChild(livesTextField);
+    livesTextField = TextField();
+    livesTextField.defaultTextFormat = TextFormat(font, 24, 0, bold: true, align: TextFormatAlign.RIGHT);
+    livesTextField.textColor = 0x000000;
+    livesTextField.width = 200;
+    livesTextField.height = 100;
+    livesTextField.x = (game.gameWidth / 2) - livesTextField.width + 60;
+    livesTextField.y = txtY;
+    addChild(livesTextField);
 
     // create level textfield
 
-    this.levelTextField = TextField();
-    this.levelTextField.defaultTextFormat =
-        TextFormat(font, 24, 0, bold: true, align: TextFormatAlign.RIGHT);
-    this.levelTextField.textColor = 0x000000;
-    this.levelTextField.width = 200;
-    this.levelTextField.height = 100;
-    this.levelTextField.x = (this.game.gameWidth) - (this.levelTextField.width) - 20;
-    this.levelTextField.y = txtY;
-    this.addChild(levelTextField);
+    levelTextField = TextField();
+    levelTextField.defaultTextFormat = TextFormat(font, 24, 0, bold: true, align: TextFormatAlign.RIGHT);
+    levelTextField.textColor = 0x000000;
+    levelTextField.width = 200;
+    levelTextField.height = 100;
+    levelTextField.x = (game.gameWidth) - (levelTextField.width) - 20;
+    levelTextField.y = txtY;
+    addChild(levelTextField);
 
     // create progress textfield
 
-    this.progressTextField = TextField();
-    this.progressTextField.defaultTextFormat =
-        TextFormat(font, 24, 0, bold: true, align: TextFormatAlign.CENTER);
-    this.progressTextField.textColor = 0x000000;
-    this.progressTextField.width = 200;
-    this.progressTextField.height = 100;
-    this.progressTextField.x = 20;
-    this.progressTextField.y = this.game.gameHeight - this.progressTextField.height - 20;
-    this.addChild(progressTextField);
-    this.progressTextField.visible = false;
+    progressTextField = TextField();
+    progressTextField.defaultTextFormat = TextFormat(font, 24, 0, bold: true, align: TextFormatAlign.CENTER);
+    progressTextField.textColor = 0x000000;
+    progressTextField.width = 200;
+    progressTextField.height = 100;
+    progressTextField.x = 20;
+    progressTextField.y = game.gameHeight - progressTextField.height - 20;
+    addChild(progressTextField);
+    progressTextField.visible = false;
 
-    this.progressBar =
-        Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("progressbar"));
-    this.progressBar.x = 25;
-    this.progressBar.y = 82;
-    this.addChild(this.progressBar);
+    progressBar = Bitmap(resourceManager.getTextureAtlas('items').getBitmapData('progressbar'));
+    progressBar.x = 25;
+    progressBar.y = 82;
+    addChild(progressBar);
 
-    this.progressShip =
-        Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("progressship"));
-    this.progressShip.x = 25;
-    this.progressShip.y = this.progressBar.y +
-        (this.progressBar.height - (this.progressBar.height - this.progressShip.height)) -
-        (this.progressShip.height);
-    this.addChild(this.progressShip);
+    progressShip = Bitmap(resourceManager.getTextureAtlas('items').getBitmapData('progressship'));
+    progressShip.x = 25;
+    progressShip.y = progressBar.y + (progressBar.height - (progressBar.height - progressShip.height)) - (progressShip.height);
+    addChild(progressShip);
 
     // create ships ( lives )
 
-    this.ships = List<Bitmap>();
+    ships = <Bitmap>[];
 
     for (var i = 0; i < 3; i++) {
-      var spaceShip = Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("spaceship"));
+      var spaceShip = Bitmap(resourceManager.getTextureAtlas('items').getBitmapData('spaceship'));
       spaceShip.y = 10;
-      spaceShip.x = (this.game.gameWidth / 2) + 70 + (i * 35);
-      this.addChild(spaceShip);
-      this.ships.add(spaceShip);
+      spaceShip.x = (game.gameWidth / 2) + 70 + (i * 35);
+      addChild(spaceShip);
+      ships.add(spaceShip);
     }
   }
 
   @override
   void onProgressChanged(GameEvent event) {
-    this.progressShip.x = 25;
-    this.progressShip.y = this.progressBar.y +
-        (this.progressBar.height -
-            ((this.progressBar.height - this.progressShip.height) * event.game.progress)) -
-        (this.progressShip.height);
+    progressShip.x = 25;
+    progressShip.y = progressBar.y 
+      + (progressBar.height - ((progressBar.height - progressShip.height) * event.game.progress)) 
+      - (progressShip.height);
     //this.progressTextField.text = "Progress: " + Math.floor(event.game.progress * 100);
   }
 
@@ -124,13 +115,13 @@ class TopMenu extends GameComponent {
     var mGame = event.game as MissileGame;
 
     if (mGame.trainingsMode) {
-      this.livesTextField.text = mGame.getResource("DISPLAY_TRAINING"); //"Training: ";
+      livesTextField.text = mGame.getResource('DISPLAY_TRAINING'); //"Training: ";
     } else {
-      this.livesTextField.text = mGame.getResource("DISPLAY_LIVES"); //"Ships: ";
+      livesTextField.text = mGame.getResource('DISPLAY_LIVES'); //"Ships: ";
     }
 
-    for (var i = 0; i < this.ships.length; i++) {
-      this.ships[i].visible = (!mGame.trainingsMode) && (i < event.game.lives);
+    for (var i = 0; i < ships.length; i++) {
+      ships[i].visible = (!mGame.trainingsMode) && (i < event.game.lives);
     }
   }
 
@@ -139,8 +130,8 @@ class TopMenu extends GameComponent {
     var mGame = event.game as MissileGame;
 
     var sb = StringBuffer();
-    sb.write(mGame.getResource("GENscore"));
-    sb.write(": ${event.game.scoreRounded.toString()}");
+    sb.write(mGame.getResource('GENscore'));
+    sb.write(': ${event.game.scoreRounded.toString()}');
 
     scoreTextField.text = sb.toString();
   }
@@ -150,8 +141,8 @@ class TopMenu extends GameComponent {
     var mGame = event.game as MissileGame;
 
     var sb = StringBuffer();
-    sb.write(mGame.getResource("GENlevel"));
-    sb.write(": ${event.game.level.toString()}");
+    sb.write(mGame.getResource('GENlevel'));
+    sb.write(': ${event.game.level.toString()}');
 
     levelTextField.text = sb.toString();
   }

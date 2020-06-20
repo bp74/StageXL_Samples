@@ -7,7 +7,7 @@ class BenchmarkRenderLoop {
   // applications.
 
   final Stopwatch _stopwatch = Stopwatch()..start();
-  final List<Stage> _stages = List<Stage>();
+  final List<Stage> _stages = <Stage>[];
   final EnterFrameEvent _enterFrameEvent = EnterFrameEvent(0);
   final ExitFrameEvent _exitFrameEvent = ExitFrameEvent();
 

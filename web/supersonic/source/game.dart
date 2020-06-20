@@ -18,7 +18,7 @@ class Game extends Sprite {
   void setWidthHeight(int w, int h) {
     _gameWidth = w;
     _gameHeight = h;
-    this.dispatchEvent(GameEvent(GameEvent.TYPE_GAME_SIZE_CHANGED, this));
+    dispatchEvent(GameEvent(GameEvent.TYPE_GAME_SIZE_CHANGED, this));
   }
 
   //-----------------------------------------------------------------------------------------------
@@ -49,16 +49,16 @@ class Game extends Sprite {
   }
 
   void start() {
-    this.paused = false;
-    this.dispatchEvent(GameEvent(GameEvent.TYPE_GAME_START, this));
+    paused = false;
+    dispatchEvent(GameEvent(GameEvent.TYPE_GAME_START, this));
   }
 
   void gameOver() {
-    this.dispatchEvent(GameEvent(GameEvent.TYPE_GAME_OVER, this));
+    dispatchEvent(GameEvent(GameEvent.TYPE_GAME_OVER, this));
   }
 
   void abortGame() {
-    this.dispatchEvent(GameEvent(GameEvent.TYPE_GAME_ABORT, this));
+    dispatchEvent(GameEvent(GameEvent.TYPE_GAME_ABORT, this));
   }
 
   set progress(num value) {
@@ -66,38 +66,38 @@ class Game extends Sprite {
     if (value > 1.0) value = 1.0;
     _progress = value;
 
-    this.dispatchEvent(GameEvent(GameEvent.TYPE_PROGRESS_CHANGED, this));
+    dispatchEvent(GameEvent(GameEvent.TYPE_PROGRESS_CHANGED, this));
   }
 
   set lives(int value) {
     if (value < 0) value = 0;
     _lives = value;
 
-    this.dispatchEvent(GameEvent(GameEvent.TYPE_LIVES_CHANGED, this));
-    if (_lives == 0) this.gameOver();
+    dispatchEvent(GameEvent(GameEvent.TYPE_LIVES_CHANGED, this));
+    if (_lives == 0) gameOver();
   }
 
   set score(num value) {
     if (value < 0) value = 0;
     _score = value;
 
-    this.dispatchEvent(GameEvent(GameEvent.TYPE_SCORE_CHANGED, this));
+    dispatchEvent(GameEvent(GameEvent.TYPE_SCORE_CHANGED, this));
   }
 
   set level(int value) {
     if (value < 0) value = 0;
     _level = value;
 
-    this.dispatchEvent(GameEvent(GameEvent.TYPE_LEVEL_CHANGED, this));
+    dispatchEvent(GameEvent(GameEvent.TYPE_LEVEL_CHANGED, this));
   }
 
   int nextLevel() {
-    this.level += 1;
-    return this.level;
+    level += 1;
+    return level;
   }
 
   set paused(bool value) {
     _paused = value;
-    this.dispatchEvent(GameEvent(GameEvent.TYPE_PAUSE_CHANGED, this));
+    dispatchEvent(GameEvent(GameEvent.TYPE_PAUSE_CHANGED, this));
   }
 }

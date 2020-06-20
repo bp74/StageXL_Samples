@@ -31,18 +31,18 @@ Future main() async {
   // load the resources with a default size of @1.00x
 
   var resourceManager = ResourceManager();
-  resourceManager.addBitmapData("background", "images/background@1.00x.jpg");
-  resourceManager.addTextureAtlas("atlas", "images/atlas@1.00x.json");
+  resourceManager.addBitmapData('background', 'images/background@1.00x.jpg');
+  resourceManager.addTextureAtlas('atlas', 'images/atlas@1.00x.json');
   await resourceManager.load();
 
   // show the background and the walking boy
 
-  var bitmapData = resourceManager.getBitmapData("background");
+  var bitmapData = resourceManager.getBitmapData('background');
   var bitmap = Bitmap(bitmapData);
   stage.addChild(bitmap);
 
-  var textureAtlas = resourceManager.getTextureAtlas("atlas");
-  var bitmapDatas = textureAtlas.getBitmapDatas("frame");
+  var textureAtlas = resourceManager.getTextureAtlas('atlas');
+  var bitmapDatas = textureAtlas.getBitmapDatas('frame');
   var flipbook = FlipBook(bitmapDatas, 10);
   flipbook.pivotX = 75;
   flipbook.pivotY = 125;

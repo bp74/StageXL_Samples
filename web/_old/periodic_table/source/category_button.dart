@@ -4,23 +4,23 @@ class CategoryButton extends Sprite {
   Map category;
 
   CategoryButton(this.category) {
-    var name = this.category["name"];
-    var color = int.parse(category["color"], radix: 16) | 0xFF000000;
+    var name = category['name'];
+    var color = int.parse(category['color'], radix: 16) | 0xFF000000;
 
-    this.pivotX = 80;
-    this.pivotY = 50;
-    this.scaleX = 0.5;
-    this.scaleY = 0.5;
-    this.useHandCursor = true;
-    this.mouseChildren = false;
+    pivotX = 80;
+    pivotY = 50;
+    scaleX = 0.5;
+    scaleY = 0.5;
+    useHandCursor = true;
+    mouseChildren = false;
 
-    this.graphics.beginPath();
-    this.graphics.rectRound(6, 6, 148, 88, 8, 8);
-    this.graphics.closePath();
-    this.graphics.fillColor(color);
-    this.graphics.strokeColor(Color.Black, 1);
+    graphics.beginPath();
+    graphics.rectRound(6, 6, 148, 88, 8, 8);
+    graphics.closePath();
+    graphics.fillColor(color);
+    graphics.strokeColor(Color.Black, 1);
 
-    var font = "Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif";
+    var font = 'Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif';
     var textFormat = TextFormat(font, 20, Color.Black, bold: true, align: TextFormatAlign.CENTER);
 
     var textField = TextField()
@@ -46,8 +46,8 @@ class CategoryButton extends Sprite {
   //-----------------------------------------------------------------------------------------------
 
   void animateTo(num scale, num alpha) {
-    this.stage.juggler.removeTweens(this);
-    this.stage.juggler.addTween(this, 0.25, Transition.easeOutQuadratic)
+    stage.juggler.removeTweens(this);
+    stage.juggler.addTween(this, 0.25, Transition.easeOutQuadratic)
       ..animate.scaleX.to(scale)
       ..animate.scaleY.to(scale)
       ..animate.alpha.to(alpha);

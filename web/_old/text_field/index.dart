@@ -44,28 +44,28 @@ void main() {
     'VT323'
   ];
 
-  js.JsObject webFont = js.context["WebFont"];
-  js.JsObject webFontConfig = js.JsObject.jsify({
-    "google": {"families": googleFontFamilies},
-    "loading": () => print("loading fonts"),
-    "active": () => completer.complete(null),
-    "inactive": () => completer.completeError("Error loading fonts"),
+  js.JsObject webFont = js.context['WebFont'];
+  var webFontConfig = js.JsObject.jsify({
+    'google': {'families': googleFontFamilies},
+    'loading': () => print('loading fonts'),
+    'active': () => completer.complete(null),
+    'inactive': () => completer.completeError('Error loading fonts'),
     //"fontloading": (familyName, fvd) => print("fontloading: $familyName, $fvd"),
     //"fontactive": (familyName, fvd) => print("fontactive: $familyName, $fvd"),
     //"fontinactive": (familyName, fvd) => print("fontinactive: $familyName, $fvd")
   });
 
-  webFont.callMethod("load", [webFontConfig]);
+  webFont.callMethod('load', [webFontConfig]);
   completer.future.then((_) => start());
 }
 
 void start() {
   var textField = TextField();
-  textField.defaultTextFormat = TextFormat("Arial", 36, Color.Black, align: TextFormatAlign.CENTER);
+  textField.defaultTextFormat = TextFormat('Arial', 36, Color.Black, align: TextFormatAlign.CENTER);
   textField.width = 400;
   textField.x = stage.contentRectangle.center.x - 200;
   textField.y = stage.contentRectangle.center.y - 20;
-  textField.text = "tap to change text";
+  textField.text = 'tap to change text';
   textField.addTo(stage);
 
   var textGameOn = TextGameOn();

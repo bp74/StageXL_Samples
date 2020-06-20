@@ -29,19 +29,19 @@ class Piano extends DisplayObjectContainer {
     'C5'
   ];
 
-  Map<String, PianoKey> _pianoKeys = Map<String, PianoKey>();
+  final Map<String, PianoKey> _pianoKeys = <String, PianoKey>{};
   Bitmap _hintFinger;
 
   Piano() {
-    for (int n = 0, x = 0; n < noteNames.length; n++) {
+    for (var n = 0, x = 0; n < noteNames.length; n++) {
       // all piano key to this DisplayObjectContainer
 
       var noteName = noteNames[n];
-      var soundName = "Note${n + 1}";
+      var soundName = 'Note${n + 1}';
       var pianoKey = PianoKey(noteName, soundName);
 
       pianoKey.on(PianoEvent.NOTE_PLAYED).listen((event) {
-        this.dispatchEvent(event);
+        dispatchEvent(event);
       });
 
       _pianoKeys[noteName] = pianoKey;
@@ -74,8 +74,8 @@ class Piano extends DisplayObjectContainer {
       _hintFinger.y = 0;
       _hintFinger.alpha = 1;
 
-      var tweenX = Tween(this._hintFinger, 0.4, Transition.easeInOutCubic);
-      var tweenY = Tween(this._hintFinger, 0.4, Transition.sine);
+      var tweenX = Tween(_hintFinger, 0.4, Transition.easeInOutCubic);
+      var tweenY = Tween(_hintFinger, 0.4, Transition.sine);
       tweenX.animate.x.to(pianoKey.x + pianoKey.width / 2);
       tweenY.animate.y.to(-10);
       stage.juggler.add(tweenX);

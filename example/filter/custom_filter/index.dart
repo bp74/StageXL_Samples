@@ -21,8 +21,8 @@ Future main() async {
   renderLoop.addStage(stage);
 
   // load main and mask image
-  var mask = await BitmapData.load("images/mask.png");
-  var ship = await BitmapData.load("images/ship.png");
+  var mask = await BitmapData.load('images/mask.png');
+  var ship = await BitmapData.load('images/ship.png');
 
   var shipBitmap = Bitmap(ship);
   shipBitmap.addTo(stage);

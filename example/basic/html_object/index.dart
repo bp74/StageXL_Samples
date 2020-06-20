@@ -22,7 +22,7 @@ Future main() async {
   var background = Sprite();
   var random = Random();
 
-  for (int i = 0; i < 200; i++) {
+  for (var i = 0; i < 200; i++) {
     var r = random.nextInt(255);
     var g = random.nextInt(255);
     var b = random.nextInt(255);
@@ -41,7 +41,7 @@ Future main() async {
 
   // create HtmlObject display object
 
-  var htmlElement = querySelector("#htmlObject");
+  var htmlElement = querySelector('#htmlObject');
   var htmlObject = HtmlObject(htmlElement);
   htmlObject.x = 800 / 2;
   htmlObject.y = 600 / 2;

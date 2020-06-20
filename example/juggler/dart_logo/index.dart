@@ -18,7 +18,7 @@ Future main() async {
 
   // load the Dart logo and do some setup work
 
-  var logoBitmapData = await BitmapData.load("images/logo.png");
+  var logoBitmapData = await BitmapData.load('images/logo.png');
   var juggler = stage.juggler;
   var random = Random();
   var delay = 0.1;

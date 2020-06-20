@@ -22,12 +22,12 @@ Future main() async {
   // load resources
 
   var resourceManager = ResourceManager();
-  resourceManager.addBitmapData("earth", "images/earth.png");
+  resourceManager.addBitmapData('earth', 'images/earth.png');
   await resourceManager.load();
 
   // create mesh with "earth" image
 
-  var bitmapData = resourceManager.getBitmapData("earth");
+  var bitmapData = resourceManager.getBitmapData('earth');
   var mesh = Mesh.fromGrid(bitmapData, 8, 8);
   mesh.pivotX = bitmapData.width / 2;
   mesh.pivotY = bitmapData.height / 2;
@@ -43,8 +43,8 @@ Future main() async {
     totalTime += enterFrame.passedTime;
     var dx = bitmapData.width / 8;
     var dy = bitmapData.height / 8;
-    for (int x = 0; x <= 8; x++) {
-      for (int y = 0; y <= 8; y++) {
+    for (var x = 0; x <= 8; x++) {
+      for (var y = 0; y <= 8; y++) {
         var vertex = x + y * 9;
         var px = x * dx + math.sin(x + totalTime * 6) * 15;
         var py = y * dy + math.sin(y + totalTime * 6) * 15;

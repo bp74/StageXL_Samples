@@ -5,7 +5,7 @@ class SpecialWobble extends Sprite implements Animatable {
   num _currentTime;
 
   SpecialWobble(ResourceManager resourceManager, Juggler juggler, String special) {
-    this.mouseEnabled = false;
+    mouseEnabled = false;
 
     _currentTime = 0.0;
     _bitmap = Grafix.getSpecial(resourceManager, special);
@@ -21,7 +21,7 @@ class SpecialWobble extends Sprite implements Animatable {
   @override
   bool advanceTime(num time) {
     _currentTime += time;
-    this.rotation = math.sin(_currentTime * 7) * 10 * math.pi / 180;
+    rotation = math.sin(_currentTime * 7) * 10 * math.pi / 180;
     return true;
   }
 }

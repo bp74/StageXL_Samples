@@ -8,17 +8,17 @@ class ExitBox extends Sprite {
   Function _doneFunction;
 
   ExitBox(ResourceManager resourceManager, Juggler juggler) {
-    Bitmap background = Bitmap(resourceManager.getBitmapData("ExitBox"));
+    var background = Bitmap(resourceManager.getBitmapData('ExitBox'));
     addChild(background);
 
-    TextField textField = TextField();
+    var textField = TextField();
     textField.defaultTextFormat =
-        TextFormat("Arial", 24, 0xFFFFFF, bold: true, align: TextFormatAlign.CENTER);
+        TextFormat('Arial', 24, 0xFFFFFF, bold: true, align: TextFormatAlign.CENTER);
     textField.width = 240;
     textField.height = 100;
     textField.wordWrap = true;
     //textField.selectable = false;
-    textField.text = resourceManager.getText("GENexitquery");
+    textField.text = resourceManager.getText('GENexitquery');
     textField.x = 47;
     textField.y = 150 - textField.textHeight / 2;
     //textField.filters = [GlowFilter(0x000000, 0.7, 3, 3)];    // ToDo
@@ -28,17 +28,17 @@ class ExitBox extends Sprite {
 
     //---------------------
 
-    _timeGauge = TimeGauge(7, resourceManager.getBitmapData("ExitGauge"), Gauge.DIRECTION_DOWN);
+    _timeGauge = TimeGauge(7, resourceManager.getBitmapData('ExitGauge'), Gauge.DIRECTION_DOWN);
     _timeGauge.x = 268;
     _timeGauge.y = 25;
-    _timeGauge.addEventListener("TimeOver", _onTimeOver);
+    _timeGauge.addEventListener('TimeOver', _onTimeOver);
     addChild(_timeGauge);
 
-    _timeGauge.addAlarm("TimeOver", 0);
+    _timeGauge.addAlarm('TimeOver', 0);
     _timeGauge.start();
 
-    Bitmap exitYesButtonNormal = Bitmap(resourceManager.getBitmapData("ExitYesButtonNormal"));
-    Bitmap exitYesButtonPressed = Bitmap(resourceManager.getBitmapData("ExitYesButtonPressed"));
+    var exitYesButtonNormal = Bitmap(resourceManager.getBitmapData('ExitYesButtonNormal'));
+    var exitYesButtonPressed = Bitmap(resourceManager.getBitmapData('ExitYesButtonPressed'));
 
     _yesButton = SimpleButton(
         exitYesButtonNormal, exitYesButtonNormal, exitYesButtonPressed, exitYesButtonPressed);
@@ -47,8 +47,8 @@ class ExitBox extends Sprite {
     _yesButton.addEventListener(MouseEvent.CLICK, _onYesButtonClicked);
     addChild(_yesButton);
 
-    Bitmap exitNoButtonNormal = Bitmap(resourceManager.getBitmapData("ExitNoButtonNormal"));
-    Bitmap exitNoButtonPressed = Bitmap(resourceManager.getBitmapData("ExitNoButtonPressed"));
+    var exitNoButtonNormal = Bitmap(resourceManager.getBitmapData('ExitNoButtonNormal'));
+    var exitNoButtonPressed = Bitmap(resourceManager.getBitmapData('ExitNoButtonPressed'));
 
     _noButton = SimpleButton(
         exitNoButtonNormal, exitNoButtonNormal, exitNoButtonPressed, exitNoButtonPressed);
@@ -60,8 +60,8 @@ class ExitBox extends Sprite {
 
     //---------------------
 
-    this.addEventListener(Event.ADDED_TO_STAGE, (e) => juggler.add(_timeGauge));
-    this.addEventListener(Event.REMOVED_FROM_STAGE, (e) => juggler.remove(_timeGauge));
+    addEventListener(Event.ADDED_TO_STAGE, (e) => juggler.add(_timeGauge));
+    addEventListener(Event.REMOVED_FROM_STAGE, (e) => juggler.remove(_timeGauge));
   }
 
   //-----------------------------------------------------------------------------------

@@ -36,7 +36,7 @@ Future main() async {
   // load the resources
 
   var resourceManager = ResourceManager();
-  resourceManager.addTextureAtlas("atlas", "images/atlas.json");
+  resourceManager.addTextureAtlas('atlas', 'images/atlas.json');
   await resourceManager.load();
 
   // start the game

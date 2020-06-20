@@ -14,10 +14,10 @@ class Explosion extends Sprite implements Animatable {
   num _currentTime;
 
   Explosion(ResourceManager resourceManager, Juggler juggler, int color, int direction) {
-    _particles = List<ExplosionParticle>();
+    _particles = <ExplosionParticle>[];
     _currentTime = 0.0;
 
-    this.mouseEnabled = false;
+    mouseEnabled = false;
 
     var chain = Grafix.getChain(resourceManager, color, direction);
     var random = math.Random();
@@ -25,8 +25,8 @@ class Explosion extends Sprite implements Animatable {
     num angle;
     num velocity;
 
-    for (int y = 0; y <= 1; y++) {
-      for (int x = 0; x <= 1; x++) {
+    for (var y = 0; y <= 1; y++) {
+      for (var x = 0; x <= 1; x++) {
         if (x == 0 && y == 0) {
           angle = math.pi * 1.15;
           rotation = -math.pi * 2;
@@ -47,16 +47,16 @@ class Explosion extends Sprite implements Animatable {
         angle = angle + 0.2 * math.pi * random.nextDouble();
         velocity = 80.0 + 40.0 * random.nextDouble();
 
-        Rectangle rectangle = Rectangle(x * 25, y * 25, 25, 25);
-        BitmapData bitmapData = BitmapData.fromBitmapData(chain.bitmapData, rectangle);
-        Bitmap bitmap = Bitmap(bitmapData);
+        var rectangle = Rectangle(x * 25, y * 25, 25, 25);
+        var bitmapData = BitmapData.fromBitmapData(chain.bitmapData, rectangle);
+        var bitmap = Bitmap(bitmapData);
         bitmap.pivotX = 12.5;
         bitmap.pivotY = 12.5;
         bitmap.x = x * 25;
         bitmap.y = y * 25;
         addChild(bitmap);
 
-        ExplosionParticle particle = ExplosionParticle();
+        var particle = ExplosionParticle();
         particle.bitmap = bitmap;
         particle.startX = x * 25 + 12.5;
         particle.startY = y * 25 + 12.5;
@@ -92,11 +92,11 @@ class Explosion extends Sprite implements Animatable {
     }
 
     if (_currentTime >= 0.6) {
-      this.alpha = (0.8 - _currentTime) / 0.2;
+      alpha = (0.8 - _currentTime) / 0.2;
     }
 
     if (_currentTime >= 0.8) {
-      this.removeFromParent();
+      removeFromParent();
     }
 
     return (_currentTime < 0.8);

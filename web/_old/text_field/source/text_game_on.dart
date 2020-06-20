@@ -10,11 +10,11 @@ class TextGameOn extends DisplayObjectContainer {
       ..addColorStop(0.0, 0xFFD85585)
       ..addColorStop(1.0, 0xFFF2B499);
 
-    addChild(_createTextField("GAME")
+    addChild(_createTextField('GAME')
       ..y = 0
       ..defaultTextFormat.fillGradient = gradient1);
 
-    addChild(_createTextField("ON!")
+    addChild(_createTextField('ON!')
       ..y = 34
       ..defaultTextFormat.fillGradient = gradient2);
   }

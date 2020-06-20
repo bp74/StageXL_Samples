@@ -27,12 +27,12 @@ class PipeObject extends Sprite {
 
     this.bitmap = bitmap;
     if (this.bitmap == null) return;
-    this.x = 100000;
+    x = 100000;
   }
 
   set bitmap(Bitmap b) {
-    if (_bitmap != null) this.removeChild(_bitmap);
-    if (_shape != null) this.removeChild(_shape);
+    if (_bitmap != null) removeChild(_bitmap);
+    if (_shape != null) removeChild(_shape);
 
     _bitmap = null;
     _shape = null;
@@ -72,11 +72,10 @@ class PipeObject extends Sprite {
   bool hitTest(Point localPoint) {
     if (_bitmap == null) return false;
 
-    var localPointInBitmap = this.localToGlobal(localPoint);
+    var localPointInBitmap = localToGlobal(localPoint);
     localPointInBitmap = _bitmap.globalToLocal(localPointInBitmap);
 
-    var color = this
-        .bitmap
+    var color = bitmap
         .bitmapData
         .getPixel32(localPointInBitmap.x.toInt(), localPointInBitmap.y.toInt());
     var alpha = (color >> 24) & 0xFF;
@@ -84,7 +83,7 @@ class PipeObject extends Sprite {
 
     if (alpha > 0) {
       hit = true;
-      var bloodBitmap = Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("blood"));
+      var bloodBitmap = Bitmap(resourceManager.getTextureAtlas('items').getBitmapData('blood'));
       bloodBitmap.pivotX = 50;
       bloodBitmap.pivotY = 50;
       bloodBitmap.x = localPointInBitmap.x - MissileGameEngine.ASSET_SIDELENGTH / 2;

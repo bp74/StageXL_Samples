@@ -21,25 +21,25 @@ Future main() async {
 
   var resourceManager = ResourceManager();
   var libgdx = TextureAtlasFormat.LIBGDX;
-  resourceManager.addTextFile("spineboy", "spine/spineboy.json");
-  resourceManager.addTextureAtlas("spineboy", "spine/spineboy.atlas", libgdx);
+  resourceManager.addTextFile('spineboy', 'spine/spineboy.json');
+  resourceManager.addTextureAtlas('spineboy', 'spine/spineboy.atlas', libgdx);
   await resourceManager.load();
 
   // add TextField with user instructions
 
   var textField = TextField();
-  textField.defaultTextFormat = TextFormat("Arial", 24, Color.Black);
+  textField.defaultTextFormat = TextFormat('Arial', 24, Color.Black);
   textField.defaultTextFormat.align = TextFormatAlign.CENTER;
   textField.width = 480;
   textField.x = 0;
   textField.y = 550;
-  textField.text = "tap to change animation";
+  textField.text = 'tap to change animation';
   textField.addTo(stage);
 
   // load Spine skeleton
 
-  var spineJson = resourceManager.getTextFile("spineboy");
-  var textureAtlas = resourceManager.getTextureAtlas("spineboy");
+  var spineJson = resourceManager.getTextFile('spineboy');
+  var textureAtlas = resourceManager.getTextureAtlas('spineboy');
   var attachmentLoader = TextureAtlasAttachmentLoader(textureAtlas);
   var skeletonLoader = SkeletonLoader(attachmentLoader);
   var skeletonData = skeletonLoader.readSkeletonData(spineJson);
@@ -47,10 +47,10 @@ Future main() async {
   // configure Spine animation mix
 
   var animationStateData = AnimationStateData(skeletonData);
-  animationStateData.setMixByName("idle", "walk", 0.2);
-  animationStateData.setMixByName("walk", "run", 0.2);
-  animationStateData.setMixByName("run", "walk", 0.2);
-  animationStateData.setMixByName("walk", "idle", 0.2);
+  animationStateData.setMixByName('idle', 'walk', 0.2);
+  animationStateData.setMixByName('walk', 'run', 0.2);
+  animationStateData.setMixByName('run', 'walk', 0.2);
+  animationStateData.setMixByName('walk', 'idle', 0.2);
 
   // create the display object showing the skeleton animation
 
@@ -58,13 +58,13 @@ Future main() async {
   skeletonAnimation.x = 240;
   skeletonAnimation.y = 520;
   skeletonAnimation.scaleX = skeletonAnimation.scaleY = 0.7;
-  skeletonAnimation.state.setAnimationByName(0, "idle", true);
+  skeletonAnimation.state.setAnimationByName(0, 'idle', true);
   stage.addChild(skeletonAnimation);
   stage.juggler.add(skeletonAnimation);
 
   // change the animation on every mouse click
 
-  var animations = ["idle", "walk", "run", "walk"];
+  var animations = ['idle', 'walk', 'run', 'walk'];
   var animationIndex = 0;
 
   stage.onMouseClick.listen((_) {

@@ -3,12 +3,12 @@ part of custom_filter;
 /// The WebGL render program for the custom filter
 
 class ColorMatrixAlphaMaskProgram extends RenderProgramSimple {
-  Matrix _matrix = Matrix.fromIdentity();
-  Float32List _maskMatrix = Float32List(9);
-  Float32List _maskBounds = Float32List(4);
+  final Matrix _matrix = Matrix.fromIdentity();
+  final Float32List _maskMatrix = Float32List(9);
+  final Float32List _maskBounds = Float32List(4);
 
   @override
-  String get fragmentShaderSource => """
+  String get fragmentShaderSource => '''
 
     precision mediump float;
     uniform sampler2D uTextSampler;
@@ -36,7 +36,7 @@ class ColorMatrixAlphaMaskProgram extends RenderProgramSimple {
 
       gl_FragColor = ((1.0 - alpha) * color + alpha * textColor) * vAlpha;
     }
-    """;
+    ''';
 
   void configure(ColorMatrixAlphaMaskFilter filter, RenderTextureQuad mainRenderTextureQuad,
       RenderTextureQuad maskRenderTextureQuad) {
@@ -59,11 +59,11 @@ class ColorMatrixAlphaMaskProgram extends RenderProgramSimple {
     _maskMatrix[7] = 0.0;
     _maskMatrix[8] = 1.0;
 
-    renderingContext.uniform1i(uniforms["uTextSampler"], 0);
-    renderingContext.uniform1i(uniforms["uMaskSampler"], 1);
-    renderingContext.uniformMatrix4fv(uniforms["uColorMatrix"], false, filter.colorMatrixList);
-    renderingContext.uniform4fv(uniforms["uColorOffset"], filter.colorOffsetList);
-    renderingContext.uniform4fv(uniforms["uMaskBounds"], _maskBounds);
-    renderingContext.uniformMatrix3fv(uniforms["uMaskMatrix"], false, _maskMatrix);
+    renderingContext.uniform1i(uniforms['uTextSampler'], 0);
+    renderingContext.uniform1i(uniforms['uMaskSampler'], 1);
+    renderingContext.uniformMatrix4fv(uniforms['uColorMatrix'], false, filter.colorMatrixList);
+    renderingContext.uniform4fv(uniforms['uColorOffset'], filter.colorOffsetList);
+    renderingContext.uniform4fv(uniforms['uMaskBounds'], _maskBounds);
+    renderingContext.uniformMatrix3fv(uniforms['uMaskMatrix'], false, _maskMatrix);
   }
 }

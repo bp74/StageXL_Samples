@@ -33,7 +33,7 @@ class Head extends Sprite {
     _nodTranslation = Translation(0, count, 0.5 * count, Transition.linear);
 
     _nodTranslation.onUpdate = (value) {
-      int frame = ((value * _headBitmapDatas.length) % _headBitmapDatas.length).toInt();
+      var frame = ((value * _headBitmapDatas.length) % _headBitmapDatas.length).toInt();
       _headBitmap.bitmapData = _headBitmapDatas[frame];
       _headBitmap.y = math.sin(value * 2 * math.pi) * 3 - _headBitmap.height / 2;
     };

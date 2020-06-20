@@ -40,7 +40,7 @@ class BenchmarkScene extends Sprite implements Animatable {
     // add a few bitmaps
 
     if (deltaCount > 0) {
-      for (int i = 0; i < speedCount; i++) {
+      for (var i = 0; i < speedCount; i++) {
         var bitmap = Bitmap(bitmapData);
         var bitmapScale = 1.0 / scale;
         var angle = _random.nextDouble() * pi * 2.0;
@@ -59,7 +59,7 @@ class BenchmarkScene extends Sprite implements Animatable {
 
     if (deltaCount < 0) {
       speedCount = min(speedCount, children.length);
-      for (int i = 0; i < speedCount; i++) {
+      for (var i = 0; i < speedCount; i++) {
         children.removeLast();
       }
     }
@@ -82,13 +82,13 @@ class BenchmarkScene extends Sprite implements Animatable {
 
   void _benchmarkComplete() {
     var numChildren = _container.numChildren;
-    var targetFps = this.targetFrameRate;
+    var targetFps = targetFrameRate;
     var resultText = TextField();
-    var textFormat = TextFormat("Arial, Helvetica", 30, Color.Black);
+    var textFormat = TextFormat('Arial, Helvetica', 30, Color.Black);
 
     resultText.width = 240;
     resultText.height = 200;
-    resultText.text = "Result:\n$numChildren objects\nwith $targetFps fps";
+    resultText.text = 'Result:\n$numChildren objects\nwith $targetFps fps';
     resultText.defaultTextFormat = textFormat;
     resultText.x = 160 - resultText.width / 2;
     resultText.y = 240 - resultText.height / 2;

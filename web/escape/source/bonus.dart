@@ -2,9 +2,9 @@ part of escape;
 
 class Bonus extends Sprite {
   Bonus(ResourceManager resourceManager, Juggler juggler, int points) {
-    TextField textField = TextField();
+    var textField = TextField();
     textField.defaultTextFormat =
-        TextFormat("Arial", 30, 0xFFFFFF, bold: true, align: TextFormatAlign.CENTER);
+        TextFormat('Arial', 30, 0xFFFFFF, bold: true, align: TextFormatAlign.CENTER);
     textField.width = 110;
     textField.height = 36;
     textField.wordWrap = false;
@@ -23,7 +23,7 @@ class Bonus extends Sprite {
 
     //-------------------------------------------------
 
-    Translation translation = Translation(0.0, 1.0, 1.5, Transition.easeOutCubic);
+    var translation = Translation(0.0, 1.0, 1.5, Transition.easeOutCubic);
 
     translation.onUpdate = (value) {
       textFieldContainer.alpha = 1 - value;
@@ -33,7 +33,7 @@ class Bonus extends Sprite {
     };
 
     translation.onComplete = () {
-      this.removeFromParent();
+      removeFromParent();
     };
 
     juggler.add(translation);

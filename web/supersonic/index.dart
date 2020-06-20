@@ -34,7 +34,7 @@ Bitmap loadingBitmap;
 Tween loadingBitmapTween;
 TextField loadingTextField;
 
-const String defaultFont = "Russo One";
+const String defaultFont = 'Russo One';
 
 void main() {
   StageXL.stageOptions.renderEngine = RenderEngine.WebGL;
@@ -50,7 +50,7 @@ void main() {
 
   //-------------------------------------------
 
-  Future<BitmapData> loading = BitmapData.load("images/Loading.png");
+  var loading = BitmapData.load('images/Loading.png');
 
   loading.then((bitmapData) {
     loadingBitmap = Bitmap(bitmapData);
@@ -65,10 +65,10 @@ void main() {
     renderJuggler.add(loadingBitmapTween);
 
     loadingTextField = TextField();
-    loadingTextField.defaultTextFormat = TextFormat("Arial", 20, 0xA0A0A0, bold: true);
+    loadingTextField.defaultTextFormat = TextFormat('Arial', 20, 0xA0A0A0, bold: true);
     loadingTextField.width = 240;
     loadingTextField.height = 40;
-    loadingTextField.text = "... loading ...";
+    loadingTextField.text = '... loading ...';
     loadingTextField.x = 400 - loadingTextField.textWidth / 2;
     loadingTextField.y = 320;
     loadingTextField.mouseEnabled = false;
@@ -86,50 +86,50 @@ void loadGame() {
     var pending = resourceManager.pendingResources;
     var failed = resourceManager.failedResources;
     print(
-        "Resource Progress -> finished: ${finished.length}, pending:${pending.length}, failed:${failed.length}");
+        'Resource Progress -> finished: ${finished.length}, pending:${pending.length}, failed:${failed.length}');
   });
 
-  resourceManager.addBitmapData("barrier01", "images/barrier01.png");
-  resourceManager.addBitmapData("barrier02", "images/barrier02.png");
-  resourceManager.addBitmapData("barrier03", "images/barrier03.png");
-  resourceManager.addBitmapData("barrier04", "images/barrier04.png");
-  resourceManager.addBitmapData("barrier05", "images/barrier05.png");
-  resourceManager.addBitmapData("barrier06", "images/barrier06.png");
-  resourceManager.addBitmapData("barrier07", "images/barrier07.png");
-  resourceManager.addBitmapData("training01", "images/training01.png");
-  resourceManager.addBitmapData("training02", "images/training02.png");
-  resourceManager.addBitmapData("finish", "images/finish.png");
-  resourceManager.addBitmapData("broken", "images/broken.png");
+  resourceManager.addBitmapData('barrier01', 'images/barrier01.png');
+  resourceManager.addBitmapData('barrier02', 'images/barrier02.png');
+  resourceManager.addBitmapData('barrier03', 'images/barrier03.png');
+  resourceManager.addBitmapData('barrier04', 'images/barrier04.png');
+  resourceManager.addBitmapData('barrier05', 'images/barrier05.png');
+  resourceManager.addBitmapData('barrier06', 'images/barrier06.png');
+  resourceManager.addBitmapData('barrier07', 'images/barrier07.png');
+  resourceManager.addBitmapData('training01', 'images/training01.png');
+  resourceManager.addBitmapData('training02', 'images/training02.png');
+  resourceManager.addBitmapData('finish', 'images/finish.png');
+  resourceManager.addBitmapData('broken', 'images/broken.png');
 
   resourceManager.addTextureAtlas(
-      "items", "images/ItemTextureAtlas.json", TextureAtlasFormat.JSONARRAY);
+      'items', 'images/ItemTextureAtlas.json', TextureAtlasFormat.JSONARRAY);
 
-  resourceManager.addSound("crash", "sounds/crash.mp3");
-  resourceManager.addSound("swish", "sounds/swish.mp3");
-  resourceManager.addSound("speedalizer", "sounds/speedalizer.mp3");
+  resourceManager.addSound('crash', 'sounds/crash.mp3');
+  resourceManager.addSound('swish', 'sounds/swish.mp3');
+  resourceManager.addSound('speedalizer', 'sounds/speedalizer.mp3');
 
-  resourceManager.addText("DISPLAY_LEVEL", "Level: {0}");
-  resourceManager.addText("DISPLAY_LIVES", "Ships:");
-  resourceManager.addText("DISPLAY_SCORE", "Score: {0}");
-  resourceManager.addText("DISPLAY_TRAINING", "Training");
-  resourceManager.addText("MESSAGE_FIRST_LEVEL",
-      "Remain with your finger on the screen in order to fly through the tunnel!");
+  resourceManager.addText('DISPLAY_LEVEL', 'Level: {0}');
+  resourceManager.addText('DISPLAY_LIVES', 'Ships:');
+  resourceManager.addText('DISPLAY_SCORE', 'Score: {0}');
+  resourceManager.addText('DISPLAY_TRAINING', 'Training');
+  resourceManager.addText('MESSAGE_FIRST_LEVEL',
+      'Remain with your finger on the screen in order to fly through the tunnel!');
   resourceManager.addText(
-      "MESSAGE_FIRST_LEVEL_WEB", "Move the mouse pointer to navigate through the obstacles!");
+      'MESSAGE_FIRST_LEVEL_WEB', 'Move the mouse pointer to navigate through the obstacles!');
   resourceManager.addText(
-      "MESSAGE_FREE_LEVEL_BARRIER_1", "Navigate to the center to fly through the hole!");
+      'MESSAGE_FREE_LEVEL_BARRIER_1', 'Navigate to the center to fly through the hole!');
   resourceManager.addText(
-      "MESSAGE_FREE_LEVEL_BARRIER_2", "Navigate to the upper left side to fly through the hole!");
+      'MESSAGE_FREE_LEVEL_BARRIER_2', 'Navigate to the upper left side to fly through the hole!');
   resourceManager.addText(
-      "MESSAGE_FREE_LEVEL_BARRIER_3", "Navigate to the bottom right side to fly through the hole!");
-  resourceManager.addText("MESSAGE_GAME_OVER", "Game\nOver!");
-  resourceManager.addText("MESSAGE_RESTART_LEVEL", "Ooops!\nGet Ready\nFor Restart!");
-  resourceManager.addText("MESSAGE_START_LEVEL", "Get Ready\nFor Level {0}!");
-  resourceManager.addText("GENscore", "Score");
-  resourceManager.addText("GENlevel", "Level");
-  resourceManager.addText("GENexitquery", "Do you really want to quit the game?");
-  resourceManager.addText("GENyes", "Yes");
-  resourceManager.addText("GENno", "No");
+      'MESSAGE_FREE_LEVEL_BARRIER_3', 'Navigate to the bottom right side to fly through the hole!');
+  resourceManager.addText('MESSAGE_GAME_OVER', 'Game\nOver!');
+  resourceManager.addText('MESSAGE_RESTART_LEVEL', 'Ooops!\nGet Ready\nFor Restart!');
+  resourceManager.addText('MESSAGE_START_LEVEL', 'Get Ready\nFor Level {0}!');
+  resourceManager.addText('GENscore', 'Score');
+  resourceManager.addText('GENlevel', 'Level');
+  resourceManager.addText('GENexitquery', 'Do you really want to quit the game?');
+  resourceManager.addText('GENyes', 'Yes');
+  resourceManager.addText('GENno', 'No');
 
   resourceManager.load().then((res) {
     stage.removeChild(loadingBitmap);
@@ -143,7 +143,7 @@ void loadGame() {
     game.start();
   }).catchError((error) {
     for (var resource in resourceManager.failedResources) {
-      print("Loading resouce failed: ${resource.kind}.${resource.name} - ${resource.error}");
+      print('Loading resouce failed: ${resource.kind}.${resource.name} - ${resource.error}');
     }
   });
 }

@@ -6,7 +6,7 @@ class TextHotAndSpicy extends DisplayObjectContainer {
       ..addColorStop(0.0, 0xFFFEBBA8)
       ..addColorStop(1.0, 0xFFFF3100);
 
-    var textField = TextField(" Hot & Spicy ")
+    var textField = TextField(' Hot & Spicy ')
       ..cacheAsBitmap = false
       ..autoSize = TextFieldAutoSize.LEFT
       ..defaultTextFormat.font = '"Norican", cursive'

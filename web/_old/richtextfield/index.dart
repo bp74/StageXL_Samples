@@ -2,7 +2,7 @@ import 'dart:html' show CanvasElement, querySelector, TextAreaElement, ButtonEle
 import 'package:stagexl/stagexl.dart';
 import 'package:stagexl_richtextfield/stagexl_richtextfield.dart';
 
-CanvasElement canvas = querySelector("#stage");
+CanvasElement canvas = querySelector('#stage');
 Stage stage = Stage(canvas);
 RenderLoop renderLoop = RenderLoop();
 
@@ -11,15 +11,14 @@ void main() {
 
   ButtonElement reload = querySelector('#reload');
   TextAreaElement textarea = querySelector('#texttodraw');
-  RichTextFormat format =
-      RichTextFormat('Calibri, sans-serif', 25, 0x000000, align: TextFormatAlign.LEFT);
-  RichTextFormat excited = format.clone()
+  var format = RichTextFormat('Calibri, sans-serif', 25, 0x000000, align: TextFormatAlign.LEFT);
+  var excited = format.clone()
     ..bold = true
     ..italic = true
     ..size = 30
     ..color = 0xFF00FF;
 
-  RichTextField rtf = RichTextField('', format)
+  var rtf = RichTextField('', format)
     ..presets['excited'] = excited
     ..text = textarea.value
     ..width = stage.sourceWidth - 20

@@ -73,7 +73,7 @@ class Field {
   //---------------------------------------------------------------------------------
 
   bool couldLink(Field field) {
-    bool link = field != null &&
+    var link = field != null &&
         (field.color == _color || field.special == Special.Joker || _special == Special.Joker) &&
         field.special != Special.Block &&
         _special != Special.Block;
@@ -82,7 +82,7 @@ class Field {
   }
 
   bool canLinkHorizontal(Field field) {
-    bool link = field != null &&
+    var link = field != null &&
         (field.color == _color || field.special == Special.Joker || _special == Special.Joker) &&
         field.direction == 0 &&
         _direction == 0 &&
@@ -93,7 +93,7 @@ class Field {
   }
 
   bool canLinkVertical(Field field) {
-    bool link = field != null &&
+    var link = field != null &&
         (field.color == _color || field.special == Special.Joker || _special == Special.Joker) &&
         field.direction == 1 &&
         _direction == 1 &&

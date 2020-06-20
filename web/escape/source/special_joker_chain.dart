@@ -6,7 +6,7 @@ class SpecialJokerChain extends Sprite implements Animatable {
   num _currentTime;
 
   SpecialJokerChain(ResourceManager resourceManager, Juggler juggler, int direction) {
-    this.mouseEnabled = false;
+    mouseEnabled = false;
 
     _currentTime = 0.0;
     _jokerBitmapDatas = Grafix.getJokerChain(resourceManager, direction);
@@ -26,7 +26,7 @@ class SpecialJokerChain extends Sprite implements Animatable {
   bool advanceTime(num time) {
     _currentTime += time;
 
-    int frame = (_currentTime * 10).toInt() % _jokerBitmapDatas.length;
+    var frame = (_currentTime * 10).toInt() % _jokerBitmapDatas.length;
     _bitmap.bitmapData = _jokerBitmapDatas[frame];
 
     return true;

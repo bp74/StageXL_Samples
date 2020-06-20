@@ -10,16 +10,16 @@ class PeriodicTable extends DisplayObjectContainer {
     _addElementButtons();
     _addCategoryButtons();
 
-    this.onMouseOver.capture(_onMouseOverCapture);
-    this.onMouseOut.capture(_onMouseOutCapture);
+    onMouseOver.capture(_onMouseOverCapture);
+    onMouseOut.capture(_onMouseOutCapture);
   }
 
   //-----------------------------------------------------------------------------------------------
   //-----------------------------------------------------------------------------------------------
 
   void _addElementButtons() {
-    for (var element in this.elements["elements"]) {
-      var atomicNumber = element["atomic_number"] as int;
+    for (var element in elements['elements']) {
+      var atomicNumber = element['atomic_number'] as int;
       var groupIndex = _getGroupNumber(atomicNumber) - 1;
       var periodIndex = _getPeriodNumber(atomicNumber) - 1;
       var category = _getCategory(atomicNumber);
@@ -42,7 +42,7 @@ class PeriodicTable extends DisplayObjectContainer {
 
   void _addCategoryButtons() {
     var x = 0;
-    for (var category in this.table["categories"]) {
+    for (var category in table['categories']) {
       var categoryButton = CategoryButton(category);
       categoryButton.x = 80 + x;
       categoryButton.y = 530;
@@ -54,22 +54,22 @@ class PeriodicTable extends DisplayObjectContainer {
   //-----------------------------------------------------------------------------------------------
 
   int _getGroupNumber(int atomicNumber) {
-    for (var group in this.table["groups"]) {
-      if (group["elements"].contains(atomicNumber)) return group["number"];
+    for (var group in table['groups']) {
+      if (group['elements'].contains(atomicNumber)) return group['number'];
     }
     return -1;
   }
 
   int _getPeriodNumber(int atomicNumber) {
-    for (var period in this.table["periods"]) {
-      if (period["elements"].contains(atomicNumber)) return period["number"];
+    for (var period in table['periods']) {
+      if (period['elements'].contains(atomicNumber)) return period['number'];
     }
     return -1;
   }
 
   Map _getCategory(int atomicNumber) {
-    for (var category in this.table["categories"]) {
-      if (category["elements"].contains(atomicNumber)) return category;
+    for (var category in table['categories']) {
+      if (category['elements'].contains(atomicNumber)) return category;
     }
     return null;
   }
@@ -97,7 +97,7 @@ class PeriodicTable extends DisplayObjectContainer {
   //-----------------------------------------------------------------------------------------------
 
   void _onElementButtonMouseOver(ElementButton button) {
-    this.addChild(button);
+    addChild(button);
     button.animateTo(0.70, 1.0);
 
     _detail = ElementDetail(button.element, button.category);
@@ -108,8 +108,8 @@ class PeriodicTable extends DisplayObjectContainer {
 
     stage.juggler.addTween(_detail, 0.3, Transition.linear)..animate.alpha.to(1.0);
 
-    for (int i = 0; i < this.numChildren; i++) {
-      var child = this.getChildAt(i);
+    for (var i = 0; i < numChildren; i++) {
+      var child = getChildAt(i);
       if (child is CategoryButton) {
         if (identical(child.category, button.category)) {
           child.animateTo(0.55, 1.0);
@@ -130,8 +130,8 @@ class PeriodicTable extends DisplayObjectContainer {
       _detail = null;
     }
 
-    for (int i = 0; i < this.numChildren; i++) {
-      var child = this.getChildAt(i);
+    for (var i = 0; i < numChildren; i++) {
+      var child = getChildAt(i);
       if (child is CategoryButton) {
         child.animateTo(0.50, 1.0);
       }
@@ -141,7 +141,7 @@ class PeriodicTable extends DisplayObjectContainer {
   //-----------------------------------------------------------------------------------------------
 
   void _onCategoryButtonMouseOver(CategoryButton button) {
-    this.addChild(button);
+    addChild(button);
     button.animateTo(0.70, 1.0);
 
     _detail = CategoryDetail(button.category);
@@ -152,8 +152,8 @@ class PeriodicTable extends DisplayObjectContainer {
 
     stage.juggler.addTween(_detail, 0.3, Transition.linear)..animate.alpha.to(1.0);
 
-    for (int i = 0; i < this.numChildren; i++) {
-      var child = this.getChildAt(i);
+    for (var i = 0; i < numChildren; i++) {
+      var child = getChildAt(i);
       if (child is ElementButton) {
         if (identical(child.category, button.category)) {
           child.animateTo(0.55, 1.0);
@@ -174,8 +174,8 @@ class PeriodicTable extends DisplayObjectContainer {
       _detail = null;
     }
 
-    for (int i = 0; i < this.numChildren; i++) {
-      var child = this.getChildAt(i);
+    for (var i = 0; i < numChildren; i++) {
+      var child = getChildAt(i);
       if (child is ElementButton) {
         child.animateTo(0.5, 1.0);
       }

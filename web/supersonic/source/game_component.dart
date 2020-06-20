@@ -23,15 +23,15 @@ class GameComponent extends Sprite {
     _game = game;
 
     if (_game != null) {
-      _game.addEventListener(GameEvent.TYPE_GAME_OVER, this.onGameOver);
-      _game.addEventListener(GameEvent.TYPE_GAME_ABORT, this.onGameAbort);
-      _game.addEventListener(GameEvent.TYPE_GAME_SIZE_CHANGED, this.onGameSizeChanged);
-      _game.addEventListener(GameEvent.TYPE_GAME_START, this.onGameStart);
-      _game.addEventListener(GameEvent.TYPE_LEVEL_CHANGED, this.onLevelChanged);
-      _game.addEventListener(GameEvent.TYPE_PAUSE_CHANGED, this.onPauseChanged);
-      _game.addEventListener(GameEvent.TYPE_SCORE_CHANGED, this.onScoreChanged);
-      _game.addEventListener(GameEvent.TYPE_LIVES_CHANGED, this.onLivesChanged);
-      _game.addEventListener(GameEvent.TYPE_PROGRESS_CHANGED, this.onProgressChanged);
+      _game.addEventListener(GameEvent.TYPE_GAME_OVER, onGameOver);
+      _game.addEventListener(GameEvent.TYPE_GAME_ABORT, onGameAbort);
+      _game.addEventListener(GameEvent.TYPE_GAME_SIZE_CHANGED, onGameSizeChanged);
+      _game.addEventListener(GameEvent.TYPE_GAME_START, onGameStart);
+      _game.addEventListener(GameEvent.TYPE_LEVEL_CHANGED, onLevelChanged);
+      _game.addEventListener(GameEvent.TYPE_PAUSE_CHANGED, onPauseChanged);
+      _game.addEventListener(GameEvent.TYPE_SCORE_CHANGED, onScoreChanged);
+      _game.addEventListener(GameEvent.TYPE_LIVES_CHANGED, onLivesChanged);
+      _game.addEventListener(GameEvent.TYPE_PROGRESS_CHANGED, onProgressChanged);
     }
   }
 

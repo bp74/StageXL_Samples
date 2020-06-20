@@ -4,29 +4,29 @@ class Polygon {
   List<Vector2D> pointList;
 
   Polygon([List<Vector2D> pointList]) {
-    this.pointList = (pointList != null) ? pointList : List();
+    this.pointList = (pointList != null) ? pointList : [];
   }
 
   //-----------------------------------------------------------------------------------------------
   //-----------------------------------------------------------------------------------------------
 
   int addPoint(Vector2D p) {
-    this.pointList.add(p);
-    return this.pointList.length;
+    pointList.add(p);
+    return pointList.length;
   }
 
   //-----------------------------------------------------------------------------------------------
 
   void removePoint(int i) {
     if (i < pointList.length) {
-      this.pointList.removeAt(i);
+      pointList.removeAt(i);
     }
   }
 
   //-----------------------------------------------------------------------------------------------
 
   bool hitTest(Vector2D p) {
-    var edgeNum = this.pointList.length;
+    var edgeNum = pointList.length;
     var j = edgeNum - 1;
     var oddNodes = false;
 

@@ -17,14 +17,14 @@ List<BlendMode> blendModes = [
 ];
 
 List<String> blendModeNames = [
-  "NORMAL",
-  "ADD",
-  "MULTIPLY",
-  "SCREEN",
-  "ERASE",
-  "BELOW",
-  "ABOVE",
-  "NONE (WebGL only)"
+  'NORMAL',
+  'ADD',
+  'MULTIPLY',
+  'SCREEN',
+  'ERASE',
+  'BELOW',
+  'ABOVE',
+  'NONE (WebGL only)'
 ];
 
 //-----------------------------------------------------------------------------
@@ -46,12 +46,12 @@ Future main() async {
   // add TextField to tell the user what to do.
 
   var textField = TextField();
-  textField.defaultTextFormat = TextFormat("Arial", 24, Color.White);
+  textField.defaultTextFormat = TextFormat('Arial', 24, Color.White);
   textField.defaultTextFormat.align = TextFormatAlign.CENTER;
   textField.width = 400;
   textField.x = 0;
   textField.y = 550;
-  textField.text = "tap to change blend mode";
+  textField.text = 'tap to change blend mode';
   textField.addTo(stage);
 
   // change the blend mode on every mouse click.
@@ -111,7 +111,7 @@ class BlendModeSample extends Sprite {
 num totalTime = 0.0;
 
 class Sample extends Sprite implements Animatable {
-  List<Star> stars = List<Star>();
+  List<Star> stars = <Star>[];
 
   Sample() {
     var star1 = Star(0xffff5050)
@@ -125,10 +125,10 @@ class Sample extends Sprite implements Animatable {
       ..y = 50;
 
     stars = [star1, star2, star3];
-    stars.forEach((star) => this.addChild(star));
+    stars.forEach((star) => addChild(star));
 
-    this.onAddedToStage.listen((e) => this.stage.juggler.add(this));
-    this.onRemovedFromStage.listen((e) => this.stage.juggler.remove(this));
+    onAddedToStage.listen((e) => stage.juggler.add(this));
+    onRemovedFromStage.listen((e) => stage.juggler.remove(this));
   }
 
   @override
@@ -143,18 +143,18 @@ class Sample extends Sprite implements Animatable {
 
 class Star extends Sprite {
   Star(int color) {
-    this.graphics.beginPath();
-    this.graphics.moveTo(150, 0);
+    graphics.beginPath();
+    graphics.moveTo(150, 0);
 
-    for (int i = 0; i < 6; i++) {
+    for (var i = 0; i < 6; i++) {
       num a1 = (i * 60) * pi / 180;
       num a2 = (i * 60 + 30) * pi / 180;
-      this.graphics.lineTo(150 * cos(a1), 150 * sin(a1));
-      this.graphics.lineTo(80 * cos(a2), 80 * sin(a2));
+      graphics.lineTo(150 * cos(a1), 150 * sin(a1));
+      graphics.lineTo(80 * cos(a2), 80 * sin(a2));
     }
 
-    this.graphics.closePath();
-    this.graphics.fillColor(color);
-    this.applyCache(-150, -150, 300, 300);
+    graphics.closePath();
+    graphics.fillColor(color);
+    applyCache(-150, -150, 300, 300);
   }
 }

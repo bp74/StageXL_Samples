@@ -45,8 +45,8 @@ void main() {
 //-------------------------------------------------------------------------------------------------
 
 void createFlowerField(ResourceManager resourceManager) {
-  var textureAtlas = resourceManager.getTextureAtlas("flowers");
-  var flowers = textureAtlas.getBitmapDatas("Flower");
+  var textureAtlas = resourceManager.getTextureAtlas('flowers');
+  var flowers = textureAtlas.getBitmapDatas('Flower');
 
   for (var i = 0; i < 100; i++) {
     var flower = flowers[random.nextInt(flowers.length)];
@@ -70,14 +70,14 @@ void createFlowerField(ResourceManager resourceManager) {
   stage.onEnterFrame.listen(onEnterFrame);
 
   if (stage.renderEngine != RenderEngine.WebGL) {
-    var font = "Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif";
+    var font = 'Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif';
     var textField = TextField();
     textField.defaultTextFormat = TextFormat(font, 16, Color.White, bold: true);
     textField.defaultTextFormat.leftMargin = 10;
     textField.defaultTextFormat.rightMargin = 10;
     textField.defaultTextFormat.topMargin = 10;
     textField.defaultTextFormat.bottomMargin = 10;
-    textField.text = "This browser does not support WebGL, filters are ignored.";
+    textField.text = 'This browser does not support WebGL, filters are ignored.';
     textField.autoSize = TextFieldAutoSize.CENTER;
     textField.background = true;
     textField.backgroundColor = Color.Red;

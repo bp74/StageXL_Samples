@@ -4,8 +4,8 @@ class FlyingFlag extends Bitmap implements Animatable {
   num vx, vy;
 
   FlyingFlag(BitmapData bitmapData, this.vx, this.vy) : super(bitmapData) {
-    this.pivotX = 24;
-    this.pivotY = 24;
+    pivotX = 24;
+    pivotY = 24;
   }
 
   @override

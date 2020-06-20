@@ -6,13 +6,13 @@ class Card extends Sprite3D {
 
   bool concealed = false;
 
-  Sprite _front = Sprite();
-  Sprite _back = Sprite();
+  final Sprite _front = Sprite();
+  final Sprite _back = Sprite();
 
   Card(this.resourceManager, this.id, BitmapData iconBitmapData) {
-    var atlas = resourceManager.getTextureAtlas("atlas");
-    var frontBitmap = Bitmap(atlas.getBitmapData("card-front"));
-    var backBitmap = Bitmap(atlas.getBitmapData("card-back"));
+    var atlas = resourceManager.getTextureAtlas('atlas');
+    var frontBitmap = Bitmap(atlas.getBitmapData('card-front'));
+    var backBitmap = Bitmap(atlas.getBitmapData('card-back'));
     var iconBitmap = Bitmap(iconBitmapData);
 
     frontBitmap.pivotX = frontBitmap.width / 2.0;
@@ -33,8 +33,8 @@ class Card extends Sprite3D {
     _back.addChild(backBitmap);
     _back.addTo(this);
 
-    this.perspectiveProjection = PerspectiveProjection.none();
-    this.mouseChildren = false;
+    perspectiveProjection = PerspectiveProjection.none();
+    mouseChildren = false;
   }
 
   //---------------------------------------------------------------------------

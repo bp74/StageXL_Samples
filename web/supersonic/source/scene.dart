@@ -4,28 +4,28 @@ class Scene extends Sprite {
   List<PipeObject> pipeObjects;
 
   Scene() {
-    pipeObjects = List<PipeObject>();
+    pipeObjects = <PipeObject>[];
   }
 
   void sortPipeObject() {
-    this.pipeObjects.sort(zSort);
+    pipeObjects.sort(zSort);
   }
 
   void addPipeObject(PipeObject obj) {
-    if (this.contains(obj)) return;
+    if (contains(obj)) return;
 
-    this.addChild(obj);
-    this.pipeObjects.add(obj);
+    addChild(obj);
+    pipeObjects.add(obj);
   }
 
   void removePipeObject(PipeObject obj) {
-    if (this.pipeObjects.isNotEmpty) {
-      var id = this.pipeObjects.indexOf(obj);
-      if (id >= 0) this.pipeObjects.removeAt(id);
+    if (pipeObjects.isNotEmpty) {
+      var id = pipeObjects.indexOf(obj);
+      if (id >= 0) pipeObjects.removeAt(id);
     }
 
-    if (this.contains(obj)) {
-      this.removeChild(obj);
+    if (contains(obj)) {
+      removeChild(obj);
     }
   }
 
@@ -34,25 +34,25 @@ class Scene extends Sprite {
     //  0, if a equals b
     //  1, if a should appear after b in the sorted sequence
 
-    if (!this.contains(a)) {
-      return (this.contains(b) ? 1 : 0);
+    if (!contains(a)) {
+      return (contains(b) ? 1 : 0);
     }
 
-    if (!this.contains(b)) {
-      return (this.contains(a) ? -1 : 0);
+    if (!contains(b)) {
+      return (contains(a) ? -1 : 0);
     }
 
     if (a.position.z > b.position.z) {
-      if (this.getChildIndex(a) < this.getChildIndex(b)) {
-        this.swapChildren(a, b);
+      if (getChildIndex(a) < getChildIndex(b)) {
+        swapChildren(a, b);
       } else {
         return 1;
       }
     }
 
     if (a.position.z < b.position.z) {
-      if (this.getChildIndex(a) > this.getChildIndex(b)) {
-        this.swapChildren(a, b);
+      if (getChildIndex(a) > getChildIndex(b)) {
+        swapChildren(a, b);
       } else {
         return -1;
       }

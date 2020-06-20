@@ -40,8 +40,8 @@ void main() {
   backgroundGrid.graphics.strokeColor(Color.Black, 3);
 
   backgroundGrid.graphics.beginPath();
-  for (int x = 0; x <= 400; x += 40) {
-    for (int y = 0; y <= 400; y += 40) {
+  for (var x = 0; x <= 400; x += 40) {
+    for (var y = 0; y <= 400; y += 40) {
       backgroundGrid.graphics.rect(x - 5, y - 5, 10, 10);
     }
   }

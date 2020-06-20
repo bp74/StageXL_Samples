@@ -6,7 +6,7 @@ class TextSweet extends DisplayObjectContainer {
       ..addColorStop(0.0, 0xFFFAD93E)
       ..addColorStop(1.0, 0xFFD2731F);
 
-    var textField = TextField("Sweet!")
+    var textField = TextField('Sweet!')
       ..cacheAsBitmap = false
       ..width = 80
       ..height = 32

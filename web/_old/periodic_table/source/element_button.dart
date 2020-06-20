@@ -5,24 +5,24 @@ class ElementButton extends Sprite {
   Map category;
 
   ElementButton(this.element, this.category) {
-    var symbol = element["symbol"];
-    var atomicNumber = element["atomic_number"];
-    var categoryColor = int.parse(category["color"], radix: 16) | 0xFF000000;
+    var symbol = element['symbol'];
+    var atomicNumber = element['atomic_number'];
+    var categoryColor = int.parse(category['color'], radix: 16) | 0xFF000000;
 
-    this.pivotX = 50;
-    this.pivotY = 50;
-    this.scaleX = 0.5;
-    this.scaleY = 0.5;
-    this.useHandCursor = true;
-    this.mouseChildren = false;
+    pivotX = 50;
+    pivotY = 50;
+    scaleX = 0.5;
+    scaleY = 0.5;
+    useHandCursor = true;
+    mouseChildren = false;
 
-    this.graphics.beginPath();
-    this.graphics.rectRound(6, 6, 88, 88, 8, 8);
-    this.graphics.closePath();
-    this.graphics.fillColor(categoryColor);
-    this.graphics.strokeColor(Color.Black, 1);
+    graphics.beginPath();
+    graphics.rectRound(6, 6, 88, 88, 8, 8);
+    graphics.closePath();
+    graphics.fillColor(categoryColor);
+    graphics.strokeColor(Color.Black, 1);
 
-    var font = "Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif";
+    var font = 'Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif';
     var numberTextFormat = TextFormat(font, 24, Color.Black, bold: true);
     var symbolTextFormat = TextFormat(font, 40, Color.Black, bold: true);
 
@@ -56,8 +56,8 @@ class ElementButton extends Sprite {
   //-----------------------------------------------------------------------------------------------
 
   void animateTo(num scale, num alpha) {
-    this.stage.juggler.removeTweens(this);
-    this.stage.juggler.addTween(this, 0.25, Transition.easeOutQuadratic)
+    stage.juggler.removeTweens(this);
+    stage.juggler.addTween(this, 0.25, Transition.easeOutQuadratic)
       ..animate.scaleX.to(scale)
       ..animate.scaleY.to(scale)
       ..animate.alpha.to(alpha);

@@ -37,13 +37,13 @@ class MissileGameEngine extends GameComponent {
   Bitmap broken; //  : MovieClipLoaderAsset;
 
   List barrierTypes = [
-    "barrier01",
-    "barrier02",
-    "barrier03",
-    "barrier04",
-    "barrier05",
-    "barrier06",
-    "barrier07"
+    'barrier01',
+    'barrier02',
+    'barrier03',
+    'barrier04',
+    'barrier05',
+    'barrier06',
+    'barrier07'
   ];
 
   Sound bgSound;
@@ -91,23 +91,23 @@ class MissileGameEngine extends GameComponent {
 
   MissileGameEngine(MissileGame game) : super(game) {
     _mask = Mask.rectangle(80, 60, 690, 524);
-    this.mask = _mask;
+    mask = _mask;
 
-    this.bgSound = resourceManager.getSound("speedalizer");
-    this.bgSoundChannel = this.bgSound.play(true);
+    bgSound = resourceManager.getSound('speedalizer');
+    bgSoundChannel = bgSound.play(true);
 
-    this.tube = Shape();
-    this.addChild(this.tube);
+    tube = Shape();
+    addChild(tube);
 
     glassPlate = GlassPlate(800, 600);
     addChild(glassPlate);
 
     mouseX = mouseY = 0;
-    stage.addEventListener(MouseEvent.MOUSE_MOVE, this.onMouse);
-    stage.addEventListener(MouseEvent.MOUSE_DOWN, this.onMouse);
-    stage.addEventListener(MouseEvent.MOUSE_UP, this.onMouse);
+    stage.addEventListener(MouseEvent.MOUSE_MOVE, onMouse);
+    stage.addEventListener(MouseEvent.MOUSE_DOWN, onMouse);
+    stage.addEventListener(MouseEvent.MOUSE_UP, onMouse);
 
-    onEnterFrameSubscription = this.onEnterFrame.listen(this._onEnterFrame);
+    onEnterFrameSubscription = onEnterFrame.listen(_onEnterFrame);
   }
 
   void onMouse(MouseEvent me) {
@@ -116,9 +116,8 @@ class MissileGameEngine extends GameComponent {
   }
 
   void raiseScore() {
-    var oldScore = this.game.score;
-    this.game.score =
-        oldScore + (this.game as MissileGame).scorePerBarrier * (this.game.level * this.game.lives);
+    var oldScore = game.score;
+    game.score = oldScore + (game as MissileGame).scorePerBarrier * (game.level * game.lives);
   }
 
   @override
@@ -127,7 +126,7 @@ class MissileGameEngine extends GameComponent {
   @override
   void onLevelChanged(GameEvent event) {
     super.onLevelChanged(event);
-    this.startLevel();
+    startLevel();
   }
 
   void startLevel() {
@@ -136,104 +135,104 @@ class MissileGameEngine extends GameComponent {
 
     // create pipe - outline - polygon
 
-    this.currentZ = 0;
-    this.game.progress = 0;
-    this.doZCount = false;
+    currentZ = 0;
+    game.progress = 0;
+    doZCount = false;
 
     num nFactor = 60;
-    this.nearestPolygon = RegularPolygon(GAME_NEAREST_RADIUS, GAME_NGON_CORNERS * nFactor);
+    nearestPolygon = RegularPolygon(GAME_NEAREST_RADIUS, GAME_NGON_CORNERS * nFactor);
 
-    for (var p = this.nearestPolygon.pointList.length; p >= 0; p--) {
+    for (var p = nearestPolygon.pointList.length; p >= 0; p--) {
       if (p % nFactor != 0 && p % nFactor != 1) {
-        this.nearestPolygon.removePoint(p);
+        nearestPolygon.removePoint(p);
       }
     }
 
     // set game params of current level
 
-    this.center = Vector2D(GAME_WIDTH_HALF, GAME_HEIGHT_HALF);
-    this.nirvana = Vector3D(0, 0, 0);
-    this.nearest = Vector3D(0, 0, MAX_Z);
+    center = Vector2D(GAME_WIDTH_HALF, GAME_HEIGHT_HALF);
+    nirvana = Vector3D(0, 0, 0);
+    nearest = Vector3D(0, 0, MAX_Z);
 
-    this.pipeRotStep = (1 + (0.1 * this.game.level)) * math.pi / 180;
-    this.zSpeed = 0.015 + (0.004 * this.game.level);
-    this.pipeObjectRotMax = 2 + this.game.level;
-    this.pipeObjectRotMin = -this.pipeObjectRotMax;
+    pipeRotStep = (1 + (0.1 * game.level)) * math.pi / 180;
+    zSpeed = 0.015 + (0.004 * game.level);
+    pipeObjectRotMax = 2 + game.level;
+    pipeObjectRotMin = -pipeObjectRotMax;
 
-    this.scorePerFrame = this.game.level * 2;
+    scorePerFrame = game.level * 2;
 
-    this.pipeObjectsNum = 15 + (this.game.level);
+    pipeObjectsNum = 15 + (game.level);
 
     // create children
 
-    this.createChildren();
-    this.createPipeObjects();
+    createChildren();
+    createPipeObjects();
     onEnterFrameSubscription.resume();
   }
 
   void createChildren() {
-    if (this.scene != null) this.removeChild(this.scene);
+    if (scene != null) removeChild(scene);
 
-    this.scene = Scene();
-    this.addChild(this.scene);
+    scene = Scene();
+    addChild(scene);
 
     //----------------------------
 
-    if (this.crosshair != null) this.removeChild(this.crosshair);
+    if (crosshair != null) removeChild(crosshair);
 
-    this.crosshair = Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("crosshair"));
-    this.crosshair.scaleX = 0.5;
-    this.crosshair.scaleY = 0.5;
-    this.crosshair.x = (GAME_WIDTH / 2) - this.crosshair.width / 2;
-    this.crosshair.y = (GAME_HEIGHT / 2) - this.crosshair.height / 2;
-    this.addChild(this.crosshair);
+    crosshair = Bitmap(resourceManager.getTextureAtlas('items').getBitmapData('crosshair'));
+    crosshair.scaleX = 0.5;
+    crosshair.scaleY = 0.5;
+    crosshair.x = (GAME_WIDTH / 2) - crosshair.width / 2;
+    crosshair.y = (GAME_HEIGHT / 2) - crosshair.height / 2;
+    addChild(crosshair);
   }
 
   void flow() {
-    this.checkMouseDown = false;
-    this.onEnterFrameSubscription.pause();
+    checkMouseDown = false;
+    onEnterFrameSubscription.pause();
 
     // create pipe - outline - polygon
 
     var nFactor = 60;
-    this.nearestPolygon = RegularPolygon(GAME_NEAREST_RADIUS, GAME_NGON_CORNERS * nFactor);
+    nearestPolygon = RegularPolygon(GAME_NEAREST_RADIUS, GAME_NGON_CORNERS * nFactor);
 
-    for (var p = this.nearestPolygon.pointList.length; p >= 0; p--) {
+    for (var p = nearestPolygon.pointList.length; p >= 0; p--) {
       if (p % nFactor != 0 && p % nFactor != 1) {
-        this.nearestPolygon.removePoint(p);
+        nearestPolygon.removePoint(p);
       }
     }
 
     // set game params of current level
 
-    this.center = Vector2D(GAME_WIDTH_HALF, GAME_HEIGHT_HALF);
-    this.nirvana = Vector3D(0, 0, 0);
-    this.nearest = Vector3D(0, 0, MAX_Z);
+    center = Vector2D(GAME_WIDTH_HALF, GAME_HEIGHT_HALF);
+    nirvana = Vector3D(0, 0, 0);
+    nearest = Vector3D(0, 0, MAX_Z);
 
-    this.pipeRotStep = 2 * math.pi / 180;
-    //this.zSpeed = 0.05;
-    this.pipeObjectRotMax = 0;
-    this.pipeObjectRotMin = 0;
+    pipeRotStep = 2 * math.pi / 180;
+    //zSpeed = 0.05;
+    pipeObjectRotMax = 0;
+    pipeObjectRotMin = 0;
 
     // create children
 
-    if (this.scene != null) {
-      this.removeChild(this.scene);
-      this.scene = null;
+    if (scene != null) {
+      removeChild(scene);
+      scene = null;
     }
 
-    this.scene = Scene();
-    this.addChild(this.scene);
+    scene = Scene();
+    addChild(scene);
 
-    if (this.broken != null) {
-      this.removeChild(this.broken);
-      this.broken = null;
+    if (broken != null) {
+      removeChild(broken);
+      broken = null;
     }
 
     // create dummy pipe slices
 
-    this.createDummySlices();
-    this.onEnterFrameSubscription.resume();
+    createDummySlices();
+    onEnterFrameSubscription.resume();
   }
 
   void createDummySlices() {
@@ -242,77 +241,77 @@ class MissileGameEngine extends GameComponent {
     var pob = PipeObject(null);
     pob.continued = -1;
     pob.rotStep = 0;
-    pob.position = this.nirvana.clone();
+    pob.position = nirvana.clone();
     pob.position.z = 0.5;
-    this.scene.addPipeObject(pob);
+    scene.addPipeObject(pob);
   }
 
   void createCountdownObjects() {
     var pob =
-        PipeObject(Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("countdown01")));
+        PipeObject(Bitmap(resourceManager.getTextureAtlas('items').getBitmapData('countdown01')));
     pob.continued = 0;
     pob.rotStep = 0;
-    pob.position = this.nirvana.clone();
+    pob.position = nirvana.clone();
     pob.position.z = 0.5;
     pob.countDownId = 0;
     pob.isCountdown = true;
-    this.scene.addPipeObject(pob);
+    scene.addPipeObject(pob);
 
-    pob = PipeObject(Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("countdown02")));
+    pob = PipeObject(Bitmap(resourceManager.getTextureAtlas('items').getBitmapData('countdown02')));
     pob.continued = 0;
     pob.rotStep = 0;
-    pob.position = this.nirvana.clone();
+    pob.position = nirvana.clone();
     pob.position.z = 0;
     pob.countDownId = 1;
     pob.isCountdown = true;
-    this.scene.addPipeObject(pob);
+    scene.addPipeObject(pob);
 
-    pob = PipeObject(Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("countdown03")));
+    pob = PipeObject(Bitmap(resourceManager.getTextureAtlas('items').getBitmapData('countdown03')));
     pob.continued = 0;
     pob.rotStep = 0;
-    pob.position = this.nirvana.clone();
+    pob.position = nirvana.clone();
     pob.position.z = -0.5;
     pob.countDownId = 2;
     pob.isCountdown = true;
-    this.scene.addPipeObject(pob);
+    scene.addPipeObject(pob);
 
-    pob = PipeObject(Bitmap(resourceManager.getTextureAtlas("items").getBitmapData("countdown04")));
+    pob = PipeObject(Bitmap(resourceManager.getTextureAtlas('items').getBitmapData('countdown04')));
     pob.continued = 0;
     pob.rotStep = 0;
-    pob.position = this.nirvana.clone();
+    pob.position = nirvana.clone();
     pob.position.z = -1;
     pob.countDownId = 3;
     pob.isCountdown = true;
 
-    this.scene.addPipeObject(pob);
+    scene.addPipeObject(pob);
   }
 
   PipeObject createRandomBarrier() {
-    var maxId = 1 + this.game.level;
+    var maxId = 1 + game.level;
 
-    if (maxId >= this.barrierTypes.length) {
-      maxId = this.barrierTypes.length - 1;
+    if (maxId >= barrierTypes.length) {
+      maxId = barrierTypes.length - 1;
     }
 
     var rndId = RandomUtils.getIntByRange(0, maxId);
-    var type = this.barrierTypes[rndId];
+    var type = barrierTypes[rndId];
 
     var pob = PipeObject(Bitmap(resourceManager.getBitmapData(type)));
     pob.isBarrier = true;
     pob.rotation = RandomUtils.getIntByRange(0, 359) * math.pi / 180;
     pob.rotStep =
-        RandomUtils.getNumberByRange(this.pipeObjectRotMin, this.pipeObjectRotMax) * math.pi / 180;
-    pob.position = this.nirvana.clone();
+        RandomUtils.getNumberByRange(pipeObjectRotMin, pipeObjectRotMax) * math.pi / 180;
+    pob.position = nirvana.clone();
 
     return pob;
   }
 
   void createPipeObjects() {
     // create countdown objects
-    this.createCountdownObjects();
+    createCountdownObjects();
 
     // create dummy pipe slices
-    this.createDummySlices();
+    createDummySlices();
 
     // create barriers
 
@@ -322,67 +321,67 @@ class MissileGameEngine extends GameComponent {
 
       if (i == pipeObjectsNum - 1) {
         //create finish-object here ...
-        pob = PipeObject(Bitmap(resourceManager.getBitmapData("finish")));
+        pob = PipeObject(Bitmap(resourceManager.getBitmapData('finish')));
         pob.rotation = 0;
         pob.rotStep = 5 * math.pi / 180;
-        pob.position = this.nirvana.clone();
+        pob.position = nirvana.clone();
         pob.continued = 0;
         pob.isBarrier = true;
         pob.isFinish = true;
-        this.finishPipeObject = pob;
+        finishPipeObject = pob;
       } else {
         // create random object here ...
         count++;
-        if (this.game.level == 1 && count <= 3) {
+        if (game.level == 1 && count <= 3) {
           if (count == 1) {
-            pob = PipeObject(Bitmap(resourceManager.getBitmapData("training01")));
+            pob = PipeObject(Bitmap(resourceManager.getBitmapData('training01')));
             pob.isBarrier = true;
             pob.rotation = 0; //RandomUtils.getIntByRange(0,359);
             pob.rotStep =
                 0; //RandomUtils.getNumberByRange(this.pipeObjectRotMin, this.pipeObjectRotMax);
-            pob.position = this.nirvana.clone();
+            pob.position = nirvana.clone();
             pob.testObjectId = 1;
           } else if (count == 2) {
-            pob = PipeObject(Bitmap(resourceManager.getBitmapData("training02")));
+            pob = PipeObject(Bitmap(resourceManager.getBitmapData('training02')));
             pob.isBarrier = true;
             pob.rotation = 135 * math.pi / 180; //RandomUtils.getIntByRange(0,359);
             pob.rotStep =
                 0; //RandomUtils.getNumberByRange(this.pipeObjectRotMin, this.pipeObjectRotMax);
-            pob.position = this.nirvana.clone();
+            pob.position = nirvana.clone();
             pob.testObjectId = 2;
           } else if (count == 3) {
-            pob = PipeObject(Bitmap(resourceManager.getBitmapData("training02")));
+            pob = PipeObject(Bitmap(resourceManager.getBitmapData('training02')));
             pob.isBarrier = true;
             pob.rotation = 315 * math.pi / 180; //RandomUtils.getIntByRange(0,359);
             pob.rotStep =
                 0; //RandomUtils.getNumberByRange(this.pipeObjectRotMin, this.pipeObjectRotMax);
-            pob.position = this.nirvana.clone();
+            pob.position = nirvana.clone();
             pob.testObjectId = 3;
           }
         } else {
-          pob = this.createRandomBarrier();
+          pob = createRandomBarrier();
         }
       }
 
       pob.originalZ = -i * 1 - 3;
       pob.position.z = pob.originalZ;
       pob.continued = 0;
-      this.scene.addPipeObject(pob);
+      scene.addPipeObject(pob);
     }
   }
 
   void onLevelFinished() {
-    this.doZCount = false;
+    doZCount = false;
     var mGame = game as MissileGame;
     mGame.flowEngine();
     mGame.createStartLevelMenu();
   }
 
   void _onEnterFrame(Event event) {
-    if (this.game.paused == false) {
-      this.redrawObjects();
-      var mGame = this.game as MissileGame;
-      if (mGame.trainingsMode && this.checkMouseDown && !mGame.mouseIsDown) {
+    if (game.paused == false) {
+      redrawObjects();
+      var mGame = game as MissileGame;
+      if (mGame.trainingsMode && checkMouseDown && !mGame.mouseIsDown) {
         mGame.onScreenRelease();
       }
     } else {
@@ -391,59 +390,59 @@ class MissileGameEngine extends GameComponent {
   }
 
   bool hitTest(PipeObject obj) {
-    Point localPoint = Point(this.center.x, this.center.y);
-    localPoint = this.localToGlobal(localPoint);
+    var localPoint = Point(center.x, center.y);
+    localPoint = localToGlobal(localPoint);
     localPoint = obj.globalToLocal(localPoint);
     return obj.hitTest(localPoint);
   }
 
   void continueLevel() {
-    this.checkMouseDown = false;
+    checkMouseDown = false;
 
-    for (var i = 0; i < this.scene.pipeObjects.length; i++) {
-      this.scene.pipeObjects[i].position.z -= (2.5 + 1 - accidentZPos) + 1;
+    for (var i = 0; i < scene.pipeObjects.length; i++) {
+      scene.pipeObjects[i].position.z -= (2.5 + 1 - accidentZPos) + 1;
     }
 
     accidentPipeObject.position.z += (1 - accidentZPos);
-    this.createCountdownObjects();
+    createCountdownObjects();
 
-    this.doZCount = false;
-    this.zSpeed = this.lastSpeed;
-    this.broken.visible = false;
+    doZCount = false;
+    zSpeed = lastSpeed;
+    broken.visible = false;
   }
 
   void onAccident() {
-    var mGame = this.game as MissileGame;
+    var mGame = game as MissileGame;
     mGame.exitButton.visible = false;
 
-    this.doZCount = false;
+    doZCount = false;
 
-    this.checkMouseDown = false;
+    checkMouseDown = false;
 
-    this.lastSpeed = this.zSpeed;
-    this.zSpeed = 0;
+    lastSpeed = zSpeed;
+    zSpeed = 0;
 
-    if (this.broken != null) this.removeChild(this.broken);
-    this.broken = Bitmap(resourceManager.getBitmapData("broken"));
-    this.addChild(this.broken);
+    if (broken != null) removeChild(broken);
+    broken = Bitmap(resourceManager.getBitmapData('broken'));
+    addChild(broken);
 
-    if (this.accidentPipeObject.testObjectId > 0 && ++this.freeAccidents <= 5) {
+    if (accidentPipeObject.testObjectId > 0 && ++freeAccidents <= 5) {
       renderJuggler.delayCall(() {
-        mGame.createFreeLevelMenu(this.accidentPipeObject.testObjectId);
+        mGame.createFreeLevelMenu(accidentPipeObject.testObjectId);
       }, 2.0);
     } else {
-      this.game.lives--;
+      game.lives--;
 
-      if (this.game.lives > 0) {
+      if (game.lives > 0) {
         renderJuggler.delayCall(mGame.createRestartLevelMenu, 2.0);
       }
     }
 
-    this.bgSoundChannel.stop();
-    this.bgSoundChannel = this.bgSound.play(true);
+    bgSoundChannel.stop();
+    bgSoundChannel = bgSound.play(true);
 
-    this.crashSound = resourceManager.getSound("crash");
-    this.crashSoundChannel = this.crashSound.play();
+    crashSound = resourceManager.getSound('crash');
+    crashSoundChannel = crashSound.play();
   }
 
   num lastFrameTime = -1;
@@ -461,31 +460,31 @@ class MissileGameEngine extends GameComponent {
     //------------------------------------------------------------------
 
     if (doZCount) {
-      this.currentZ -= (this.zSpeed * speedFactor);
-      var oldScore = this.game.score;
-      this.game.score = oldScore + (this.scorePerFrame * speedFactor);
+      currentZ -= (zSpeed * speedFactor);
+      var oldScore = game.score;
+      game.score = oldScore + (scorePerFrame * speedFactor);
     }
 
-    this.scene.sortPipeObject();
+    scene.sortPipeObject();
 
-    this.pipeRotation += (this.pipeRotStep * speedFactor);
+    pipeRotation += (pipeRotStep * speedFactor);
 
-    this.nearest.x = -(this.mouseX - this.center.x) * 3;
-    this.nearest.y = -(this.mouseY - this.center.y) * 3;
+    nearest.x = -(mouseX - center.x) * 3;
+    nearest.y = -(mouseY - center.y) * 3;
 
-    if (this.nearest.getNorm() > GAME_NEAREST_RADIUS * 0.7) {
-      this.nearest.setLength(GAME_NEAREST_RADIUS * 0.7);
+    if (nearest.getNorm() > GAME_NEAREST_RADIUS * 0.7) {
+      nearest.setLength(GAME_NEAREST_RADIUS * 0.7);
     }
 
-    this.nearest.z = MAX_Z;
+    nearest.z = MAX_Z;
 
-    this.nirvana = this.nearest.clone();
-    this.nirvana.z = MIN_Z;
+    nirvana = nearest.clone();
+    nirvana.z = MIN_Z;
 
-    this.redrawLines();
+    redrawLines();
 
-    for (var i = 0; i < this.scene.pipeObjects.length; i++) {
-      var pob = this.scene.pipeObjects[i];
+    for (var i = 0; i < scene.pipeObjects.length; i++) {
+      var pob = scene.pipeObjects[i];
 
       pob.position.z += (zSpeed * speedFactor);
 
@@ -493,46 +492,46 @@ class MissileGameEngine extends GameComponent {
         if (pob.isCountdown && pob.countDownId == 3) checkMouseDown = true;
 
         if (pob.bitmap != null) {
-          this.swishSound = resourceManager.getSound("swish");
-          this.swishSound.play();
+          swishSound = resourceManager.getSound('swish');
+          swishSound.play();
         }
 
         if (pob.isBarrier) {
           doZCount = true;
         }
         if (pob.originalZ != 0) {
-          this.currentZ = pob.originalZ;
+          currentZ = pob.originalZ;
         }
 
         if (pob.isBarrier && hitTest(pob)) {
           pob.position.z = accidentZPos;
           accidentPipeObject = pob;
-          this.onAccident();
+          onAccident();
         } else {
           if (pob.testObjectId == 3) {
-            (this.game as MissileGame).trainingsMode = false;
+            (game as MissileGame).trainingsMode = false;
           }
           if (pob.isBarrier) {
-            this.raiseScore();
+            raiseScore();
           }
           if (pob.isFinish) {
-            this.onLevelFinished();
+            onLevelFinished();
           } else if (pob.continued == 0) {
-            this.scene.removePipeObject(pob);
+            scene.removePipeObject(pob);
           } else {
             pob.position.z += pob.continued;
           }
         }
       }
 
-      var pos3D = this.nearest.clone();
+      var pos3D = nearest.clone();
       pos3D.z = pob.position.z;
 
       if (pos3D.z < 0 || pos3D.z > 1) {
         pob.x = 100000; //visible = false;
       } else {
-        var pos2D = this.v3DtoV2D(pos3D);
-        pos2D = pos2D.add(this.center);
+        var pos2D = v3DtoV2D(pos3D);
+        pos2D = pos2D.add(center);
         //pob.visible = true;
         var alpha = (20 * (pos3D.z * pos3D.z));
         if (alpha > 1) alpha = 1;
@@ -546,8 +545,8 @@ class MissileGameEngine extends GameComponent {
       }
     }
 
-    if (this.finishPipeObject != null) {
-      this.game.progress = (this.currentZ + 3) / (this.finishPipeObject.originalZ + 3);
+    if (finishPipeObject != null) {
+      game.progress = (currentZ + 3) / (finishPipeObject.originalZ + 3);
     }
   }
 
@@ -569,44 +568,43 @@ class MissileGameEngine extends GameComponent {
     if (tube == null) return;
 
     var sf = 2;
-    var nv = this.nearest.clone();
+    var nv = nearest.clone();
     nv.scale(sf);
 
-    var nearest_transformed = this
-        .nearestPolygon
-        .transform(zToScaleFactor(nv.z) * sf, this.pipeRotation, this.v3DtoV2D(nv));
+    var nearest_transformed = nearestPolygon
+        .transform(zToScaleFactor(nv.z) * sf, pipeRotation, v3DtoV2D(nv));
 
-    var nirvana_transformed = this
-        .nearestPolygon
-        .transform(zToScaleFactor(this.nirvana.z), this.pipeRotation, this.v3DtoV2D(this.nirvana));
+    var nirvana_transformed = nearestPolygon
+        .transform(zToScaleFactor(nirvana.z), pipeRotation, v3DtoV2D(nirvana));
 
-    var lastCirclePos = this.v3DtoV2D(this.nirvana).add(this.center);
+    var lastCirclePos = v3DtoV2D(nirvana).add(center);
 
     tube.graphics.clear();
 
     tube.graphics.beginPath();
-    tube.graphics.circle(lastCirclePos.x, lastCirclePos.y,
-        this.nearestPolygon.radius * zToScaleFactor(this.nirvana.z));
+    tube.graphics.circle(
+        lastCirclePos.x, lastCirclePos.y,
+        nearestPolygon.radius * zToScaleFactor(nirvana.z));
     tube.graphics.closePath();
     tube.graphics.strokeColor(0xffcccccc, 1);
 
     tube.graphics.beginPath();
 
     for (var i = 0; i < nearest_transformed.pointList.length; i += 2) {
-      tube.graphics.moveTo(nearest_transformed.pointList[i].x + this.center.x,
-          nearest_transformed.pointList[i].y + this.center.y);
+      tube.graphics.moveTo(nearest_transformed.pointList[i].x + center.x,
+          nearest_transformed.pointList[i].y + center.y);
 
-      tube.graphics.lineTo(nearest_transformed.pointList[i + 1].x + this.center.x,
-          nearest_transformed.pointList[i + 1].y + this.center.y);
+      tube.graphics.lineTo(nearest_transformed.pointList[i + 1].x + center.x,
+          nearest_transformed.pointList[i + 1].y + center.y);
 
-      tube.graphics.lineTo(nirvana_transformed.pointList[i + 1].x + this.center.x,
-          nirvana_transformed.pointList[i + 1].y + this.center.y);
+      tube.graphics.lineTo(nirvana_transformed.pointList[i + 1].x + center.x,
+          nirvana_transformed.pointList[i + 1].y + center.y);
 
-      tube.graphics.lineTo(nirvana_transformed.pointList[i].x + this.center.x,
-          nirvana_transformed.pointList[i].y + this.center.y);
+      tube.graphics.lineTo(nirvana_transformed.pointList[i].x + center.x,
+          nirvana_transformed.pointList[i].y + center.y);
 
-      tube.graphics.lineTo(nearest_transformed.pointList[i].x + this.center.x,
-          nearest_transformed.pointList[i].y + this.center.y);
+      tube.graphics.lineTo(nearest_transformed.pointList[i].x + center.x,
+          nearest_transformed.pointList[i].y + center.y);
     }
 
     tube.graphics.closePath();

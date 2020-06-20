@@ -25,7 +25,7 @@ class TextYouWin extends DisplayObjectContainer {
   }
 
   TextField _createTextField() {
-    return TextField("You win")
+    return TextField('You win')
       ..cacheAsBitmap = false
       ..width = 240
       ..height = 70

@@ -24,8 +24,8 @@ class Vector2D {
   }
 
   set length(num value) {
-    this.normalize();
-    this.multNum(value);
+    normalize();
+    multNum(value);
   }
 
   num get length {
@@ -33,8 +33,8 @@ class Vector2D {
   }
 
   void normalize() {
-    var mod = this.length;
-    if (mod == 0) throw UnsupportedError("divided by 0");
+    var mod = length;
+    if (mod == 0) throw UnsupportedError('divided by 0');
     if (mod == 1) return;
     x /= mod;
     y /= mod;
@@ -77,11 +77,11 @@ class Vector2D {
   }
 
   Vector2D getLeftNormal() {
-    return Vector2D(this.y, -this.x);
+    return Vector2D(y, -x);
   }
 
   Vector2D getRightNormal() {
-    return Vector2D(-this.y, this.x);
+    return Vector2D(-y, x);
   }
 
   num inverseSkalar(Vector2D v) {
@@ -89,16 +89,16 @@ class Vector2D {
   }
 
   num get angleRad {
-    num angle = math.pi - math.atan2(this.x, this.y);
+    num angle = math.pi - math.atan2(x, y);
     if (angle < 0) angle += 2 * math.pi;
     return angle;
   }
 
   set angleRad(num angle) {
-    var l = this.length;
+    var l = length;
     var p = Point.polar(l, angle - math.pi / 2);
-    this.x = p.x;
-    this.y = p.y;
+    x = p.x;
+    y = p.y;
   }
 
   num getAngleRadToVector(Vector2D v) {

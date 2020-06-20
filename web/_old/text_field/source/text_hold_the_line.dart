@@ -2,8 +2,8 @@ part of text_field;
 
 class TextHoldTheLine extends DisplayObjectContainer {
   TextHoldTheLine() {
-    addChild(_createTextArc("HOLD THE", 200, _deg2Rad(235), _deg2Rad(70)));
-    addChild(_createTextArc("LINE", 150, _deg2Rad(250), _deg2Rad(40)));
+    addChild(_createTextArc('HOLD THE', 200, _deg2Rad(235), _deg2Rad(70)));
+    addChild(_createTextArc('LINE', 150, _deg2Rad(250), _deg2Rad(40)));
   }
 
   num _deg2Rad(num deg) => deg * math.pi / 180.0;
@@ -38,7 +38,7 @@ class TextHoldTheLine extends DisplayObjectContainer {
     var letters = text.split('');
     var container = Sprite();
 
-    for (int i = 0; i < letters.length; i++) {
+    for (var i = 0; i < letters.length; i++) {
       var letterSprite = _createLetterSprite(letters[i]);
       var letterBounds = letterSprite.getBounds(null);
       letterSprite.pivotY = offset;
